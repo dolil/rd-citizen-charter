@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>দলিল রেজিস্ট্রেশনের প্রসেস ম্যাপ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tiro+Bangla:ital@0;1&family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  /* =========================================================
+     PROCESS MAP — 3 ft wide x 2.5 ft high = 914.4 mm x 762 mm
+     Four phase panels read left to right. Cross-panel jumps use
+     numbered connectors instead of long crossing lines.
+     ========================================================= */
+  :root { --w: 914.4mm; --h: 863.6mm; }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { height: 100%; }
+  body { background: #d0d0d0; overflow: hidden; }
+
+  .pane { position: fixed; inset: 0; overflow: auto; padding: 20px;
+          background: #d0d0d0; -webkit-overflow-scrolling: touch; }
+  .scaler { transform-origin: top left; width: max-content; margin: 0 auto; }
+
+  .outer-frame {
+    width: var(--w); height: var(--h);
+    background: #2da44e; padding: 10mm 10mm 0 10mm;
+    box-shadow: 0 4mm 14mm rgba(0,0,0,0.18);
+    display: flex; flex-direction: column; overflow: hidden;
+  }
+  .inner { background: #fff; flex: 1; overflow: hidden;
+           font-family: 'Tiro Bangla', serif; display: flex; flex-direction: column; }
+
+  .title-bar { background: #2da44e; padding: 7mm 12mm 6mm; }
+  .title-bar h1 { font-family: 'Tiro Bangla', serif; font-size: 15mm;
+                  font-weight: 400; color: #fff; line-height: 1.4; }
+  .title-bar .intro-txt { font-family: 'Tiro Bangla', serif; font-size: 6mm;
+                          color: #c8f5d9; line-height: 1.6; margin-top: 3mm; }
+
+  .map-wrap { flex: 1; padding: 6mm 8mm 4mm; display: flex; min-height: 0; }
+  .map { width: 100%; height: 100%; }
+
+  .nt  { font-family: 'Tiro Bangla', serif; font-size: 25px; fill: #1a1a1a; text-anchor: middle; }
+  .mt  { font-family: 'Tiro Bangla', serif; font-size: 19px; fill: #1a5e2a; text-anchor: middle; }
+  .dt  { font-family: 'Tiro Bangla', serif; font-size: 25px; fill: #c0392b; text-anchor: middle; }
+  .ot  { font-family: 'Tiro Bangla', serif; font-size: 26px; fill: #fff; text-anchor: middle; }
+  .ct  { font-family: 'Hind Siliguri', sans-serif; font-size: 26px; font-weight: 700;
+         fill: #1a7a38; text-anchor: middle; }
+  .pt  { font-family: 'Hind Siliguri', sans-serif; font-size: 28px; font-weight: 700;
+         fill: #fff; text-anchor: middle; letter-spacing: 0.5px; }
+  .lt  { font-family: 'Tiro Bangla', serif; font-size: 21px; fill: #4d5b52; text-anchor: middle; }
+  .sub { font-family: 'Hind Siliguri', sans-serif; font-size: 21px; font-weight: 700;
+         fill: #1a7a38; text-anchor: middle; }
+
+  .legend { display: flex; justify-content: center; gap: 14mm;
+            padding: 0 8mm 5mm; font-family: 'Tiro Bangla', serif;
+            font-size: 5.4mm; color: #4d5b52; }
+  .legend b { font-weight: 400; color: #1a5e2a; }
+
+  .frame-footer { padding: 5mm 3mm 3mm; text-align: center; }
+  .office-line { font-family: 'Tiro Bangla', serif; font-size: 10mm; color: #fff; line-height: 1.35; }
+  .credit { display: flex; justify-content: space-between; align-items: center;
+            margin-top: 3mm; padding-top: 2mm; border-top: 0.4mm solid rgba(255,255,255,0.3);
+            font-family: 'Tiro Bangla', serif; font-size: 4.4mm; color: #cdeed9; line-height: 1; }
+
+  .zoombar { position: fixed; top: 12px; left: 12px; z-index: 99; display: flex;
+             align-items: center; gap: 6px; background: #fff; border: 1px solid #b7b7b7;
+             border-radius: 8px; padding: 6px 8px; box-shadow: 0 2px 10px rgba(0,0,0,.18);
+             font: 13px/1 system-ui, sans-serif; }
+  .zoombar button { font: 13px/1 system-ui, sans-serif; padding: 6px 10px;
+                    border: 1px solid #b7b7b7; background: #f6f6f6; border-radius: 5px;
+                    cursor: pointer; color: #222; }
+  .zoombar button:hover { background: #e9e9e9; }
+  .zoombar .zv { min-width: 46px; text-align: center; color: #444; }
+  .zoombar .sz { color: #777; margin-left: 4px; }
+
+  @page { size: 914.4mm 863.6mm; margin: 0; }
+  @media print {
+    html, body { height: auto; overflow: visible; background: #fff; }
+    .zoombar { display: none !important; }
+    .pane { position: static; inset: auto; overflow: visible; padding: 0; background: #fff; }
+    .scaler { transform: none !important; zoom: 1 !important; width: auto !important;
+              height: auto !important; margin: 0; }
+    .outer-frame { box-shadow: none; }
+    * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+</style>
+</head>
+<body>
+
+<div class="zoombar">
+  <button id="zo" title="Zoom out">&minus;</button>
+  <span class="zv" id="zv">100%</span>
+  <button id="zi" title="Zoom in">+</button>
+  <button id="zf">Fit</button>
+  <button id="z1">100%</button>
+  <span class="sz">H-2.83 x W-3 ft</span>
+</div>
+
+<div class="pane" id="pane">
+<div class="scaler" id="scaler">
+<div class="outer-frame" id="frame">
+  <div class="inner">
+
+    <div class="title-bar">
+      <h1>দলিল রেজিস্ট্রেশনের প্রসেস ম্যাপ</h1>
+      <div class="intro-txt">দলিল প্রস্তুত থেকে মূল দলিল ফেরত প্রদান পর্যন্ত প্রতিটি ধাপ, ধাপের দায়িত্বপ্রাপ্ত কর্মকর্তা এবং সম্ভাব্য সময়। প্রত্যাখ্যাত হলে প্রতিকারের ধাপসমূহ ঘ প্যানেলে দেখানো হয়েছে।</div>
+    </div>
+
+    <div class="map-wrap">
+<svg viewBox="0 0 1700 1470" preserveAspectRatio="xMidYMid meet"
+     xmlns="http://www.w3.org/2000/svg" class="map">
+  <defs>
+    <marker id="ar" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,1 L11,6 L0,11 z" fill="#4d5b52"/>
+    </marker>
+  </defs>
+<rect x="20" y="20" width="370" height="1430" rx="14" fill="none" stroke="#dfe7e0" stroke-width="2"/>
+<rect x="20" y="20" width="370" height="70" rx="14" fill="#1a7a38"/>
+<rect x="20" y="70" width="370" height="20" fill="#1a7a38"/>
+<text x="205" y="66" class="pt">ক  দলিল প্রস্তুত, দাখিল ও যাচাই</text>
+<rect x="100" y="118" width="210" height="64" rx="32" fill="#2da44e" stroke="#2da44e" stroke-width="2"/>
+<text x="205" y="160" class="ot">শুরু</text>
+<polyline points="205,182 205,216" fill="none" stroke="#4d5b52" stroke-width="2.6" marker-end="url(#ar)"/>
+<rect x="50" y="216" width="310" height="138" rx="8" fill="#f8fdf9" stroke="#2da44e" stroke-width="2.2"/>
+<text x="205" y="257" class="nt">দলিল লেখক বা আইনজীবীর</text>
+<text x="205" y="289" class="nt">মাধ্যমে দলিল প্রস্তুতকরণ</text>
+<text x="205" y="323" class="mt">P: দলিল লেখক / আইনজীবী</text>
+<text x="205" y="347" class="mt">T: ১–২ দিন</text>
+<polyline points="205,354 205,388" fill="none" stroke="#4d5b52" stroke-width="2.6" marker-end="url(#ar)"/>
+<rect x="50" y="388" width="310" height="138" rx="8" fill="#f8fdf9" stroke="#2da44e" stroke-width="2.2"/>
+<text x="205" y="429" class="nt">সাব-রেজিস্ট্রারের নিকট দলিল</text>
+<text x="205" y="461" class="nt">দাখিল ও উপস্থাপন</text>
+<text x="205" y="495" class="mt">P: সংশ্লিষ্ট পক্ষ</text>
+<text x="205" y="519" class="mt">T: ৫–১০ মিনিট</text>
+<polyline points="205,526 205,560" fill="none" stroke="#4d5b52" stroke-width="2.6" marker-end="url(#ar)"/>
+<rect x="50" y="560" width="310" height="138" rx="8" fill="#f8fdf9" stroke="#2da44e" stroke-width="2.2"/>
+<text x="205" y="601" class="nt">সংশ্লিষ্ট রেকর্ডপত্র যাচাই ও</text>
+<text x="205" y="633" class="nt">দলিলের শুনানি গ্রহণ</text>
+<text x="205" y="667" class="mt">P: সাব-রেজিস্ট্রার</text>
+<text x="205" y="691" class="mt">T: ১০–১৫ মিনিট</text>
+<polyline points="205,698 205,738" fill="none" stroke="#4d5b52" stroke-width="2.6" marker-end="url(#ar)"/>
+<polygon points="205,738 345,799 205,860 65,799" fill="#fdf1ef" stroke="#c0392b" stroke-width="2.2"/>
+<text x="205" y="792" class="dt">দলিল দাখিল</text>
+<text x="205" y="824" class="dt">গ্রহণ করা হলো?</text>
+<text x="205" y="884" class="mt">P: সাব-রেজিস্ট্রার</text>
+<polyline points="345,801 357,801 357,933 315,933" fill="none" stroke="#4d5b52" stroke-width="2.6" marker-end="url(#ar)"/>
+<text x="367" y="787" class="lt">হ্যাঁ</text>
+<polyline points="65,801 53,801 53,933 95,933" fill="none" stroke="#4d5b52" stroke-width="2.6" marker-end="url(#ar)"/>
+<text x="43" y="787" class="lt">না</text>
+<circle cx="287" cy="933" r="28" fill="#fff" stroke="#1a7a38" stroke-width="3"/>
+<text x="287" y="944" class="ct">১</text>
+<circle cx="123" cy="933" r="28" fill="#fff" stroke="#1a7a38" stroke-width="3"/>
+<text x="123" y="944" class="ct">২</text>
+<text x="205" y="1007" class="lt">গ্রহণ করা হলে ১ · প্রত্যাখ্যাত হলে ২</text>
+<rect x="450" y="20" width="370" height="1430" rx="14" fill="none" stroke="#dfe7e0" stroke-width="2"/>
+<rect x="450" y="20" width="370" height="70" rx="14" fill="#1a7a38"/>
+<rect x="450" y="70" width="370" height="20" fill="#1a7a38"/>
+<text x="635" y="66" class="pt">খ  রাজস্ব আদায় ও সম্পাদন</text>
+<circle cx="635" cy="140" r="30" fill="#fff" stroke="#1a7a38" stroke-width="3"/>
+<text x="635" y="151" class="ct">১</text>
+<polyline points="635,172 635,200" fill="none" stroke="#4d5b52" stroke-width="2.6" marker-end="url(#ar)"/>
+<rect x="480" y="200" width="310" height="138" rx="8" fill="#f8fdf9" stroke="#2da44e" stroke-width="2.2"/>
+<text x="635" y="241" class="nt">দলিলের জন্য প্রয়োজনীয়</text>
+<text x="635" y="273" class="nt">সমুদয় রাজস্ব আদায়</text>
+<text x="635" y="307" class="mt">P: সাব-রেজিস্ট্রার</text>
+<text x="635" y="331" class="mt">T: ১০–১৫ মিনিট</text>
+<polyline points="635,338 635,372" fill="none" stroke="#4d5b52" stroke-width="2.6" marker-end="url(#ar)"/>
+<rect x="480" y="372" width="310" height="170" rx="8" fill="#f8fdf9" stroke="#2da44e" stroke-width="2.2"/>
+<text x="635" y="413" class="nt">সংশ্লিষ্ট রেজিস্টারে দলিল</text>
+<text x="635" y="445" class="nt">সম্পাদনকারীগণের স্বাক্ষর ও</text>
+<text x="635" y="477" class="nt">টিপসই গ্রহণ</text>
+<text x="635" y="511" class="mt">P: সাব-রেজিস্ট্রার</text>
+<text x="635" y="535" class="mt">T: ১০–১৫ মিনিট</text>
+<polyline points="635,542 635,576" fill="none" stroke="#4d5b52" stroke-width="2.6" marker-end="url(#ar)"/>
+<rect x="480" y="576" width="310" height="138" rx="8" fill="#f8fdf9" stroke="#2da44e" stroke-width="2.2"/>
+<text x="635" y="617" class="nt">সংশ্লিষ্ট পক্ষকে সরকারি রাজস্ব</text>
+<text x="635" y="649" class="nt">আদায় সংক্রান্ত রশিদ প্রদান</text>
+<text x="635" y="683" class="mt">P: সাব-রেজিস্ট্রার, অফিস সহকারী</text>
+<text x="635" y="707" class="mt">T: ১০–১৫ মিনিট</text>
+<polyline points="790,645 824,645" fill="none" stroke="#4d5b52" stroke-width="2.6" marker-end="url(#ar)"/>
+<circle cx="850" cy="645" r="24" fill="#fff" stroke="#1a7a38" stroke-width="3"/>
+<text x="850" y="656" class="ct">৩</text>
+<polyline points="635,714 635,754" fill="none" stroke="#4d5b52" stroke-width="2.6" marker-end="url(#ar)"/>
+<text x="635" y="784" class="sub">হিসাব সংক্রান্ত কার্যক্রম</text>
+<polyline points="635,796 635,820" fill="none" stroke="#4d5b52" stroke-width="2.6" marker-end="url(#ar)"/>
+<rect x="480" y="820" width="310" height="114" rx="8" fill="#f8fdf9" stroke="#2da44e" stroke-width="2.2"/>
+<text x="635" y="861" class="nt">ফি বইতে আদায়কৃত রাজস্ব</text>
+<text x="635" y="893" class="nt">জমাকরণ</text>
+<text x="635" y="927" class="mt">P: সাব-রেজিস্ট্রার</text>
+<polyline points="635,934 635,968" fill="none" stroke="#4d5b52" stroke-width="2.6" marker-end="url(#ar)"/>
+<rect x="480" y="968" width="310" height="114" rx="8" fill="#f8fdf9" stroke="#2da44e" stroke-width="2.2"/>
+<text x="635" y="1009" class="nt">ক্যাশ বইতে আদায়কৃত</text>
+<text x="635" y="1041" class="nt">রাজস্বের হিসাব লিপিবদ্ধকরণ</text>
+<text x="635" y="1075" class="mt">P: সাব-রেজিস্ট্রার, অফিস সহকারী</text>
+<polyline points="635,1082 635,1116" fill="none" stroke="#4d5b52" stroke-width="2.6" marker-end="url(#ar)"/>
+<rect x="480" y="1116" width="310" height="138" rx="8" fill="#f8fdf9" stroke="#2da44e" stroke-width="2.2"/>
+<text x="635" y="1157" class="nt">সংশ্লিষ্ট ব্যাংকে আদায়কৃত</text>
+<text x="635" y="1189" class="nt">রাজস্ব জমা প্রদান</text>
+<text x="635" y="1223" class="mt">P: সাব-রেজিস্ট্রার, অফিস সহকারী</text>
+<text x="635" y="1247" class="mt">T: ১ দিন</text>
+<rect x="880" y="20" width="370" height="1430" rx="14" fill="none" stroke="#dfe7e0" stroke-width="2"/>
+<rect x="880" y="20" width="370" height="70" rx="14" fill="#1a7a38"/>
+<rect x="880" y="70" width="370" height="20" fill="#1a7a38"/>
+<text x="1065" y="66" class="pt">গ  সংরক্ষণ, নোটিশ ও সমাপ্তি</text>
+<circle cx="1065" cy="140" r="30" fill="#fff" stroke="#1a7a38" stroke-width="3"/>
+<text x="1065" y="151" class="ct">৩</text>
+<polyline points="1065,172 1065,200" fill="none" stroke="#4d5b52" stroke-width="2.6" marker-end="url(#ar)"/>
+<rect x="910" y="200" width="310" height="82" rx="8" fill="#f8fdf9" stroke="#2da44e" stroke-width="2.2"/>
+<text x="1065" y="241" class="nt">দলিলের বিভিন্ন পৃষ্ঠাংকনকরণ</text>
+<text x="1065" y="275" class="mt">P: সাব-রেজিস্ট্রার</text>
+<polyline points="1065,282 1065,312" fill="none" stroke="#4d5b52" stroke-width="2.6" marker-end="url(#ar)"/>
+<rect x="910" y="312" width="310" height="138" rx="8" fill="#f8fdf9" stroke="#2da44e" stroke-width="2.2"/>
+<text x="1065" y="353" class="nt">বালাম বইতে দলিলের অবিকল</text>
+<text x="1065" y="385" class="nt">প্রতিলিপি প্রস্তুতকরণ</text>
+<text x="1065" y="419" class="mt">P: অতিরিক্ত মোহরার, অফিস সহকারী</text>
+<text x="1065" y="443" class="mt">T: ১৫ দিন – ২/৩ বছর</text>
+<polyline points="1065,450 1065,480" fill="none" stroke="#4d5b52" stroke-width="2.6" marker-end="url(#ar)"/>
+<rect x="910" y="480" width="310" height="170" rx="8" fill="#f8fdf9" stroke="#2da44e" stroke-width="2.2"/>
+<text x="1065" y="521" class="nt">পক্ষ ও জমির মৌজা, দাগ নম্বর,</text>
+<text x="1065" y="553" class="nt">পরিমাণ ইত্যাদির পৃথক পৃথক</text>
+<text x="1065" y="585" class="nt">সূচি প্রস্তুতকরণ</text>
+<text x="1065" y="619" class="mt">P: অফিস সহকারী, মোহরার</text>
+<text x="1065" y="643" class="mt">T: ১৫ দিন – ২/৩ মাস</text>
+<polyline points="1065,650 1065,680" fill="none" stroke="#4d5b52" stroke-width="2.6" marker-end="url(#ar)"/>
+<rect x="910" y="680" width="310" height="138" rx="8" fill="#f8fdf9" stroke="#2da44e" stroke-width="2.2"/>
+<text x="1065" y="721" class="nt">দলিল রেজিস্ট্রেশন সম্পন্ন</text>
+<text x="1065" y="753" class="nt">হওয়া সংক্রান্ত নোটিশ প্রদান</text>
+<text x="1065" y="787" class="mt">P: সাব-রেজিস্ট্রার</text>
+<text x="1065" y="811" class="mt">T: ১ দিন</text>
+<polyline points="1065,818 1065,848" fill="none" stroke="#4d5b52" stroke-width="2.6" marker-end="url(#ar)"/>
+<rect x="910" y="848" width="310" height="138" rx="8" fill="#f8fdf9" stroke="#2da44e" stroke-width="2.2"/>
+<text x="1065" y="889" class="nt">প্রযোজ্য ক্ষেত্রে বকেয়া ফি ও</text>
+<text x="1065" y="921" class="nt">বিলম্ব ফি আদায়</text>
+<text x="1065" y="955" class="mt">P: সাব-রেজিস্ট্রার</text>
+<text x="1065" y="979" class="mt">T: ১ দিন</text>
+<polyline points="1065,986 1065,1016" fill="none" stroke="#4d5b52" stroke-width="2.6" marker-end="url(#ar)"/>
+<rect x="910" y="1016" width="310" height="138" rx="8" fill="#f8fdf9" stroke="#2da44e" stroke-width="2.2"/>
+<text x="1065" y="1057" class="nt">মূল রশিদ ফেরত সাপেক্ষে</text>
+<text x="1065" y="1089" class="nt">পক্ষকে মূল দলিল ফেরত প্রদান</text>
+<text x="1065" y="1123" class="mt">P: সাব-রেজিস্ট্রার</text>
+<text x="1065" y="1147" class="mt">T: ১ দিন</text>
+<polyline points="1065,1154 1065,1184" fill="none" stroke="#4d5b52" stroke-width="2.6" marker-end="url(#ar)"/>
+<rect x="960" y="1184" width="210" height="64" rx="32" fill="#2da44e" stroke="#2da44e" stroke-width="2"/>
+<text x="1065" y="1226" class="ot">শেষ</text>
+<rect x="1310" y="20" width="370" height="1430" rx="14" fill="none" stroke="#dfe7e0" stroke-width="2"/>
+<rect x="1310" y="20" width="370" height="70" rx="14" fill="#c0392b"/>
+<rect x="1310" y="70" width="370" height="20" fill="#c0392b"/>
+<text x="1495" y="66" class="pt">ঘ  প্রত্যাখ্যান হলে প্রতিকার</text>
+<circle cx="1495" cy="140" r="30" fill="#fff" stroke="#1a7a38" stroke-width="3"/>
+<text x="1495" y="151" class="ct">২</text>
+<polyline points="1495,172 1495,200" fill="none" stroke="#4d5b52" stroke-width="2.6" marker-end="url(#ar)"/>
+<rect x="1377" y="200" width="236" height="138" rx="8" fill="#f8fdf9" stroke="#2da44e" stroke-width="2.2"/>
+<text x="1495" y="241" class="nt">জেলা রেজিস্ট্রার বরাবর</text>
+<text x="1495" y="273" class="nt">আপিল দায়ের</text>
+<text x="1495" y="307" class="mt">P: সংশ্লিষ্ট পক্ষ</text>
+<text x="1495" y="331" class="mt">T: ১ মাসের মধ্যে</text>
+<polyline points="1495,338 1495,360" fill="none" stroke="#4d5b52" stroke-width="2.6" marker-end="url(#ar)"/>
+<rect x="1377" y="360" width="236" height="82" rx="8" fill="#f8fdf9" stroke="#2da44e" stroke-width="2.2"/>
+<text x="1495" y="401" class="nt">শুনানি গ্রহণ</text>
+<text x="1495" y="435" class="mt">P: জেলা রেজিস্ট্রার</text>
+<polyline points="1495,442 1495,466" fill="none" stroke="#4d5b52" stroke-width="2.6" marker-end="url(#ar)"/>
+<polygon points="1495,466 1620,520 1495,574 1370,520" fill="#fdf1ef" stroke="#c0392b" stroke-width="2.2"/>
+<text x="1495" y="513" class="dt">রেজিস্ট্রির আদেশ</text>
+<text x="1495" y="545" class="dt">দেওয়া হলো?</text>
+<text x="1495" y="598" class="mt">P: জেলা রেজিস্ট্রার</text>
+<polyline points="1370,520 1345,520 1345,707 1377,707" fill="none" stroke="#4d5b52" stroke-width="2.6" marker-end="url(#ar)"/>
+<text x="1346" y="506" class="lt">না</text>
+<rect x="1377" y="638" width="236" height="138" rx="8" fill="#f8fdf9" stroke="#2da44e" stroke-width="2.2"/>
+<text x="1495" y="679" class="nt">দেওয়ানি আদালতে</text>
+<text x="1495" y="711" class="nt">মামলা দায়ের</text>
+<text x="1495" y="745" class="mt">P: সংশ্লিষ্ট পক্ষ</text>
+<text x="1495" y="769" class="mt">T: ১ মাসের মধ্যে</text>
+<polyline points="1495,776 1495,800" fill="none" stroke="#4d5b52" stroke-width="2.6" marker-end="url(#ar)"/>
+<polygon points="1495,800 1620,854 1495,908 1370,854" fill="#fdf1ef" stroke="#c0392b" stroke-width="2.2"/>
+<text x="1495" y="847" class="dt">আদালতের আদেশ</text>
+<text x="1495" y="879" class="dt">অনুকূল?</text>
+<text x="1495" y="932" class="mt">P: বিচারিক কর্মকর্তা</text>
+<polyline points="1370,854 1345,854 1345,1013 1377,1013" fill="none" stroke="#4d5b52" stroke-width="2.6" marker-end="url(#ar)"/>
+<text x="1346" y="840" class="lt">না</text>
+<rect x="1377" y="972" width="236" height="82" rx="8" fill="#f8fdf9" stroke="#2da44e" stroke-width="2.2"/>
+<text x="1495" y="1013" class="nt">আপিল আবেদন খারিজ</text>
+<text x="1495" y="1047" class="mt">P: বিচারিক কর্মকর্তা</text>
+<polyline points="1495,1054 1495,1076" fill="none" stroke="#4d5b52" stroke-width="2.6" marker-end="url(#ar)"/>
+<rect x="1405" y="1076" width="180" height="64" rx="32" fill="#2da44e" stroke="#2da44e" stroke-width="2"/>
+<text x="1495" y="1118" class="ot">শেষ</text>
+<polyline points="1620,520 1661,520 1661,1265 1613,1265" fill="none" stroke="#4d5b52" stroke-width="2.6" marker-end="url(#ar)"/>
+<text x="1644" y="506" class="lt">হ্যাঁ</text>
+<polyline points="1620,854 1635,854 1635,1265 1613,1265" fill="none" stroke="#4d5b52" stroke-width="2.6" marker-end="url(#ar)"/>
+<text x="1644" y="840" class="lt">হ্যাঁ</text>
+<rect x="1377" y="1180" width="236" height="170" rx="8" fill="#f8fdf9" stroke="#2da44e" stroke-width="2.2"/>
+<text x="1495" y="1221" class="nt">মতামত বা আদেশসহ</text>
+<text x="1495" y="1253" class="nt">সাব-রেজিস্ট্রারের নিকট</text>
+<text x="1495" y="1285" class="nt">নথি প্রেরণ</text>
+<text x="1495" y="1319" class="mt">P: জেলা রেজিস্ট্রার /</text>
+<text x="1495" y="1343" class="mt">বিচারিক কর্মকর্তা</text>
+<polyline points="1495,1350 1495,1374" fill="none" stroke="#4d5b52" stroke-width="2.6" marker-end="url(#ar)"/>
+<circle cx="1495" cy="1402" r="30" fill="#fff" stroke="#1a7a38" stroke-width="3"/>
+<text x="1495" y="1413" class="ct">১</text>
+</svg>
+    </div>
+
+    <div class="legend">
+      <span><b>P</b> = দায়িত্বপ্রাপ্ত ব্যক্তি / কর্মকর্তা</span>
+      <span><b>T</b> = সম্ভাব্য সময়</span>
+      <span><b>১ ২ ৩</b> = এক প্যানেল থেকে অন্য প্যানেলে সংযোগ</span>
+      <span>হীরক ঘর = সিদ্ধান্তের ধাপ</span>
+    </div>
+
+  </div>
+
+  <div class="frame-footer">
+    <div class="office-line">সাব-রেজিস্ট্রারের কার্যালয়, সিরাজদিখান, মুন্সীগঞ্জ</div>
+    <div class="credit"><span>© This Banner is designed by Md. Maksu Miah, Sub-Registrar</span><span>H-2.83 x W-3 ft</span></div>
+  </div>
+</div>
+</div>
+</div>
+
+<script>
+(function () {
+  var scaler = document.getElementById('scaler');
+  var frame  = document.getElementById('frame');
+  var pane   = document.getElementById('pane');
+  var USE_ZOOM = window.CSS && CSS.supports && CSS.supports('zoom', '0.5');
+  var k = 1;
+
+  function apply() {
+    if (USE_ZOOM) {
+      scaler.style.transform = 'none'; scaler.style.width = ''; scaler.style.height = '';
+      scaler.style.zoom = k;
+    } else {
+      var w = frame.offsetWidth, h = frame.offsetHeight;
+      scaler.style.zoom = 1;
+      scaler.style.transform = 'scale(' + k + ')';
+      scaler.style.width = (w * k) + 'px'; scaler.style.height = (h * k) + 'px';
+    }
+    document.getElementById('zv').textContent = Math.round(k * 100) + '%';
+  }
+  function fitPreview() {
+    scaler.style.zoom = 1; scaler.style.transform = 'none';
+    scaler.style.width = ''; scaler.style.height = '';
+    k = Math.min((pane.clientWidth - 44) / frame.offsetWidth,
+                 (pane.clientHeight - 44) / frame.offsetHeight, 1);
+    apply();
+  }
+  document.getElementById('zi').onclick = function () { k = Math.min(2, k * 1.25); apply(); };
+  document.getElementById('zo').onclick = function () { k = Math.max(0.05, k / 1.25); apply(); };
+  document.getElementById('zf').onclick = fitPreview;
+  document.getElementById('z1').onclick = function () { k = 1; apply(); };
+
+  var EXPORT = /(\?|&)export/.test(location.search);
+  function exportMode() {
+    document.querySelector('.zoombar').style.display = 'none';
+    pane.style.padding = '0'; pane.style.overflow = 'visible';
+    pane.style.position = 'static'; pane.style.background = '#fff';
+    document.body.style.overflow = 'visible';
+    k = 1; scaler.style.zoom = 1; scaler.style.transform = 'none';
+    scaler.style.width = 'auto'; scaler.style.height = 'auto'; scaler.style.margin = '0';
+  }
+  function run() { if (EXPORT) exportMode(); else fitPreview(); }
+  window.addEventListener('resize', function () { if (!EXPORT) fitPreview(); });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(run);
+  window.addEventListener('load', run);
+  run();
+})();
+</script>
+</body>
+</html>

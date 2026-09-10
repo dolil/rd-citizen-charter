@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>তথ্য সহায়তা কেন্দ্র — দলিল দাখিলের সময়সূচি ও নির্দেশিকা</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tiro+Bangla:ital@0;1&family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  /* =========================================================
+     HELPDESK BOARD
+     SIZE: 51.5 in wide × 55 in high = 1308.1 mm × 1397 mm
+     Read from a distance while standing at the desk, so the
+     hierarchy is: what time → what to bring → what to avoid.
+     All dimensions in mm. --type is auto-set on load.
+     ========================================================= */
+  :root {
+    --w: 1308.1mm;   /* 51.5 in */
+    --h: 1397mm;     /* 55 in   */
+    --type: 1;
+    --chrome: calc(0.6 + 0.4 * var(--type));
+    --frame: 34mm;   /* green border — wider than the other banners */
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html, body { height: 100%; }
+
+  body { background: #d0d0d0; overflow: hidden; }
+
+  .pane {
+    position: fixed;
+    inset: 0;
+    overflow: auto;
+    padding: 20px;
+    background: #d0d0d0;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .scaler {
+    transform-origin: top left;
+    width: max-content;
+    margin: 0 auto;
+  }
+
+  .outer-frame {
+    width: var(--w);
+    height: var(--h);
+    background: #2da44e;
+    padding: var(--frame) var(--frame) 0 var(--frame);
+    box-shadow: 0 6mm 20mm rgba(0,0,0,0.2);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  .inner {
+    background: #fff;
+    flex: 1;
+    overflow: hidden;
+    font-family: 'Tiro Bangla', serif;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* ---------- GOVERNMENT HEADER ---------- */
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: calc(14mm * var(--type));
+    padding: calc(12mm * var(--type)) calc(20mm * var(--type));
+    border-bottom: 1.4mm solid #e0ede4;
+  }
+
+  /* national emblem — drop the PNG next to this HTML file */
+  .govt-logo {
+    width: calc(82mm * var(--chrome));
+    height: calc(82mm * var(--chrome));
+    flex: 0 0 auto;
+    object-fit: contain;
+  }
+
+  .header-text { text-align: center; }
+
+  .header-govt {
+    font-family: 'Tiro Bangla', serif;
+    font-size: calc(40mm * var(--chrome));
+    color: #cc0001;
+    line-height: 1.3;
+  }
+
+  .header-office {
+    font-family: 'Tiro Bangla', serif;
+    font-size: calc(30mm * var(--chrome));
+    color: #006a4e;
+    line-height: 1.4;
+    margin-top: calc(3mm * var(--type));
+  }
+
+  /* ---------- HELPDESK BAR ---------- */
+  .helpdesk-bar {
+    background: #2da44e;
+    padding: calc(12mm * var(--type)) calc(20mm * var(--type));
+    text-align: center;
+  }
+
+  .helpdesk-title {
+    font-family: 'Tiro Bangla', serif;
+    font-size: calc(90mm * var(--chrome));
+    color: #fff;
+    line-height: 1.2;
+  }
+
+  /* ---------- BODY ---------- */
+  .body {
+    flex: 1;
+    padding: calc(16mm * var(--type)) calc(20mm * var(--type)) calc(10mm * var(--type));
+  }
+
+  /* TIME BLOCK — the one thing readable from across the room */
+  .time-box {
+    background: #2da44e;
+    border-radius: 6mm;
+    padding: calc(14mm * var(--type)) calc(18mm * var(--type));
+    text-align: center;
+  }
+
+  .time-label {
+    font-family: 'Hind Siliguri', sans-serif;
+    font-size: calc(18mm * var(--type));
+    font-weight: 700;
+    color: #c8f5d9;
+    letter-spacing: 1mm;
+  }
+
+  .time-main {
+    font-family: 'Tiro Bangla', serif;
+    font-size: calc(65mm * var(--type));
+    color: #fff;
+    line-height: 1.25;
+    margin-top: calc(4mm * var(--type));
+  }
+
+  .time-rule {
+    font-family: 'Tiro Bangla', serif;
+    font-size: calc(22mm * var(--type));
+    color: #c8f5d9;
+    margin-top: calc(5mm * var(--type));
+  }
+
+  /* CLOSED DAYS */
+  .closed-box {
+    margin-top: calc(9mm * var(--type));
+    border: 0.6mm solid #f3c9c9;
+    border-left: 4mm solid #c0392b;
+    border-radius: 0 4mm 4mm 0;
+    background: #fdf5f5;
+    padding: calc(9mm * var(--type)) calc(12mm * var(--type));
+    display: flex;
+    align-items: center;
+    gap: calc(6mm * var(--type));
+  }
+
+  .closed-box svg {
+    flex: 0 0 auto;
+    width: 1em; height: 1em;
+    font-size: calc(24mm * var(--type));
+    fill: none; stroke: #c0392b; stroke-width: 1.9;
+    stroke-linecap: round; stroke-linejoin: round;
+  }
+
+  .closed-text {
+    font-family: 'Tiro Bangla', serif;
+    font-size: calc(24mm * var(--type));
+    color: #c0392b;
+    line-height: 1.5;
+  }
+
+  /* THREE COLUMNS */
+  .cols {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr 1fr;
+    gap: calc(12mm * var(--type));
+    margin-top: calc(12mm * var(--type));
+  }
+
+  .col-title {
+    font-family: 'Hind Siliguri', sans-serif;
+    font-size: calc(26mm * var(--type));
+    font-weight: 700;
+    color: #1a7a38;
+    letter-spacing: 0.4mm;
+    padding-bottom: calc(4mm * var(--type));
+    margin-bottom: calc(8mm * var(--type));
+    border-bottom: 1.4mm solid #e0ede4;
+  }
+  .col-title.warn { color: #c0392b; border-bottom-color: #f3c9c9; }
+
+  /* STEPS */
+  .step-item {
+    display: flex;
+    align-items: flex-start;
+    gap: calc(6mm * var(--type));
+    margin-bottom: calc(8mm * var(--type));
+  }
+  .step-item:last-child { margin-bottom: 0; }
+
+  .step-num {
+    flex: 0 0 auto;
+    width: calc(32mm * var(--type));
+    height: calc(32mm * var(--type));
+    border: 1.4mm solid #c0392b;
+    border-radius: 50%;
+    background: #fdf1ef;
+    color: #c0392b;
+    font-family: 'Hind Siliguri', sans-serif;
+    font-size: calc(18mm * var(--type));
+    font-weight: 700;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: calc(2mm * var(--type));
+  }
+
+  .step-text {
+    font-family: 'Tiro Bangla', serif;
+    font-size: calc(22mm * var(--type));
+    color: #1a1a1a;
+    line-height: 1.55;
+  }
+
+  /* TIP / MISTAKE ITEMS */
+  .list-item {
+    display: flex;
+    align-items: flex-start;
+    gap: calc(5mm * var(--type));
+    margin-bottom: calc(8mm * var(--type));
+  }
+  .list-item:last-child { margin-bottom: 0; }
+
+  /* diamond bullet, drawn in CSS */
+  .dot {
+    flex: 0 0 auto;
+    width: calc(7mm * var(--type));
+    height: calc(7mm * var(--type));
+    background: #2da44e;
+    transform: rotate(45deg);
+    margin-top: calc(10mm * var(--type));
+  }
+  .dot.red { background: #c0392b; }
+
+  .list-text {
+    font-family: 'Tiro Bangla', serif;
+    font-size: calc(22mm * var(--type));
+    color: #1a1a1a;
+    line-height: 1.55;
+  }
+  .list-text.red { color: #8e2a1f; }
+
+  /* ---------- FOOTER ---------- */
+  .footer-bar {
+    background: #f0faf4;
+    border-top: 2mm solid #2da44e;
+    padding: calc(9mm * var(--type)) calc(20mm * var(--type));
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: calc(14mm * var(--type));
+  }
+
+  .footer-note {
+    font-family: 'Tiro Bangla', serif;
+    font-size: calc(20mm * var(--type));
+    color: #444;
+    line-height: 1.5;
+  }
+  .footer-note strong { color: #c0392b; font-weight: 400; }
+
+  .credit {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: calc(6mm * var(--type)) 4mm calc(4mm * var(--type));
+    font-family: 'Tiro Bangla', serif;
+    font-size: calc(10mm * var(--type));
+    color: #cdeed9;
+    line-height: 1;
+  }
+
+  /* ZOOM TOOLBAR — screen only */
+  .zoombar {
+    position: fixed; top: 12px; left: 12px; z-index: 99;
+    display: flex; align-items: center; gap: 6px;
+    background: #fff; border: 1px solid #b7b7b7; border-radius: 8px;
+    padding: 6px 8px; box-shadow: 0 2px 10px rgba(0,0,0,.18);
+    font: 13px/1 system-ui, sans-serif;
+  }
+  .zoombar button {
+    font: 13px/1 system-ui, sans-serif; padding: 6px 10px;
+    border: 1px solid #b7b7b7; background: #f6f6f6;
+    border-radius: 5px; cursor: pointer; color: #222;
+  }
+  .zoombar button:hover { background: #e9e9e9; }
+  .zoombar .zv { min-width: 46px; text-align: center; color: #444; }
+  .zoombar .sz { color: #777; margin-left: 4px; }
+
+  /* measuring helper for the auto-fit routine */
+  .measuring .outer-frame { height: auto; }
+  .measuring .inner { flex: 0 0 auto; }
+  .measuring .body { flex: 0 0 auto; }
+
+  @page { size: 1308.1mm 1397mm; margin: 0; }
+
+  @media print {
+    html, body { height: auto; overflow: visible; background: #fff; }
+    .zoombar { display: none !important; }
+    .pane { position: static; inset: auto; overflow: visible; padding: 0; background: #fff; }
+    .scaler { transform: none !important; zoom: 1 !important; width: auto !important; height: auto !important; margin: 0; }
+    .outer-frame { box-shadow: none; }
+    * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+</style>
+</head>
+<body>
+
+<div class="zoombar">
+  <button id="zo" title="Zoom out">&minus;</button>
+  <span class="zv" id="zv">100%</span>
+  <button id="zi" title="Zoom in">+</button>
+  <button id="zf">Fit</button>
+  <button id="z1">100%</button>
+  <span class="sz">H-4.58 x W-4.29 ft</span>
+</div>
+
+<div class="pane" id="pane">
+<div class="scaler" id="scaler">
+<div class="outer-frame" id="frame">
+  <div class="inner">
+
+    <!-- GOVERNMENT HEADER -->
+    <div class="header">
+      <img class="govt-logo" src="bd-govt-logo.png" alt="">
+      <div class="header-text">
+        <div class="header-govt">গণপ্রজাতন্ত্রী বাংলাদেশ সরকার</div>
+        <div class="header-office">সাব-রেজিস্ট্রারের কার্যালয়, সিরাজদিখান, মুন্সীগঞ্জ</div>
+      </div>
+    </div>
+
+    <!-- HELPDESK BAR -->
+    <div class="helpdesk-bar">
+      <div class="helpdesk-title">তথ্য সহায়তা কেন্দ্র</div>
+    </div>
+
+    <div class="body">
+
+      <!-- TIME -->
+      <div class="time-box">
+        <div class="time-label">দলিল দাখিল গ্রহণের সময়</div>
+        <div class="time-main">সকাল ১০টা — বিকাল ৩টা</div>
+        <div class="time-rule">বিধি ১১৩, নিবন্ধন বিধিমালা, ২০১৪</div>
+      </div>
+
+      <div class="closed-box">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/></svg>
+        <div class="closed-text">সরকারি ছুটির দিন ও সাপ্তাহিক বন্ধে (শুক্র ও শনিবার) কার্যালয় বন্ধ থাকে।</div>
+      </div>
+
+      <!-- THREE COLUMNS -->
+      <div class="cols">
+
+        <div>
+          <div class="col-title">দলিল দাখিলের পূর্বে করণীয়</div>
+          <div class="step-item"><div class="step-num">১</div><div class="step-text">দাখিলের ২-৩ দিন আগে দলিল সম্পাদন ও স্বাক্ষর সম্পন্ন করুন।</div></div>
+          <div class="step-item"><div class="step-num">২</div><div class="step-text">রেজিস্ট্রেশন ফিসহ সকল ফি ও করাদি এ-চালানের মাধ্যমে এবং স্থানীয় সরকার কর পে-অর্ডারের মাধ্যমে জমা দিন।</div></div>
+          <div class="step-item"><div class="step-num">৩</div><div class="step-text">খতিয়ান, দাখিলা, ওয়ারিশ সনদ (প্রযোজ্য হলে) ও জাতীয় পরিচয়পত্র প্রস্তুত রাখুন।</div></div>
+          <div class="step-item"><div class="step-num">৪</div><div class="step-text">দলিল সম্পাদনকারীকে (দাতা) সশরীরে উপস্থিত হয়ে সাব-রেজিস্ট্রারের সম্মুখে সম্পাদন স্বীকার করতে হবে।</div></div>
+          <div class="step-item"><div class="step-num">৫</div><div class="step-text">দাখিলের আগে চেকলিস্ট অনুযায়ী সব কাগজপত্র মিলিয়ে নিন।</div></div>
+        </div>
+
+        <div>
+          <div class="col-title">গুরুত্বপূর্ণ পরামর্শ</div>
+          <div class="list-item"><span class="dot"></span><div class="list-text">বিকাল ৩টার পর দলিল গ্রহণ করা হয় না — সময়মতো আসুন।</div></div>
+          <div class="list-item"><span class="dot"></span><div class="list-text">সকল ফি ও করাদি এ-চালানে পরিশোধ করুন; কেবল স্থানীয় সরকার কর পে-অর্ডারে।</div></div>
+          <div class="list-item"><span class="dot"></span><div class="list-text">দলিলে কোনো কাটাকাটি বা সংশোধন থাকলে সম্পাদনকারীর স্বাক্ষরে সত্যায়িত করুন।</div></div>
+          <div class="list-item"><span class="dot"></span><div class="list-text">কাগজপত্রের মূল কপি ও ফটোকপি উভয়ই সঙ্গে নিয়ে আসুন।</div></div>
+          <div class="list-item"><span class="dot"></span><div class="list-text">প্রয়োজনে অভিজ্ঞ দলিল লেখক বা আইনজীবীর পরামর্শ নিন।</div></div>
+        </div>
+
+        <div>
+          <div class="col-title warn">যেসব ভুল বেশি হয়</div>
+          <div class="list-item"><span class="dot red"></span><div class="list-text red">দলিলের প্রতিটি পৃষ্ঠায় সম্পাদন (স্বাক্ষর/টিপসই) না থাকা।</div></div>
+          <div class="list-item"><span class="dot red"></span><div class="list-text red">পুরনো, ঝাপসা বা অস্পষ্ট ছবি সংযুক্ত করা।</div></div>
+          <div class="list-item"><span class="dot red"></span><div class="list-text red">মৌজার নাম, দাগ বা খতিয়ান নম্বরে গরমিল।</div></div>
+          <div class="list-item"><span class="dot red"></span><div class="list-text red">স্বাক্ষরের পরিবর্তে শুধু সিল ব্যবহার করা।</div></div>
+          <div class="list-item"><span class="dot red"></span><div class="list-text red">হাল সন পর্যন্ত ভূমি উন্নয়ন কর পরিশোধের দাখিলা না আনা।</div></div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer-bar">
+      <div class="footer-note"><strong>সতর্কতা:</strong> অসম্পূর্ণ কাগজপত্র নিয়ে এলে দলিল গ্রহণ স্থগিত হতে পারে।</div>
+      <div class="footer-note">নিবন্ধন আইন, ১৯০৮ &nbsp;|&nbsp; নিবন্ধন বিধিমালা, ২০১৪</div>
+    </div>
+
+  </div><!-- end inner -->
+
+  <div class="credit">
+    <span>© This Banner is designed by Md. Maksu Miah, Sub-Registrar</span>
+    <span>H-4.58 x W-4.29 ft</span>
+  </div>
+</div>
+</div>
+</div>
+
+<script>
+(function () {
+  var scaler = document.getElementById('scaler');
+  var frame  = document.getElementById('frame');
+  var pane   = document.getElementById('pane');
+  var MM = 96 / 25.4;
+
+  function autoFitType() {
+    var target = 1397 * MM;
+    var t = 1;
+    document.body.classList.add('measuring');
+    scaler.style.transform = 'none';
+    scaler.style.zoom = 1;
+    for (var i = 0; i < 14; i++) {
+      document.documentElement.style.setProperty('--type', t.toFixed(4));
+      var natural = frame.offsetHeight;
+      var ratio = (target * 0.995) / natural;
+      if (Math.abs(1 - ratio) < 0.004) break;
+      t = Math.min(1.8, Math.max(0.4, t * (1 + (ratio - 1) * 0.6)));
+    }
+    while (frame.offsetHeight > target && t > 0.35) {
+      t -= 0.01;
+      document.documentElement.style.setProperty('--type', t.toFixed(4));
+    }
+    document.body.classList.remove('measuring');
+    console.log('--type settled at', getComputedStyle(document.documentElement).getPropertyValue('--type'));
+  }
+
+  var USE_ZOOM = window.CSS && CSS.supports && CSS.supports('zoom', '0.5');
+  var k = 1;
+
+  function apply() {
+    if (USE_ZOOM) {
+      scaler.style.transform = 'none';
+      scaler.style.width = '';
+      scaler.style.height = '';
+      scaler.style.zoom = k;
+    } else {
+      var w = frame.offsetWidth, h = frame.offsetHeight;
+      scaler.style.zoom = 1;
+      scaler.style.transform = 'scale(' + k + ')';
+      scaler.style.width  = (w * k) + 'px';
+      scaler.style.height = (h * k) + 'px';
+    }
+    document.getElementById('zv').textContent = Math.round(k * 100) + '%';
+  }
+
+  function fitPreview() {
+    scaler.style.zoom = 1;
+    scaler.style.transform = 'none';
+    scaler.style.width = '';
+    scaler.style.height = '';
+    k = Math.min((pane.clientWidth - 44) / frame.offsetWidth,
+                 (pane.clientHeight - 44) / frame.offsetHeight, 1);
+    apply();
+  }
+
+  document.getElementById('zi').onclick = function () { k = Math.min(2, k * 1.25); apply(); };
+  document.getElementById('zo').onclick = function () { k = Math.max(0.02, k / 1.25); apply(); };
+  document.getElementById('zf').onclick = fitPreview;
+  document.getElementById('z1').onclick = function () { k = 1; apply(); };
+
+  var EXPORT = /(\?|&)export/.test(location.search);
+
+  function exportMode() {
+    document.querySelector('.zoombar').style.display = 'none';
+    pane.style.padding = '0';
+    pane.style.overflow = 'visible';
+    pane.style.position = 'static';
+    pane.style.background = '#fff';
+    document.body.style.overflow = 'visible';
+    k = 1;
+    scaler.style.zoom = 1;
+    scaler.style.transform = 'none';
+    scaler.style.width = 'auto';
+    scaler.style.height = 'auto';
+    scaler.style.margin = '0';
+  }
+
+  function run() { autoFitType(); if (EXPORT) { exportMode(); } else { fitPreview(); } }
+  window.addEventListener('resize', function () { if (!EXPORT) fitPreview(); });
+  if (document.fonts && document.fonts.ready) { document.fonts.ready.then(run); }
+  window.addEventListener('load', run);
+  run();
+})();
+</script>
+</body>
+</html>

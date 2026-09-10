@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>দলিল রেজিস্ট্রেশন প্রত্যাখ্যানের কারণসমূহ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tiro+Bangla:ital@0;1&family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  /* =========================================================
+     SIZE: 1.5 ft wide x 2 ft high = 457.2 mm x 609.6 mm
+     Same system as banner-required-documents.html.
+     --type  : auto-set on load so the content fills the sheet
+     --chrome: damped scale for title/footer, so the shared
+               chrome stays close in size across the banner set
+               even when body density differs
+     ========================================================= */
+  :root {
+    --w: 457.2mm;   /* 1.5 ft */
+    --h: 609.6mm;   /* 2 ft   */
+    --type: 1;
+    --chrome: calc(0.5 + 0.5 * var(--type));
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html, body { height: 100%; }
+
+  body {
+    background: #d0d0d0;
+    overflow: hidden;
+  }
+
+  /* scroll viewport for the preview */
+  .pane {
+    position: fixed;
+    inset: 0;
+    overflow: auto;
+    padding: 20px;
+    background: #d0d0d0;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .scaler {
+    transform-origin: top left;
+    width: max-content;
+    margin: 0 auto;
+  }
+
+  .outer-frame {
+    width: var(--w);
+    height: var(--h);
+    background: #2da44e;
+    padding: 7.1mm 7.1mm 0 7.1mm;
+    box-shadow: 0 4mm 14mm rgba(0,0,0,0.18);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  .inner {
+    background: #fff;
+    flex: 1;
+    overflow: hidden;
+    font-family: 'Tiro Bangla', serif;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* TITLE BAR — title + intro combined */
+  .title-bar {
+    background: #2da44e;
+    padding: calc(10mm * var(--type)) calc(15.7mm * var(--type)) calc(8.6mm * var(--type));
+  }
+
+  .title-bar h1 {
+    font-family: 'Tiro Bangla', serif;
+    font-size: calc(18mm * var(--chrome));
+    font-weight: 400;
+    color: #fff;
+    line-height: 1.45;
+    margin-bottom: calc(5mm * var(--type));
+  }
+
+  .title-bar .intro-txt {
+    font-family: 'Tiro Bangla', serif;
+    font-size: calc(8.2mm * var(--type));
+    color: #c8f5d9;
+    line-height: 1.65;
+  }
+
+  /* TWO COLUMN BODY */
+  .body-cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+    flex: 1;
+  }
+
+  .col { padding: calc(10mm * var(--type)) calc(12.9mm * var(--type)); }
+
+  .col-left { border-right: 1.4mm solid #e0ede4; }
+
+  /* SECTION LABEL */
+  .sec-label {
+    display: block;
+    font-family: 'Tiro Bangla', serif;
+    font-size: calc(8.6mm * var(--type));
+    color: #fff;
+    background: #1a7a38;
+    padding: calc(3.5mm * var(--type)) calc(8mm * var(--type));
+    margin-bottom: calc(7mm * var(--type));
+    border-radius: 2mm;
+    line-height: 1.5;
+  }
+
+  /* ITEM */
+  .item { margin-bottom: calc(7mm * var(--type)); }
+  .item:last-child { margin-bottom: 0; }
+
+  .item-row {
+    display: flex;
+    align-items: flex-start;
+    gap: calc(3mm * var(--type));
+  }
+
+  /* CIRCLED NUMBER */
+  .num {
+    flex: 0 0 auto;
+    width: calc(14mm * var(--type));
+    height: calc(14mm * var(--type));
+    border: 0.55mm solid #c0392b;
+    border-radius: 50%;
+    background: #fdf1ef;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Hind Siliguri', sans-serif;
+    font-weight: 700;
+    font-size: calc(7.4mm * var(--type));
+    line-height: 1;
+    color: #c0392b;
+    margin-top: 0.6mm;
+  }
+
+  .item-body {
+    font-family: 'Tiro Bangla', serif;
+    font-size: calc(8.9mm * var(--type));
+    color: #1a1a1a;
+    line-height: 1.6;
+  }
+
+  .item-ref {
+    font-family: 'Tiro Bangla', serif;
+    font-size: calc(7.8mm * var(--type));
+    font-weight: 400;
+    color: #2da44e;
+    margin-top: calc(1.4mm * var(--type));
+    padding-left: calc(17mm * var(--type));
+  }
+
+  .divider {
+    border: none;
+    border-top: 0.7mm solid #eee;
+    margin: calc(2.9mm * var(--type)) 0 calc(6mm * var(--type));
+  }
+
+  /* PROVISO NOTE — para 88 closing paragraph */
+  .sub-note {
+    margin-top: calc(7mm * var(--type));
+    background: #fef9e7;
+    border-left: 2.1mm solid #f0c040;
+    border-radius: 0 4.3mm 4.3mm 0;
+    padding: calc(6mm * var(--type)) calc(8mm * var(--type));
+    font-family: 'Tiro Bangla', serif;
+    font-size: calc(8mm * var(--type));
+    color: #7d6008;
+    line-height: 1.65;
+  }
+
+  /* REMEDY BOX */
+  .remedy-box {
+    margin-top: calc(8mm * var(--type));
+    background: #f0faf4;
+    border-left: 2.1mm solid #2da44e;
+    border-radius: 0 4.3mm 4.3mm 0;
+    padding: calc(7.9mm * var(--type)) calc(9.3mm * var(--type));
+  }
+
+  .remedy-title {
+    font-family: 'Hind Siliguri', sans-serif;
+    font-size: calc(7.9mm * var(--type));
+    font-weight: 700;
+    color: #1a7a38;
+    margin-bottom: calc(5mm * var(--type));
+    letter-spacing: 0.2mm;
+  }
+
+  .remedy-text {
+    font-family: 'Tiro Bangla', serif;
+    font-size: calc(8.6mm * var(--type));
+    color: #333;
+    line-height: 1.7;
+  }
+
+  .remedy-text + .remedy-text { margin-top: calc(4.3mm * var(--type)); }
+
+  /* FOOTER — office name on the green frame band */
+  .frame-footer {
+    padding: 6mm 3mm 3.4mm;
+    text-align: center;
+  }
+
+  .office-line {
+    font-family: 'Tiro Bangla', serif;
+    font-size: calc(13mm * var(--chrome));
+    color: #fff;
+    line-height: 1.35;
+  }
+
+  .credit {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 3.4mm;
+    padding-top: 2.4mm;
+    border-top: 0.4mm solid rgba(255,255,255,0.3);
+    font-family: 'Tiro Bangla', serif;
+    font-size: calc(5mm * var(--type));
+    color: #cdeed9;
+    line-height: 1;
+  }
+
+  /* ICONS — vector, so no emoji fallback at the press */
+  .ico {
+    width: 1em; height: 1em;
+    fill: none; stroke-width: 1.9;
+    stroke-linecap: round; stroke-linejoin: round;
+    vertical-align: -0.13em;
+    margin-right: 0.1em;
+  }
+  .ico-dg { stroke: #1a7a38; }
+
+  /* ZOOM TOOLBAR — screen only */
+  .zoombar {
+    position: fixed; top: 12px; left: 12px; z-index: 99;
+    display: flex; align-items: center; gap: 6px;
+    background: #fff; border: 1px solid #b7b7b7; border-radius: 8px;
+    padding: 6px 8px; box-shadow: 0 2px 10px rgba(0,0,0,.18);
+    font: 13px/1 system-ui, sans-serif;
+  }
+  .zoombar button {
+    font: 13px/1 system-ui, sans-serif; padding: 6px 10px;
+    border: 1px solid #b7b7b7; background: #f6f6f6;
+    border-radius: 5px; cursor: pointer; color: #222;
+  }
+  .zoombar button:hover { background: #e9e9e9; }
+  .zoombar .zv { min-width: 46px; text-align: center; color: #444; }
+  .zoombar .sz { color: #777; margin-left: 4px; }
+
+  /* measuring helper for the auto-fit routine */
+  .measuring .outer-frame { height: auto; }
+  .measuring .inner { flex: 0 0 auto; }
+  .measuring .body-cols { flex: 0 0 auto; }
+
+  @page { size: 457.2mm 609.6mm; margin: 0; }
+
+  @media print {
+    html, body { height: auto; overflow: visible; background: #fff; }
+    .zoombar { display: none !important; }
+    .pane { position: static; inset: auto; overflow: visible; padding: 0; background: #fff; }
+    .scaler { transform: none !important; zoom: 1 !important; width: auto !important; height: auto !important; margin: 0; }
+    .outer-frame { box-shadow: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="zoombar">
+  <button id="zo" title="Zoom out">&minus;</button>
+  <span class="zv" id="zv">100%</span>
+  <button id="zi" title="Zoom in">+</button>
+  <button id="zf">Fit</button>
+  <button id="z1">100%</button>
+  <span class="sz">H-3 x W-2.25 ft</span>
+</div>
+
+<div class="pane" id="pane">
+<div class="scaler" id="scaler">
+<div class="outer-frame" id="frame">
+  <div class="inner">
+
+    <!-- TITLE + INTRO IN ONE BAR -->
+    <div class="title-bar">
+      <h1>যে সকল কারণে আপনার দলিল রেজিস্ট্রেশন প্রত্যাখ্যান বা অগ্রাহ্য হতে পারে</h1>
+      <div class="intro-txt">নিবন্ধন ম্যানুয়াল, ২০১৪ (৬ষ্ঠ খন্ড) এর ৮৭ ও ৮৮ অনুচ্ছেদ অনুযায়ী নিম্নলিখিত যেকোনো এক বা একাধিক কারণে নিবন্ধনকারী কর্মকর্তা দলিলটি নিবন্ধনের জন্য গ্রহণ করতে অস্বীকার করতে পারেন অথবা দাখিলকৃত দলিল অগ্রাহ্য করতে পারেন:</div>
+    </div>
+
+    <!-- TWO COLUMNS -->
+    <div class="body-cols">
+
+      <!-- LEFT: ক) দলিল গ্রহণে অস্বীকৃতি -->
+      <div class="col col-left">
+
+        <span class="sec-label">ক) দলিল গ্রহণে অস্বীকৃতি জ্ঞাপন — অনুচ্ছেদ ৮৭</span>
+
+        <div class="item">
+          <div class="item-row"><span class="num">১</span><div class="item-body">দলিল এমন ভাষায় লেখা যা নিবন্ধনকারী কর্মকর্তার বোধগম্য নয় এবং সেই জেলায় সাধারণত প্রচলিত নয় এবং এর সাথে সঠিক অনুবাদ ও অবিকল নকল সংযুক্ত নেই।</div></div>
+          <div class="item-ref">[ধারা ১৯]</div>
+        </div>
+
+        <hr class="divider">
+
+        <div class="item">
+          <div class="item-row"><span class="num">২</span><div class="item-body">দলিলে সত্যায়নবিহীন পঙক্তির মধ্যবর্তী লিখন, শূন্যস্থান, ঘষামাজা বা পরিবর্তন আছে, যা নিবন্ধনকারী কর্মকর্তার মতে সত্যায়িত হওয়া বা দলিলটির প্রান্তভাগে "কৈফিয়ত" আকারে অন্তর্ভুক্ত হওয়া আবশ্যক।</div></div>
+          <div class="item-ref">[ধারা ২০]</div>
+        </div>
+
+        <hr class="divider">
+
+        <div class="item">
+          <div class="item-row"><span class="num">৩</span><div class="item-body">দলিলে অন্তর্ভুক্ত সম্পত্তির বিবরণ সম্পত্তিটিকে সনাক্ত করার জন্য অপর্যাপ্ত বা সংবিধিবদ্ধ আদেশ নং ৬ অনুসারে প্রয়োজনীয় তথ্যাদি নেই।</div></div>
+          <div class="item-ref">[ধারা ২১(১)-(৩) ও ২২]</div>
+        </div>
+
+        <hr class="divider">
+
+        <div class="item">
+          <div class="item-row"><span class="num">৪</span><div class="item-body">দলিলে অন্তর্ভুক্ত কোনো ম্যাপ বা প্ল্যানের এক বা একাধিক প্রতিলিপি সংযুক্ত নেই।</div></div>
+          <div class="item-ref">[ধারা ২১(৪)]</div>
+        </div>
+
+        <hr class="divider">
+
+        <div class="item">
+          <div class="item-row"><span class="num">৫</span><div class="item-body">দলিলে সম্পাদনের তারিখ উল্লেখ নেই বা সঠিক তারিখ নিরূপণযোগ্য নয়।</div></div>
+          <div class="item-ref">[ধারা ১৭ক ও ২৩]</div>
+        </div>
+
+        <hr class="divider">
+
+        <div class="item">
+          <div class="item-row"><span class="num">৬</span><div class="item-body">দলিলটি নির্ধারিত সময়ের পরে দাখিল করা হয়েছে।</div></div>
+          <div class="item-ref">[ধারা ১৭ক, ২৩, ২৪, ২৫, ২৬, ৭২(২), ৭৫(২) ও ৭৭(১)]</div>
+        </div>
+
+        <hr class="divider">
+
+        <div class="item">
+          <div class="item-row"><span class="num">৭</span><div class="item-body">দলিলটি যথার্থ কার্যালয়ে দাখিল করা হয়নি।</div></div>
+          <div class="item-ref">[ধারা ২৮ ও ২৯]</div>
+        </div>
+
+        <hr class="divider">
+
+        <div class="item">
+          <div class="item-row"><span class="num">৮</span><div class="item-body">দলিলটি কোনো নাবালক, নির্বোধ বা উন্মাদ কর্তৃক, অথবা ধারা ৩২ বা ৪০ অনুযায়ী দাখিল করার ক্ষমতা নেই এমন কোনো ব্যক্তি কর্তৃক দাখিল করা হয়েছে।</div></div>
+          <div class="item-ref">[ধারা ৩২ ও ৪০]</div>
+        </div>
+
+        <hr class="divider">
+
+        <div class="item">
+          <div class="item-row"><span class="num">৯</span><div class="item-body">দলিলে পক্ষগণের অভিপ্রায় প্রতিফলনের জন্য প্রয়োজনীয় তথ্যাদি, সম্পত্তির পূর্ণ বিবরণ এবং হস্তান্তরের প্রকৃতি অন্তর্ভুক্ত নেই।</div></div>
+          <div class="item-ref">[ধারা ২২ক(১)]</div>
+        </div>
+
+        <hr class="divider">
+
+        <div class="item">
+          <div class="item-row"><span class="num">১০</span><div class="item-body">দলিলে সম্পাদনকারী ও গ্রহীতা উভয়ের সাম্প্রতিক তোলা পাসপোর্ট আকারের ছবি আঠা দ্বারা লাগানো এবং উহার উপর আড়াআড়িভাবে পক্ষগণের বাম বৃদ্ধাঙ্গুলির টিপছাপ নেই।</div></div>
+          <div class="item-ref">[ধারা ২২ক(২)]</div>
+        </div>
+
+        <hr class="divider">
+
+        <div class="item">
+          <div class="item-row"><span class="num">১১</span><div class="item-body">দলিলটি নিবন্ধন আইন, ১৯০৮ এর ধারা ২২ক এর উপ-ধারা (৩) এর অধীন নির্ধারিত নমুনা (Format) অনুসারে প্রস্তুত করা হয়নি।</div></div>
+          <div class="item-ref">[ধারা ২২ক(৩)]</div>
+        </div>
+
+        <hr class="divider">
+
+        <div class="item">
+          <div class="item-row"><span class="num">১২</span><div class="item-body">দলিলে নিবন্ধন আইন, ১৯০৮ এর ধারা ৫২ক অনুযায়ী প্রয়োজনীয় তথ্যাদি (যেমন: সর্বশেষ খতিয়ান, মালিকানার ধারাবাহিকতা, চৌহদ্দি ও মূল্য, হলফনামা ইত্যাদি) সন্নিবেশিত নেই।</div></div>
+          <div class="item-ref">[ধারা ৫২ক]</div>
+        </div>
+
+      </div><!-- end col-left -->
+
+      <!-- RIGHT: খ) অগ্রাহ্যকরণ + remedy -->
+      <div class="col col-right">
+
+        <span class="sec-label">খ) যথারীতি দাখিলকৃত দলিল অগ্রাহ্যকরণ — অনুচ্ছেদ ৮৮</span>
+
+        <div class="item">
+          <div class="item-row"><span class="num">১</span><div class="item-body">সম্পাদনকারী নির্ধারিত সময়ের মধ্যে উপস্থিত হতে ও সম্পাদন স্বীকার করতে ব্যর্থ হন।</div></div>
+          <div class="item-ref">[ধারা ৩৪]</div>
+        </div>
+
+        <hr class="divider">
+
+        <div class="item">
+          <div class="item-row"><span class="num">২</span><div class="item-body">সম্পাদনকারী সম্পাদন অস্বীকার করেন।</div></div>
+          <div class="item-ref">[ধারা ৩৫(৩)(ক)]</div>
+        </div>
+
+        <hr class="divider">
+
+        <div class="item">
+          <div class="item-row"><span class="num">৩</span><div class="item-body">সম্পাদনকারী মর্মে দাবিকৃত ব্যক্তি মৃত্যুবরণ করেন এবং তার প্রতিনিধি বা মনোনীত ব্যক্তি উক্ত সম্পাদন অস্বীকার করেন।</div></div>
+          <div class="item-ref">[ধারা ৩৫(৩)(গ)]</div>
+        </div>
+
+        <hr class="divider">
+
+        <div class="item">
+          <div class="item-row"><span class="num">৪</span><div class="item-body">সম্পাদনকারী মর্মে দাবিকৃত ব্যক্তি নাবালক, নির্বোধ বা উন্মাদ বলে প্রতীয়মান হন।</div></div>
+          <div class="item-ref">[ধারা ৩৫(৩)(খ)]</div>
+        </div>
+
+        <hr class="divider">
+
+        <div class="item">
+          <div class="item-row"><span class="num">৫</span><div class="item-body">নিবন্ধনকারী কর্মকর্তা তার সম্মুখে উপস্থিত ও দলিল সম্পাদনকারী মর্মে দাবিদার কোনো ব্যক্তির পরিচয় সম্পর্কে সন্তুষ্ট নন।</div></div>
+          <div class="item-ref">[ধারা ৩৫(১)(ক)]</div>
+        </div>
+
+        <hr class="divider">
+
+        <div class="item">
+          <div class="item-row"><span class="num">৬</span><div class="item-body">নিবন্ধনকারী কর্মকর্তা কোনো দলিল সম্পাদনকারীর মৃত্যু সংক্রান্ত অভিযোগের সত্যতার বিষয়ে সন্তুষ্ট নন।</div></div>
+          <div class="item-ref">[ধারা ৩৫(১)(গ)]</div>
+        </div>
+
+        <hr class="divider">
+
+        <div class="item">
+          <div class="item-row"><span class="num">৭</span><div class="item-body">সম্পাদন স্বীকারকারী এজেন্টের পাওয়ার অব অ্যাটর্নি আইন অনুযায়ী সৃষ্ট না হয়ে থাকে বা কথিত প্রতিনিধি তার আইনানুগ অবস্থান প্রমাণ করতে ব্যর্থ হন।</div></div>
+          <div class="item-ref">[ধারা ৩৫(১)(খ) ও (গ)]</div>
+        </div>
+
+        <hr class="divider">
+
+        <div class="item">
+          <div class="item-row"><span class="num">৮</span><div class="item-body">উইলকারী বা দাতার মৃত্যুর পর দাখিলকৃত কোনো উইল বা দত্তকগ্রহণের ক্ষমতাপত্রের সম্পাদনের বিষয়ে নিবন্ধনকারী কর্মকর্তা সন্তুষ্ট নন।</div></div>
+          <div class="item-ref">[ধারা ৪১]</div>
+        </div>
+
+        <hr class="divider">
+
+        <div class="item">
+          <div class="item-row"><span class="num">৯</span><div class="item-body">নির্ধারিত ফিস বা জরিমানা পরিশোধ না করা হয়।</div></div>
+          <div class="item-ref">[ধারা ২৫, ৩৪ ও ৮০]</div>
+        </div>
+
+        <!-- PROVISO from para 88, closing paragraph -->
+        <div class="sub-note">উপরের <strong>৫, ৬ ও ৭</strong> নং কারণের ক্ষেত্রে পক্ষগণের অনুরোধে নিবন্ধনকারী কর্মকর্তা ধারা ৩৪ এ নির্ধারিত সময়সীমার মধ্যে আইনের উদ্দেশ্য পূরণের সুযোগ দিতে তার ব্যবস্থা গ্রহণ বিলম্বিত করবেন।</div>
+
+        <!-- REMEDY BOX -->
+        <div class="remedy-box">
+          <div class="remedy-title"><svg class="ico ico-dg" viewBox="0 0 24 24"><path d="M12 3.2v17.6M7 20.8h10"/><path d="M4.5 6.4h15"/><path d="M4.5 6.4 2 13.2h5z"/><path d="M19.5 6.4 17 13.2h5z"/></svg> দলিল রেজিস্ট্রেশন অগ্রাহ্য/প্রত্যাখ্যান হলে প্রতিকার</div>
+          <div class="remedy-text">
+            সাব-রেজিস্ট্রার কর্তৃক কোনো দলিল গ্রহণে অস্বীকৃতি বা অগ্রাহ্য করা হলে, উক্ত আদেশে বিধৃত কারণসমূহের প্রকৃতি অনুসারে রেজিস্ট্রেশন আইনের <strong>৭১ বা ৭৩ ধারার</strong> বিধান মতে <strong>জেলা রেজিস্ট্রারের</strong> নিকট প্রতিকার চাওয়া যাবে।
+          </div>
+          <div class="remedy-text">
+            জেলা রেজিস্ট্রারের নিকট প্রতিকার পেতে ব্যর্থ হলে উক্ত প্রত্যাখ্যান আদেশের বিরুদ্ধে প্রতিকার চেয়ে <strong>৭৭ ধারা</strong> মতে উপযুক্ত <strong>দেওয়ানি আদালতে</strong> মামলা দায়ের করা যাবে।
+          </div>
+        </div>
+
+      </div><!-- end col-right -->
+
+    </div><!-- end body-cols -->
+
+  </div><!-- end inner -->
+
+  <div class="frame-footer">
+    <div class="office-line">সাব-রেজিস্ট্রারের কার্যালয়, সিরাজদিখান, মুন্সীগঞ্জ</div>
+    <div class="credit"><span>© This Banner is designed by Md. Maksu Miah, Sub-Registrar</span><span>H-3 x W-2.25 ft</span></div>
+  </div>
+</div>
+</div>
+</div>
+
+<script>
+(function () {
+  var scaler = document.getElementById('scaler');
+  var frame  = document.getElementById('frame');
+  var pane   = document.getElementById('pane');
+  var MM = 96 / 25.4;
+
+  function autoFitType() {
+    var target = 609.6 * MM;
+    var t = 1;
+    document.body.classList.add('measuring');
+    scaler.style.transform = 'none';
+    scaler.style.zoom = 1;
+    for (var i = 0; i < 14; i++) {
+      document.documentElement.style.setProperty('--type', t.toFixed(4));
+      var natural = frame.offsetHeight;
+      var ratio = (target * 0.995) / natural;
+      if (Math.abs(1 - ratio) < 0.004) break;
+      t = Math.min(1.6, Math.max(0.45, t * (1 + (ratio - 1) * 0.6)));
+    }
+    while (frame.offsetHeight > target && t > 0.4) {
+      t -= 0.01;
+      document.documentElement.style.setProperty('--type', t.toFixed(4));
+    }
+    document.body.classList.remove('measuring');
+    console.log('--type settled at', getComputedStyle(document.documentElement).getPropertyValue('--type'));
+  }
+
+  var k = 1;
+
+  /* CSS zoom re-lays out the page at the target size, so glyphs are
+     rasterized at their real size. transform: scale() renders at 1:1 and
+     downsamples, which clips fine Bengali matras/descenders at small
+     percentages. Fall back to transform where zoom is unsupported. */
+  var USE_ZOOM = window.CSS && CSS.supports && CSS.supports('zoom', '0.5');
+
+  function apply() {
+    if (USE_ZOOM) {
+      scaler.style.transform = 'none';
+      scaler.style.width = '';
+      scaler.style.height = '';
+      scaler.style.zoom = k;
+    } else {
+      var w = frame.offsetWidth, h = frame.offsetHeight;
+      scaler.style.zoom = 1;
+      scaler.style.transform = 'scale(' + k + ')';
+      scaler.style.width  = (w * k) + 'px';
+      scaler.style.height = (h * k) + 'px';
+    }
+    document.getElementById('zv').textContent = Math.round(k * 100) + '%';
+  }
+
+  function fitPreview() {
+    scaler.style.zoom = 1;
+    scaler.style.transform = 'none';
+    scaler.style.width = '';
+    scaler.style.height = '';
+    k = Math.min((pane.clientWidth - 44) / frame.offsetWidth,
+                 (pane.clientHeight - 44) / frame.offsetHeight, 1);
+    apply();
+  }
+
+  document.getElementById('zi').onclick = function () { k = Math.min(2, k * 1.25); apply(); };
+  document.getElementById('zo').onclick = function () { k = Math.max(0.08, k / 1.25); apply(); };
+  document.getElementById('zf').onclick = fitPreview;
+  document.getElementById('z1').onclick = function () { k = 1; apply(); };
+
+  var EXPORT = /(\?|&)export/.test(location.search);
+
+  function exportMode() {
+    document.querySelector('.zoombar').style.display = 'none';
+    pane.style.padding = '0';
+    pane.style.overflow = 'visible';
+    pane.style.position = 'static';
+    pane.style.background = '#fff';
+    document.body.style.overflow = 'visible';
+    k = 1;
+    scaler.style.zoom = 1;
+    scaler.style.transform = 'none';
+    scaler.style.width = 'auto';
+    scaler.style.height = 'auto';
+    scaler.style.margin = '0';
+  }
+
+  function run() { autoFitType(); if (EXPORT) { exportMode(); } else { fitPreview(); } }
+  window.addEventListener('resize', function () { if (!EXPORT) fitPreview(); });
+  if (document.fonts && document.fonts.ready) { document.fonts.ready.then(run); }
+  window.addEventListener('load', run);
+  run();
+})();
+</script>
+</body>
+</html>

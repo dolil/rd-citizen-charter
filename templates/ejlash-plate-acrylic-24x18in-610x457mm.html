@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>এজলাস প্লেট · 5mm Clear Acrylic · 24 × 18 in (610 × 457 mm) · 2nd-surface print</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tiro+Bangla:ital@0;1&family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  /* =========================================================
+     এজলাস PLATE — clear acrylic, reverse printed
+       material : 5 mm clear cast acrylic (perspex), polished edges
+       print    : SECOND SURFACE (back face), mirrored by the shop.
+                  Only the keyline, logo and lettering are printed;
+                  everything else is bare acrylic, so the wallpaper
+                  shows through. Ask for a white backing behind the
+                  LOGO only, so its colours stay true.
+       fixing   : 4 stainless standoffs, 25 mm barrels
+       NOTE: nothing is printed except the frame keyline, the logo
+       and the text — the panel reads as clear plate, not a plaque.
+       size : 6 ft × 4 ft  =  1828.8 mm × 1219.2 mm
+     A seated person and chair occupy roughly the lower-centre
+     third of the wall, so every element sits in the upper band.
+     The lower area is deliberately quiet — it is meant to be
+     partly covered. Nothing important is placed below the rule.
+     Resize with --w / --h; --type scales all text together.
+     ========================================================= */
+  :root {
+    --w: 609.6mm;    /* 2 ft */
+    --h: 457.2mm;    /* 1.5 ft */
+    --type: 1;
+
+    --green:      #1a5e2a;
+    --green-mid:  #2da44e;
+    --red:        #c8102e;
+    --gold:       #b8912f;
+    --paper:      #fdfdfb;
+
+    /* nothing is printed except the keyline, the logo and the text —
+       the wallpaper is the background */
+    --ink-main:  #0d3b21;   /* near-black green — crisp on gold, still green up close */
+    --ink-sub:   #12472a;
+    --ink-dept:  #3d4f45;
+    --ink-label: #0d3b21;
+    --line:      #9a7728;   /* darker gold — holds up against beige */
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { height: 100%; }
+  body { background: #c8c8c8; overflow: hidden; }
+  /* preview backdrop mimics the P2 wallpaper — SCREEN ONLY.
+     It must never reach the PDF: this plate prints on clear acrylic,
+     so the page background has to stay empty. */
+  @media screen {
+    .pane {
+      background:
+        repeating-linear-gradient(90deg,
+          rgba(255,255,255,.34) 0 1px, rgba(160,120,60,.16) 1px 3px),
+        linear-gradient(#cbab7a, #bd9a67);
+    }
+  }
+
+  .pane { position: fixed; inset: 0; overflow: auto; padding: 20px;
+          background: #c8c8c8; -webkit-overflow-scrolling: touch; }
+  .scaler { transform-origin: top left; width: max-content; margin: 0 auto; }
+
+  .outer-frame {                     /* the acrylic sheet itself */
+    position: relative;
+    width: var(--w); height: var(--h);
+    background: transparent;         /* clear margin — no ink here */
+    padding: 25mm;                   /* unprinted border */
+    display: flex; overflow: visible;
+    box-shadow: 0 5mm 16mm rgba(0,0,0,.30);   /* standoff shadow */
+    border-radius: 1.5mm;
+  }
+
+  .printed {                         /* keyline only — no printed field */
+    flex: 1;
+    background: transparent;
+    padding: 0;
+    display: flex;
+  }
+
+  /* standoff hole positions — 20 mm in from each corner, Ø10 mm */
+  .hole {
+    position: absolute; width: 10mm; height: 10mm; border-radius: 50%;
+    background: #e8e8e8; border: 0.4mm dashed #7a7a7a;
+  }
+  .hole.tl { top: 20mm;    left: 20mm; }
+  .hole.tr { top: 20mm;    right: 20mm; }
+  .hole.bl { bottom: 20mm; left: 20mm; }
+  .hole.br { bottom: 20mm; right: 20mm; }
+
+  .inner {
+    flex: 1;
+    background: transparent;
+    border: 1.2mm solid var(--ink-main);
+    outline: 0.5mm solid var(--line);
+    outline-offset: 2.4mm;
+    font-family: 'Tiro Bangla', serif;
+    display: flex; flex-direction: column;
+    align-items: center;
+    padding: 14mm 18mm 12mm;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  /* এজলাস label, flanked by hairlines */
+  .ejlash {
+    display: flex; align-items: center; justify-content: center;
+    gap: calc(6mm * var(--type));
+    font-family: 'Tiro Bangla', serif;
+    font-size: calc(64mm * var(--type));
+    color: var(--ink-label);
+    letter-spacing: 3mm;
+    line-height: 1.2;
+    margin-bottom: calc(6mm * var(--type));
+  }
+  .ejlash i { display: block; width: calc(58mm * var(--type)); border-top: 1.1mm solid var(--line); }
+
+  .logo { width: calc(105mm * var(--type)); height: calc(105mm * var(--type));
+          object-fit: contain; margin-bottom: calc(6mm * var(--type)); }
+
+  .office {
+    font-size: calc(46mm * var(--type));
+    color: var(--ink-main);
+    line-height: 1.2;
+    margin-top: calc(6mm * var(--type));
+  }
+
+  .place {
+    font-size: calc(25mm * var(--type));
+    color: var(--ink-sub);
+    line-height: 1.25;
+    margin-top: calc(6mm * var(--type));
+  }
+
+  .rule {
+    width: 46%;
+    border: none;
+    border-top: 0.7mm solid var(--line);
+    margin: calc(7mm * var(--type)) 0 calc(5mm * var(--type));
+  }
+
+  .dept {
+    font-family: 'Hind Siliguri', sans-serif;
+    font-size: calc(12mm * var(--type));
+    font-weight: 500;
+    color: var(--ink-dept);
+    line-height: 1.5;
+  }
+
+  .inner > * { text-align: center; }
+
+  /* controls */
+  .zoombar {
+    position: fixed; top: 12px; left: 12px; z-index: 99;
+    display: flex; align-items: center; gap: 6px;
+    background: #fff; border: 1px solid #b7b7b7; border-radius: 8px;
+    padding: 6px 8px; box-shadow: 0 2px 10px rgba(0,0,0,.18);
+    font: 13px/1 system-ui, sans-serif;
+  }
+  .zoombar button {
+    font: 13px/1 system-ui, sans-serif; padding: 6px 10px;
+    border: 1px solid #b7b7b7; background: #f6f6f6;
+    border-radius: 5px; cursor: pointer; color: #222;
+  }
+  .zoombar button:hover { background: #e9e9e9; }
+  .zoombar .zv { min-width: 46px; text-align: center; color: #444; }
+  .zoombar .sz { color: #777; margin-left: 4px; }
+
+  @page { size: 609.6mm 457.2mm; margin: 0; }
+  @media print {
+    html, body { height: auto; overflow: visible; background: none !important; }
+    .zoombar, .hole { display: none !important; }
+    .pane { position: static; inset: auto; overflow: visible; padding: 0; background: none !important; }
+    .scaler { transform: none !important; zoom: 1 !important; width: auto !important;
+              height: auto !important; margin: 0; }
+    .outer-frame { box-shadow: none; background: transparent; }
+    * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+</style>
+</head>
+<body>
+
+<div class="zoombar">
+  <button id="zo" title="Zoom out">&minus;</button>
+  <span class="zv" id="zv">100%</span>
+  <button id="zi" title="Zoom in">+</button>
+  <button id="zf">Fit</button>
+  <button id="z1">100%</button>
+  <span class="sz">5 mm clear acrylic &middot; H-1.5 x W-2 ft &middot; 2nd-surface print</span>
+</div>
+
+<div class="pane" id="pane">
+<div class="scaler" id="scaler">
+<div class="outer-frame" id="frame">
+  <div class="printed">
+  <div class="inner">
+    <div class="ejlash"><i></i>এজলাস<i></i></div>
+    <img class="logo" src="bd-govt-logo.png" alt="">
+    <div class="office">সাব-রেজিস্ট্রারের কার্যালয়</div>
+    <div class="place">সিরাজদিখান, মুন্সীগঞ্জ</div>
+    <hr class="rule">
+    <div class="dept">নিবন্ধন অধিদপ্তর &nbsp;·&nbsp; আইন ও বিচার বিভাগ<br>আইন, বিচার ও সংসদ বিষয়ক মন্ত্রণালয়</div>
+  </div>
+  </div>
+  <span class="hole tl"></span><span class="hole tr"></span>
+  <span class="hole bl"></span><span class="hole br"></span>
+</div>
+</div>
+</div>
+
+<script>
+(function () {
+  var scaler = document.getElementById('scaler');
+  var frame  = document.getElementById('frame');
+  var pane   = document.getElementById('pane');
+  var USE_ZOOM = window.CSS && CSS.supports && CSS.supports('zoom', '0.5');
+  var k = 1;
+
+  function apply() {
+    if (USE_ZOOM) {
+      scaler.style.transform = 'none'; scaler.style.width = ''; scaler.style.height = '';
+      scaler.style.zoom = k;
+    } else {
+      var w = frame.offsetWidth, h = frame.offsetHeight;
+      scaler.style.zoom = 1;
+      scaler.style.transform = 'scale(' + k + ')';
+      scaler.style.width = (w * k) + 'px'; scaler.style.height = (h * k) + 'px';
+    }
+    document.getElementById('zv').textContent = Math.round(k * 100) + '%';
+  }
+  function fitPreview() {
+    scaler.style.zoom = 1; scaler.style.transform = 'none';
+    scaler.style.width = ''; scaler.style.height = '';
+    k = Math.min((pane.clientWidth - 44) / frame.offsetWidth,
+                 (pane.clientHeight - 44) / frame.offsetHeight, 1);
+    apply();
+  }
+  document.getElementById('zi').onclick = function () { k = Math.min(2, k * 1.25); apply(); };
+  document.getElementById('zo').onclick = function () { k = Math.max(0.03, k / 1.25); apply(); };
+  document.getElementById('zf').onclick = fitPreview;
+  document.getElementById('z1').onclick = function () { k = 1; apply(); };
+
+  var EXPORT = /(\?|&)export/.test(location.search);
+  function exportMode() {
+    document.querySelector('.zoombar').style.display = 'none';
+    pane.style.padding = '0'; pane.style.overflow = 'visible';
+    pane.style.position = 'static'; pane.style.background = 'transparent';
+    document.body.style.overflow = 'visible';
+    k = 1; scaler.style.zoom = 1; scaler.style.transform = 'none';
+    scaler.style.width = 'auto'; scaler.style.height = 'auto'; scaler.style.margin = '0';
+  }
+  function run() { if (EXPORT) exportMode(); else fitPreview(); }
+  window.addEventListener('resize', function () { if (!EXPORT) fitPreview(); });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(run);
+  window.addEventListener('load', run);
+  run();
+})();
+</script>
+</body>
+</html>

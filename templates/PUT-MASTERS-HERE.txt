@@ -1,0 +1,13 @@
+Master HTML files go here, plus bd-govt-logo.png.
+
+These are shared by every office. A correction made here reaches all
+offices on the next build. Never edit a file in out/, it is overwritten.
+
+Configurable regions are marked in the HTML:
+
+  <!--@S125-->   … <!--/@S125-->     ধারা ১২৫ block   (own lines)
+  <!--@KROY-->   … <!--/@KROY-->     জমি ক্রয়ের সতর্কতা (own lines)
+  <!--@KROYCARD--> … <!--/@KROYCARD-->  whole card, for showKroy
+  <!--@S126-->   … <!--/@S126-->     ধারা ১২৬ rates    (inline)
+  <!--@ANIK-->   … <!--/@ANIK-->     GRS officer       (inline)
+  <!--@APPEAL--> … <!--/@APPEAL-->   GRS appeal        (inline)

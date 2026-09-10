@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>বোর্ড জেনারেটর — সাব-রেজিস্ট্রি অফিস</title>
+<link href="https://fonts.googleapis.com/css2?family=Tiro+Bangla&family=Hind+Siliguri:wght@400;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<style>
+  :root {
+    --green:#1a7a38; --green-lite:#2da44e; --ink:#1a1a1a;
+    --line:#dfe7e0; --tint:#f4faf6; --red:#c0392b; --amber:#b58100;
+  }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { font-family:'Hind Siliguri',system-ui,sans-serif; color:var(--ink);
+         background:#eef1ef; height:100vh; display:flex; flex-direction:column; }
+
+  header { background:var(--green); color:#fff; padding:14px 22px;
+           display:flex; align-items:baseline; gap:14px; flex-wrap:wrap; }
+  header h1 { font-size:20px; font-weight:700; }
+  header span { font-size:13px; opacity:.85; }
+
+  .wrap { flex:1; display:grid; grid-template-columns:440px 1fr; min-height:0; }
+
+  /* ---------- form ---------- */
+  .form { overflow-y:auto; background:#fff; border-right:1px solid var(--line); padding:18px 20px 60px; }
+  .form h2 { font-size:13px; font-weight:700; color:var(--green); text-transform:uppercase;
+             letter-spacing:.06em; margin:22px 0 10px; padding-bottom:6px;
+             border-bottom:2px solid var(--tint); }
+  .form h2:first-child { margin-top:0; }
+  label { display:block; font-size:12.5px; font-weight:600; margin:11px 0 4px; color:#41504a; }
+  label .hint { font-weight:400; color:#8a968f; }
+  input[type=text], textarea, select {
+    width:100%; font:14px/1.5 'Tiro Bangla',serif; padding:8px 10px;
+    border:1px solid #cdd8d1; border-radius:6px; background:#fff; }
+  input:focus, textarea:focus { outline:2px solid var(--green-lite); outline-offset:-1px; }
+  textarea { resize:vertical; min-height:66px; }
+  .row { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+  .row3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px; }
+
+  .slider { display:flex; align-items:center; gap:10px; }
+  .slider input[type=range] { flex:1; }
+  .slider output { font:600 13px/1 'Hind Siliguri'; min-width:38px; text-align:right; color:var(--green); }
+
+  .branch { border:1px solid var(--line); border-radius:8px; padding:12px; margin-bottom:10px; background:#fbfdfc; }
+  .branch .top { display:flex; justify-content:space-between; align-items:center; gap:8px; }
+  .branch .top b { font-size:13px; color:var(--green); }
+  button { font:600 13px 'Hind Siliguri'; border:1px solid #cdd8d1; background:#f4f7f5;
+           border-radius:6px; padding:7px 12px; cursor:pointer; }
+  button:hover { background:#e9efeb; }
+  button.primary { background:var(--green); border-color:var(--green); color:#fff; }
+  button.primary:hover { background:#166030; }
+  button.mini { padding:3px 8px; font-size:12px; }
+  button.danger { color:var(--red); border-color:#e6c4bf; background:#fdf5f4; }
+
+  .switch { display:flex; align-items:center; gap:8px; margin:10px 0; font-size:13px; font-weight:600; }
+
+  /* ---------- preview ---------- */
+  .side { display:flex; flex-direction:column; min-width:0; }
+  .bar { background:#fff; border-bottom:1px solid var(--line); padding:10px 16px;
+         display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
+  .bar .grow { flex:1; }
+  .bar .zoom { font-size:12.5px; color:#5c6b63; min-width:42px; text-align:center; }
+  .stage { flex:1; overflow:auto; background:#d7dbd8; padding:20px; }
+  iframe { border:0; background:#fff; box-shadow:0 6px 24px rgba(0,0,0,.18);
+           transform-origin:top left; display:block; }
+
+  .alerts { padding:0 20px; }
+  .alert { font-size:12.5px; border-radius:6px; padding:9px 12px; margin:10px 0; }
+  .alert.bad  { background:#fdf3f2; border-left:4px solid var(--red); color:#8e2a1f; }
+  .alert.warn { background:#fffaf0; border-left:4px solid var(--amber); color:#7d5a00; }
+  .alert.ok   { background:var(--tint); border-left:4px solid var(--green-lite); color:#186032; }
+  .alert ul { margin:4px 0 0 16px; }
+
+  @media (max-width: 980px) { .wrap { grid-template-columns:1fr; } .side { min-height:60vh; } }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>সাব-রেজিস্ট্রি অফিস — বোর্ড জেনারেটর</h1>
+  <span>ফর্ম পূরণ করুন · পাশে সরাসরি প্রিভিউ দেখুন · ZIP ডাউনলোড করুন</span>
+</header>
+
+<div class="wrap">
+
+  <!-- ============ FORM ============ -->
+  <div class="form" id="form">
+
+    <h2>অফিসের পরিচয়</h2>
+    <label>অফিসের নাম <span class="hint">(বোর্ডের শিরোনামে যাবে)</span></label>
+    <input type="text" id="office" value="সাব-রেজিস্ট্রারের কার্যালয়, কেরানীগঞ্জ দক্ষিণ, ঢাকা">
+    <div class="row">
+      <div><label>উপজেলা</label><input type="text" id="upazila" value="কেরানীগঞ্জ দক্ষিণ"></div>
+      <div><label>জেলা</label><input type="text" id="district" value="ঢাকা"></div>
+    </div>
+    <label>ব্যাংক শাখা</label>
+    <input type="text" id="bankBranch" value="সোনালী ব্যাংক, কেরানীগঞ্জ শাখা">
+    <div class="row">
+      <div><label>অফিস ওয়েবসাইট</label><input type="text" id="srWeb" value="keraniganjsouthsr.keraniganj.dhaka.gov.bd"></div>
+      <div><label>ডিআর ওয়েবসাইট</label><input type="text" id="drWeb" value="www.dr.dhaka.gov.bd"></div>
+    </div>
+    <div class="row">
+      <div><label>জেলা রেজিস্ট্রার অফিস</label><input type="text" id="drOffice" value="জেলা রেজিস্ট্রার, ঢাকা"></div>
+      <div><label>প্রকাশকাল</label><input type="text" id="published" value="প্রকাশকাল: জুলাই, ২০২৬"></div>
+    </div>
+
+    <h2>অভিযোগ প্রতিকার (GRS)</h2>
+    <label>অভিযোগ নিষ্পত্তি কর্মকর্তা</label>
+    <input type="text" id="anik" value="জেলা রেজিস্ট্রার, ঢাকা">
+    <label>আপিল কর্মকর্তা</label>
+    <input type="text" id="appeal" value="মহা-পরিদর্শক, নিবন্ধন অধিদপ্তর">
+
+    <h2>ধারা ১২৬ — হার</h2>
+    <div class="row3">
+      <div><label>প্লট/জমি</label><input type="text" id="s126plot" value="৫%"></div>
+      <div><label>আবাসিক /ব.মি.</label><input type="text" id="s126res" value="১,৩০০/-"></div>
+      <div><label>বাণিজ্যিক /ব.মি.</label><input type="text" id="s126com" value="৩,৫০০/-"></div>
+    </div>
+
+    <h2>ধারা ১২৫ — জেলার এস.আর.ও অনুযায়ী</h2>
+    <div id="branches"></div>
+    <button class="mini" onclick="addBranch()">+ শাখা যোগ করুন</button>
+
+    <h2>জমি ক্রয়ের পূর্বে সতর্কতা</h2>
+    <div class="switch">
+      <input type="checkbox" id="showKroy" checked>
+      <label for="showKroy" style="margin:0">এই সেকশনটি বোর্ডে দেখান</label>
+    </div>
+    <label>প্রতিটি লাইন আলাদা লাইনে লিখুন</label>
+    <textarea id="kroy" rows="8"></textarea>
+
+    <h2>কম্প্যাক্টনেস <span class="hint">— ফাঁকা জায়গা ভরাতে বাড়ান</span></h2>
+    <label>ধারা ১২৫ ব্লক</label>
+    <div class="slider">
+      <input type="range" id="c125" min="0.6" max="1.8" step="0.05" value="1">
+      <output id="c125v">1.00</output>
+    </div>
+    <label>সতর্কতা ব্লক</label>
+    <div class="slider">
+      <input type="range" id="ckroy" min="0.6" max="1.8" step="0.05" value="1">
+      <output id="ckroyv">1.00</output>
+    </div>
+
+    <h2>কনফিগ</h2>
+    <label>ফোল্ডারের নাম <span class="hint">(ইংরেজি, ছোট হাতের)</span></label>
+    <input type="text" id="folder" value="keraniganj-south">
+    <div class="row" style="margin-top:12px">
+      <button onclick="exportJson()">JSON সেভ</button>
+      <button onclick="document.getElementById('imp').click()">JSON লোড</button>
+    </div>
+    <input type="file" id="imp" accept=".json" style="display:none" onchange="importJson(this)">
+  </div>
+
+  <!-- ============ PREVIEW ============ -->
+  <div class="side">
+    <div class="bar">
+      <button onclick="zoomBy(-1)">&minus;</button>
+      <span class="zoom" id="zv">Fit</span>
+      <button onclick="zoomBy(1)">+</button>
+      <button onclick="fit()">Fit</button>
+      <span class="grow"></span>
+      <button onclick="printBoard()">প্রিন্ট / PDF</button>
+      <button class="primary" onclick="downloadZip()">ZIP ডাউনলোড</button>
+    </div>
+    <div class="alerts" id="alerts"></div>
+    <div class="stage" id="stage"><iframe id="pv" title="preview"></iframe></div>
+  </div>
+
+</div>
+
+<script>
+// ---------------------------------------------------------------- template
+const TEMPLATE_FILE = 'templates/citizens-charter-sub-registrar-office.html';
+let TEMPLATE = null;
+
+const MASTER = {
+  office:     'সদর সাব-রেজিস্ট্রারের কার্যালয়, সদর, গাজীপুর',
+  officeAlt:  'সাব-রেজিস্ট্রারের কার্যালয়, সিরাজদিখান, মুন্সীগঞ্জ',
+  bankBranch: 'সোনালী ব্যাংক, সদর, গাজীপুর শাখা',
+  srWeb:      'www.sr.sadar.gazipur.gov.bd',
+  drWeb:      'www.dr.gazipur.gov.bd',
+  drOffice:   'জেলা রেজিস্ট্রার, গাজীপুর',
+  published:  'প্রকাশকাল: জুলাই, ২০২৬',
+  upazila:    'সিরাজদিখান',
+  district:   'মুন্সীগঞ্জ'
+};
+const BN = '০১২৩৪৫৬৭৮৯';
+
+const DEFAULT_BRANCHES = [
+  { label:'ক)',
+    lead:'দলিলে উল্লিখিত ভূমিমূল্যের ৩% অথবা শতকপ্রতি নির্ধারিত অঙ্ক — এই দুইয়ের মধ্যে যেটি বেশি সেটিই প্রযোজ্য:',
+    items:['কেরাণীগঞ্জের সকল মৌজার ক্ষেত্রে — ক ও গ শ্রেণিতে ১,২৫,০০০ টাকা; খ, ঘ ও ঙ শ্রেণিতে ৬০,০০০ টাকা; এবং চ শ্রেণিতে ৩০,০০০ টাকা।'] },
+  { label:'খ)',
+    lead:'নিবন্ধিত ভূমিতে স্থাপনা, বাড়ি, ফ্ল্যাট, অ্যাপার্টমেন্ট বা ফ্লোর স্পেস থাকিলে অতিরিক্ত কর প্রযোজ্য:',
+    items:['শ্রেণি-ক হইতে শ্রেণি-ঘ এর ভূমির ক্ষেত্রে: প্রতি বর্গমিটারে ৮০০ (আটশত) টাকা অথবা দলিলে উল্লিখিত মূল্যের ৮% (আট শতাংশ) — যাহা অধিক।',
+           'শ্রেণি-ঙ এর ভূমির ক্ষেত্রে: প্রতি বর্গমিটারে ৫০০ (পাঁচশত) টাকা অথবা দলিলে উল্লিখিত মূল্যের ৬% (ছয় শতাংশ) — যাহা অধিক।'] }
+];
+
+const DEFAULT_KROY = [
+ 'সিএস, এসএ, আরএস ও বিএস/সিটি — প্রতিটি জরিপে জমি কার নামে রেকর্ড হইয়াছে এবং কীভাবে হস্তান্তর হইয়া বর্তমান বিক্রেতার নামে আসিয়াছে, সেই ধারাবাহিকতা মিলাইয়া দেখুন। মাঝখানে কোনো দলিল বাদ থাকিলে মালিকানা প্রশ্নবিদ্ধ হইতে পারে।',
+ 'রেকর্ড রুম হইতে খতিয়ানের সার্টিফাইড কপি এবং সাব-রেজিস্ট্রি অফিসে তল্লাশ দিয়া বায়া দলিলের নকল সংগ্রহ করুন। অনলাইনে যাচাই করুন — eporcha.gov.bd ও land.gov.bd।',
+ 'জমিটি খাস, অর্পিত, পরিত্যক্ত বা ইতিপূর্বে অন্যের নামে নামজারিকৃত কিনা সহকারী কমিশনার (ভূমি) অফিসে যাচাই করুন।',
+ 'সরেজমিনে গিয়া প্রকৃত দখল, চৌহদ্দি ও শ্রেণি যাচাই করুন এবং মৌজা ম্যাপের সহিত দাগ মিলাইয়া নিন।',
+ 'মামলা, নিষেধাজ্ঞা বা আদালতের আদেশ আছে কিনা দেওয়ানি আদালতের সেরেস্তায় খোঁজ নিন — সাব-রেজিস্ট্রি অফিসে মামলার রেকর্ড রাখা হয় না। নিবন্ধিত বন্ধক বা দায় জানিতে নির্দায় সনদ (NEC) নিন।',
+ 'মূল্য পরিশোধের প্রমাণ রাখুন এবং রেজিস্ট্রেশনের পর অবিলম্বে নামজারি (খারিজ) করিয়া দখল বুঝিয়া নিন।',
+ 'দালালের পরিবর্তে অভিজ্ঞ দলিল লেখক বা আইনজীবীর পরামর্শ লইয়া দলিল প্রস্তুত করুন।'
+];
+
+// ---------------------------------------------------------------- branches UI
+let branches = JSON.parse(JSON.stringify(DEFAULT_BRANCHES));
+
+function drawBranches() {
+  const host = document.getElementById('branches');
+  host.innerHTML = '';
+  branches.forEach((b, i) => {
+    const d = document.createElement('div');
+    d.className = 'branch';
+    d.innerHTML =
+      '<div class="top"><b>শাখা ' + b.label + '</b>' +
+      '<button class="mini danger" data-del="' + i + '">মুছুন</button></div>' +
+      '<label>লেবেল</label><input type="text" data-f="label" data-i="' + i + '" value="' + esc(b.label) + '">' +
+      '<label>ভূমিকা</label><textarea data-f="lead" data-i="' + i + '" rows="2">' + esc(b.lead) + '</textarea>' +
+      '<label>উপ-আইটেম <span class="hint">(প্রতিটি আলাদা লাইনে, সর্বোচ্চ ৯টি)</span></label>' +
+      '<textarea data-f="items" data-i="' + i + '" rows="4">' + esc(b.items.join('\n')) + '</textarea>';
+    host.appendChild(d);
+  });
+  host.querySelectorAll('[data-del]').forEach(btn =>
+    btn.onclick = () => { branches.splice(+btn.dataset.del, 1); drawBranches(); render(); });
+  host.querySelectorAll('[data-f]').forEach(el =>
+    el.oninput = () => {
+      const b = branches[+el.dataset.i];
+      if (el.dataset.f === 'items') b.items = el.value.split('\n').filter(s => s.trim());
+      else b[el.dataset.f] = el.value;
+      render();
+    });
+}
+function addBranch() {
+  const next = ['ক)','খ)','গ)','ঘ)','ঙ)'][branches.length] || (branches.length + 1) + ')';
+  branches.push({ label: next, lead: '', items: [''] });
+  drawBranches(); render();
+}
+function esc(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
+// ---------------------------------------------------------------- config
+function readForm() {
+  const v = id => document.getElementById(id).value.trim();
+  return {
+    folder: v('folder'),
+    identity: { office:v('office'), upazila:v('upazila'), district:v('district'),
+                bankBranch:v('bankBranch'), srWeb:v('srWeb'), drOffice:v('drOffice'),
+                drWeb:v('drWeb'), published:v('published') },
+    grs: { anik:v('anik'), appeal:v('appeal') },
+    section126: { plot:v('s126plot'), residential:v('s126res'), commercial:v('s126com') },
+    compact: { s125:document.getElementById('c125').value, kroy:document.getElementById('ckroy').value },
+    showKroy: document.getElementById('showKroy').checked,
+    section125: branches,
+    kroy: document.getElementById('kroy').value.split('\n').map(s=>s.trim()).filter(Boolean)
+  };
+}
+
+// same rules as build.py --check, so the browser and CI agree
+function validate(c) {
+  const bad = [], warn = [];
+  if (!c.folder) bad.push('ফোল্ডারের নাম দিন');
+  else if (!/^[a-z0-9-]+$/.test(c.folder)) warn.push('ফোল্ডারের নামে ইংরেজি ছোট হাতের অক্ষর, সংখ্যা ও হাইফেন ব্যবহার করুন');
+  for (const [k, label] of Object.entries({office:'অফিসের নাম', upazila:'উপজেলা', district:'জেলা',
+        bankBranch:'ব্যাংক শাখা', srWeb:'অফিস ওয়েবসাইট', drOffice:'ডিআর অফিস', drWeb:'ডিআর ওয়েবসাইট',
+        published:'প্রকাশকাল'}))
+    if (!c.identity[k]) bad.push(label + ' খালি');
+  if (!c.grs.anik) bad.push('অভিযোগ নিষ্পত্তি কর্মকর্তা খালি');
+  if (!c.grs.appeal) bad.push('আপিল কর্মকর্তা খালি');
+  for (const [k, label] of Object.entries({plot:'১২৬ প্লট', residential:'১২৬ আবাসিক', commercial:'১২৬ বাণিজ্যিক'}))
+    if (!c.section126[k]) bad.push(label + ' খালি');
+  if (!c.section125.length) bad.push('ধারা ১২৫ — অন্তত একটি শাখা দরকার');
+  c.section125.forEach((b, i) => {
+    if (!b.label.trim()) bad.push('শাখা ' + (i+1) + ' — লেবেল খালি');
+    if (!b.lead.trim())  bad.push('শাখা ' + (i+1) + ' — ভূমিকা খালি');
+    if (!b.items.length) bad.push('শাখা ' + (i+1) + ' — অন্তত একটি উপ-আইটেম দরকার');
+    if (b.items.length > 9) bad.push('শাখা ' + (i+1) + ' — ৯টির বেশি আইটেম দেওয়া যাবে না');
+  });
+  if (c.showKroy && !c.kroy.length) bad.push('সতর্কতা সেকশন চালু আছে কিন্তু কোনো লাইন নেই');
+  return { bad, warn };
+}
+
+// ---------------------------------------------------------------- render
+function genS125(c) {
+  let out = ['<table class="inner">'];
+  c.section125.forEach(row => {
+    out.push('                <tr>');
+    out.push('                  <td class="k">' + row.label + '</td>');
+    out.push('                  <td>' + row.lead);
+    out.push('                    <table class="inner2">');
+    row.items.forEach((it, n) =>
+      out.push('                      <tr><td class="k2">' + BN[n+1] + '।</td><td>' + it + '</td></tr>'));
+    out.push('                    </table>');
+    out.push('                  </td>');
+    out.push('                </tr>');
+  });
+  out.push('              </table>');
+  return out.join('\n');
+}
+const genKroy = c => c.kroy.map(t =>
+  '<div class="w"><span class="d"></span><span>' + t + '</span></div>').join('\n');
+
+function block(html, name, repl) {
+  const re = new RegExp('(<!--@' + name + '-->)[\\s\\S]*?(<!--/@' + name + '-->)');
+  return re.test(html) ? html.replace(re, (m,a,b) => a + '\n' + repl + '\n              ' + b) : html;
+}
+function inline(html, name, repl) {
+  const re = new RegExp('(<!--@' + name + '-->)[\\s\\S]*?(<!--/@' + name + '-->)');
+  return re.test(html) ? html.replace(re, (m,a,b) => a + repl + b) : html;
+}
+function dropCard(html, name) {
+  const re = new RegExp('[ \\t]*<!--@' + name + '-->[\\s\\S]*?<!--/@' + name + '-->\\n?');
+  return html.replace(re, '');
+}
+
+function build(c) {
+  let h = TEMPLATE;
+  const i = c.identity;
+  [[MASTER.office, i.office], [MASTER.officeAlt, i.office],
+   [MASTER.bankBranch, i.bankBranch], [MASTER.srWeb, i.srWeb], [MASTER.drWeb, i.drWeb],
+   [MASTER.drOffice, i.drOffice], [MASTER.published, i.published],
+   [MASTER.upazila, i.upazila], [MASTER.district, i.district]]
+    .forEach(([o, n]) => { if (o && n && o !== n) h = h.split(o).join(n); });
+
+  if (!c.showKroy) h = dropCard(h, 'KROYCARD');
+  h = block(h, 'S125', genS125(c));
+  h = block(h, 'KROY', genKroy(c));
+  h = inline(h, 'S126', '<br>' + c.section126.plot + '<br><br>' + c.section126.residential + '<br>' + c.section126.commercial);
+  h = inline(h, 'ANIK', c.grs.anik);
+  h = inline(h, 'APPEAL', c.grs.appeal);
+  h = h.replace('--s125-compact: 1;', '--s125-compact: ' + c.compact.s125 + ';')
+       .replace('--warn-compact: 1;', '--warn-compact: ' + c.compact.kroy + ';');
+  return h;
+}
+
+let currentHtml = '';
+function render() {
+  if (!TEMPLATE) return;
+  const c = readForm();
+  const { bad, warn } = validate(c);
+  const box = document.getElementById('alerts');
+  box.innerHTML =
+    (bad.length  ? '<div class="alert bad"><b>ঠিক করতে হবে:</b><ul>' + bad.map(x=>'<li>'+x+'</li>').join('') + '</ul></div>' : '') +
+    (warn.length ? '<div class="alert warn"><ul>' + warn.map(x=>'<li>'+x+'</li>').join('') + '</ul></div>' : '') +
+    (!bad.length && !warn.length ? '<div class="alert ok">সব ঠিক আছে — ZIP ডাউনলোড করা যাবে।</div>' : '');
+
+  currentHtml = build(c);
+  const f = document.getElementById('pv');
+  f.srcdoc = currentHtml;
+  f.onload = () => { if (zoom === null) fit(); else applyZoom(); };
+}
+
+// ---------------------------------------------------------------- zoom
+const SHEET_W = 96 * 96, SHEET_H = 72 * 96;   // 8 ft × 6 ft at 96 dpi
+let zoom = null;
+function applyZoom() {
+  const f = document.getElementById('pv');
+  f.style.width = SHEET_W + 'px';
+  f.style.height = SHEET_H + 'px';
+  f.style.transform = 'scale(' + zoom + ')';
+  const st = document.getElementById('stage');
+  st.scrollLeft = 0;
+  document.getElementById('zv').textContent = Math.round(zoom * 100) + '%';
+  f.parentElement.style.height = (SHEET_H * zoom) + 'px';
+  f.parentElement.style.width  = (SHEET_W * zoom) + 'px';
+}
+function fit() {
+  const st = document.getElementById('stage');
+  zoom = Math.min((st.clientWidth - 40) / SHEET_W, (st.clientHeight - 40) / SHEET_H);
+  applyZoom();
+}
+function zoomBy(d) { zoom = Math.max(0.02, Math.min(1, (zoom || 0.1) * (d > 0 ? 1.25 : 0.8))); applyZoom(); }
+
+// ---------------------------------------------------------------- output
+function printBoard() {
+  const w = window.open('', '_blank');
+  w.document.write(currentHtml);
+  w.document.close();
+  w.onload = () => setTimeout(() => w.print(), 900);   // let the fonts land first
+}
+
+async function downloadZip() {
+  const c = readForm();
+  if (validate(c).bad.length) { alert('আগে লাল বার্তাগুলো ঠিক করুন।'); return; }
+  const zip = new JSZip();
+  const dir = zip.folder(c.folder);
+  dir.file('citizens-charter-' + c.folder + '.html', currentHtml);
+  dir.file('office.json', JSON.stringify(c, null, 2));
+  dir.file('README.txt',
+`${c.identity.office}
+
+এই ফোল্ডারে:
+  citizens-charter-${c.folder}.html   বোর্ড — ব্রাউজারে খুলে Ctrl+P → Save as PDF
+  office.json                          কনফিগ — পরে আবার লোড করা যাবে
+
+PDF তৈরি (Chrome):
+  Ctrl+P → Destination: Save as PDF → Margins: None → Background graphics: on
+  পেজ সাইজ আসবে ৯৬ × ৭২ ইঞ্চি (৮ × ৬ ফুট)
+
+কমান্ড লাইনে (ঐচ্ছিক):
+  chrome --headless=new --no-pdf-header-footer --virtual-time-budget=20000 \\
+         --print-to-pdf=board.pdf citizens-charter-${c.folder}.html
+  pdfinfo board.pdf        # Page size: 6912 x 5184 pts হওয়া উচিত
+`);
+  const blob = await zip.generateAsync({ type:'blob' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = c.folder + '-board.zip';
+  a.click();
+  URL.revokeObjectURL(a.href);
+}
+
+function exportJson() {
+  const blob = new Blob([JSON.stringify(readForm(), null, 2)], { type:'application/json' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = readForm().folder + '.json';
+  a.click();
+}
+function importJson(input) {
+  const f = input.files[0]; if (!f) return;
+  const r = new FileReader();
+  r.onload = () => {
+    try {
+      const c = JSON.parse(r.result);
+      const set = (id, v) => { if (v !== undefined) document.getElementById(id).value = v; };
+      set('folder', c.folder);
+      Object.entries(c.identity || {}).forEach(([k, v]) => set(k, v));
+      set('anik', (c.grs||{}).anik); set('appeal', (c.grs||{}).appeal);
+      set('s126plot', (c.section126||{}).plot);
+      set('s126res', (c.section126||{}).residential);
+      set('s126com', (c.section126||{}).commercial);
+      if (c.compact) {
+        document.getElementById('c125').value = c.compact.s125 || 1;
+        document.getElementById('ckroy').value = c.compact.kroy || 1;
+      }
+      document.getElementById('showKroy').checked = c.showKroy !== false;
+      document.getElementById('kroy').value = (c.kroy || []).join('\n');
+      branches = c.section125 || [];
+      drawBranches(); syncSliders(); render();
+    } catch (e) { alert('JSON পড়া গেল না: ' + e.message); }
+  };
+  r.readAsText(f);
+}
+
+// ---------------------------------------------------------------- boot
+function syncSliders() {
+  document.getElementById('c125v').textContent  = (+document.getElementById('c125').value).toFixed(2);
+  document.getElementById('ckroyv').textContent = (+document.getElementById('ckroy').value).toFixed(2);
+}
+
+document.getElementById('kroy').value = DEFAULT_KROY.join('\n');
+drawBranches();
+syncSliders();
+document.getElementById('form').addEventListener('input', () => { syncSliders(); render(); });
+window.addEventListener('resize', () => { if (zoom !== null) fit(); });
+
+fetch(TEMPLATE_FILE)
+  .then(r => { if (!r.ok) throw new Error(r.status + ' ' + r.statusText); return r.text(); })
+  .then(t => { TEMPLATE = t; render(); })
+  .catch(e => {
+    document.getElementById('alerts').innerHTML =
+      '<div class="alert bad">টেমপ্লেট লোড হয়নি (' + e.message + ')।<br>' +
+      'লোকালি চালাতে হলে এই ফোল্ডারে একটি সার্ভার দরকার — <code>python -m http.server</code> ' +
+      'চালিয়ে <code>localhost:8000</code> খুলুন। GitHub Pages-এ এমনিতেই কাজ করবে।</div>';
+  });
+</script>
+</body>
+</html>

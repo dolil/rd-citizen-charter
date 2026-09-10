@@ -1,0 +1,50 @@
+name: build boards
+
+on:
+  push:
+    paths: ['offices/**', 'templates/**', 'build.py']
+  pull_request:
+    paths: ['offices/**', 'templates/**', 'build.py']
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.12' }
+
+      # a bad rate must never reach a printed board — fail the PR first
+      - name: validate office configs
+        run: python3 build.py --check
+
+      - name: build HTML
+        run: python3 build.py
+
+      - name: install renderers
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq poppler-utils imagemagick fonts-beng chromium-browser
+
+      - name: render PDFs
+        run: |
+          for d in out/*/; do
+            mkdir -p "$d/pdf"
+            for f in "$d"*.html; do
+              b=$(basename "$f" .html)
+              chromium-browser --headless=new --disable-gpu --no-sandbox \
+                --no-pdf-header-footer --virtual-time-budget=20000 \
+                --print-to-pdf="$d/pdf/$b.pdf" "$f"
+            done
+          done
+
+      - name: check page sizes
+        run: for f in out/*/pdf/*.pdf; do echo "$f"; pdfinfo "$f" | grep '^Page size'; done
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: boards
+          path: out/**/pdf/*.pdf
+          retention-days: 90

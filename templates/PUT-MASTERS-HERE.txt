@@ -1,5 +1,8 @@
 Master HTML files go here, plus bd-govt-logo.png.
 
+Anything inside reference/ is skipped by build.py — put superseded
+boards there rather than deleting them.
+
 These are shared by every office. A correction made here reaches all
 offices on the next build — that is the point. Never edit a file in
 out/, it is overwritten.

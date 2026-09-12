@@ -130,6 +130,15 @@
     <label>প্রতিটি লাইন আলাদা লাইনে লিখুন</label>
     <textarea id="kroy" rows="8"></textarea>
 
+    <h2>ফি চার্ট</h2>
+    <label>অতিরিক্ত দলিলের সারি <span class="hint">(০–৯; ফাঁকা জায়গা থাকিলে বাড়ান)</span></label>
+    <div class="slider">
+      <input type="range" id="deedRows" min="0" max="9" step="1" value="9">
+      <output id="deedRowsv">9</output>
+    </div>
+    <label>এস.আর.ও রেফারেন্স</label>
+    <input type="text" id="sroRef" value="এস.আর.ও নং ২১০, তারিখ ০৮ জুন ২০২৬">
+
     <h2>কম্প্যাক্টনেস <span class="hint">— ফাঁকা জায়গা ভরাতে বাড়ান</span></h2>
     <label>ধারা ১২৫ ব্লক</label>
     <div class="slider">
@@ -140,6 +149,11 @@
     <div class="slider">
       <input type="range" id="ckroy" min="0.6" max="1.8" step="0.05" value="1">
       <output id="ckroyv">1.00</output>
+    </div>
+    <label>সম্পূর্ণ বোর্ড</label>
+    <div class="slider">
+      <input type="range" id="cboard" min="0.7" max="1.3" step="0.01" value="1">
+      <output id="cboardv">1.00</output>
     </div>
 
     <h2>কনফিগ</h2>
@@ -171,7 +185,7 @@
 
 <script>
 // ---------------------------------------------------------------- template
-const TEMPLATE_FILE = 'templates/citizens-charter-v1.html';
+const TEMPLATE_FILE = 'templates/citizens-charter-v2.html';
 let TEMPLATE = null;
 
 const MASTER = {
@@ -252,7 +266,10 @@ function readForm() {
                 drWeb:v('drWeb'), published:v('published') },
     grs: { anik:v('anik'), appeal:v('appeal') },
     section126: { plot:v('s126plot'), residential:v('s126res'), commercial:v('s126com') },
-    compact: { s125:document.getElementById('c125').value, kroy:document.getElementById('ckroy').value },
+    sroRef: v('sroRef'),
+    deedRows: +document.getElementById('deedRows').value,
+    compact: { s125:document.getElementById('c125').value, kroy:document.getElementById('ckroy').value,
+               board:document.getElementById('cboard').value },
     showKroy: document.getElementById('showKroy').checked,
     section125: branches,
     kroy: document.getElementById('kroy').value.split('\n').map(s=>s.trim()).filter(Boolean)
@@ -316,6 +333,35 @@ function dropCard(html, name) {
   return html.replace(re, '');
 }
 
+function genS125Prose(c) {
+  let out = ['<b>উৎসে কর [ধারা ১২৫]</b> — '];
+  c.section125.forEach((row, n) => {
+    if (n) out.push('<br>');
+    out.push(row.lead.replace(/[:—]\s*$/, '').trim() + ' — ');
+    out.push(row.items.join(' '));
+  });
+  return out.join('');
+}
+function genS126Prose(c) {
+  const s = c.section126;
+  return '<b>উৎসে কর [ধারা ১২৬]</b> — বাণিজ্যিক ভিত্তিতে প্লট বা ফ্ল্যাট বিক্রয়ের ক্ষেত্রে অতিরিক্ত — ' +
+         'প্লট/জমিতে ' + s.plot + '; বিল্ডিং/ফ্ল্যাটে প্রতি বর্গমিটারে আবাসিক ' +
+         s.residential + ' ও বাণিজ্যিক ' + s.commercial + '।<br>';
+}
+const BNNUM = '০১২৩৪৫৬৭৮৯';
+const toBn = n => String(n).split('').map(d => BNNUM[+d]).join('');
+
+function trimDeeds(h, keep) {
+  const m = h.match(/(<!--@DEEDS-->\n)([\s\S]*?)(\s*<!--\/@DEEDS-->)/);
+  if (!m) return h;
+  const rows = m[2].match(/            <tr><td class="c">[\s\S]*?<\/tr>\n/g) || [];
+  h = h.slice(0, h.indexOf(m[2])) + rows.slice(0, keep).join('') +
+      h.slice(h.indexOf(m[2]) + m[2].length);
+  let k = 0;
+  return h.replace(/<tr><td class="c">[০-৯]+<\/td>/g, () =>
+    '<tr><td class="c">' + toBn(++k) + '</td>');
+}
+
 function build(c) {
   let h = TEMPLATE;
   const i = c.identity;
@@ -329,8 +375,17 @@ function build(c) {
   h = block(h, 'S125', genS125(c));
   h = block(h, 'KROY', genKroy(c));
   h = inline(h, 'S126', '<br>' + c.section126.plot + '<br><br>' + c.section126.residential + '<br>' + c.section126.commercial);
+  // v2 states the tax rates as prose instead of tables
+  h = inline(h, 'S125P', genS125Prose(c));
+  h = inline(h, 'S126P', genS126Prose(c));
+  h = inline(h, 'SRO',   c.sroRef || '');
+  h = inline(h, 'DROFF', c.identity.drOffice);
+  h = inline(h, 'SRWEB', c.identity.srWeb);
+  h = inline(h, 'DRWEB', c.identity.drWeb);
   h = inline(h, 'ANIK', c.grs.anik);
   h = inline(h, 'APPEAL', c.grs.appeal);
+  h = trimDeeds(h, c.deedRows === undefined ? 9 : +c.deedRows);
+  if (c.compact && c.compact.board) h = h.replace('--compact: 1;', '--compact: ' + c.compact.board + ';');
   h = h.replace('--s125-compact: 1;', '--s125-compact: ' + c.compact.s125 + ';')
        .replace('--warn-compact: 1;', '--warn-compact: ' + c.compact.kroy + ';');
   return h;
@@ -387,13 +442,13 @@ async function downloadZip() {
   if (validate(c).bad.length) { alert('আগে লাল বার্তাগুলো ঠিক করুন।'); return; }
   const zip = new JSZip();
   const dir = zip.folder(c.folder);
-  dir.file('citizens-charter-' + c.folder + '.html', currentHtml);
+  dir.file('citizens-charter-v2-' + c.folder + '.html', currentHtml);
   dir.file('office.json', JSON.stringify(c, null, 2));
   dir.file('README.txt',
 `${c.identity.office}
 
 এই ফোল্ডারে:
-  citizens-charter-${c.folder}.html   বোর্ড — ব্রাউজারে খুলে Ctrl+P → Save as PDF
+  citizens-charter-v2-${c.folder}.html   বোর্ড — ব্রাউজারে খুলে Ctrl+P → Save as PDF
   office.json                          কনফিগ — পরে আবার লোড করা যাবে
 
 PDF তৈরি (Chrome):
@@ -402,7 +457,7 @@ PDF তৈরি (Chrome):
 
 কমান্ড লাইনে (ঐচ্ছিক):
   chrome --headless=new --no-pdf-header-footer --virtual-time-budget=20000 \\
-         --print-to-pdf=board.pdf citizens-charter-${c.folder}.html
+         --print-to-pdf=board.pdf citizens-charter-v2-${c.folder}.html
   pdfinfo board.pdf        # Page size: 6912 x 5184 pts হওয়া উচিত
 `);
   const blob = await zip.generateAsync({ type:'blob' });
@@ -436,7 +491,10 @@ function importJson(input) {
       if (c.compact) {
         document.getElementById('c125').value = c.compact.s125 || 1;
         document.getElementById('ckroy').value = c.compact.kroy || 1;
+        document.getElementById('cboard').value = c.compact.board || 1;
       }
+      set('sroRef', c.sroRef);
+      if (c.deedRows !== undefined) document.getElementById('deedRows').value = c.deedRows;
       document.getElementById('showKroy').checked = c.showKroy !== false;
       document.getElementById('kroy').value = (c.kroy || []).join('\n');
       branches = c.section125 || [];
@@ -450,6 +508,8 @@ function importJson(input) {
 function syncSliders() {
   document.getElementById('c125v').textContent  = (+document.getElementById('c125').value).toFixed(2);
   document.getElementById('ckroyv').textContent = (+document.getElementById('ckroy').value).toFixed(2);
+  document.getElementById('cboardv').textContent = (+document.getElementById('cboard').value).toFixed(2);
+  document.getElementById('deedRowsv').textContent = document.getElementById('deedRows').value;
 }
 
 document.getElementById('kroy').value = DEFAULT_KROY.join('\n');

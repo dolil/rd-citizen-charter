@@ -1,0 +1,20 @@
+Master HTML files go here, plus bd-govt-logo.png.
+
+Anything inside reference/ is skipped by build.py — put superseded
+boards there rather than deleting them.
+
+These are shared by every office. A correction made here reaches all
+offices on the next build — that is the point. Never edit a file in
+out/, it is overwritten.
+
+Configurable regions are marked in the HTML:
+
+  <!--@S125-->   … <!--/@S125-->     ধারা ১২৫ block   (own lines)
+  <!--@KROY-->   … <!--/@KROY-->     জমি ক্রয়ের সতর্কতা (own lines)
+  <!--@S126-->   … <!--/@S126-->     ধারা ১২৬ rates    (inline)
+  <!--@ANIK-->   … <!--/@ANIK-->     GRS officer       (inline)
+  <!--@APPEAL--> … <!--/@APPEAL-->   GRS appeal        (inline)
+
+To add a new configurable region: wrap it in a marker, add the key to
+offices/*.json, and add one line to build.py. The boards themselves do
+not otherwise change.

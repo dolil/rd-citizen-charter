@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>নাগরিক সনদ (সংস্করণ ২) — সদর সাব-রেজিস্ট্রারের কার্যালয়, সদর, গাজীপুর</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tiro+Bangla:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  /* =========================================================
+     CITIZENS' CHARTER BOARD — 8 ft × 6 ft = 96 in × 72 in
+     Five columns, as in the source. Fixed sheet; nothing reflows.
+     ========================================================= */
+  :root {
+    --w: 96in;   /* 8 ft */
+    --h: 72in;   /* 6 ft */
+
+    /* board-wide compactness: 1 = as drawn, <1 tighter, >1 looser.
+       Raise it when a district's ১২৫ text is short and leaves a gap. */
+    --compact: 1;
+
+    --fs-title:  118pt;
+    --fs-sec:     calc(58pt * var(--compact));
+    --fs-body:    calc(46pt * var(--compact));
+    --fs-small:   calc(40pt * var(--compact));
+    --fs-tiny:    calc(35pt * var(--compact));
+    --fs-foot:    64pt;
+
+    --green:      #2da44e;
+    --green-dark: #1a5e2a;
+    --navy:       #1a7a38;
+    --ink:        #1a1a1a;
+    --rule:       #d0e8d8;
+    --tint:       #f0faf4;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { height: 100%; }
+  body { background: #c8c8c8; overflow: hidden; font-family: 'Tiro Bangla', serif; }
+
+  .pane { position: fixed; inset: 0; overflow: auto; padding: 20px; background: #c8c8c8; }
+  .scaler { transform-origin: top left; width: max-content; margin: 0 auto; }
+
+  .sheet {
+    position: relative;
+    width: var(--w); height: var(--h);
+    background: #fff; display: flex; flex-direction: column;
+    overflow: hidden; box-shadow: 0 .2in .6in rgba(0,0,0,.2);
+    border: .2in solid var(--green);
+  }
+
+  /* ---------- header / footer ---------- */
+  .head {
+    background: var(--green); color: #fff;
+    display: flex; align-items: center; justify-content: center; gap: .5in;
+    padding: .34in .5in;
+  }
+  .head img { width: 1.5in; height: 1.5in; object-fit: contain; }
+  .head h1 { font-size: var(--fs-title); font-weight: 400; line-height: 1.25; }
+
+  .foot {
+    background: var(--green); color: #fff; text-align: center;
+    padding: .3in .5in; font-size: var(--fs-foot); line-height: 1.3;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .foot .pub { font-size: var(--fs-tiny); opacity: .9; }
+
+  /* ---------- five columns ---------- */
+  .body { flex: 1; display: grid; grid-template-columns: repeat(5, 1fr); overflow: hidden; }
+  .col.span2 { grid-column: span 2; }
+  .col.span3 { grid-column: span 3; }
+
+  table.charter {
+    width: 100%; border-collapse: collapse; margin-top: .12in;
+    /* the collapsed bottom edge can be clipped by the card; draw it here too */
+    border: .025in solid var(--rule);
+    margin-bottom: .22in;              /* clearance below the last row */
+  }
+  table.charter th {
+    background: var(--green); color: #fff; font-size: var(--fs-small);
+    padding: .13in .22in; text-align: center; line-height: 1.3; vertical-align: middle;
+    border: .025in solid #fff;            /* cell rules in the header band */
+  }
+  table.charter td {
+    font-size: var(--fs-small); line-height: 1.5; color: var(--ink);
+    padding: .15in .22in; vertical-align: top;
+    border: .025in solid var(--rule);     /* full box on every cell */
+  }
+  table.codes { width: 100%; border-collapse: collapse; margin: .06in 0 .08in; }
+  table.codes.sm td { font-size: var(--fs-tiny); padding: .02in 0; line-height: 1.35; }
+
+  table.codes td { border: none !important; padding: .03in 0; font-size: var(--fs-small);
+                   line-height: 1.4; vertical-align: baseline; }
+  table.codes td:first-child { border-bottom: .012in dotted #b9c9bf !important; }
+  table.codes td:last-child  { text-align: right; white-space: nowrap;
+                               padding-left: .12in; font-weight: 600; color: var(--red); }
+
+  table.charter tr.colno th {
+    font-weight: 400; padding: .06in .22in; font-size: var(--fs-tiny);
+  }
+
+  .panel { border-radius: 0 .06in .06in 0; padding: .16in .2in; margin-top: .14in;
+           display: flex; gap: .18in; align-items: flex-start; }
+  .panel svg { flex: 0 0 auto; width: .62in; height: .62in; fill: none; stroke-width: 1.9;
+               stroke-linecap: round; stroke-linejoin: round; margin-top: .04in; }
+  .panel .ptxt { flex: 1; font-size: var(--fs-small); line-height: 1.5; }
+  .panel .ttl  { font-weight: 700; display: block; margin-bottom: .06in; }
+  .p-notice { background: #fff8f0; border-left: .13in solid #c0392b; }
+  .p-notice svg  { stroke: #c0392b; }
+  .p-notice .ttl { color: #c0392b; }
+  .p-guide  { background: #f0faf4; border-left: .13in solid #2da44e; }
+  .p-guide svg   { stroke: #1a7a38; }
+  .p-guide .ttl  { color: #1a7a38; }
+  .card > .panel { margin-top: 0; }
+
+  table.charter.feechart td { font-size: var(--fs-tiny); line-height: 1.45; padding: .12in .16in; }
+  table.charter.feechart th { font-size: var(--fs-small); }
+
+  .fill { display: inline-block; min-width: 1.9in; border-bottom: .02in dotted #9fb3a6;
+          margin-left: .06in; vertical-align: baseline; }
+
+  /* must out-rank .col.c1 table.charter td, which is more specific */
+  .col table.charter.grs td { padding: .24in .21in; line-height: 1.58; }
+  .col table.charter.grs th { padding: .18in .22in; }
+
+  table.charter td.c { text-align: center; }
+  table.charter td.t { color: var(--red); font-weight: 600; }
+
+  .col { padding: .3in .28in; overflow: hidden; border-right: .05in solid #d0e8d8; }
+  .col:last-child { border-right: none; }
+
+  .card { margin-bottom: .26in; }
+  .card:last-child { margin-bottom: 0; }
+
+  .card > h2 {
+    font-family: 'Tiro Bangla', serif; font-weight: 700;
+    font-size: var(--fs-sec); line-height: 1.25;
+    color: var(--green); background: none;
+    padding: .06in .04in .06in; text-align: left;
+    border-bottom: .04in solid var(--green);
+  }
+  .card.g > h2 { color: var(--green); }
+  .card .in { padding: .2in .22in; }
+
+  table { width: 100%; border-collapse: collapse; }
+  th {
+    font-family: 'Tiro Bangla', serif; font-weight: 600;
+    font-size: var(--fs-body); color: #fff; background: var(--green);
+    padding: .14in .2in; text-align: left; line-height: 1.3;
+  }
+  th.r, td.r { text-align: right; white-space: nowrap; }
+  td {
+    font-size: var(--fs-body); color: var(--ink); line-height: 1.45;
+    padding: .1in .14in; border-bottom: .02in solid #e8e8e8; vertical-align: top;
+  }
+  tr:last-child td { border-bottom: none; }
+  td.r { font-family: 'Tiro Bangla', serif; font-weight: 600; color: #c0392b; }
+  /* ---- ধারা ১২৫ block: tune here ---- */
+  :root {
+    /* one knob per block: 1 = as drawn, >1 looser/larger, <1 tighter.
+       Raise it when a district's ১২৫ text is short and leaves a gap. */
+    --s125-compact: 1;
+    --s125-size: calc(43pt  * var(--s125-compact));
+    --s125-sub:  calc(40pt  * var(--s125-compact));
+    --s125-lh:   calc(1.58  * var(--s125-compact));
+    --s125-gap:  calc(.15in * var(--s125-compact));
+
+    --warn-compact: 1;
+    --warn-size: calc(38pt  * var(--warn-compact));
+    --warn-lh:   calc(1.55  * var(--warn-compact));
+    --warn-gap:  calc(.11in * var(--warn-compact));
+  }
+
+  .sub { padding-left: .3in; }
+  td.sub { padding-left: .5in; }
+  .i1 { padding-left: .65in; display: block; }
+  .i2 { padding-left: 1.5in; display: block; font-size: var(--fs-tiny); }
+  .amt { color: #c0392b; font-weight: 600; }
+
+  /* nested lists inside a fee cell — fixed gutters so every level lines up */
+  table.inner  { width: calc(100% - .5in); margin: .1in 0 0 .5in; border-collapse: separate; border-spacing: 0 var(--s125-gap); }
+  table.inner2 { width: 100%; margin: .06in 0 .1in; border-collapse: separate; border-spacing: 0 calc(var(--s125-gap) * .55); }
+  table.inner  td { border: none; padding: 0; vertical-align: top;
+                    font-size: var(--s125-size); line-height: var(--s125-lh); }
+  table.inner2 td { border: none; padding: 0; vertical-align: top;
+                    font-size: var(--s125-sub);  line-height: var(--s125-lh); }
+  table.inner > tbody > tr > td { padding-bottom: .06in; }
+  table.inner  td.k  { width: .62in; padding-right: .1in; white-space: nowrap; }
+  table.inner2 td.k2 { width: .62in; padding-right: .1in; white-space: nowrap; }
+  table.inner2 tr:last-child td { padding-bottom: 0; }
+  .sub2 { padding-left: .6in; }
+
+  p, li { font-size: var(--fs-body); line-height: 1.55; color: var(--ink); }
+  p + p { margin-top: .1in; }
+  ol, ul { padding-left: .34in; }
+  li { margin-bottom: .06in; }
+  .sm { font-size: var(--fs-small); }
+  .tiny { font-size: var(--fs-tiny); }
+  .steps { display: block; }
+  .steps .step {
+    display: flex; align-items: flex-start; gap: .18in;
+    margin-bottom: .1in; font-size: var(--fs-body); line-height: 1.5;
+  }
+  .steps .step:last-child { margin-bottom: 0; }
+  .steps .n {
+    flex: 0 0 auto; width: .78in; height: .78in; border-radius: 50%;
+    background: var(--green); color: #fff;
+    font-size: var(--fs-small); font-weight: 700; line-height: .78in;
+    text-align: center;
+  }
+  .steps .t { flex: 1; }
+
+  /* shaded panels — same treatment as the previous board:
+     amber for notices, green for guidance, red rule for warnings */
+  .panel {
+    border-radius: 0 .06in .06in 0;
+    padding: .15in .2in;
+    margin-top: .12in;
+    display: flex; gap: .18in; align-items: flex-start;
+  }
+  .panel svg { flex: 0 0 auto; width: .62in; height: .62in; fill: none; stroke-width: 1.9;
+               stroke-linecap: round; stroke-linejoin: round; margin-top: .04in; }
+  .panel .ptxt { flex: 1; font-size: var(--fs-small); line-height: 1.5; }
+  .panel .ttl { font-weight: 700; display: block; margin-bottom: .06in; }
+
+  .card > .panel { margin-top: 0; }
+  .panel .ptxt .num  { float: left; clear: left; width: .72in; font-weight: 700; }
+  .panel .ptxt .txt  { margin-left: .72in; margin-bottom: .08in; }
+  .panel .ptxt .txt:last-child { margin-bottom: 0; }
+
+  .p-notice { background: #fff8f0; border-left: .13in solid #c0392b; }
+  .p-notice svg   { stroke: #c0392b; }
+  .p-notice b, .p-guide b { font-weight: 700; }
+  .p-notice .ttl  { color: #c0392b; }
+  .p-guide  { background: #f0faf4; border-left: .13in solid #2da44e; }
+  .p-guide svg    { stroke: #1a7a38; }
+  .p-guide .ttl   { color: #1a7a38; }
+
+  table.exq { width: 100%; border-collapse: collapse; table-layout: fixed;
+              font-size: var(--fs-small); line-height: 1.5; }
+  table.exq col.a { width: 74%; } table.exq col.b { width: 26%; }
+  table.exq td { border: none; padding: .05in 0; word-wrap: break-word; }
+  table.exq td.v { text-align: right; color: #c0392b; font-weight: 700; }
+  table.exq tr.tot td { border-top: .025in solid #d0e8d8; padding-top: .08in; }
+  table.exq td.hint { color: #888; padding-top: .1in; }
+
+  .ex-box {
+    background: #f0faf4; border-left: .13in solid #2da44e;
+    border-radius: 0 .06in .06in 0; padding: .18in .24in; margin-top: .16in;
+  }
+  .ex-item { font-size: var(--fs-small); line-height: 1.5; color: #333;
+             padding-top: .14in; margin-top: .14in; border-top: .02in dashed #d0e8d8; }
+  .ex-item:first-child { padding-top: 0; margin-top: 0; border-top: none; }
+  .ex-title { font-weight: 700; color: #1a7a38; margin-bottom: .06in; }
+  .ex-tot   { color: #c0392b; font-weight: 700; }
+
+  .warn-list .w { display: flex; gap: .16in; align-items: flex-start;
+                  font-size: var(--warn-size); line-height: var(--warn-lh);
+                  margin-bottom: var(--warn-gap); }
+  .warn-list .w:last-child { margin-bottom: 0; }
+  .warn-list .d { flex: 0 0 auto; width: .17in; height: .17in; background: var(--green);
+                  transform: rotate(45deg); margin-top: .18in; }
+
+  .note { background: var(--tint); border-left: .06in solid var(--green); padding: .12in .16in; }
+  .red { color: #c0392b; }
+  td.r .amt { color: #c0392b; }
+  .lbl { font-family: 'Tiro Bangla', serif; font-weight: 700; }
+
+  /* ---------- preview only ---------- */
+  .zoombar {
+    position: fixed; top: 12px; left: 12px; z-index: 99; display: flex; gap: 6px;
+    background: #fff; border: 1px solid #b7b7b7; border-radius: 8px; padding: 6px 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,.18); font: 13px/1 system-ui, sans-serif; align-items: center;
+  }
+  .zoombar button { font: 13px/1 system-ui, sans-serif; padding: 6px 10px; border: 1px solid #b7b7b7;
+    background: #f6f6f6; border-radius: 5px; cursor: pointer; }
+  .zoombar .zv { min-width: 46px; text-align: center; color: #444; }
+  .zoombar .sz { color: #777; margin-left: 4px; }
+
+  /* column 1 holds less than the rest; loosen only this column so it
+     fills the sheet without touching the grid row height set by the
+     tallest column */
+  .col.c1 .card        { margin-bottom: .38in; }
+  .col.c1 .card > h2   { padding: .09in .04in .07in; margin-bottom: .05in; }
+  .col.c1 td           { padding: .14in .14in; line-height: 1.53; }
+  .col.c1 .steps .step { margin-bottom: .16in; }
+  .col.c1 .panel       { padding: .18in .22in; margin-top: .16in; }
+  .col.c1 .panel .ptxt { line-height: 1.53; }
+
+  /* column 4 runs short — the copy-fee examples and the বি:দ্র: notes
+     take the extra height, so the fee tables above stay as they are */
+  .col.c4 .card        { margin-bottom: .39in; }
+  .col.c4 td           { padding: .135in .14in; line-height: 1.54; }
+  .col.c4 .ex-box      { padding: .23in .3in; margin-top: .19in; }
+  .col.c4 .ex-item     { padding-top: .17in; margin-top: .17in; }
+  .col.c4 table.exq td { font-size: 36.5pt; padding: .075in 0; line-height: 1.5; }
+  .col.c4 .ex-title    { font-size: 38.5pt; margin-bottom: .085in; }
+  .col.c4 .panel       { padding: .185in .24in; margin-top: .165in; }
+  .col.c4 .panel .ptxt { font-size: 36.5pt; line-height: 1.54; }
+
+  /* column 3 — six short fee tables, so it runs light; loosen this
+     column only, leaving the grid row height untouched */
+  .col.c3 .card      { margin-bottom: .218in; }
+  .col.c3 .card > h2 { padding: .047in .04in .044in; }
+  .col.c3 td         { padding: .086in .14in; line-height: 1.393; }
+
+  /* the four notice panels sit back to back at the foot of column 5 */
+  .col.c5 .card > .panel      { margin-top: 0; }
+  .col.c5 .card:has(> .panel) { margin-bottom: .28in; }
+
+  /* last column — a little tighter so it clears the foot */
+  .col.c5 .card       { margin-bottom: .18in; }
+  .col.c5 .card > h2  { padding: .045in .04in .045in; margin-bottom: .035in; }
+  .col.c5 td          { padding: .078in .12in; line-height: 1.38; }
+  .col.c5 th          { padding: .1in .14in; }
+  .col.c5 .panel      { padding: .13in .17in; margin-top: .1in; }
+  .col.c5 .panel .ptxt{ line-height: 1.42; }
+  .col.c5 .ex-box     { padding: .18in .22in; margin-top: .14in; }
+  .col.c5 .ex-item    { padding-top: .13in; margin-top: .13in; }
+  .col.c5 table.exq td{ padding: .05in 0; line-height: 1.4; }
+  .col.c5 .in         { padding: .12in .14in; }
+
+  /* first block — three tables and four panels; a little air between them */
+  .col.c1 .card      { margin-bottom: .3in; }
+  .col.c1 .card > h2 { padding: .06in .04in .058in; margin-bottom: .042in; }
+  .col.c1 table.charter td { padding: .135in .21in; line-height: 1.46; }
+  .col.c1 .panel     { padding: .155in .2in; margin-top: .115in; }
+  .col.c1 .in        { padding: .115in .15in; }
+
+  @page { size: 96in 72in; margin: 0; }
+  @media print {
+    html, body { height: auto; overflow: visible; background: #fff; }
+    .zoombar { display: none !important; }
+    .pane { position: static; overflow: visible; padding: 0; background: #fff; }
+    .scaler { transform: none !important; zoom: 1 !important; width: auto !important; margin: 0; }
+    .sheet { box-shadow: none; }
+    * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+</style>
+</head>
+<body>
+
+<div class="zoombar">
+  <button id="zo">&minus;</button><span class="zv" id="zv">100%</span><button id="zi">+</button>
+  <button id="zf">Fit</button><button id="z1">100%</button>
+  <span class="sz">H-6 x W-8 ft</span>
+</div>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-warn" viewBox="0 0 24 24"><path d="M12 3.5 22 20H2z"/><path d="M12 10v4.6M12 17.4v.2"/></symbol>
+  <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.6v.2"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 6.6V12l3.6 2.2"/></symbol>
+  <symbol id="i-doc" viewBox="0 0 24 24"><path d="M6 2h8l4 4v16H6z"/><path d="M14 2v4h4"/><path d="M9 12h6M9 16h6"/></symbol>
+  <symbol id="i-ban" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/></symbol>
+</svg>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-warn" viewBox="0 0 24 24"><path d="M12 3.5 22 20H2z"/><path d="M12 10v4.6M12 17.4v.2"/></symbol>
+  <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.6v.2"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 6.6V12l3.6 2.2"/></symbol>
+  <symbol id="i-ban" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/></symbol>
+</svg>
+
+<div class="pane" id="pane"><div class="scaler" id="scaler"><div class="sheet" id="frame">
+
+  <div class="head">
+    <img src="bd-govt-logo.png" alt="">
+    <h1>সদর সাব-রেজিস্ট্রারের কার্যালয়, সদর, গাজীপুর — এর সেবা সম্পর্কিত তথ্য</h1>
+  </div>
+
+  <div class="body">
+    <!-- ===== SERVICE TABLE — spans the first two columns ===== -->
+    <div class="col span2 c1">
+      <div class="card">
+        <h2>সেবা প্রদান প্রতিশ্রুতি (সিটিজেন চার্টার)</h2>
+        <table class="charter">
+          <colgroup><col style="width:4%"><col style="width:11%"><col style="width:18%"><col style="width:21%"><col style="width:20%"><col style="width:13%"><col style="width:13%"></colgroup>
+          <thead><tr>
+            <th>ক্রমিক</th><th>সেবার নাম</th><th>সেবা প্রদান পদ্ধতি</th>
+            <th>প্রয়োজনীয় কাগজপত্র ও প্রাপ্তিস্থান</th><th>সেবার মূল্য ও পরিশোধ পদ্ধতি</th><th>সময়সীমা</th><th>দায়িত্বপ্রাপ্ত কর্মকর্তা</th>
+          </tr>
+          <tr class="colno">
+            <th>(১)</th><th>(২)</th><th>(৩)</th><th>(৪)</th><th>(৫)</th><th>(৬)</th><th>(৭)</th>
+          </tr></thead>
+          <tbody>
+            <tr><td class="c">১</td><td><b>দলিল রেজিস্ট্রিকরণ বা পাওয়ার অব অ্যাটর্নি তসদিককরণ</b></td><td>সনদপ্রাপ্ত দলিল লেখক কর্তৃক প্রস্তুতকৃত দলিল সাব-রেজিস্ট্রারের নিকট উপস্থাপন; কাগজপত্র যাচাইক্রমে সম্পাদন স্বীকারোক্তি ও টিপসই গ্রহণ; ৫২(খ) ধারার অধীন রশিদ প্রদান।</td><td>বায়া দলিল; নামজারি ও সর্বশেষ জরিপের খতিয়ান; হালনাগাদ দাখিলা; উভয় পক্ষের জাতীয় পরিচয়পত্র ও ২ কপি ছবি; প্রযোজ্য ক্ষেত্রে ওয়ারিশ সনদ ও আয়কর রিটার্ন।<br><span class="tiny">প্রাতিষ্ঠানিক — কোম্পানি: RJSC সনদ, Form-XII, MoA, AoA ও রেজ্যুলেশন; ব্যবসা: ট্রেড লাইসেন্স ও BIN/VAT; শিক্ষা/ধর্মীয়: মন্ত্রণালয়ের সনদ; সমবায়: সনদ ও অনাপত্তিপত্র।<br>প্রাপ্তিস্থান: সাব-রেজিস্ট্রি, ইউনিয়ন ও উপজেলা ভূমি অফিস</span></td><td><b>এ-চালান কোড</b>
+              <table class="codes sm">
+                <tr><td>স্ট্যাম্প শুল্ক</td><td>১১৬২১০২</td></tr>
+                <tr><td>রেজিস্ট্রেশন ফি [এ, ই ও এন]</td><td>১৪২২২০১</td></tr>
+                <tr><td>উৎসে কর (ধারা ১২৫)</td><td>১১১১১০১</td></tr>
+                <tr><td>উৎসে কর (ধারা ১২৬)</td><td>১১১২১০১</td></tr>
+                <tr><td>ভ্যাট/মূসক</td><td>১১৪১১০১</td></tr>
+                <tr><td>দান কর</td><td>১১৩৩১০১</td></tr>
+              </table>
+              <span class="tiny">স্থানীয় সরকার কর পে-অর্ডারের মাধ্যমে এবং <b>এনএন ফি নগদে</b> পরিশোধ করিতে হইবে।</span></td><td class="c t">১ দিন</td><td><b>সাব-রেজিস্ট্রার</b><br>ফোনঃ <span class="fill"></span><br>ই-মেইলঃ <span class="fill"></span></td></tr>
+            <tr><td class="c">২</td><td><b>রেজিস্ট্রিকরণ অন্তে মূল দলিল ফেরত প্রদান</b></td><td>বালাম বহিতে নকলকরণ সম্পন্ন হইলে দাখিলকারী বা তাঁহার মনোনীত ব্যক্তিকে মূল দলিল ফেরত প্রদান করা হইয়া থাকে।</td><td>৫২(খ) ধারার অধীন প্রদত্ত মূল রশিদ। উক্ত রশিদ হারাইয়া গেলে ডুপ্লিকেট রশিদের জন্য সাব-রেজিস্ট্রার বরাবর আবেদন করিতে হইবে।</td><td><b>বিনামূল্যে</b>।<br><span class="tiny">নোটিশের ১ মাস পর হইতে প্রতি মাসে <b>৫/-</b> বিলম্ব ফি; সর্বোচ্চ <b>১০০/-</b>।<br>বালামে পৃষ্ঠা বাড়িলে অতিরিক্ত পৃষ্ঠার এন (২৪/-) ও এনএন (৩৬/-) ফি ফেরত গ্রহণকালে প্রদেয়।</span></td><td class="c t">১ মাস হইতে<br>১ বছর বা তদূর্ধ্ব</td><td><b>সাব-রেজিস্ট্রার</b><br>ফোনঃ <span class="fill"></span><br>ই-মেইলঃ <span class="fill"></span></td></tr>
+            <tr><td class="c">৩</td><td><b>তসদিককৃত পাওয়ার অব অ্যাটর্নি ফেরত প্রদান</b></td><td>তসদিক ও রেজিস্টারে লিপিবদ্ধকরণ সম্পন্ন হইলে দাখিলকারী বা তাঁহার মনোনীত ব্যক্তিকে রশিদের বিপরীতে দলিল ফেরত প্রদান করা হইয়া থাকে।</td><td>দাখিলকালে প্রদত্ত রশিদ এবং ফেরত গ্রহণকারীর জাতীয় পরিচয়পত্র।</td><td><b>বিনামূল্যে</b>।</td><td class="c t">১ দিন</td><td><b>সাব-রেজিস্ট্রার</b><br>ফোনঃ <span class="fill"></span><br>ই-মেইলঃ <span class="fill"></span></td></tr>
+            
+            <tr><td class="c">৪</td><td><b>দলিলের নকল / সার্টিফাইড কপি সরবরাহ</b></td><td>আবেদনকারী স্বয়ং ফরম ৩৬-এ তল্লাশ ও পরিদর্শনের এবং অতঃপর ফরম ৩৭-এ নকলের আবেদন দাখিল করিবেন; নির্ধারিত ফি পরিশোধ সাপেক্ষে রশিদের বিপরীতে নকল সরবরাহ করা হইয়া থাকে। <span class="tiny">আবেদনকারী নিরক্ষর হইলে সনদপ্রাপ্ত দলিল লেখক বা আইনজীবীর মাধ্যমে তল্লাশ করাইতে হইবে। তল্লাশ আবেদনের তারিখ হইতে ২০ দিনের মধ্যে উহা সমাপ্ত করিতে হইবে। [অনুচ্ছেদ ১৭৩]</span></td><td>পূরণকৃত <b>ফরম ৩৬</b> (তল্লাশ ও পরিদর্শন) ও <b>ফরম ৩৭</b> (নকল); দলিলের রেজিস্ট্রেশন নম্বর, তারিখ ও সংশ্লিষ্ট অফিসের নাম; বালাম নম্বর ও পৃষ্ঠা নম্বর; আবেদনকারীর জাতীয় পরিচয়পত্রের কপি; ২০/- টাকার কোর্ট ফি স্ট্যাম্প। নন-জুডিশিয়াল স্ট্যাম্প ও প্রয়োজনীয় সংখ্যক কার্টিজ পেপার আবেদনকারী কর্তৃক সরবরাহ করিতে হইবে। <span class="tiny">[বিধিমালা ২০১৪, অনুচ্ছেদ ১০৮]<br>প্রাপ্তিস্থান: সাব-রেজিস্ট্রি অফিস</span></td><td>স্ট্যাম্প শুল্ক — মূল দলিলে ১,০০০/- বা তদনিম্ন হইলে <b>১০০/-</b>, অন্যান্য ক্ষেত্রে <b>২০০/-</b>; জি(এ) ফি প্রতি পৃষ্ঠা <b>২৪/-</b>; জিজি ফি প্রতি পৃষ্ঠা <b>৩৬/-</b>; কোর্ট ফি <b>২০/-</b>।<br><span class="tiny">টাইপকৃত অবিকল নকলের ক্ষেত্রে ধার্যযোগ্য ফিসের অর্ধেক প্রযোজ্য। জরুরী নকলে অতিরিক্ত ৫০/-, নকল ৪ পৃষ্ঠার অধিক হইলে প্রতি পৃষ্ঠা ১৫/- হারে। তল্লাশ ও পরিদর্শন ব্যতীত সরাসরি নকলের আবেদন করা হইলেও তল্লাশ ও পরিদর্শন ফি পরিশোধ করিতে হইবে।</span></td><td class="c t">৩–৭ দিন</td><td><b>সাব-রেজিস্ট্রার</b><br>ফোনঃ <span class="fill"></span><br>ই-মেইলঃ <span class="fill"></span></td></tr>
+            <tr><td class="c">৫</td><td><b>সম্পত্তি হস্তান্তর সংক্রান্ত তথ্য সরবরাহ (তল্লাশ)</b></td><td>আবেদনকারী স্বয়ং অথবা সনদপ্রাপ্ত তল্লাশকারক বা দলিল লেখকের মাধ্যমে সূচিবহি ও রেজিস্টার বহি তল্লাশ করিবেন। কার্যালয় কর্তৃক, যে পর্যন্ত সূচি প্রস্তুত হইয়াছে সেই পর্যন্ত, বহি সরবরাহ ও পরিদর্শনের সুযোগ প্রদান করা হইয়া থাকে। <span class="tiny">[ধারা ৫৭]</span></td><td>আবেদনপত্র; মৌজা, দাগ/খতিয়ান নম্বর বা পক্ষের নাম।</td><td><b>একটি নাম বা একটি সম্পত্তির জন্য</b>
+              <table class="codes">
+                <tr><td>তল্লাশ — প্রথম বৎসর</td><td>২০/-</td></tr>
+                <tr><td>তল্লাশ — পরবর্তী প্রতি বৎসর</td><td>১৫/-</td></tr>
+                <tr><td>পরিদর্শন — প্রতি দলিল</td><td>১০/-</td></tr>
+                <tr><td>কোর্ট ফি</td><td>২০/-</td></tr>
+              </table>
+              <span class="tiny">৩ বৎসর: ২০+১৫+১৫+১০+২০ = <b>৮০/-</b> · সর্বোচ্চ <b>১৫০/-</b></span></td><td class="c t">১ দিন</td><td><b>সাব-রেজিস্ট্রার</b><br>ফোনঃ <span class="fill"></span><br>ই-মেইলঃ <span class="fill"></span></td></tr>
+            <tr><td class="c">৬</td><td><b>দলিল মুসাবিদাকরণ / প্রস্তুতকরণ / লিখন বিষয়ে সহায়তা</b></td><td>সনদপ্রাপ্ত দলিল লেখকগণ কর্তৃক দলিল মুসাবিদা ও লিখনে সহায়তা প্রদান।</td><td>ক্রমিক ১-এ বর্ণিত কাগজপত্র এবং জমির তফসিল ও চৌহদ্দির বিস্তারিত বিবরণ পক্ষগণ কর্তৃক দলিল লেখককে সরবরাহ করিতে হইবে।</td><td>দলিল লেখকের পারিশ্রমিক নির্ধারিত তফসিল অনুযায়ী প্রদেয়; ইহা অফিসের ফি নহে।</td><td class="c t">১ দিন</td><td>সনদপ্রাপ্ত দলিল লেখকগণ</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="card">
+        <h2>দলিল গ্রহণে অস্বীকৃতি বা অগ্রাহ্য হইলে প্রতিকার</h2>
+        <table class="charter">
+          <colgroup><col style="width:8%"><col style="width:38%"><col style="width:34%"><col style="width:20%"></colgroup>
+          <thead>
+            <tr><th>ক্রমিক</th><th>কখন</th><th>কাহার নিকট / কী করিতে হইবে</th><th>সময়সীমা</th></tr>
+            <tr class="colno"><th>(১)</th><th>(২)</th><th>(৩)</th><th>(৪)</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="c">১</td>
+                <td>সাব-রেজিস্ট্রার <b>লিখিতভাবে</b> দলিল নিবন্ধনে অস্বীকৃতি জানাইলে</td>
+                <td><b><!--@DROFF-->জেলা রেজিস্ট্রার<!--/@DROFF--> বরাবর আপিল</b> <span class="tiny">[ধারা ৭২ ও ৭৩]</span></td>
+                <td class="c t">অস্বীকৃতির তারিখ হইতে ৩০ দিন</td></tr>
+            <tr><td class="c">২</td>
+                <td>জেলা রেজিস্ট্রার <b>লিখিতভাবে</b> নিবন্ধনের আদেশ দিতে অস্বীকার করিলে</td>
+                <td><b>দেওয়ানি আদালতে মোকদ্দমা</b> <span class="tiny">[ধারা ৭৭]</span></td>
+                <td class="c t">আদেশের তারিখ হইতে ৩০ দিন</td></tr>
+            <tr><td colspan="4"><b>মন্তব্য:</b> জেলা রেজিস্ট্রার বা বিজ্ঞ আদালত নিবন্ধনের আদেশ দিলে উক্ত আদেশের <b>৩০ দিনের মধ্যে</b> দলিলটি নিবন্ধনের জন্য দাখিল করিতে হইবে। <span class="tiny">[ধারা ৭৫(২)]</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="card">
+        <h2>অভিযোগ প্রতিকার ব্যবস্থা (GRS)</h2>
+        <table class="charter grs">
+          <colgroup><col style="width:8%"><col style="width:34%"><col style="width:38%"><col style="width:20%"></colgroup>
+          <thead>
+            <tr><th>ক্রমিক</th><th>কখন যোগাযোগ করিবেন</th><th>কাহার সহিত যোগাযোগ করিবেন</th><th>নিষ্পত্তির সময়সীমা</th></tr>
+            <tr class="colno"><th>(১)</th><th>(২)</th><th>(৩)</th><th>(৪)</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="c">১</td><td>দায়িত্বপ্রাপ্ত কর্মকর্তা নির্ধারিত সময়ে সেবা দিতে না পারিলে</td>
+                <td><b>অভিযোগ নিষ্পত্তি কর্মকর্তা</b><br><!--@ANIK-->জেলা রেজিস্ট্রার, গাজীপুর<!--/@ANIK--><br><span class="tiny">ফোনঃ <span class="fill" style="min-width:1.5in"></span><span style="display:inline-block; width:.4in"></span>ই-মেইলঃ <span class="fill" style="min-width:1.5in"></span><span style="display:inline-block; width:.4in"></span>ওয়েব: <!--@DRWEB-->www.dr.gazipur.gov.bd<!--/@DRWEB--></span></td>
+                <td class="c t">৩০ কার্যদিবস</td></tr>
+            <tr><td class="c">২</td><td>অভিযোগ নিষ্পত্তি কর্মকর্তা নির্ধারিত সময়ে সমাধান দিতে না পারিলে</td>
+                <td><b>আপিল কর্মকর্তা</b><br><!--@APPEAL-->মহা-পরিদর্শক, নিবন্ধন অধিদপ্তর<!--/@APPEAL--><br><span class="tiny">ফোনঃ <span class="fill" style="min-width:1.5in"></span><span style="display:inline-block; width:.4in"></span>ই-মেইলঃ <span class="fill" style="min-width:1.5in"></span><span style="display:inline-block; width:.4in"></span>ওয়েব: rd.gov.bd</span></td>
+                <td class="c t">২০ কার্যদিবস</td></tr>
+          </tbody>
+        </table>
+        <div class="in tiny" style="padding-top:.08in; padding-bottom:.14in; font-size:30pt; line-height:1.4;">অভিযোগ লিখিতভাবে অথবা অনলাইনে (www.grs.gov.bd) দাখিল করা যাইবে। নির্ধারিত সময়সীমা অতিক্রান্ত হইবার পূর্বে, আদালতে বিচারাধীন বিষয়ে এবং আইনের অধীন রিভিউ/আপিলের সুযোগ থাকিলে অভিযোগ দাখিল করা যাইবে না।</div>
+      </div>
+
+      
+
+      
+
+      
+
+      
+    </div>
+
+    <!-- ===== FEE CHART — two columns ===== -->
+    <div class="col span2">
+      <div class="card">
+        <h2>দলিলভেদে রেজিস্ট্রেশন ফিস</h2>
+        <table class="charter feechart">
+          <colgroup><col style="width:4%"><col style="width:15%"><col style="width:8%"><col style="width:18%"><col style="width:21%"><col style="width:10%"><col style="width:24%"></colgroup>
+          <thead>
+            <tr><th>ক্রমিক</th><th>দলিলের নাম</th><th>দফা</th><th>স্ট্যাম্প শুল্ক</th><th>রেজিস্ট্রেশন ফি</th><th>স্থানীয় সরকার কর</th><th>উৎসে কর ও অন্যান্য</th></tr>
+            <tr class="colno"><th>(১)</th><th>(২)</th><th>(৩)</th><th>(৪)</th><th>(৫)</th><th>(৬)</th><th>(৭)</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="c">১</td><td><b>সাফ কবলা</b></td><td class="c">দফা ২২ + ৪</td><td>১) ১.৫% <span class="tiny">তবে সর্বোচ্চ ২ কোটি</span><br>২) হলফনামায় ব্যবহৃত স্ট্যাম্প ৩০০/-</td><td>১) এ ফি — ১%<br>২) ই ফি — ১০০/-<br>৩) এন ফি — ২৪০/-<br>৪) এনএন ফি — ৩৬০/-</td><td>৩%<br><span class="tiny">সিটি কর্পোরেশন / ক্যান্টনমেন্ট বোর্ড ২%</span></td><td><!--@S125P--><b>উৎসে কর [ধারা ১২৫]</b> — ভূমিমূল্যের ৩% অথবা শতকপ্রতি নিম্নরূপ অঙ্ক, যাহা অধিক — ক ও গ শ্রেণিতে ১,২৫,০০০/-; খ, ঘ ও ঙ শ্রেণিতে ৬০,০০০/-; এবং চ শ্রেণিতে ৩০,০০০/-।<br>ভূমিতে স্থাপনা, বাড়ি বা ফ্ল্যাট থাকিলে অতিরিক্ত (প্রতি বর্গমিটারে, যাহা অধিক):<br>১) শ্রেণি ক হইতে ঘ — ৮০০/- বা মূল্যের ৮%<br>২) শ্রেণি ঙ — ৫০০/- বা মূল্যের ৬%<br><!--/@S125P--><!--@S126P--><b>উৎসে কর [ধারা ১২৬]</b> — বাণিজ্যিক ভিত্তিতে প্লট বা ফ্ল্যাট বিক্রয়ের ক্ষেত্রে অতিরিক্ত — প্লট/জমিতে ৫%; বিল্ডিং/ফ্ল্যাটে প্রতি বর্গমিটারে আবাসিক ১,৩০০/- ও বাণিজ্যিক ৩,৫০০/-।<br><!--/@S126P--><span class="tiny"><!--@SRO-->এস.আর.ও নং ২১০, তারিখ ০৮ জুন ২০২৬<!--/@SRO--></span><br><b>ভ্যাট/মূসক</b> — প্লট/জমিতে ২%; বিল্ডিং/ফ্ল্যাটে ১-১৬০০ বর্গফুট পর্যন্ত ২% এবং ১৬০১ বর্গফুট বা তদূর্ধ্বে ৪.৫%।</td></tr>
+            <tr><td class="c">২</td><td><b>হেবার ঘোষণা / দানের ঘোষণা</b></td><td class="c">দফা ৩২(i) + ৪</td><td>১) ১,০০০/-<br>২) হলফনামায় ব্যবহৃত স্ট্যাম্প ৩০০/-</td><td>১) এ ফি — ১০০/-<br>২) ই ফি — ১০০/-<br>৩) এন ফি — ২৪০/-<br>৪) এনএন ফি — ৩৬০/-</td><td>প্রযোজ্য নয়</td><td>পুত্র, কন্যা, পিতা, মাতা, স্বামী, স্ত্রী, সহোদর ভাই-বোন — এই সম্পর্কের বাইরে দান কর প্রযোজ্য</td></tr>
+            <tr><td class="c">৩</td><td><b>দানপত্র / হেবাবিল এওয়াজ</b></td><td class="c">দফা ৩২(ii) + ৪</td><td>১) ১.৫%<br>২) হলফনামায় ব্যবহৃত স্ট্যাম্প ৩০০/-</td><td>১) এ ফি — ১%<br>২) ই ফি — ১০০/-<br>৩) এন ফি — ২৪০/-<br>৪) এনএন ফি — ৩৬০/-</td><td>৩%</td><td>পুত্র, কন্যা, পিতা, মাতা, স্বামী, স্ত্রী, সহোদর ভাই-বোন — এই সম্পর্কের বাইরে দান কর প্রযোজ্য</td></tr>
+            <tr><td class="c">৪</td><td><b>বণ্টননামা</b></td><td class="c">দফা ৪৪ + ৪</td><td>১) ১০০/-<br>২) হলফনামায় ব্যবহৃত স্ট্যাম্প ৩০০/-</td><td>১) এ ফি — ০-৩ লক্ষ ৫০০/-; ৩-১০ লক্ষ ৭০০/-; ১০-৩০ লক্ষ ১,২০০/-; ৩০-৫০ লক্ষ ১,৮০০/-; ৫০ লক্ষের ঊর্ধ্বে ২,০০০/-<br>২) ই ফি — ১০০/-<br>৩) এন ফি — ২৪০/-<br>৪) এনএন ফি — ৩৬০/-</td><td>প্রযোজ্য নয়</td><td>প্রযোজ্য নয়</td></tr>
+            <tr><td class="c">৫</td><td><b>বায়নানামা</b></td><td class="c">দফা ৫(সি) + ৪</td><td>১) ৩০০/-<br>২) হলফনামায় ব্যবহৃত স্ট্যাম্প ৩০০/-</td><td>১) এ ফি — ০-৫ লক্ষ ৫০০/-; ৫-৫০ লক্ষ ১,০০০/-; ৫০ লক্ষের ঊর্ধ্বে ২,০০০/-<br>২) ই ফি — ১০০/-<br>৩) এন ফি — ২৪০/-<br>৪) এনএন ফি — ৩৬০/-</td><td>প্রযোজ্য নয়</td><td>প্রযোজ্য নয়</td></tr>
+            <tr><td class="c">৬</td><td><b>বন্ধকী (ব্যাংক/আর্থিক প্রতিষ্ঠান)</b></td><td class="c">দফা ৩৯(২) + ৪</td><td>১) ০-৫০ লক্ষ — ২,০০০/-<br>২) ৫০ লক্ষ-১ কোটি — ৫,০০০/-<br>৩) ১ কোটির ঊর্ধ্বে — প্রথম ১ কোটির জন্য ৫,০০০/- ও অবশিষ্টের ০.১০%, তবে ৫ কোটির বেশি নয়<br>৪) হলফনামায় ব্যবহৃত স্ট্যাম্প ৩০০/-</td><td>১) এ ফি — ০-৫ লক্ষ ১%; ৫-২০ লক্ষ ০.২৫%; ২০ লক্ষের ঊর্ধ্বে ০.১০% <span class="tiny">(যথাক্রমে ২০০-৫০০/-, ১,৫০০-২,০০০/- ও ৩,০০০-৫,০০০/- সীমায়)</span><br>২) ই ফি — ১০০/-<br>৩) এন ফি — ৩৬০/-<br>৪) এনএন ফি — ৫৪০/- <span class="tiny">(১৫ পৃষ্ঠা)</span></td><td>প্রযোজ্য নয়</td><td>প্রযোজ্য নয়</td></tr>
+            <tr><td class="c">৭</td><td><b>অপ্রত্যাহারযোগ্য পাওয়ার অব অ্যাটর্নি (পণমূল্য ব্যতীত)</b></td><td class="c">দফা ৪৭(ডি) + ৪</td><td>১) ১,৫০০/-<br>২) হলফনামায় ব্যবহৃত স্ট্যাম্প ৩০০/-</td><td>১) ই ফি — ১০০/-<br>২) এন ফি — ২৪০/-<br>৩) এনএন ফি — ৩৬০/-</td><td>প্রযোজ্য নয়</td><td>প্রযোজ্য নয়</td></tr>
+            <tr><td class="c">৮</td><td><b>অপ্রত্যাহারযোগ্য পাওয়ার অব অ্যাটর্নি (পণমূল্যসহ)</b></td><td class="c">দফা ৪৭(ই) + ৪</td><td>১) পণমূল্যের ১.৫% <span class="tiny">তবে ১০,০০০/- এর কম নয়, ১ লক্ষের বেশি নয়</span><br>২) হলফনামায় ব্যবহৃত স্ট্যাম্প ৩০০/-</td><td>১) এ ফি — পণমূল্যের ২% <span class="tiny">(সর্বনিম্ন ১০০/-, অনধিক ৪০,০০০/-)</span><br>২) ই ফি — ১০০/-<br>৩) এন ফি — ২৪০/-<br>৪) এনএন ফি — ৩৬০/-</td><td>প্রযোজ্য নয়</td><td>প্রযোজ্য নয়</td></tr>
+            <!--@DEEDS-->
+            <tr><td class="c">৯</td><td><b>এওয়াজ / বিনিময়</b></td><td class="c">দফা ৩০ + ৪</td><td>১) ১% <span class="tiny">তবে সর্বোচ্চ ১ কোটি</span><br>২) হলফনামায় ব্যবহৃত স্ট্যাম্প ৩০০/-</td><td>১) এ ফি — ১%<br>২) ই ফি — ১০০/-<br>৩) এন ফি — ২৪০/-<br>৪) এনএন ফি — ৩৬০/-</td><td>৩%</td><td>প্রযোজ্য নয়</td></tr>
+            <tr><td class="c">১০</td><td><b>ওয়াকফ দলিল</b></td><td class="c">দফা ৫৭(এ) + ৪</td><td>১) ১.৫%<br>২) হলফনামায় ব্যবহৃত স্ট্যাম্প ৩০০/-</td><td>১) ওয়াকফ লিল্লাহর ক্ষেত্রে প্রযোজ্য নয়<br>২) ই ফি — ১০০/-<br>৩) এন ফি — ২৪০/-<br>৪) এনএন ফি — ৩৬০/-</td><td>প্রযোজ্য নয়</td><td>প্রযোজ্য নয়</td></tr>
+            <tr><td class="c">১১</td><td><b>রিডেম্পশন / পুনঃসমর্পণপত্র</b></td><td class="c">দফা ৫৩ + ৪</td><td>১) ৫০০/-<br>২) হলফনামায় ব্যবহৃত স্ট্যাম্প ৩০০/-</td><td>১) ই ফি — ১০০/-<br>২) এন ফি — ২৪০/-<br>৩) এনএন ফি — ৩৬০/-</td><td>প্রযোজ্য নয়</td><td>প্রযোজ্য নয়</td></tr>
+            <tr><td class="c">১২</td><td><b>না-দাবি দলিল</b></td><td class="c">দফা ৫৪ + ৪</td><td>১) ৩০০/-<br>২) হলফনামায় ব্যবহৃত স্ট্যাম্প ৩০০/-</td><td>১) এ ফি — ১% <span class="tiny">তবে সর্বনিম্ন ১০০/-</span><br>২) ই ফি — ১০০/-<br>৩) এন ফি — ২৪০/-<br>৪) এনএন ফি — ৩৬০/-</td><td>সাফ কবলার ন্যায়</td><td>প্রযোজ্য নয়</td></tr>
+            <tr><td class="c">১৩</td><td><b>ঘোষণাপত্র দলিল</b></td><td class="c">দফা ৪ + ৪</td><td>১) ৩০০/-<br>২) হলফনামায় ব্যবহৃত স্ট্যাম্প ৩০০/-</td><td>১) ই ফি — ১০০/-<br>২) এন ফি — ২৪০/-<br>৩) এনএন ফি — ৩৬০/-</td><td>প্রযোজ্য নয়</td><td>প্রযোজ্য নয়</td></tr>
+            <tr><td class="c">১৪</td><td><b>পাওয়ার অব অ্যাটর্নি রহিতকরণ</b></td><td class="c">দফা ১৭ + ৪</td><td>১) ৫০০/-<br>২) হলফনামায় ব্যবহৃত স্ট্যাম্প ৩০০/-</td><td>১) ই ফি — ১০০/-<br>২) এন ফি — ২৪০/-<br>৩) এনএন ফি — ৩৬০/-</td><td>প্রযোজ্য নয়</td><td>প্রযোজ্য নয়</td></tr>
+            <tr><td class="c">১৫</td><td><b>বিশেষ পাওয়ার অব অ্যাটর্নি</b></td><td class="c">দফা ৪৭(এ) + ৪</td><td>১) ৮০০/-<br>২) হলফনামায় ব্যবহৃত স্ট্যাম্প ৩০০/-</td><td>১) এল ফিস — ১০০/-<br>২) ই ফি — ১০০/-<br>৩) এন ফি — ২৪০/-<br>৪) এনএন ফি — ৩৬০/-</td><td>প্রযোজ্য নয়</td><td>প্রযোজ্য নয়</td></tr>
+            <tr><td class="c">১৬</td><td><b>চুক্তিপত্র দলিল</b></td><td class="c">দফা ৫(সি) + ৪</td><td>১) ৩০০/-<br>২) হলফনামায় ব্যবহৃত স্ট্যাম্প ৩০০/-</td><td>১) ই ফিস — ১০০/-<br>২) এন ফি — ২৪০/-<br>৩) এনএন ফি — ৩৬০/-</td><td>প্রযোজ্য নয়</td><td>প্রযোজ্য নয়</td></tr>
+            <tr><td class="c">১৭</td><td><b>দলিলের নকল / সার্টিফাইড কপি</b></td><td class="c">দফা ২৩</td><td>১) মূল দলিলে ১,০০০/- বা তদনিম্ন হলে — ১০০/-<br>২) অন্যান্য সকল ক্ষেত্রে — ২০০/-</td><td>১) জি(এ) ফি — প্রতি পৃষ্ঠা ২৪/-<br>২) জিজি ফি — প্রতি পৃষ্ঠা ৩৬/-<br>৩) কোর্ট ফি — ২০/-</td><td>প্রযোজ্য নয়</td><td>টাইপকৃত অবিকল নকলে ধার্যযোগ্য ফিসের অর্ধেক</td></tr>
+            <!--/@DEEDS-->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ===== বিবিধ হার — one column ===== -->
+    <div class="col c5">
+
+      <div class="card">
+        <h2>দান করের হার</h2>
+        <table>
+          <thead><tr><th>দানের মূল্য (কর অব্যাহতি সীমার অতিরিক্ত)</th><th class="r">হার</th></tr></thead>
+          <tbody>
+            <tr><td>১) প্রথম ৫ লক্ষ টাকার উপর</td><td class="r">৫%</td></tr>
+            <tr><td>২) পরবর্তী ১০ লক্ষ টাকার উপর</td><td class="r">১০%</td></tr>
+            <tr><td>৩) পরবর্তী ২০ লক্ষ টাকার উপর</td><td class="r">১৫%</td></tr>
+            <tr><td>৪) অবশিষ্টাংশের উপর</td><td class="r">২০%</td></tr>
+          </tbody>
+        </table>
+        <div class="in tiny" style="padding-top:.06in;">[দানকর আইন, ১৯৯০ এর তফসিল — ধারা ৩ দ্রষ্টব্য]</div>
+      </div>
+
+      <div class="card">
+        <h2>নকলের ফি — হিসাবের উদাহরণ</h2>
+        
+        <div class="in">
+          
+
+          <div class="ex-box">
+            <div class="ex-item">
+              <div class="ex-title">উদাহরণ ১: প্রিন্টকৃত/টাইপকৃত নকল (১০ পাতা)</div>
+              <table class="exq"><colgroup><col class="a"><col class="b"></colgroup>
+                <tr><td>আবেদনকারী ২০০/- টাকার স্ট্যাম্পে দলিলের প্রিন্টকৃত অনুলিপি সরবরাহ করিবেন।<br><span class="tiny">৫/-, ১০/- বা ২০/- টাকার স্ট্যাম্প একত্রে ব্যবহার করা যাইবে; প্রয়োজনে অতিরিক্ত কার্টিজ পেপার সংযুক্ত করিতে হইবে।</span></td><td class="v">—</td></tr>
+                <tr><td>জি(এ) ফি — ১০×১২ (অর্ধেক)</td><td class="v">১২০/-</td></tr>
+                <tr><td>জিজি ফি — ১০×১৮ (অর্ধেক)</td><td class="v">১৮০/-</td></tr>
+                <tr><td>কোর্ট ফি</td><td class="v">২০/-</td></tr>
+                <tr class="tot"><td><b>নকল ফি মোট</b></td><td class="v"><b>৩২০/-</b></td></tr>
+                <tr><td colspan="2" class="hint">তল্লাশ পূর্বে সম্পন্ন না হলে অতিরিক্ত:</td></tr>
+                <tr><td>সূচিবহি তল্লাশ ফি</td><td class="v">২০/-</td></tr>
+                <tr><td>পরিদর্শন ফি</td><td class="v">১০/-</td></tr>
+                <tr class="tot"><td><b>তল্লাশসহ সর্বমোট</b></td><td class="v"><b>৩৫০/-</b></td></tr>
+              </table>
+            </div>
+            <div class="ex-item" style="padding-top:.3in; margin-top:.3in;">
+              <div class="ex-title">উদাহরণ ২: হাতে লেখা নকল — বালাম বহি হইতে (১০ পাতা)</div>
+              <table class="exq"><colgroup><col class="a"><col class="b"></colgroup>
+                <tr><td>আবেদনকারী ২০০/- টাকার স্ট্যাম্প ও প্রয়োজনীয় কার্টিজ পেপার সরবরাহ করিবেন; নকলনবিশ কর্তৃক উহাতে হাতে লিখিয়া নকল প্রস্তুত করা হইবে।<br><span class="tiny">৫/-, ১০/- বা ২০/- টাকার স্ট্যাম্প একত্রে ব্যবহার করা যাইবে।</span></td><td class="v">—</td></tr>
+                <tr><td>জি(এ) ফি — ১০×২৪</td><td class="v">২৪০/-</td></tr>
+                <tr><td>জিজি ফি — ১০×৩৬</td><td class="v">৩৬০/-</td></tr>
+                <tr><td>কোর্ট ফি</td><td class="v">২০/-</td></tr>
+                <tr class="tot"><td><b>নকল ফি মোট</b></td><td class="v"><b>৬২০/-</b></td></tr>
+                <tr><td colspan="2" style="height:.22in; border:none; padding:0;"></td></tr>
+              <tr><td colspan="2" class="hint" style="background:#fff8f0; color:#7d5a00; padding:.12in .14in; border-left:.08in solid #e0a800;">বালাম বহি হইতে নকলের ক্ষেত্রে আবেদনে <b>বালাম নং, বালাম পৃষ্ঠা নং, দলিল নং ও দলিলের সন</b> উল্লেখ করিতে হইবে। এই তথ্য জানা না থাকিলে প্রথমে তল্লাশের আবেদন করিয়া তথ্য সংগ্রহ করিতে হইবে, অতঃপর নকলের আবেদন করিতে হইবে — তল্লাশের ফি পৃথকভাবে প্রদেয়।</td></tr>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>দলিল লেখকগণের পারিশ্রমিক</h2>
+        <div class="in tiny">
+          <p>এস.আর.ও নং ২১৯/আইন/৯৪/১এম-১২/৯০ তাং- ২০/০১/১৯৯৪ এবং এস.আর.ও নং- ১৬৮/আইন/২০০২ তাং- ২৯/০৬/২০০২ অনুযায়ী</p>
+        </div>
+        <table>
+          <tbody>
+            <tr><td colspan="2" class="sm lbl">১) দলিল লিখার ফি:</td></tr>
+            <tr><td><span class="sub">ক) প্রতি ৩০০ শব্দ বা তার অংশ মুসাবিদার জন্য</span></td><td class="r">১৫/-</td></tr>
+            <tr><td><span class="sub">খ) মুসাবিদা হতে দলিল লিখন ও রেজিস্ট্রির বিষয়ে যাবতীয় সহায়তা কল্পে প্রতি ৩০০ শব্দ বা তার অংশের জন্য</span></td><td class="r">১০/-</td></tr>
+            <tr><td><span class="sub">গ) স্মরণ শক্তি হতে দলিল লিখন ও রেজিস্ট্রির বিষয়ে যাবতীয় সহায়তা কল্পে প্রতি ৩০০ শব্দ বা তার অংশের জন্য</span></td><td class="r">১৫/-</td></tr>
+            <tr><td>২) পক্ষ কর্তৃক ক্ষমতাপ্রাপ্ত হয়ে দলিল ফেরত গ্রহণ</td><td class="r">৫/-</td></tr>
+            <tr><td>৩) ছাপানো ফরম বা অন্য রকম যাবতীয় দরখাস্ত লিখন ও পূরণ করার জন্য</td><td class="r">৫/-</td></tr>
+            <tr><td>৪) প্রতিটি সমন লিখন ও পূরণ করার জন্য</td><td class="r">২/-</td></tr>
+            <tr><td>৫) রাষ্ট্রীয় হুকুম দখল ও প্রজাস্বত্ব আইনের নোটিশ লিখন ও পূরণ করার জন্য নোটিশ প্রতি</td><td class="r">২/-</td></tr>
+            <tr><td>৬) সূচি তল্লাশ বা বালাম বহি পরিদর্শনের জন্য প্রতি বৎসর প্রতি ব্যক্তির নাম বা সম্পত্তির জন্য</td><td class="r">৫/-</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="card">
+        <div class="panel p-notice">
+          <svg><use href="#i-warn"/></svg>
+          <div class="ptxt"><span class="ttl">দলিল বিনষ্টকরণ সংক্রান্ত সাধারণ বিজ্ঞপ্তি</span>উইল ব্যতীত অন্য সকল প্রকার দলিল যাহা দুই বৎসরের অধিককাল যাবত দাবিবিহীন অবস্থায় নিবন্ধন কার্যালয়ে রহিয়াছে উহা বিনষ্টযোগ্য। <span class="tiny">[উপদেশাবলির অনুচ্ছেদ ২৫(গ)]</span></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="panel p-notice">
+          <svg><use href="#i-ban"/></svg>
+          <div class="ptxt"><span class="ttl">পাওয়ার অব অ্যাটর্নি বাতিলকরণ সংক্রান্ত বিজ্ঞপ্তি</span>কোন ব্যক্তি কর্তৃক প্রমাণীকৃত পাওয়ার অব অ্যাটর্নি বাতিল করিবার কারণ ঘটিলে, পাওয়ার অব অ্যাটর্নি রেজিস্টারে বিষয়টির একটি টীকা লিপিবদ্ধ করিতে সাব-রেজিস্ট্রারকে সক্ষম করিবার জন্য বাতিলকরণের বিষয়টি অবহিত করিতে অনুরোধ করা যাইতেছে। <span class="tiny">[উপদেশাবলির অনুচ্ছেদ ১৯৫(৬)]</span></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="panel p-guide">
+          <svg><use href="#i-clock"/></svg>
+          <div class="ptxt"><span class="ttl">তল্লাশ এবং নকলের আবেদন গ্রহণ ও মূল দলিল ফেরত প্রদানের সময়সূচি</span>সকাল ১০টা হইতে বিকাল ৩টা পর্যন্ত তল্লাশ ও নকলের জন্য আবেদন গ্রহণ করা হইবে এবং নিবন্ধন সম্পন্নকৃত মূল দলিল ফেরত প্রদান করা হইবে। <span class="tiny">[উপদেশাবলির অনুচ্ছেদ ২৩৬(৪)]</span></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="panel p-guide">
+          <svg><use href="#i-clock"/></svg>
+          <div class="ptxt"><span class="ttl">রেজিস্ট্রেশনের জন্য দলিল দাখিল গ্রহণের সময়সূচি</span>সকাল ১০টা হইতে বিকাল ৩টা পর্যন্ত দলিলসমূহ নিবন্ধনের জন্য গ্রহণ করা হইবে। <span class="tiny">[বিধি ১১৩]</span></div>
+        </div>
+      </div>
+
+    </div>
+
+  </div><!-- body -->
+
+  <div class="foot">
+    <span class="pub">ওয়েব: <!--@SRWEB-->www.sr.sadar.gazipur.gov.bd<!--/@SRWEB--></span>
+    <span>জনস্বার্থে: সদর সাব-রেজিস্ট্রারের কার্যালয়, সদর, গাজীপুর</span>
+    <span class="pub">প্রকাশকাল: জুলাই, ২০২৬</span>
+  </div>
+
+</div></div></div>
+
+<script>
+(function () {
+  var scaler=document.getElementById('scaler'), frame=document.getElementById('frame'), pane=document.getElementById('pane');
+  var USE_ZOOM = window.CSS && CSS.supports && CSS.supports('zoom','0.5'), k=1;
+  function apply(){
+    if(USE_ZOOM){ scaler.style.transform='none'; scaler.style.width=''; scaler.style.height=''; scaler.style.zoom=k; }
+    else { var w=frame.offsetWidth,h=frame.offsetHeight; scaler.style.zoom=1;
+           scaler.style.transform='scale('+k+')'; scaler.style.width=(w*k)+'px';
+           scaler.style.height=(h*k)+'px'; }
+    document.getElementById('zv').textContent=Math.round(k*100)+'%';
+  }
+  function fit(){ scaler.style.zoom=1; scaler.style.transform='none'; scaler.style.width=''; scaler.style.height='';
+    k=Math.min((pane.clientWidth-44)/frame.offsetWidth,(pane.clientHeight-44)/frame.offsetHeight,1); apply(); }
+  document.getElementById('zi').onclick=function(){k=Math.min(2,k*1.25);apply();};
+  document.getElementById('zo').onclick=function(){k=Math.max(0.02,k/1.25);apply();};
+  document.getElementById('zf').onclick=fit;
+  document.getElementById('z1').onclick=function(){k=1;apply();};
+  var EXPORT=/(\?|&)export/.test(location.search);
+  function exportMode(){ document.querySelector('.zoombar').style.display='none';
+    pane.style.padding='0'; pane.style.overflow='visible'; pane.style.position='static'; pane.style.background='#fff';
+    document.body.style.overflow='visible'; k=1; scaler.style.zoom=1; scaler.style.transform='none';
+    scaler.style.width='auto'; scaler.style.height='auto'; scaler.style.margin='0'; }
+  function run(){ if(EXPORT) exportMode(); else fit(); }
+  window.addEventListener('resize',function(){ if(!EXPORT) fit(); });
+  if(document.fonts&&document.fonts.ready) document.fonts.ready.then(run);
+  window.addEventListener('load',run); run();
+})();
+</script>
+</body>
+</html>

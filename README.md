@@ -1,43 +1,116 @@
-# বোর্ড জেনারেটর — GitHub Pages app
+# দলিল বোর্ড কিট — Sub-Registry office boards
 
-A single page. The user fills a form, sees the board update live beside it,
-and downloads a ZIP. No account, no token, no Actions minutes — the
-substitution runs in the browser using the same markers and the same rules
-as `build.py`.
+Every board is shared by all offices except for a handful of values that
+genuinely differ. Those live in `offices/<slug>.json`; everything else is
+national and lives once, in `templates/`.
 
-## Turning it on
-
-Settings → Pages → Source: **Deploy from a branch** → branch `main`,
-folder **`/docs`**. The app is then at
-`https://<user>.github.io/<repo>/`.
-
-## Keeping the template in step
-
-`docs/templates/` holds a copy of the master board. When a master changes:
+## Use
 
 ```bash
-cp templates/*.html docs/templates/
+python3 build.py --check          # validate configs, build nothing
+python3 build.py                  # build every office  → out/<folder>/
+python3 build.py gazipur-sadar    # build one
+bash make.sh gazipur-sadar        # build + render to PDF/PNG/JPG
 ```
 
-The app fetches it at load, so nothing else needs rebuilding. If a new
-configurable region is added to a master, add its marker name to the
-`build()` function in `docs/index.html` as well as to `build.py` — the two
-must handle the same set.
+**On Windows use `python`, not `python3`.** Windows has no `python3`
+command — that name is a Microsoft Store stub that prints an install
+message. Either call `python build.py` / `py build.py`, or add
+`alias python3=python` to `~/.bashrc`. `make.sh` detects the right one
+by itself.
 
-## Why the logic is duplicated
+Renderers need Chrome, `poppler-utils` and ImageMagick on PATH.
+Set `CHROME=` if Chrome is somewhere unusual.
 
-`build.py` runs in CI and on the command line; the app runs in a browser
-where Python is not available. Both target the same `<!--@NAME-->` markers
-and produce byte-identical output — that equality is worth re-checking
-whenever either side changes, by building the same office both ways and
-diffing.
+## Adding an office
 
-## Running it locally
+Copy an existing JSON, change the values, run `--check`, then build.
 
-`fetch()` will not read a file off disk, so opening `index.html` directly
-shows a template-load error. Serve the folder instead:
+```json
+{
+  "folder": "kaliganj",
+  "identity": { "office": "…", "upazila": "…", "district": "…",
+                "bankBranch": "…", "srWeb": "…",
+                "drOffice": "…", "drWeb": "…", "published": "…" },
+  "grs":        { "anik": "…", "appeal": "…" },
+  "section126": { "plot": "৩%", "residential": "৩০০/-", "commercial": "১,০০০/-" },
+  "sroRef":     "এস.আর.ও নং ২১০, তারিখ ০৮ জুন ২০২৬",
+  "compact":    { "s125": "1", "kroy": "1", "board": "1" },
+  "deedRows":   9,
+  "showKroy":   true,
+  "section125": [ { "label": "ক)", "lead": "…", "items": ["…", "…"] } ],
+  "kroy":       [ "…", "…" ]
+}
+```
+
+### What is configurable, and why
+
+| Key | Why it varies |
+|---|---|
+| `identity` | office name, upazila, district, bank branch, websites, publication date |
+| `grs` | the designated অনিক and appeal officer |
+| `section126` | ৫% / ১,৩০০ / ৩,৫০০ in the listed districts, ৩% / ৩০০ / ১,০০০ elsewhere |
+| `section125` | set by district SRO — thana names, শ্রেণি bands, per-decimal amounts |
+| `sroRef` | the ধারা ১২৫ notification reference printed under the rates |
+| `showKroy` | `true`/`false` — show or hide the জমি ক্রয়ের পূর্বে সতর্কতা card entirely |
+| `kroy` | জমি ক্রয়ের পূর্বে সতর্কতা — trim or extend to fill the column |
+| `deedRows` | how many of the fee chart's optional deed rows to show, `0`–`9`. Rows ১–৮ and the নকল row always appear. |
+| `compact` | `s125` and `kroy` scale their own blocks; `board` scales every font on the board (`0.7`–`1.3`). `1` = as drawn, above is looser, below tighter. Most districts have a much shorter ১২৫ text than Gazipur's, which leaves a gap — fill it by raising `s125`, or by showing more `deedRows`. |
+
+### What is NOT configurable — on purpose
+
+Stamp দফা rates and ceilings, every registration fee and slab, স্থানীয়
+সরকার কর, VAT, দান কর, নকল fees, দলিল লেখকের পারিশ্রমিক, challan codes,
+GRS timeframes, the service table, required documents, the steps and all
+the notices. These are national. Fixing one in `templates/` corrects it
+for every office at once — which is the whole reason for the split. If a
+figure here is wrong, it is wrong everywhere, so fix it once and rebuild.
+
+## Validation
+
+`build.py --check` refuses an office rather than printing a defective
+board. It catches empty identity or rate fields, a `section125` branch
+with no items, more than nine items in a branch (Bengali numerals run
+out), and a `compact` value outside 0.5–2.0. CI runs the same check on
+every push, so a bad rate fails the PR instead of reaching a printer.
+
+## Before printing
 
 ```bash
-cd docs && python -m http.server
-# then open http://localhost:8000
+pdfinfo out/<office>/pdf/<file>.pdf     # page size must match the filename
+magick identify -format "%f %wx%h %[channels] alpha=%A\n" out/<office>/png/*.png
+```
+
+The clear-vinyl sticker and the acrylic plate must read `srgba` with a
+live alpha — transparency is the deliverable there. Everything else
+should read `srgb`. `render.sh` already handles the distinction; the
+check is to catch a pipeline edit that breaks it.
+
+## Browser app
+
+`docs/` is a GitHub Pages app: a form with live preview and compactness
+sliders, producing the same HTML as `build.py` and downloading it as a
+ZIP with its `office.json`. No account or token needed. See
+`docs/README.md`.
+
+## The board
+
+`templates/citizens-charter-v2.html` is the board that gets built — the
+charter-table version. `templates/reference/` holds the earlier
+five-column board; nothing in there is built, it is kept only so the
+older wording and fee cards stay findable.
+
+v2 markers: `S125P` and `S126P` (the tax rates as prose, generated from
+the same `section125` / `section126` data), `SRO`, `DROFF`, `SRWEB`,
+`DRWEB`, `ANIK`, `APPEAL`, `DEEDS`.
+
+## Layout
+
+```
+templates/            the board that gets built
+templates/reference/  older boards — kept for reference, never built
+docs/                 GitHub Pages app (index.html + a copy of templates/)
+offices/<slug>.json   one file per office
+out/<folder>/         generated — never edit, always overwritten
+out/<folder>/pdf|png|fb
 ```

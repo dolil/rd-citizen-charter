@@ -251,7 +251,10 @@ def build_office(path, check_only=False):
     built = []
 
     for name in sorted(os.listdir(TEMPLATES)):
+        if name == 'reference':
+            continue
         src = os.path.join(TEMPLATES, name)
+        # templates/reference/ is kept for reference only and never built
         if not os.path.isfile(src) or name.startswith('.') or name.endswith('.txt'):
             continue
         out_name = name.replace('sirajdikhan', cfg['folder']).replace('gazipur-sadar', cfg['folder'])

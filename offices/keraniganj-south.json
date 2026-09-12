@@ -20,10 +20,13 @@
     "residential": "১,৩০০/-",
     "commercial": "৩,৫০০/-"
   },
+  "sroRef": "এস.আর.ও নং ২১০, তারিখ ০৮ জুন ২০২৬",
   "compact": {
     "s125": "1",
-    "kroy": "1"
+    "kroy": "1",
+    "board": "1"
   },
+  "deedRows": 9,
   "showKroy": true,
   "section125": [
     {

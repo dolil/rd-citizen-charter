@@ -34,7 +34,9 @@ Copy an existing JSON, change the values, run `--check`, then build.
                 "drOffice": "…", "drWeb": "…", "published": "…" },
   "grs":        { "anik": "…", "appeal": "…" },
   "section126": { "plot": "৩%", "residential": "৩০০/-", "commercial": "১,০০০/-" },
-  "compact":    { "s125": "1", "kroy": "1" },
+  "sroRef":     "এস.আর.ও নং ২১০, তারিখ ০৮ জুন ২০২৬",
+  "compact":    { "s125": "1", "kroy": "1", "board": "1" },
+  "deedRows":   9,
   "showKroy":   true,
   "section125": [ { "label": "ক)", "lead": "…", "items": ["…", "…"] } ],
   "kroy":       [ "…", "…" ]
@@ -49,9 +51,11 @@ Copy an existing JSON, change the values, run `--check`, then build.
 | `grs` | the designated অনিক and appeal officer |
 | `section126` | ৫% / ১,৩০০ / ৩,৫০০ in the listed districts, ৩% / ৩০০ / ১,০০০ elsewhere |
 | `section125` | set by district SRO — thana names, শ্রেণি bands, per-decimal amounts |
+| `sroRef` | the ধারা ১২৫ notification reference printed under the rates |
 | `showKroy` | `true`/`false` — show or hide the জমি ক্রয়ের পূর্বে সতর্কতা card entirely |
 | `kroy` | জমি ক্রয়ের পূর্বে সতর্কতা — trim or extend to fill the column |
-| `compact` | `1` = as drawn, `1.3` looser, `0.9` tighter. Most districts have a much shorter ১২৫ text than Gazipur's; raise `s125` to fill the gap that leaves. |
+| `deedRows` | how many of the fee chart's optional deed rows to show, `0`–`9`. Rows ১–৮ and the নকল row always appear. |
+| `compact` | `s125` and `kroy` scale their own blocks; `board` scales every font on the board (`0.7`–`1.3`). `1` = as drawn, above is looser, below tighter. Most districts have a much shorter ১২৫ text than Gazipur's, which leaves a gap — fill it by raising `s125`, or by showing more `deedRows`. |
 
 ### What is NOT configurable — on purpose
 
@@ -88,6 +92,18 @@ check is to catch a pipeline edit that breaks it.
 sliders, producing the same HTML as `build.py` and downloading it as a
 ZIP with its `office.json`. No account or token needed. See
 `docs/README.md`.
+
+## Two board templates
+
+`citizens-charter-sub-registrar-office.html` is the five-column board;
+`citizens-charter-v2.html` is the charter-table version. They share the
+office JSON but use different markers, and `build.py` fills whichever
+markers a template actually has — so a template that lacks one is simply
+skipped, and adding a template needs no change here.
+
+v2 markers: `S125P` and `S126P` (the tax rates as prose, generated from
+the same `section125` / `section126` data), `SRO`, `DROFF`, `ANIK`,
+`APPEAL`, `DEEDS`.
 
 ## Layout
 

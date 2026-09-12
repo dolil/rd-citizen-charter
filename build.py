@@ -89,10 +89,22 @@ def validate(cfg, name):
         if not isinstance(cfg.get('kroy'), list) or not cfg['kroy']:
             bad.append('kroy: needs at least one line (or set "showKroy": false)')
 
-    for k in ('s125', 'kroy'):
+    if not str(cfg.get('sroRef', '')).strip():
+        bad.append('sroRef: empty (the ধারা ১২৫ notification reference)')
+
+    n = cfg.get('deedRows')
+    if n is not None:
+        try:
+            n = int(n)
+            if not 0 <= n <= 9:
+                bad.append('deedRows: %s is outside 0–9 (optional deed rows to keep)' % n)
+        except (TypeError, ValueError):
+            bad.append('deedRows: not a number')
+
+    for k in ('s125', 'kroy', 'board'):
         try:
             v = float(cfg.get('compact', {}).get(k, 1))
-            if not 0.5 <= v <= 2.0:
+            if not 0.7 <= v <= 1.3 if k == 'board' else not 0.5 <= v <= 2.0:
                 bad.append('compact.%s: %s is outside 0.5–2.0' % (k, v))
         except (TypeError, ValueError):
             bad.append('compact.%s: not a number' % k)
@@ -123,12 +135,55 @@ def gen_kroy(cfg):
         for t in cfg.get('kroy', []))
 
 
+def trim_deeds(html, keep):
+    """The fee chart's rows 9+ sit inside <!--@DEEDS-->. Offices whose ধারা ১২৫
+       text is short have spare height and can show more of them; those with a
+       long ১২৫ block keep fewer. keep = how many of the optional rows to show."""
+    m = re.search(r'(<!--@DEEDS-->\n)([\s\S]*?)(\s*<!--/@DEEDS-->)', html)
+    if not m:
+        return html, None
+    rows = re.findall(r'            <tr><td class="c">[\s\S]*?</tr>\n', m.group(2))
+    kept = rows[:keep]
+    html = html[:m.start(2)] + ''.join(kept) + html[m.end(2):]
+
+    # renumber the whole chart so the ক্রমিক column stays continuous
+    i = html.index('<table class="charter feechart">')
+    head, tail = html[:i], html[i:]
+    BN = '০১২৩৪৫৬৭৮৯'
+    def bn(n):
+        return ''.join(BN[int(d)] for d in str(n))
+    for k, old in enumerate(re.findall(r'<tr><td class="c">([০-৯]+)</td>', tail), 1):
+        tail = tail.replace('<tr><td class="c">%s</td>' % old,
+                            '<tr><td class="c">\x00%d\x00</td>' % k, 1)
+    for k in range(1, 40):
+        tail = tail.replace('\x00%d\x00' % k, bn(k))
+    return head + tail, (len(rows), len(kept))
+
+
 def drop_card(html, name):
     """Remove a whole marked card. Used when an office switches a
        section off — the markers stay in the master, so turning it back
        on later is a one-word change in the JSON."""
     pat = re.compile(r'[ \t]*<!--@%s-->.*?<!--/@%s-->\n?' % (name, name), re.S)
     return pat.sub('', html, count=1)
+
+
+def gen_s125_prose(cfg):
+    """v2 states ধারা ১২৫ as prose inside a fee cell rather than as a table."""
+    out = ['<b>উৎসে কর [ধারা ১২৫]</b> — ']
+    for n, row in enumerate(cfg['section125']):
+        if n:
+            out.append('<br>')
+        out.append(row['lead'].rstrip(':').rstrip('—').strip() + ' — ')
+        out.append(' '.join(row['items']))
+    return ''.join(out)
+
+
+def gen_s126_prose(cfg):
+    s = cfg['section126']
+    return ('<b>উৎসে কর [ধারা ১২৬]</b> — বাণিজ্যিক ভিত্তিতে প্লট বা ফ্ল্যাট বিক্রয়ের ক্ষেত্রে অতিরিক্ত — '
+            'প্লট/জমিতে %s; বিল্ডিং/ফ্ল্যাটে প্রতি বর্গমিটারে আবাসিক %s ও বাণিজ্যিক %s।<br>'
+            % (s['plot'], s['residential'], s['commercial']))
 
 
 def gen_126(cfg):
@@ -214,6 +269,12 @@ def build_office(path, check_only=False):
         for fn, key, val in ((put_block,  'S125',   s125),
                              (put_block,  'KROY',   kroy),
                              (put_inline, 'S126',   s126),
+                             (put_inline, 'S125P',  gen_s125_prose(cfg)),
+                             (put_inline, 'S126P',  gen_s126_prose(cfg)),
+                             (put_inline, 'SRO',    cfg.get('sroRef', '')),
+                             (put_inline, 'DROFF',  cfg['identity']['drOffice']),
+                             (put_inline, 'SRWEB',  cfg['identity']['srWeb']),
+                             (put_inline, 'DRWEB',  cfg['identity']['drWeb']),
                              (put_inline, 'ANIK',   cfg['grs']['anik']),
                              (put_inline, 'APPEAL', cfg['grs']['appeal'])):
             html, done = fn(html, key, val)
@@ -223,6 +284,12 @@ def build_office(path, check_only=False):
         c = cfg['compact']
         html = html.replace('--s125-compact: 1;', '--s125-compact: %s;' % c['s125'])
         html = html.replace('--warn-compact: 1;', '--warn-compact: %s;' % c['kroy'])
+        if 'board' in c:
+            html = html.replace('--compact: 1;', '--compact: %s;' % c['board'])
+        if '<!--@DEEDS-->' in html:
+            html, info = trim_deeds(html, int(cfg.get('deedRows', 9)))
+            if info:
+                marks.append('deeds %d/%d' % (info[1], info[0]))
 
         open(os.path.join(dest, out_name), 'w', encoding='utf-8').write(html)
         built.append((out_name, hits, marks))

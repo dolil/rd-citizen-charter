@@ -2,3 +2,4 @@ out/
 *.pdf
 *.png
 !templates/*.png
+mnt/

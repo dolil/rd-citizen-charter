@@ -1,0 +1,46 @@
+
+bash make.sh --check     # works whatever your Python is called
+
+
+
+python build.py --check      			# validate, build nothing
+python build.py brahmanbaria-sadar          	# all offices → out/<folder>/
+bash make.sh brahmanbaria-sadar 		# build + render one office
+
+
+After any templats change we need to run these
+cp templates/*.html docs/templates/
+
+
+
+
+
+Before printing
+bash
+pdfinfo out/<office>/pdf/<file>.pdf     # page size must match the filename
+magick identify -format "%f %wx%h %[channels] alpha=%A\n" out/<office>/png/*.png
+
+The clear-vinyl sticker and the acrylic plate must read srgba with a live alpha —
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Rename office and config
+bash new-office.sh
+
+
+# Export All Banners
+bash build-all.sh
+
+
+kharshur almogir

@@ -35,11 +35,10 @@ Copy an existing JSON, change the values, run `--check`, then build.
   "grs":        { "anik": "…", "appeal": "…" },
   "section126": { "plot": "৩%", "residential": "৩০০/-", "commercial": "১,০০০/-" },
   "sroRef":     "এস.আর.ও নং ২১০, তারিখ ০৮ জুন ২০২৬",
-  "compact":    { "s125": "1", "kroy": "1", "board": "1" },
-  "deedRows":   9,
-  "showKroy":   true,
-  "section125": [ { "label": "ক)", "lead": "…", "items": ["…", "…"] } ],
-  "kroy":       [ "…", "…" ]
+  "compact":    { "s125": "1", "board": "1" },
+  "deedRows":   8,
+  "showClasses": true,
+  "section125": [ { "label": "ক)", "lead": "…", "items": ["…", "…"] } ]
 }
 ```
 
@@ -52,10 +51,9 @@ Copy an existing JSON, change the values, run `--check`, then build.
 | `section126` | ৫% / ১,৩০০ / ৩,৫০০ in the listed districts, ৩% / ৩০০ / ১,০০০ elsewhere |
 | `section125` | set by district SRO — thana names, শ্রেণি bands, per-decimal amounts |
 | `sroRef` | the ধারা ১২৫ notification reference printed under the rates |
-| `showKroy` | `true`/`false` — show or hide the জমি ক্রয়ের পূর্বে সতর্কতা card entirely |
-| `kroy` | জমি ক্রয়ের পূর্বে সতর্কতা — trim or extend to fill the column |
-| `deedRows` | how many of the fee chart's optional deed rows to show, `0`–`9`. Rows ১–৮ and the নকল row always appear. |
-| `compact` | `s125` and `kroy` scale their own blocks; `board` scales every font on the board (`0.7`–`1.3`). `1` = as drawn, above is looser, below tighter. Most districts have a much shorter ১২৫ text than Gazipur's, which leaves a gap — fill it by raising `s125`, or by showing more `deedRows`. |
+| `showClasses` | `true`/`false` — show or hide the ভূমির শ্রেণি (ক–চ) table. Offices whose district has no development-authority or developer land need only শ্রেণি চ, so the table is noise there. |
+| `deedRows` | how many of the fee chart's optional deed rows to show, `0`–`8`. The first eight deeds and the নকল row always appear, so the chart never drops below nine rows. |
+| `compact` | `s125` scales the উৎসে কর cell of the fee chart; `board` scales every font on the board (`0.7`–`1.3`). `1` = as drawn, above is looser, below tighter. Most districts have a much shorter ১২৫ text than Gazipur's, which leaves a gap — fill it by raising `s125`, or by showing more `deedRows`. |
 
 ### What is NOT configurable — on purpose
 

@@ -334,11 +334,17 @@ function dropCard(html, name) {
 }
 
 function genS125Prose(c) {
+  // one item reads as a sentence; several get numbered
+  const BN = '০১২৩৪৫৬৭৮৯';
   let out = ['<b>উৎসে কর [ধারা ১২৫]</b> — '];
-  c.section125.forEach((row, n) => {
-    if (n) out.push('<br>');
-    out.push(row.lead.replace(/[:—]\s*$/, '').trim() + ' — ');
-    out.push(row.items.join(' '));
+  c.section125.forEach(row => {
+    const lead = row.lead.trim().replace(/[:—]\s*$/, '').trim();
+    if (row.items.length === 1) {
+      out.push(lead + ' — ' + row.items[0] + '<br>');
+    } else {
+      out.push(lead + ':<br>');
+      row.items.forEach((it, k) => out.push(BN[k + 1] + ') ' + it + '<br>'));
+    }
   });
   return out.join('');
 }

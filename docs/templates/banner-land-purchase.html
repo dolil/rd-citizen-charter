@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ধাপওয়ারি জমি ক্রয় প্রক্রিয়া</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tiro+Bangla:ital@0;1&family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  /* =========================================================
+     SIZE: 1.5 ft wide x 2 ft high = 457.2 mm x 609.6 mm
+     Same system as the other banners in this set.
+     --type  : auto-set on load so the content fills the sheet
+     --chrome: damped scale for title/footer
+     Prose Tiro Bangla 400, labels Hind Siliguri 700.
+     Icons are inline SVG; bullets are CSS shapes — no emoji,
+     nothing that depends on a fallback font at the press.
+     ========================================================= */
+  :root {
+    --w: 457.2mm;   /* 1.5 ft */
+    --h: 609.6mm;   /* 2 ft   */
+    --type: 1;
+    --chrome: calc(0.5 + 0.5 * var(--type));
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html, body { height: 100%; }
+
+  body { background: #d0d0d0; overflow: hidden; }
+
+  .pane {
+    position: fixed;
+    inset: 0;
+    overflow: auto;
+    padding: 20px;
+    background: #d0d0d0;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .scaler {
+    transform-origin: top left;
+    width: max-content;
+    margin: 0 auto;
+  }
+
+  .outer-frame {
+    width: var(--w);
+    height: var(--h);
+    background: #2da44e;
+    padding: 7.1mm 7.1mm 0 7.1mm;
+    box-shadow: 0 4mm 14mm rgba(0,0,0,0.18);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  .inner {
+    background: #fff;
+    flex: 1;
+    overflow: hidden;
+    font-family: 'Tiro Bangla', serif;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* TITLE BAR — title + intro combined */
+  .title-bar {
+    background: #2da44e;
+    padding: calc(10mm * var(--type)) calc(15.7mm * var(--type)) calc(8.6mm * var(--type));
+  }
+
+  .title-bar h1 {
+    font-family: 'Tiro Bangla', serif;
+    font-size: calc(18mm * var(--chrome));
+    font-weight: 400;
+    color: #fff;
+    line-height: 1.45;
+    margin-bottom: calc(4.5mm * var(--type));
+  }
+
+  .title-bar .intro-txt {
+    font-family: 'Tiro Bangla', serif;
+    font-size: calc(8.2mm * var(--type));
+    color: #c8f5d9;
+    line-height: 1.65;
+  }
+
+  /* TWO COLUMN BODY */
+  .body-cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+    flex: 1;
+  }
+
+  .col { padding: calc(8mm * var(--type)) calc(10mm * var(--type)); }
+  .col-left { border-right: 1.4mm solid #e0ede4; }
+
+  /* STEP ITEMS */
+  .step-item {
+    display: flex;
+    align-items: flex-start;
+    gap: calc(4mm * var(--type));
+    margin-bottom: calc(5mm * var(--type));
+    padding: calc(4.6mm * var(--type)) calc(5.4mm * var(--type));
+    border: 0.3mm solid #d0e8d8;
+    border-radius: 1.8mm;
+    background: #f8fdf9;
+  }
+  .step-item:last-child { margin-bottom: 0; }
+
+  .step-num {
+    flex: 0 0 auto;
+    width: calc(11mm * var(--type));
+    height: calc(11mm * var(--type));
+    border: 0.55mm solid #c0392b;
+    border-radius: 50%;
+    background: #fdf1ef;
+    color: #c0392b;
+    font-family: 'Hind Siliguri', sans-serif;
+    font-size: calc(6.4mm * var(--type));
+    font-weight: 700;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: calc(1mm * var(--type));
+  }
+
+  .step-title {
+    font-family: 'Tiro Bangla', serif;
+    font-size: calc(9.4mm * var(--type));
+    color: #c0392b;
+    margin-bottom: calc(1.2mm * var(--type));
+    line-height: 1.45;
+  }
+
+  .step-desc {
+    font-family: 'Tiro Bangla', serif;
+    font-size: calc(8.2mm * var(--type));
+    color: #333;
+    line-height: 1.62;
+  }
+
+  .step-ref {
+    font-family: 'Tiro Bangla', serif;
+    font-size: calc(7.4mm * var(--type));
+    color: #2da44e;
+  }
+
+  /* RESOURCES + DISCLAIMER */
+  .foot-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: calc(5mm * var(--type));
+    padding: 0 calc(10mm * var(--type)) calc(8mm * var(--type));
+  }
+
+  .box {
+    border-radius: 1.8mm;
+    padding: calc(5mm * var(--type)) calc(6mm * var(--type));
+  }
+  .box-green { border: 0.3mm solid #d0e8d8; background: #f8fdf9; }
+  .box-amber { border: 0.3mm solid #f0c040; background: #fef9e7; }
+
+  .box-title {
+    display: flex;
+    align-items: center;
+    gap: calc(2.2mm * var(--type));
+    font-family: 'Hind Siliguri', sans-serif;
+    font-size: calc(7.4mm * var(--type));
+    font-weight: 700;
+    margin-bottom: calc(3.4mm * var(--type));
+    padding-bottom: calc(2.4mm * var(--type));
+    line-height: 1.4;
+  }
+  .box-green .box-title { color: #1a7a38; border-bottom: 0.3mm solid #d0e8d8; }
+  .box-amber .box-title { color: #7d6008; border-bottom: 0.3mm solid #f0c040; }
+
+  .box-title svg {
+    flex: 0 0 auto;
+    width: 1em; height: 1em;
+    fill: none; stroke-width: 1.9;
+    stroke-linecap: round; stroke-linejoin: round;
+  }
+  .box-green .box-title svg { stroke: #1a7a38; }
+  .box-amber .box-title svg { stroke: #7d6008; }
+
+  .res-line {
+    display: flex;
+    align-items: baseline;
+    gap: calc(2.4mm * var(--type));
+    font-family: 'Tiro Bangla', serif;
+    font-size: calc(8mm * var(--type));
+    color: #333;
+    line-height: 1.6;
+  }
+  .res-line + .res-line { margin-top: calc(2.2mm * var(--type)); }
+
+  /* diamond bullet, drawn in CSS */
+  .res-line .dot {
+    flex: 0 0 auto;
+    width: calc(2.4mm * var(--type));
+    height: calc(2.4mm * var(--type));
+    background: #2da44e;
+    transform: rotate(45deg);
+  }
+  .res-line .url { color: #2da44e; }
+
+  .box-text {
+    font-family: 'Tiro Bangla', serif;
+    font-size: calc(8mm * var(--type));
+    color: #7d6008;
+    line-height: 1.7;
+  }
+
+  /* FOOTER — office name on the green frame band */
+  .frame-footer { padding: 6mm 3mm 3.4mm; text-align: center; }
+
+  .office-line {
+    font-family: 'Tiro Bangla', serif;
+    font-size: calc(13mm * var(--chrome));
+    color: #fff;
+    line-height: 1.35;
+  }
+
+  .credit {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 3.4mm;
+    padding-top: 2.4mm;
+    border-top: 0.4mm solid rgba(255,255,255,0.3);
+    font-family: 'Tiro Bangla', serif;
+    font-size: calc(5mm * var(--type));
+    color: #cdeed9;
+    line-height: 1;
+  }
+
+  /* ZOOM TOOLBAR — screen only */
+  .zoombar {
+    position: fixed; top: 12px; left: 12px; z-index: 99;
+    display: flex; align-items: center; gap: 6px;
+    background: #fff; border: 1px solid #b7b7b7; border-radius: 8px;
+    padding: 6px 8px; box-shadow: 0 2px 10px rgba(0,0,0,.18);
+    font: 13px/1 system-ui, sans-serif;
+  }
+  .zoombar button {
+    font: 13px/1 system-ui, sans-serif; padding: 6px 10px;
+    border: 1px solid #b7b7b7; background: #f6f6f6;
+    border-radius: 5px; cursor: pointer; color: #222;
+  }
+  .zoombar button:hover { background: #e9e9e9; }
+  .zoombar .zv { min-width: 46px; text-align: center; color: #444; }
+  .zoombar .sz { color: #777; margin-left: 4px; }
+
+  /* measuring helper for the auto-fit routine */
+  .measuring .outer-frame { height: auto; }
+  .measuring .inner { flex: 0 0 auto; }
+  .measuring .body-cols { flex: 0 0 auto; }
+
+  @page { size: 457.2mm 609.6mm; margin: 0; }
+
+  @media print {
+    html, body { height: auto; overflow: visible; background: #fff; }
+    .zoombar { display: none !important; }
+    .pane { position: static; inset: auto; overflow: visible; padding: 0; background: #fff; }
+    .scaler { transform: none !important; zoom: 1 !important; width: auto !important; height: auto !important; margin: 0; }
+    .outer-frame { box-shadow: none; }
+    * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+</style>
+</head>
+<body>
+
+<div class="zoombar">
+  <button id="zo" title="Zoom out">&minus;</button>
+  <span class="zv" id="zv">100%</span>
+  <button id="zi" title="Zoom in">+</button>
+  <button id="zf">Fit</button>
+  <button id="z1">100%</button>
+  <span class="sz">H-3 x W-2.25 ft</span>
+</div>
+
+<div class="pane" id="pane">
+<div class="scaler" id="scaler">
+<div class="outer-frame" id="frame">
+  <div class="inner">
+
+    <!-- TITLE + INTRO IN ONE BAR -->
+    <div class="title-bar">
+      <h1>ধাপওয়ারি জমি ক্রয় প্রক্রিয়া</h1>
+      <div class="intro-txt">জমি ক্রয়ের পূর্বে নিচের ধাপগুলো সঠিকভাবে অনুসরণ করুন। প্রতিটি ধাপ গুরুত্বপূর্ণ — যেকোনো একটি এড়িয়ে গেলে পরবর্তীতে আইনি জটিলতা তৈরি হতে পারে।</div>
+    </div>
+
+    <!-- TWO COLUMNS -->
+    <div class="body-cols">
+
+      <!-- LEFT: ধাপ ১–৫ -->
+      <div class="col col-left">
+
+        <div class="step-item">
+          <div class="step-num">১</div>
+          <div class="step-content">
+            <div class="step-title">মালিকানার ধারাবাহিকতা যাচাই</div>
+            <div class="step-desc">সিএস, এসএ, আরএস ও বিএস/সিটি — প্রতিটি জরিপে জমি কার নামে রেকর্ড হয়েছে এবং এক জরিপ থেকে পরবর্তী জরিপে কীভাবে হস্তান্তর হয়ে বর্তমান বিক্রেতার নামে এসেছে, সেই ধারাবাহিকতা মিলিয়ে দেখুন। মাঝখানে কোনো হস্তান্তরের দলিল বাদ থাকলে মালিকানা প্রশ্নবিদ্ধ হতে পারে। সাব-রেজিস্ট্রি অফিসে তল্লাশি দিয়ে সূচিবহি থেকে বায়া দলিলের নকল তুলে নিন <span class="step-ref">[তল্লাশি ও নকল — নিবন্ধন আইন, ১৯০৮ এর ধারা ৫৭]</span>।</div>
+          </div>
+        </div>
+
+        <div class="step-item">
+          <div class="step-num">২</div>
+          <div class="step-content">
+            <div class="step-title">পর্চা, নকশা ও মৌজা ম্যাপ যাচাই</div>
+            <div class="step-desc">সর্বশেষ জরিপ খতিয়ান (এসএ/আরএস/বিএস/সিটি), নামজারি খতিয়ান, হালনাগাদ দাখিলা ও মৌজা ম্যাপ নিন। খতিয়ান বিক্রেতার নিজ নামে আছে কিনা দেখুন; উত্তরাধিকারসূত্রে প্রাপ্ত হলে পূর্বসূরির নামের খতিয়ান ও ওয়ারিশের ধারাবাহিকতা মিলিয়ে নিন — বিক্রয় দলিলে মালিকানার এই সূত্র ও খতিয়ানের বিবরণ উল্লেখ করা বাধ্যতামূলক <span class="step-ref">[নিবন্ধন আইন, ১৯০৮ এর ধারা ৫২ক]</span>। তবে হালনাগাদ খতিয়ান ও ভূমি উন্নয়ন কর পরিশোধের প্রমাণক দেখাতে না পারলে হস্তান্তর বা রেজিস্ট্রেশন করা যাবে না <span class="step-ref">[ভূমি অপরাধ প্রতিরোধ ও প্রতিকার আইন, ২০২৩ এর ধারা ৬(৩)]</span>।</div>
+          </div>
+        </div>
+
+        <div class="step-item">
+          <div class="step-num">৩</div>
+          <div class="step-content">
+            <div class="step-title">দখল যাচাই ও মাঠ পরিদর্শন</div>
+            <div class="step-desc">সরেজমিনে গিয়ে জমির প্রকৃত দখল, সীমানা ও ব্যবহার যাচাই করুন। প্রতিবেশী, স্থানীয় জনপ্রতিনিধি অথবা চৌকিদারের মাধ্যমে দখলকারীর পরিচয় নিশ্চিত করুন।</div>
+          </div>
+        </div>
+
+        <div class="step-item">
+          <div class="step-num">৪</div>
+          <div class="step-content">
+            <div class="step-title">মামলা, নিষেধাজ্ঞা ও দায় যাচাই</div>
+            <div class="step-desc">মামলা, নিষেধাজ্ঞা বা আদালতের আদেশ আছে কিনা তা সংশ্লিষ্ট দেওয়ানি আদালতের সেরেস্তায় খোঁজ নিয়ে যাচাই করুন — সাব-রেজিস্ট্রি অফিসে মামলার কোনো রেকর্ড রাখা হয় না। নিবন্ধিত বন্ধক বা দায় আছে কিনা জানতে সাব-রেজিস্ট্রি বা জেলা রেজিস্ট্রার অফিস থেকে নির্দায় সনদ (NEC) নিন। মামলা চলাকালে কেনা জমি ওই মামলার রায় দ্বারা বাধ্য থাকবে। <span class="step-ref">[লিস পেনডেন্স — সম্পত্তি হস্তান্তর আইন, ১৮৮২ এর ধারা ৫২]</span></div>
+          </div>
+        </div>
+
+        <div class="step-item">
+          <div class="step-num">৫</div>
+          <div class="step-content">
+            <div class="step-title">প্রয়োজনীয় সকল কাগজপত্র সংগ্রহ</div>
+            <div class="step-desc">ক্রেতা ও বিক্রেতার জাতীয় পরিচয়পত্র, প্রতি পক্ষের ২ কপি সদ্যতোলা পাসপোর্ট সাইজ ছবি, খতিয়ান, মৌজা ম্যাপ, বায়া দলিল, দাখিলা, ওয়ারিশ সনদ (উত্তরাধিকারের ক্ষেত্রে) এবং প্রযোজ্য ছাড়পত্র/NOC সংগ্রহ করুন।</div>
+          </div>
+        </div>
+
+      </div><!-- end col-left -->
+
+      <!-- RIGHT: ধাপ ৬–১০ -->
+      <div class="col col-right">
+
+        <div class="step-item">
+          <div class="step-num">৬</div>
+          <div class="step-content">
+            <div class="step-title">দলিলের খসড়া প্রস্তুতকরণ</div>
+            <div class="step-desc">খসড়ায় পক্ষগণের পরিচয়, মালিকানার সূত্র, দাগ-খতিয়ান, চৌহদ্দি, পরিমাণ, মূল্য ও শর্তাবলি সঠিকভাবে লিখুন। আইনে নির্ধারিত তথ্য ও হলফনামা সংযুক্ত না থাকলে দলিল নিবন্ধন করা হয় না। <span class="step-ref">[নিবন্ধন আইন, ১৯০৮ এর ধারা ২২ক ও ৫২ক]</span></div>
+          </div>
+        </div>
+
+        <div class="step-item">
+          <div class="step-num">৭</div>
+          <div class="step-content">
+            <div class="step-title">স্ট্যাম্প শুল্ক ও রেজিস্ট্রেশন ফি জমা</div>
+            <div class="step-desc">মৌজা রেট অনুযায়ী সর্বনিম্ন বাজার মূল্য নির্ধারণ করে স্ট্যাম্প শুল্ক, রেজিস্ট্রেশন ফি ও উৎসে কর এ-চালানের মাধ্যমে এবং স্থানীয় সরকার কর পে-অর্ডারের মাধ্যমে জমা দিন। মূল্য কম দেখিয়ে দলিল করা হলে তা মিথ্যা বিবরণ হিসেবে গণ্য হতে পারে। <span class="step-ref">[স্ট্যাম্প আইন, ১৮৯৯ ও সর্বনিম্ন বাজার মূল্য নির্ধারণ বিধিমালা, ২০১০]</span></div>
+          </div>
+        </div>
+
+        <div class="step-item">
+          <div class="step-num">৮</div>
+          <div class="step-content">
+            <div class="step-title">দলিল সম্পাদন ও দাখিল</div>
+            <div class="step-desc">পক্ষগণ ও সাক্ষীদের উপস্থিতিতে দলিল সম্পাদন করুন এবং ছবির উপর আড়াআড়িভাবে স্বাক্ষর ও বাম বৃদ্ধাঙ্গুলির টিপছাপ দিন। সম্পাদনের ৩ মাসের মধ্যে দলিল দাখিল করতে হবে; বিলম্ব হলে জেলা রেজিস্ট্রার আরও ৪ মাস পর্যন্ত, রেজিস্ট্রেশন ফির ১০ গুণ পর্যন্ত জরিমানাসহ গ্রহণের আদেশ দিতে পারেন। বায়নানামা দাখিলের সময় ৩০ দিন। <span class="step-ref">[নিবন্ধন আইন, ১৯০৮ এর ধারা ২২ক(২), ১৭ক, ২৩ ও ২৫]</span></div>
+          </div>
+        </div>
+
+        <div class="step-item">
+          <div class="step-num">৯</div>
+          <div class="step-content">
+            <div class="step-title">কাগজপত্র যাচাই</div>
+            <div class="step-desc">সাব-রেজিস্ট্রার কাগজপত্র ও পক্ষগণের পরিচয় যাচাই করেন। তথ্যে ঘাটতি বা অসঙ্গতি থাকলে দলিল গ্রহণে অস্বীকৃতি বা অগ্রাহ্য হতে পারে; সেক্ষেত্রে জেলা রেজিস্ট্রারের নিকট প্রতিকার চাওয়া যায়। দাখিল রসিদ যত্নে সংরক্ষণ করুন। <span class="step-ref">[নিবন্ধন আইন, ১৯০৮ এর ধারা ৩৫, ৭১ ও ৭৩]</span></div>
+          </div>
+        </div>
+
+        <div class="step-item">
+          <div class="step-num">১০</div>
+          <div class="step-content">
+            <div class="step-title">রেজিস্ট্রেশন ও পরবর্তী করণীয়</div>
+            <div class="step-desc">রসিদ দেখিয়ে মূল দলিল ও সার্টিফাইড কপি সংগ্রহ করুন, ভূমি অফিসে নামজারি (খারিজ) করে ভূমি উন্নয়ন কর হালনাগাদ করুন এবং জমির দখল বুঝে নিন। সম্পূর্ণ মূল্য পরিশোধের পরও যুক্তিসঙ্গত কারণ ছাড়া বিক্রেতা দখল বুঝিয়ে না দিলে তা শাস্তিযোগ্য অপরাধ। <span class="step-ref">[ভূমি অপরাধ প্রতিরোধ ও প্রতিকার আইন, ২০২৩ এর ধারা ৯]</span></div>
+          </div>
+        </div>
+
+      </div><!-- end col-right -->
+
+    </div><!-- end body-cols -->
+
+    <!-- RESOURCES + DISCLAIMER -->
+    <div class="foot-row">
+
+      <div class="box box-green">
+        <div class="box-title"><svg viewBox="0 0 24 24"><path d="M10 13.5a4 4 0 0 0 5.7.3l3-3a4 4 0 0 0-5.7-5.7l-1.5 1.5"/><path d="M14 10.5a4 4 0 0 0-5.7-.3l-3 3a4 4 0 0 0 5.7 5.7l1.5-1.5"/></svg> সহায়ক রিসোর্স</div>
+        <div class="res-line"><span class="dot"></span><span>ভূমি মন্ত্রণালয় — <span class="url">land.gov.bd</span></span></div>
+        <div class="res-line"><span class="dot"></span><span>বাংলাদেশের সকল আইন — <span class="url">bdlaws.minlaw.gov.bd</span></span></div>
+        <div class="res-line"><span class="dot"></span><span>জাতীয় রাজস্ব বোর্ড — <span class="url">nbr.gov.bd</span></span></div>
+        <div class="res-line"><span class="dot"></span><span>ভূমি উন্নয়ন কর — <span class="url">ldtax.gov.bd</span></span></div>
+        <div class="res-line"><span class="dot"></span><span>ই-নামজারি — <span class="url">mutation.land.gov.bd</span></span></div>
+      </div>
+
+      <div class="box box-amber">
+        <div class="box-title"><svg viewBox="0 0 24 24"><path d="M12 3.5 22 20H2z"/><path d="M12 10v4.6M12 17.4v.2"/></svg> সতর্কতা ও দায়মুক্তি</div>
+        <div class="box-text">এটি একটি সাধারণ নির্দেশিকা মাত্র। প্রতিটি ক্ষেত্রে আইনের বিধান ভিন্ন হতে পারে। নির্দিষ্ট জমি বা দলিল সংক্রান্ত পরামর্শের জন্য অভিজ্ঞ আইনজীবীর সহায়তা নিন।</div>
+      </div>
+
+    </div>
+
+  </div><!-- end inner -->
+
+  <div class="frame-footer">
+    <div class="office-line">সাব-রেজিস্ট্রারের কার্যালয়, সিরাজদিখান, মুন্সীগঞ্জ</div>
+    <div class="credit"><span>© This Banner is designed by Md. Maksu Miah, Sub-Registrar</span><span>H-3 x W-2.25 ft</span></div>
+  </div>
+</div>
+</div>
+</div>
+
+<script>
+(function () {
+  var scaler = document.getElementById('scaler');
+  var frame  = document.getElementById('frame');
+  var pane   = document.getElementById('pane');
+  var MM = 96 / 25.4;
+
+  function autoFitType() {
+    var target = 609.6 * MM;
+    var t = 1;
+    document.body.classList.add('measuring');
+    scaler.style.transform = 'none';
+    scaler.style.zoom = 1;
+    for (var i = 0; i < 14; i++) {
+      document.documentElement.style.setProperty('--type', t.toFixed(4));
+      var natural = frame.offsetHeight;
+      var ratio = (target * 0.995) / natural;
+      if (Math.abs(1 - ratio) < 0.004) break;
+      t = Math.min(1.6, Math.max(0.4, t * (1 + (ratio - 1) * 0.6)));
+    }
+    while (frame.offsetHeight > target && t > 0.35) {
+      t -= 0.01;
+      document.documentElement.style.setProperty('--type', t.toFixed(4));
+    }
+    document.body.classList.remove('measuring');
+    console.log('--type settled at', getComputedStyle(document.documentElement).getPropertyValue('--type'));
+  }
+
+  var USE_ZOOM = window.CSS && CSS.supports && CSS.supports('zoom', '0.5');
+  var k = 1;
+
+  function apply() {
+    if (USE_ZOOM) {
+      scaler.style.transform = 'none';
+      scaler.style.width = '';
+      scaler.style.height = '';
+      scaler.style.zoom = k;
+    } else {
+      var w = frame.offsetWidth, h = frame.offsetHeight;
+      scaler.style.zoom = 1;
+      scaler.style.transform = 'scale(' + k + ')';
+      scaler.style.width  = (w * k) + 'px';
+      scaler.style.height = (h * k) + 'px';
+    }
+    document.getElementById('zv').textContent = Math.round(k * 100) + '%';
+  }
+
+  function fitPreview() {
+    scaler.style.zoom = 1;
+    scaler.style.transform = 'none';
+    scaler.style.width = '';
+    scaler.style.height = '';
+    k = Math.min((pane.clientWidth - 44) / frame.offsetWidth,
+                 (pane.clientHeight - 44) / frame.offsetHeight, 1);
+    apply();
+  }
+
+  document.getElementById('zi').onclick = function () { k = Math.min(2, k * 1.25); apply(); };
+  document.getElementById('zo').onclick = function () { k = Math.max(0.08, k / 1.25); apply(); };
+  document.getElementById('zf').onclick = fitPreview;
+  document.getElementById('z1').onclick = function () { k = 1; apply(); };
+
+  var EXPORT = /(\?|&)export/.test(location.search);
+
+  function exportMode() {
+    document.querySelector('.zoombar').style.display = 'none';
+    pane.style.padding = '0';
+    pane.style.overflow = 'visible';
+    pane.style.position = 'static';
+    pane.style.background = '#fff';
+    document.body.style.overflow = 'visible';
+    k = 1;
+    scaler.style.zoom = 1;
+    scaler.style.transform = 'none';
+    scaler.style.width = 'auto';
+    scaler.style.height = 'auto';
+    scaler.style.margin = '0';
+  }
+
+  function run() { autoFitType(); if (EXPORT) { exportMode(); } else { fitPreview(); } }
+  window.addEventListener('resize', function () { if (!EXPORT) fitPreview(); });
+  if (document.fonts && document.fonts.ready) { document.fonts.ready.then(run); }
+  window.addEventListener('load', run);
+  run();
+})();
+</script>
+</body>
+</html>

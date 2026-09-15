@@ -51,7 +51,7 @@ REQUIRED = {
                  'srWeb', 'drOffice', 'drWeb', 'published'],
     'grs': ['anik', 'appeal'],
     'section126': ['plot', 'residential', 'commercial'],
-    'compact': ['s125', 'kroy'],
+    'compact': ['s125', 'board'],
 }
 
 
@@ -85,10 +85,6 @@ def validate(cfg, name):
             elif len(r['items']) > 9:
                 bad.append('section125[%d].items: more than 9 (Bengali numerals run out)' % i)
 
-    if cfg.get('showKroy', True):
-        if not isinstance(cfg.get('kroy'), list) or not cfg['kroy']:
-            bad.append('kroy: needs at least one line (or set "showKroy": false)')
-
     if not str(cfg.get('sroRef', '')).strip():
         bad.append('sroRef: empty (the ধারা ১২৫ notification reference)')
 
@@ -96,12 +92,12 @@ def validate(cfg, name):
     if n is not None:
         try:
             n = int(n)
-            if not 0 <= n <= 9:
-                bad.append('deedRows: %s is outside 0–9 (optional deed rows to keep)' % n)
+            if not 0 <= n <= 8:
+                bad.append('deedRows: %s is outside 0–8 (optional deed rows to keep)' % n)
         except (TypeError, ValueError):
             bad.append('deedRows: not a number')
 
-    for k in ('s125', 'kroy', 'board'):
+    for k in ('s125', 'board'):
         try:
             v = float(cfg.get('compact', {}).get(k, 1))
             if not 0.7 <= v <= 1.3 if k == 'board' else not 0.5 <= v <= 2.0:
@@ -127,12 +123,6 @@ def gen_s125(cfg):
         out.append('                </tr>')
     out.append('              </table>')
     return '\n'.join(out)
-
-
-def gen_kroy(cfg):
-    return '\n'.join(
-        '<div class="w"><span class="d"></span><span>%s</span></div>' % t
-        for t in cfg.get('kroy', []))
 
 
 def trim_deeds(html, keep):
@@ -169,13 +159,21 @@ def drop_card(html, name):
 
 
 def gen_s125_prose(cfg):
-    """v2 states ধারা ১২৫ as prose inside a fee cell rather than as a table."""
+    """v2 states ধারা ১২৫ as prose inside a fee cell rather than as a table.
+       A branch with one item reads as a sentence; a branch with several
+       gets them numbered, since those are separate cases with their own
+       rates — a district may charge ৩% inside the পৌরসভা and ২% outside."""
+    BN = '০১২৩৪৫৬৭৮৯'
     out = ['<b>উৎসে কর [ধারা ১২৫]</b> — ']
-    for n, row in enumerate(cfg['section125']):
-        if n:
-            out.append('<br>')
-        out.append(row['lead'].rstrip(':').rstrip('—').strip() + ' — ')
-        out.append(' '.join(row['items']))
+    for row in cfg['section125']:
+        lead = row['lead'].strip().rstrip(':').rstrip('—').strip()
+        items = row['items']
+        if len(items) == 1:
+            out.append('%s — %s<br>' % (lead, items[0]))
+        else:
+            out.append('%s:<br>' % lead)
+            for k, it in enumerate(items, 1):
+                out.append('%s) %s<br>' % (BN[k], it))
     return ''.join(out)
 
 
@@ -246,7 +244,7 @@ def build_office(path, check_only=False):
 
     dest = os.path.join(OUT, cfg['folder'])
     os.makedirs(dest, exist_ok=True)
-    s125, kroy, s126 = gen_s125(cfg), gen_kroy(cfg), gen_126(cfg)
+    s125, s126 = gen_s125(cfg), gen_126(cfg)
     show_kroy = cfg.get('showKroy', True)
     built = []
 
@@ -265,12 +263,11 @@ def build_office(path, check_only=False):
 
         html = open(src, encoding='utf-8').read()
         html, hits = swap_identity(html, cfg)
-        if not show_kroy:
-            html = drop_card(html, 'KROYCARD')
+        if not cfg.get('showClasses', True):
+            html = drop_card(html, 'CLASSCARD')
 
         marks = []
         for fn, key, val in ((put_block,  'S125',   s125),
-                             (put_block,  'KROY',   kroy),
                              (put_inline, 'S126',   s126),
                              (put_inline, 'S125P',  gen_s125_prose(cfg)),
                              (put_inline, 'S126P',  gen_s126_prose(cfg)),
@@ -286,7 +283,6 @@ def build_office(path, check_only=False):
 
         c = cfg['compact']
         html = html.replace('--s125-compact: 1;', '--s125-compact: %s;' % c['s125'])
-        html = html.replace('--warn-compact: 1;', '--warn-compact: %s;' % c['kroy'])
         if 'board' in c:
             html = html.replace('--compact: 1;', '--compact: %s;' % c['board'])
         if '<!--@DEEDS-->' in html:
@@ -299,8 +295,8 @@ def build_office(path, check_only=False):
 
     print('  ✓ %s  →  out/%s' % (slug, cfg['folder']))
     for n, hits, marks in built:
-        if not show_kroy:
-            marks.append('KROY off')
+        if not cfg.get('showClasses', True):
+            marks.append('CLASSES off')
         extra = ('  [%s]' % ', '.join(marks)) if marks else ''
         print('      %-52s %3d swaps%s' % (n, hits, extra))
     return True

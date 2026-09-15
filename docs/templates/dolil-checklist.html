@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>দলিল দাখিলের পূর্বে যাচাই তালিকা</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tiro+Bangla:ital@0;1&family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  /* =========================================================
+     SIZE: 1.5 ft wide x 2 ft high = 457.2 mm x 609.6 mm
+     Same system as the other banners in this set.
+     Checkbox item style borrowed from the A4 helpdesk sheet;
+     its sign-off block, page footers and header office line
+     are dropped — this is a wall banner, not a form.
+     ========================================================= */
+  :root {
+    --w: 457.2mm;   /* 1.5 ft */
+    --h: 609.6mm;   /* 2 ft   */
+    --type: 1;
+    --chrome: calc(0.5 + 0.5 * var(--type));
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html, body { height: 100%; }
+
+  body { background: #d0d0d0; overflow: hidden; }
+
+  .pane {
+    position: fixed;
+    inset: 0;
+    overflow: auto;
+    padding: 20px;
+    background: #d0d0d0;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .scaler {
+    transform-origin: top left;
+    width: max-content;
+    margin: 0 auto;
+  }
+
+  .outer-frame {
+    width: var(--w);
+    height: var(--h);
+    background: #2da44e;
+    padding: 7.1mm 7.1mm 0 7.1mm;
+    box-shadow: 0 4mm 14mm rgba(0,0,0,0.18);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  .inner {
+    background: #fff;
+    flex: 1;
+    overflow: hidden;
+    font-family: 'Tiro Bangla', serif;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* TITLE BAR — title + intro combined */
+  .title-bar {
+    background: #2da44e;
+    padding: calc(10mm * var(--type)) calc(15.7mm * var(--type)) calc(8.6mm * var(--type));
+  }
+
+  .title-bar h1 {
+    font-family: 'Tiro Bangla', serif;
+    font-size: calc(18mm * var(--chrome));
+    font-weight: 400;
+    color: #fff;
+    line-height: 1.45;
+    text-wrap: balance;
+  }
+
+  .title-bar .intro-txt {
+    font-family: 'Tiro Bangla', serif;
+    font-size: calc(8.2mm * var(--type));
+    color: #c8f5d9;
+    line-height: 1.65;
+  }
+
+  /* TWO COLUMN BODY */
+  .body-cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+    flex: 1;
+  }
+
+  .col { padding: calc(8mm * var(--type)) calc(10mm * var(--type)); }
+  .col-left { border-right: 1.4mm solid #e0ede4; }
+
+  /* SECTION TITLE — helpdesk style */
+  .section + .section { margin-top: calc(7mm * var(--type)); }
+
+  .section-title {
+    font-family: 'Hind Siliguri', sans-serif;
+    font-size: calc(7.6mm * var(--type));
+    font-weight: 700;
+    color: #1a7a38;
+    background: #f0faf4;
+    border-left: 1.6mm solid #2da44e;
+    border-radius: 0 1.6mm 1.6mm 0;
+    padding: calc(2.8mm * var(--type)) calc(5mm * var(--type));
+    margin-bottom: calc(4mm * var(--type));
+    line-height: 1.45;
+  }
+
+  /* CHECKBOX ITEMS */
+  .item {
+    display: flex;
+    align-items: flex-start;
+    gap: calc(3.4mm * var(--type));
+    padding: calc(2.6mm * var(--type)) 0 calc(2.6mm * var(--type)) calc(2mm * var(--type));
+    border-bottom: 0.25mm solid #eee;
+  }
+  .item:last-child { border-bottom: none; }
+
+  .box {
+    flex: 0 0 auto;
+    width: calc(5mm * var(--type));
+    height: calc(5mm * var(--type));
+    border: 0.5mm solid #57606a;
+    border-radius: 0.8mm;
+    margin-top: calc(2mm * var(--type));
+  }
+
+  .txt {
+    font-family: 'Tiro Bangla', serif;
+    font-size: calc(8.4mm * var(--type));
+    color: #24292f;
+    line-height: 1.58;
+  }
+  .txt .lbl { color: #c0392b; }
+
+  .full-section {
+    padding: 0 calc(10mm * var(--type)) calc(6mm * var(--type));
+  }
+
+  /* ADVISORY — full width */
+  .advisory {
+    margin: 0 calc(10mm * var(--type)) calc(8mm * var(--type));
+    background: #f0faf4;
+    border: 0.3mm solid #cbe0d3;
+    border-left: 1.6mm solid #2da44e;
+    border-radius: 0 2.4mm 2.4mm 0;
+    padding: calc(5mm * var(--type)) calc(6mm * var(--type));
+  }
+
+  .advisory-title {
+    display: flex;
+    align-items: center;
+    gap: calc(2.4mm * var(--type));
+    font-family: 'Hind Siliguri', sans-serif;
+    font-size: calc(7.4mm * var(--type));
+    font-weight: 700;
+    color: #1a7a38;
+    margin-bottom: calc(4mm * var(--type));
+    letter-spacing: 0.2mm;
+  }
+  .advisory-title svg {
+    flex: 0 0 auto;
+    width: 1em; height: 1em;
+    fill: none; stroke: #1a7a38; stroke-width: 1.9;
+    stroke-linecap: round; stroke-linejoin: round;
+  }
+
+  .adv-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: calc(2.6mm * var(--type)) calc(8mm * var(--type));
+  }
+
+  .advisory-item {
+    display: flex;
+    align-items: flex-start;
+    gap: calc(2.6mm * var(--type));
+  }
+
+  /* diamond bullet, drawn in CSS */
+  .adv-dot {
+    flex: 0 0 auto;
+    width: calc(2.4mm * var(--type));
+    height: calc(2.4mm * var(--type));
+    background: #2da44e;
+    transform: rotate(45deg);
+    margin-top: calc(3.4mm * var(--type));
+  }
+
+  .adv-text {
+    font-family: 'Tiro Bangla', serif;
+    font-size: calc(8mm * var(--type));
+    color: #1a1a1a;
+    line-height: 1.6;
+  }
+
+  .adv-full { grid-column: 1 / -1; }
+  .adv-full .adv-text { color: #c0392b; }
+  .adv-full svg {
+    flex: 0 0 auto;
+    width: 1em; height: 1em;
+    fill: none; stroke: #c0392b; stroke-width: 1.9;
+    stroke-linecap: round; stroke-linejoin: round;
+    margin-top: calc(2mm * var(--type));
+    font-size: calc(8mm * var(--type));
+  }
+
+  /* FOOTER — office name on the green frame band */
+  .frame-footer { padding: 6mm 3mm 3.4mm; text-align: center; }
+
+  .office-line {
+    font-family: 'Tiro Bangla', serif;
+    font-size: calc(13mm * var(--chrome));
+    color: #fff;
+    line-height: 1.35;
+  }
+
+  .credit {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 3.4mm;
+    padding-top: 2.4mm;
+    border-top: 0.4mm solid rgba(255,255,255,0.3);
+    font-family: 'Tiro Bangla', serif;
+    font-size: calc(5mm * var(--type));
+    color: #cdeed9;
+    line-height: 1;
+  }
+
+  /* ZOOM TOOLBAR — screen only */
+  .zoombar {
+    position: fixed; top: 12px; left: 12px; z-index: 99;
+    display: flex; align-items: center; gap: 6px;
+    background: #fff; border: 1px solid #b7b7b7; border-radius: 8px;
+    padding: 6px 8px; box-shadow: 0 2px 10px rgba(0,0,0,.18);
+    font: 13px/1 system-ui, sans-serif;
+  }
+  .zoombar button {
+    font: 13px/1 system-ui, sans-serif; padding: 6px 10px;
+    border: 1px solid #b7b7b7; background: #f6f6f6;
+    border-radius: 5px; cursor: pointer; color: #222;
+  }
+  .zoombar button:hover { background: #e9e9e9; }
+  .zoombar .zv { min-width: 46px; text-align: center; color: #444; }
+  .zoombar .sz { color: #777; margin-left: 4px; }
+
+  /* measuring helper for the auto-fit routine */
+  .measuring .outer-frame { height: auto; }
+  .measuring .inner { flex: 0 0 auto; }
+  .measuring .body-cols { flex: 0 0 auto; }
+
+  @page { size: 457.2mm 609.6mm; margin: 0; }
+
+  @media print {
+    html, body { height: auto; overflow: visible; background: #fff; }
+    .zoombar { display: none !important; }
+    .pane { position: static; inset: auto; overflow: visible; padding: 0; background: #fff; }
+    .scaler { transform: none !important; zoom: 1 !important; width: auto !important; height: auto !important; margin: 0; }
+    .outer-frame { box-shadow: none; }
+    * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+</style>
+</head>
+<body>
+
+<div class="zoombar">
+  <button id="zo" title="Zoom out">&minus;</button>
+  <span class="zv" id="zv">100%</span>
+  <button id="zi" title="Zoom in">+</button>
+  <button id="zf">Fit</button>
+  <button id="z1">100%</button>
+  <span class="sz">H-3 x W-2.25 ft</span>
+</div>
+
+<div class="pane" id="pane">
+<div class="scaler" id="scaler">
+<div class="outer-frame" id="frame">
+  <div class="inner">
+
+    <!-- TITLE + INTRO IN ONE BAR -->
+    <div class="title-bar">
+      <h1>রেজিস্ট্রেশনের জন্য দলিল দাখিলের পূর্বে<br>যা ভালোভাবে দেখতে হবে</h1>
+    </div>
+
+    <!-- TWO COLUMNS -->
+    <div class="body-cols">
+
+      <!-- LEFT: ক) দলিল যাচাই -->
+      <div class="col col-left">
+        <div class="section">
+          <div class="section-title">ক) দলিল যাচাই</div>
+          <div class="item"><span class="box"></span><span class="txt">দাতা ও গ্রহীতার সদ্যতোলা, স্পষ্ট, রঙিন পাসপোর্ট সাইজ ছবি (প্রতি ব্যক্তির জন্য ২ কপি) সংযুক্ত আছে কি না (ঝাপসা/পুরনো ছবি গ্রহণযোগ্য নয়)।</span></div>
+          <div class="item"><span class="box"></span><span class="txt">দলিলের প্রতি পৃষ্ঠায় দাতা/পক্ষগণের স্বাক্ষর বা টিপসই আছে কি না।</span></div>
+          <div class="item"><span class="box"></span><span class="txt">দলিলে সম্পাদনের তারিখ সঠিকভাবে লেখা আছে কি না।</span></div>
+          <div class="item"><span class="box"></span><span class="txt">দলিলের ধরন অনুযায়ী সঠিক পক্ষ সম্পাদন করেছেন কি না (যেমন বায়নাপত্রে উভয় পক্ষ; বণ্টননামা/বিনিময়ে সকল পক্ষ; পাওয়ার অব অ্যাটর্নি রদ/বাতিল দলিল উভয় পক্ষ দ্বারা সম্পাদিত হবে)।</span></div>
+          <div class="item"><span class="box"></span><span class="txt">দলিলে কোনো কাটাকাটি বা সংশোধন থাকলে তা সম্পাদনকারীর স্বাক্ষরে সত্যায়িত কি না।</span></div>
+          <div class="item"><span class="box"></span><span class="txt">সম্পত্তির শ্রেণী অনুযায়ী সরকার নির্ধারিত সর্বনিম্ন মৌজা রেটের সমান বা তদূর্ধ্বে দলিলে জমির মূল্য সঠিকভাবে লেখা হয়েছে কি না।</span></div>
+          <div class="item"><span class="box"></span><span class="txt">রেজিস্ট্রেশন ফি, স্ট্যাম্প ডিউটি, স্থানীয় সরকার কর, উৎস কর এবং প্রযোজ্য ক্ষেত্রে ভ্যাটসহ সকল করাদি সঠিক পরিমাণে হিসাব করা হয়েছে এবং <span class="lbl">এ-চালানের</span> মাধ্যমে (স্থানীয় সরকার কর <span class="lbl">পে-অর্ডারে</span>) পরিশোধপূর্বক মূল এ-চালান ও পে-অর্ডার দলিলের সাথে সংযুক্ত আছে কি না (A4 সাইজ পৃষ্ঠায় এক সেট ফটোকপিসহ)।</span></div>
+        </div>
+      </div><!-- end col-left -->
+
+      <!-- RIGHT: খ) এল.টি নোটিশ ও সংযুক্ত কাগজপত্র -->
+      <div class="col col-right">
+        <div class="section">
+          <div class="section-title">খ) এল.টি নোটিশ ও সংযুক্ত কাগজপত্র যাচাই (সকল সংযুক্তি অবশ্যই A4 সাইজ পৃষ্ঠায়)</div>
+          <div class="item"><span class="box"></span><span class="txt">প্রযোজ্য ক্ষেত্রে এল.টি নোটিশ (সম্পত্তি হস্তান্তর নোটিশ, এ.সি ল্যান্ড অফিসে পাঠানোর জন্য) নির্দিষ্ট ফরমেটে প্রস্তুত আছে কি না।</span></div>
+          <div class="item"><span class="box"></span><span class="txt">দাতা ও গ্রহীতা সকলের জাতীয় পরিচয়পত্রের A4 সাইজ পৃষ্ঠায় ফটোকপি সংযুক্ত আছে কি না এবং মূল কপি গ্রাহকের কাছে আছে কি না।</span></div>
+          <div class="item"><span class="box"></span><span class="txt">হাল সন পর্যন্ত ভূমি উন্নয়ন কর (খাজনা) পরিশোধিত এবং দাখিলা (ldtax.gov.bd) সংযুক্ত আছে কি না।</span></div>
+          <div class="item"><span class="box"></span><span class="txt">সর্বশেষ নামজারি/খারিজ (মিউটেশন) খতিয়ান ও ডি.সি.আর সংযুক্ত আছে কি না।</span></div>
+          <div class="item"><span class="box"></span><span class="txt">প্রযোজ্য খতিয়ান — সি.এস / এস.এ / আর.এস / বি.এস / বি.আর.এস — এর মূল কপি বা সার্টিফাইড কপি আছে কি না।</span></div>
+          <div class="item"><span class="box"></span><span class="txt">মালিকানার ধারাবাহিক বায়া দলিলসমূহ (প্রযোজ্য ক্ষেত্রে) সংযুক্ত কি না।</span></div>
+          <div class="item"><span class="box"></span><span class="txt">উত্তরাধিকারসূত্রে প্রাপ্ত সম্পত্তি হস্তান্তরের ক্ষেত্রে ওয়ারিশ সনদপত্র (অনধিক ৩ মাসের মধ্যে ইস্যুকৃত) সংযুক্ত আছে কি না।</span></div>
+          <div class="item"><span class="box"></span><span class="txt">প্রযোজ্য ক্ষেত্রে <span class="lbl">রিটার্ন দাখিলের প্রমাণ (PSR)</span> / E-TIN ও সর্বশেষ আয়কর রিটার্নের কপি সংযুক্ত আছে কি না।</span></div>
+        </div>
+      </div><!-- end col-right -->
+
+    </div><!-- end body-cols -->
+
+    <!-- FULL WIDTH: গ) -->
+    <div class="full-section">
+      <div class="section">
+        <div class="section-title">গ) দাতা/গ্রহীতা কোম্পানি বা প্রতিষ্ঠান হলে অতিরিক্ত কাগজপত্র (এল.টি নোটিশের সাথে সংযুক্ত করতে হবে)</div>
+        <div class="item"><span class="box"></span><span class="txt"><span class="lbl">নিবন্ধন সনদ ও হস্তান্তর সংক্রান্ত দলিলাদি</span> সংযুক্ত আছে কি না —<br>• কোম্পানি: RJSC সনদ (Certificate of Incorporation), হালনাগাদ Form-XII, MoA ও AoA<br>• ব্যবসা প্রতিষ্ঠান: ট্রেড লাইসেন্স ও BIN/VAT সনদ<br>• শিক্ষা/ধর্মীয় প্রতিষ্ঠান: সংশ্লিষ্ট মন্ত্রণালয়/অধিদপ্তর কর্তৃক সনদ<br>• সমবায় সমিতি: সমবায় অধিদপ্তর কর্তৃক সনদ ও জেলা সমবায় কার্যালয় প্রদত্ত NOC<br>• বোর্ড রেজোলিউশন: জমি হস্তান্তরের অনুমোদন সংক্রান্ত<br>• ক্ষমতাপ্রাপ্ত প্রতিনিধি (authorized signatory) কর্তৃক সম্পাদন ও তাঁর পরিচয়পত্র</span></div>
+      </div>
+    </div>
+
+    <!-- ADVISORY — full width -->
+    <div class="advisory">
+      <div class="advisory-title"><svg viewBox="0 0 24 24"><path d="M9 3h6v3H9z"/><path d="M15 4.5h3v16H6v-16h3"/><path d="M9 12h6M9 16h4"/></svg> গুরুত্বপূর্ণ পরামর্শ ও সতর্কতা</div>
+      <div class="adv-grid">
+        <div class="advisory-item"><span class="adv-dot"></span><div class="adv-text">ছবি অবশ্যই <strong>সদ্যতোলা ও স্পষ্ট</strong> হতে হবে — পুরনো বা ঝাপসা ছবি গ্রহণযোগ্য নয়।</div></div>
+        <div class="advisory-item"><span class="adv-dot"></span><div class="adv-text">দলিলে <strong>কাটাকাটি বা সংশোধন</strong> থাকলে সম্পাদনকারীর স্বাক্ষরে সত্যায়িত করুন।</div></div>
+        <div class="advisory-item"><span class="adv-dot"></span><div class="adv-text">কাগজপত্রের <strong>মূল কপি ও ফটোকপি</strong> উভয়ই সঙ্গে নিয়ে আসুন।</div></div>
+        <div class="advisory-item"><span class="adv-dot"></span><div class="adv-text">দলিল দাখিলের <strong>২-৩ দিন পূর্বে</strong> সব কাগজপত্র প্রস্তুত করুন।</div></div>
+        <div class="advisory-item"><span class="adv-dot"></span><div class="adv-text">দলিল রেজিস্ট্রেশনের আগে <strong>অভিজ্ঞ দলিল লেখক বা আইনজীবীর</strong> পরামর্শ নেওয়া বিচক্ষণতার কাজ।</div></div>
+        <div class="advisory-item"><span class="adv-dot"></span><div class="adv-text">সকল ফি ও করাদি <strong>এ-চালানে</strong> পরিশোধ করুন; কেবল <strong>স্থানীয় সরকার কর পে-অর্ডারে</strong>।</div></div>
+        <div class="advisory-item adv-full"><svg viewBox="0 0 24 24"><path d="M12 3.5 22 20H2z"/><path d="M12 10v4.6M12 17.4v.2"/></svg><div class="adv-text">অসম্পূর্ণ বা ত্রুটিপূর্ণ দলিল দাখিল করলে রেজিস্ট্রেশন স্থগিত বা অগ্রাহ্য হতে পারে এবং অতিরিক্ত সময় ব্যয় হতে পারে।</div></div>
+      </div>
+    </div>
+
+  </div><!-- end inner -->
+
+  <div class="frame-footer">
+    <div class="office-line">সাব-রেজিস্ট্রারের কার্যালয়, সিরাজদিখান, মুন্সীগঞ্জ</div>
+    <div class="credit"><span>© This Banner is designed by Md. Maksu Miah, Sub-Registrar</span><span>H-3 x W-2.25 ft</span></div>
+  </div>
+</div>
+</div>
+</div>
+
+<script>
+(function () {
+  var scaler = document.getElementById('scaler');
+  var frame  = document.getElementById('frame');
+  var pane   = document.getElementById('pane');
+  var MM = 96 / 25.4;
+
+  function autoFitType() {
+    var target = 609.6 * MM;
+    var t = 1;
+    document.body.classList.add('measuring');
+    scaler.style.transform = 'none';
+    scaler.style.zoom = 1;
+    for (var i = 0; i < 14; i++) {
+      document.documentElement.style.setProperty('--type', t.toFixed(4));
+      var natural = frame.offsetHeight;
+      var ratio = (target * 0.995) / natural;
+      if (Math.abs(1 - ratio) < 0.004) break;
+      t = Math.min(1.6, Math.max(0.4, t * (1 + (ratio - 1) * 0.6)));
+    }
+    while (frame.offsetHeight > target && t > 0.35) {
+      t -= 0.01;
+      document.documentElement.style.setProperty('--type', t.toFixed(4));
+    }
+    document.body.classList.remove('measuring');
+    console.log('--type settled at', getComputedStyle(document.documentElement).getPropertyValue('--type'));
+  }
+
+  var USE_ZOOM = window.CSS && CSS.supports && CSS.supports('zoom', '0.5');
+  var k = 1;
+
+  function apply() {
+    if (USE_ZOOM) {
+      scaler.style.transform = 'none';
+      scaler.style.width = '';
+      scaler.style.height = '';
+      scaler.style.zoom = k;
+    } else {
+      var w = frame.offsetWidth, h = frame.offsetHeight;
+      scaler.style.zoom = 1;
+      scaler.style.transform = 'scale(' + k + ')';
+      scaler.style.width  = (w * k) + 'px';
+      scaler.style.height = (h * k) + 'px';
+    }
+    document.getElementById('zv').textContent = Math.round(k * 100) + '%';
+  }
+
+  function fitPreview() {
+    scaler.style.zoom = 1;
+    scaler.style.transform = 'none';
+    scaler.style.width = '';
+    scaler.style.height = '';
+    k = Math.min((pane.clientWidth - 44) / frame.offsetWidth,
+                 (pane.clientHeight - 44) / frame.offsetHeight, 1);
+    apply();
+  }
+
+  document.getElementById('zi').onclick = function () { k = Math.min(2, k * 1.25); apply(); };
+  document.getElementById('zo').onclick = function () { k = Math.max(0.08, k / 1.25); apply(); };
+  document.getElementById('zf').onclick = fitPreview;
+  document.getElementById('z1').onclick = function () { k = 1; apply(); };
+
+  var EXPORT = /(\?|&)export/.test(location.search);
+
+  function exportMode() {
+    document.querySelector('.zoombar').style.display = 'none';
+    pane.style.padding = '0';
+    pane.style.overflow = 'visible';
+    pane.style.position = 'static';
+    pane.style.background = '#fff';
+    document.body.style.overflow = 'visible';
+    k = 1;
+    scaler.style.zoom = 1;
+    scaler.style.transform = 'none';
+    scaler.style.width = 'auto';
+    scaler.style.height = 'auto';
+    scaler.style.margin = '0';
+  }
+
+  function run() { autoFitType(); if (EXPORT) { exportMode(); } else { fitPreview(); } }
+  window.addEventListener('resize', function () { if (!EXPORT) fitPreview(); });
+  if (document.fonts && document.fonts.ready) { document.fonts.ready.then(run); }
+  window.addEventListener('load', run);
+  run();
+})();
+</script>
+</body>
+</html>

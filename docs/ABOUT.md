@@ -10,7 +10,7 @@ national and lives once, in `templates/`.
 python3 build.py --check          # validate configs, build nothing
 python3 build.py                  # build every office  → out/<folder>/
 python3 build.py gazipur-sadar    # build one
-bash make.sh gazipur-sadar        # build + render to PDF/PNG/JPG
+bash make.sh gazipur-sadar        # build + render + print kit → out/<folder>/kit/
 ```
 
 **On Windows use `python`, not `python3`.** Windows has no `python3`
@@ -35,11 +35,11 @@ Copy an existing JSON, change the values, run `--check`, then build.
   "grs":        { "anik": "…", "appeal": "…" },
   "section126": { "plot": "৩%", "residential": "৩০০/-", "commercial": "১,০০০/-" },
   "sroRef":     "এস.আর.ও নং ২১০, তারিখ ০৮ জুন ২০২৬",
-  "compact":    { "s125": "1", "kroy": "1", "board": "1" },
-  "deedRows":   9,
-  "showKroy":   true,
-  "section125": [ { "label": "ক)", "lead": "…", "items": ["…", "…"] } ],
-  "kroy":       [ "…", "…" ]
+  "compact":    { "s125": "1", "board": "1" },
+  "deedRows":   8,
+  "showClasses": true,
+  "showAdvice": false,
+  "section125": [ { "label": "ক)", "lead": "…", "items": ["…", "…"] } ]
 }
 ```
 
@@ -47,15 +47,16 @@ Copy an existing JSON, change the values, run `--check`, then build.
 
 | Key | Why it varies |
 |---|---|
+| `folder` | output folder name — `out/<folder>/` and the release tag `board-<folder>` |
 | `identity` | office name, upazila, district, bank branch, websites, publication date |
 | `grs` | the designated অনিক and appeal officer |
 | `section126` | ৫% / ১,৩০০ / ৩,৫০০ in the listed districts, ৩% / ৩০০ / ১,০০০ elsewhere |
 | `section125` | set by district SRO — thana names, শ্রেণি bands, per-decimal amounts |
 | `sroRef` | the ধারা ১২৫ notification reference printed under the rates |
-| `showKroy` | `true`/`false` — show or hide the জমি ক্রয়ের পূর্বে সতর্কতা card entirely |
-| `kroy` | জমি ক্রয়ের পূর্বে সতর্কতা — trim or extend to fill the column |
-| `deedRows` | how many of the fee chart's optional deed rows to show, `0`–`9`. Rows ১–৮ and the নকল row always appear. |
-| `compact` | `s125` and `kroy` scale their own blocks; `board` scales every font on the board (`0.7`–`1.3`). `1` = as drawn, above is looser, below tighter. Most districts have a much shorter ১২৫ text than Gazipur's, which leaves a gap — fill it by raising `s125`, or by showing more `deedRows`. |
+| `showClasses` | `true`/`false` — show or hide the ভূমির শ্রেণি (ক–চ) table |
+| `showAdvice` | `true`/`false` — show or hide the গুরুত্বপূর্ণ পরামর্শ card, which fills the space the শ্রেণি table leaves when `showClasses` is `false`. The two are meant to be mutually exclusive. |
+| `deedRows` | how many of the fee chart's optional deed rows to show, `0`–`8`. The first eight deeds and the নকল row always appear. |
+| `compact` | `s125` scales the উৎসে কর cell of the fee chart; `board` scales every font on the board (`0.7`–`1.3`). `1` = as drawn, above is looser, below tighter. Most districts have a much shorter ১২৫ text than Gazipur's, which leaves a gap — fill it by raising `s125`, or by showing more `deedRows`. |
 
 ### What is NOT configurable — on purpose
 
@@ -78,39 +79,38 @@ every push, so a bad rate fails the PR instead of reaching a printer.
 
 ```bash
 pdfinfo out/<office>/pdf/<file>.pdf     # page size must match the filename
-magick identify -format "%f %wx%h %[channels] alpha=%A\n" out/<office>/png/*.png
+magick identify -ping -format "%f %wx%h %[channels] alpha=%A\n" out/<office>/png/*.png out/<office>/jpg/*.jpg
 ```
 
-The clear-vinyl sticker and the acrylic plate must read `srgba` with a
-live alpha — transparency is the deliverable there. Everything else
-should read `srgb`. `render.sh` already handles the distinction; the
+Print images are 300-dpi JPGs, except the clear-vinyl sticker and the
+acrylic plate, which are PNGs and must read `srgba` with a live alpha —
+transparency is the deliverable there. The JPGs should read `srgb`. `render.sh` already handles the distinction; the
 check is to catch a pipeline edit that breaks it.
 
-## Browser app
+## Download site
 
-`docs/` is a GitHub Pages app: a form with live preview and compactness
-sliders, producing the same HTML as `build.py` and downloading it as a
-ZIP with its `office.json`. No account or token needed. See
-`docs/README.md`.
+Pages serves the repo root: `/` is the public download directory
+(`index.html`, reading `releases.json`). Publish offices with `bash release.sh <office> …`, which uploads
+each print kit as a GitHub Release, then commit `releases.json`. The full
+workflow is in the root `README.md`.
 
-## Two board templates
+## The board
 
-`citizens-charter-sub-registrar-office.html` is the five-column board;
-`citizens-charter-v2.html` is the charter-table version. They share the
-office JSON but use different markers, and `build.py` fills whichever
-markers a template actually has — so a template that lacks one is simply
-skipped, and adding a template needs no change here.
+`templates/citizens-charter-v2.html` is the board that gets built.
+`templates/reference/citizens-charter-v1.html` is the earlier five-column
+board, kept for reference and never built.
 
 v2 markers: `S125P` and `S126P` (the tax rates as prose, generated from
-the same `section125` / `section126` data), `SRO`, `DROFF`, `ANIK`,
-`APPEAL`, `DEEDS`.
+the same `section125` / `section126` data), `SRO`, `DROFF`, `SRWEB`,
+`DRWEB`, `ANIK`, `APPEAL`, `DEEDS`.
 
 ## Layout
 
 ```
 templates/            masters — shared, never edited per office
-docs/                 GitHub Pages app (index.html + a copy of templates/)
+index.html            Pages: download directory
+releases.json         download site data (files: GitHub Releases)
 offices/<slug>.json   one file per office
 out/<folder>/         generated — never edit, always overwritten
-out/<folder>/pdf|png|fb
+out/<folder>/pdf|jpg|png|kit
 ```

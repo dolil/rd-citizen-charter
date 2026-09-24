@@ -1,5 +1,13 @@
+# Generated boards — always rebuildable from offices/ + templates/
 out/
+
+# Stray renders anywhere else in the tree
 *.pdf
 *.png
+*.jpg
+
+# ...except the template's own images. Published boards live in GitHub
+# Releases (publish.py), never in git.
 !templates/*.png
+
 mnt/

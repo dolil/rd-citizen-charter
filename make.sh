@@ -1,8 +1,16 @@
 #!/usr/bin/env bash
-# make.sh — build and render in one go
+# make.sh — build, render and bundle the print kit in one go
 #
-#   bash make.sh                 # every office
-#   bash make.sh gazipur-sadar   # one office
+#   bash make.sh                   # every office
+#   bash make.sh gazipur-sadar     # one office
+#   bash make.sh --check           # validate configs only
+#   DPI=150 bash make.sh …         # lighter print images (default 300)
+#
+# Ends with, per office:
+#   out/<folder>/kit/<folder>-citizens-charter.pdf     the 8×6 ft board, vector
+#   out/<folder>/kit/<folder>-citizens-charter.jpg     the same, print image
+#   out/<folder>/kit/<folder>-other-boards-pdf.zip     every other board, PDF
+#   out/<folder>/kit/<folder>-other-boards-print.zip   every other board, print image
 set -euo pipefail
 
 # Windows installs Python as "python" / "py"; "python3" is a Microsoft
@@ -17,10 +25,28 @@ else
   exit 1
 fi
 
+case " $* " in *" --check "*) exec "$PY" build.py --check ;; esac
+
 "$PY" build.py "$@"
-for d in out/*/; do
-  [ -d "$d" ] || continue
-  case "${1:-}" in "" ) ;; *) [[ "$d" == *"$1"* ]] || continue ;; esac
-  echo; echo "──────── rendering $d"
-  bash render.sh "$d"
+
+# a config's slug and its output folder can differ — ask the configs, and
+# match names exactly (a substring match would take brahmanbaria-nabinagar
+# along with nabinagar)
+FOLDERS=$("$PY" - "$@" <<'EOF'
+import json, os, sys
+want = [a for a in sys.argv[1:] if not a.startswith('-')]
+for name in sorted(os.listdir('offices')):
+    if not name.endswith('.json'):
+        continue
+    cfg = json.load(open(os.path.join('offices', name), encoding='utf-8'))
+    if not want or name[:-5] in want or cfg['folder'] in want:
+        print(cfg['folder'])
+EOF
+)
+
+for folder in $FOLDERS; do
+  echo; echo "──────── rendering out/$folder"
+  bash render.sh "out/$folder"
 done
+
+"$PY" publish.py --kit "$@"

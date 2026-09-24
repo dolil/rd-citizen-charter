@@ -1,0 +1,83 @@
+{
+  "generated": "2026-09-24",
+  "board": "নাগরিক সনদ ও সেবা তথ্য বোর্ড",
+  "size": "৮ ফুট × ৬ ফুট (৯৬ × ৭২ ইঞ্চি)",
+  "count": 2,
+  "districts": [
+    {
+      "district": "ব্রাহ্মণবাড়িয়া",
+      "offices": [
+        {
+          "folder": "brahmanbaria-sadar",
+          "office": "সদর সাব-রেজিস্ট্রারের কার্যালয়, সদর, ব্রাহ্মণবাড়িয়া",
+          "upazila": "সদর",
+          "district": "ব্রাহ্মণবাড়িয়া",
+          "web": "sr.sadar.brahmanbaria.gov.bd",
+          "published": "প্রকাশকাল: জুলাই, ২০২৬",
+          "charter": {
+            "pdf": {
+              "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-brahmanbaria-sadar/brahmanbaria-sadar-citizens-charter.pdf",
+              "bytes": 827567,
+              "size": "808 KB"
+            },
+            "img": {
+              "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-brahmanbaria-sadar/brahmanbaria-sadar-citizens-charter.jpg",
+              "bytes": 39784740,
+              "size": "37.9 MB",
+              "px": "28800 × 21600",
+              "dpi": 300
+            }
+          },
+          "others": {
+            "count": 10,
+            "pdf": {
+              "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-brahmanbaria-sadar/brahmanbaria-sadar-other-boards-pdf.zip",
+              "bytes": 1839017,
+              "size": "1.8 MB"
+            },
+            "img": {
+              "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-brahmanbaria-sadar/brahmanbaria-sadar-other-boards-print.zip",
+              "bytes": 50027398,
+              "size": "47.7 MB"
+            }
+          }
+        },
+        {
+          "folder": "brahmanbaria-nabinagar",
+          "office": "সাব-রেজিস্ট্রারের কার্যালয়, নবীনগর, ব্রাহ্মণবাড়িয়া",
+          "upazila": "নবীনগর",
+          "district": "ব্রাহ্মণবাড়িয়া",
+          "web": "sr.nabinagar.brahmanbaria.gov.bd",
+          "published": "প্রকাশকাল: জুলাই, ২০২৬",
+          "charter": {
+            "pdf": {
+              "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-brahmanbaria-nabinagar/brahmanbaria-nabinagar-citizens-charter.pdf",
+              "bytes": 872787,
+              "size": "852 KB"
+            },
+            "img": {
+              "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-brahmanbaria-nabinagar/brahmanbaria-nabinagar-citizens-charter.jpg",
+              "bytes": 42945123,
+              "size": "41.0 MB",
+              "px": "28800 × 21600",
+              "dpi": 300
+            }
+          },
+          "others": {
+            "count": 10,
+            "pdf": {
+              "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-brahmanbaria-nabinagar/brahmanbaria-nabinagar-other-boards-pdf.zip",
+              "bytes": 1839862,
+              "size": "1.8 MB"
+            },
+            "img": {
+              "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-brahmanbaria-nabinagar/brahmanbaria-nabinagar-other-boards-print.zip",
+              "bytes": 50050639,
+              "size": "47.7 MB"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

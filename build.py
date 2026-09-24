@@ -158,6 +158,39 @@ def drop_card(html, name):
     return pat.sub('', html, count=1)
 
 
+def gen_qr(cfg):
+    """A QR of the office website, drawn as an SVG path so it stays sharp at
+       any print size and needs no image file alongside the HTML. Falls back
+       to leaving the template's QR in place if the qrcode module is absent."""
+    try:
+        import qrcode
+    except ImportError:
+        return None
+    url = cfg['identity']['srWeb'].strip()
+    if not url.startswith('http'):
+        url = 'https://' + url
+    q = qrcode.QRCode(error_correction=qrcode.constants.ERROR_CORRECT_M,
+                      box_size=1, border=0)
+    q.add_data(url)
+    q.make(fit=True)
+    m = q.get_matrix()
+    n = len(m)
+    parts = []
+    for y, row in enumerate(m):
+        x = 0
+        while x < n:
+            if row[x]:
+                x0 = x
+                while x < n and row[x]:
+                    x += 1
+                parts.append('M%d %dh%dv1h-%dz' % (x0, y, x - x0, x - x0))
+            else:
+                x += 1
+    return ('<svg class="qrimg" viewBox="0 0 %d %d" xmlns="http://www.w3.org/2000/svg" '
+            'shape-rendering="crispEdges"><rect width="%d" height="%d" fill="#fff"/>'
+            '<path fill="#000" d="%s"/></svg>' % (n, n, n, n, ''.join(parts)))
+
+
 def gen_s125_prose(cfg):
     """v2 states ধারা ১২৫ as prose inside a fee cell rather than as a table.
        A branch with one item reads as a sentence; a branch with several
@@ -265,6 +298,8 @@ def build_office(path, check_only=False):
         html, hits = swap_identity(html, cfg)
         if not cfg.get('showClasses', True):
             html = drop_card(html, 'CLASSCARD')
+        if not cfg.get('showAdvice', True):
+            html = drop_card(html, 'ADVICECARD')
 
         marks = []
         for fn, key, val in ((put_block,  'S125',   s125),
@@ -280,6 +315,14 @@ def build_office(path, check_only=False):
             html, done = fn(html, key, val)
             if done:
                 marks.append(key)
+
+        qr = gen_qr(cfg)
+        if qr:
+            html, done = put_inline(html, 'QR', qr)
+            if done:
+                marks.append('QR')
+        elif '<!--@QR-->' in html:
+            marks.append('QR NOT REGENERATED — pip install qrcode')
 
         c = cfg['compact']
         html = html.replace('--s125-compact: 1;', '--s125-compact: %s;' % c['s125'])
@@ -297,6 +340,8 @@ def build_office(path, check_only=False):
     for n, hits, marks in built:
         if not cfg.get('showClasses', True):
             marks.append('CLASSES off')
+        if not cfg.get('showAdvice', True):
+            marks.append('ADVICE off')
         extra = ('  [%s]' % ', '.join(marks)) if marks else ''
         print('      %-52s %3d swaps%s' % (n, hits, extra))
     return True

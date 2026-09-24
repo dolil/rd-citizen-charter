@@ -21,11 +21,12 @@
   },
   "sroRef": "এস.আর.ও নং ২১০, তারিখ ০৮ জুন ২০২৬",
   "compact": {
-    "s125": "0.99",
+    "s125": "1.3",
     "board": "1"
   },
-  "deedRows": 6,
+  "deedRows": 8,
   "showClasses": true,
+  "showAdvice": false,
   "_note": "s125.rows — one entry per ক)/খ) branch. 'items' are the ১।/২। lines.",
   "section125": [
     {

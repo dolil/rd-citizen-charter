@@ -2,9 +2,9 @@ name: build boards
 
 on:
   push:
-    paths: ['offices/**', 'templates/**', 'build.py']
+    paths: ['offices/**', 'templates/*.html', 'build.py']
   pull_request:
-    paths: ['offices/**', 'templates/**', 'build.py']
+    paths: ['offices/**', 'templates/*.html', 'build.py']
   workflow_dispatch:
 
 jobs:
@@ -23,10 +23,27 @@ jobs:
       - name: build HTML
         run: python3 build.py
 
+      # an unfilled marker means a board carrying the reference office's
+      # data under another office's name — worse than a build failure
+      - name: check no marker was left unfilled
+        run: |
+          fail=0
+          for f in out/*/*.html; do
+            if grep -q 'সদর, গাজীপুর\|dr\.gazipur\|sr\.sadar\.gazipur' "$f"; then
+              case "$f" in
+                */gazipur-sadar/*) ;;
+                *) echo "::error file=$f::reference-office data left in $f"; fail=1 ;;
+              esac
+            fi
+          done
+          exit $fail
+
       - name: install renderers
         run: |
           sudo apt-get update -qq
-          sudo apt-get install -y -qq poppler-utils imagemagick fonts-beng chromium-browser
+          sudo apt-get install -y -qq poppler-utils fonts-beng
+      - uses: browser-actions/setup-chrome@v1
+        id: chrome
 
       - name: render PDFs
         run: |
@@ -34,14 +51,25 @@ jobs:
             mkdir -p "$d/pdf"
             for f in "$d"*.html; do
               b=$(basename "$f" .html)
-              chromium-browser --headless=new --disable-gpu --no-sandbox \
+              "${{ steps.chrome.outputs.chrome-path }}" --headless=new --disable-gpu --no-sandbox \
                 --no-pdf-header-footer --virtual-time-budget=20000 \
                 --print-to-pdf="$d/pdf/$b.pdf" "$f"
             done
           done
 
-      - name: check page sizes
-        run: for f in out/*/pdf/*.pdf; do echo "$f"; pdfinfo "$f" | grep '^Page size'; done
+      # the charter must come out 96 × 72 in — 6912 × 5184 pts
+      - name: check page size
+        run: |
+          fail=0
+          for f in out/*/pdf/citizens-charter-v2.pdf; do
+            size=$(pdfinfo "$f" | sed -n 's/^Page size: *//p')
+            echo "$f — $size"
+            case "$size" in
+              6912*x*5184*) ;;
+              *) echo "::error file=$f::expected 6912 x 5184 pts, got $size"; fail=1 ;;
+            esac
+          done
+          exit $fail
 
       - uses: actions/upload-artifact@v4
         with:

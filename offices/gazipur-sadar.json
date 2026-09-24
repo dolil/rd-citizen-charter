@@ -26,6 +26,7 @@
   },
   "deedRows": 8,
   "showClasses": true,
+  "showAdvice": false,
   "_note": "s125.rows — one entry per ক)/খ) branch. 'items' are the ১।/২। lines.",
   "section125": [
     {

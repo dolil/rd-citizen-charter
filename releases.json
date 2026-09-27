@@ -1,8 +1,8 @@
 {
-  "generated": "2026-09-24",
+  "generated": "2026-09-27",
   "board": "নাগরিক সনদ ও সেবা তথ্য বোর্ড",
   "size": "৮ ফুট × ৬ ফুট (৯৬ × ৭২ ইঞ্চি)",
-  "count": 2,
+  "count": 6,
   "districts": [
     {
       "district": "ব্রাহ্মণবাড়িয়া",
@@ -12,34 +12,18 @@
           "office": "সদর সাব-রেজিস্ট্রারের কার্যালয়, সদর, ব্রাহ্মণবাড়িয়া",
           "upazila": "সদর",
           "district": "ব্রাহ্মণবাড়িয়া",
-          "web": "sr.sadar.brahmanbaria.gov.bd",
           "published": "প্রকাশকাল: জুলাই, ২০২৬",
-          "charter": {
-            "pdf": {
-              "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-brahmanbaria-sadar/brahmanbaria-sadar-citizens-charter.pdf",
-              "bytes": 827567,
-              "size": "808 KB"
-            },
-            "img": {
-              "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-brahmanbaria-sadar/brahmanbaria-sadar-citizens-charter.jpg",
-              "bytes": 39784740,
-              "size": "37.9 MB",
-              "px": "28800 × 21600",
-              "dpi": 300
-            }
+          "count": 11,
+          "dpi": 150,
+          "pdf": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-brahmanbaria-sadar/brahmanbaria-sadar-pdf.zip",
+            "bytes": 2568572,
+            "size": "2.4 MB"
           },
-          "others": {
-            "count": 10,
-            "pdf": {
-              "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-brahmanbaria-sadar/brahmanbaria-sadar-other-boards-pdf.zip",
-              "bytes": 1839017,
-              "size": "1.8 MB"
-            },
-            "img": {
-              "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-brahmanbaria-sadar/brahmanbaria-sadar-other-boards-print.zip",
-              "bytes": 50027398,
-              "size": "47.7 MB"
-            }
+          "img": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-brahmanbaria-sadar/brahmanbaria-sadar-images.zip",
+            "bytes": 37300619,
+            "size": "35.6 MB"
           }
         },
         {
@@ -47,34 +31,99 @@
           "office": "সাব-রেজিস্ট্রারের কার্যালয়, নবীনগর, ব্রাহ্মণবাড়িয়া",
           "upazila": "নবীনগর",
           "district": "ব্রাহ্মণবাড়িয়া",
-          "web": "sr.nabinagar.brahmanbaria.gov.bd",
           "published": "প্রকাশকাল: জুলাই, ২০২৬",
-          "charter": {
-            "pdf": {
-              "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-brahmanbaria-nabinagar/brahmanbaria-nabinagar-citizens-charter.pdf",
-              "bytes": 872787,
-              "size": "852 KB"
-            },
-            "img": {
-              "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-brahmanbaria-nabinagar/brahmanbaria-nabinagar-citizens-charter.jpg",
-              "bytes": 42945123,
-              "size": "41.0 MB",
-              "px": "28800 × 21600",
-              "dpi": 300
-            }
+          "count": 11,
+          "dpi": 150,
+          "pdf": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-brahmanbaria-nabinagar/brahmanbaria-nabinagar-pdf.zip",
+            "bytes": 2581639,
+            "size": "2.5 MB"
           },
-          "others": {
-            "count": 10,
-            "pdf": {
-              "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-brahmanbaria-nabinagar/brahmanbaria-nabinagar-other-boards-pdf.zip",
-              "bytes": 1839862,
-              "size": "1.8 MB"
-            },
-            "img": {
-              "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-brahmanbaria-nabinagar/brahmanbaria-nabinagar-other-boards-print.zip",
-              "bytes": 50050639,
-              "size": "47.7 MB"
-            }
+          "img": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-brahmanbaria-nabinagar/brahmanbaria-nabinagar-images.zip",
+            "bytes": 37486634,
+            "size": "35.8 MB"
+          }
+        }
+      ]
+    },
+    {
+      "district": "মাগুরা",
+      "offices": [
+        {
+          "folder": "magura-sadar",
+          "office": "সদর সাব-রেজিস্ট্রারের কার্যালয়, সদর, মাগুরা",
+          "upazila": "সদর",
+          "district": "মাগুরা",
+          "published": "প্রকাশকাল: সেপ্টেম্বর, ২০২৬",
+          "count": 11,
+          "dpi": 150,
+          "pdf": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-magura-sadar/magura-sadar-pdf.zip",
+            "bytes": 2560385,
+            "size": "2.4 MB"
+          },
+          "img": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-magura-sadar/magura-sadar-images.zip",
+            "bytes": 37145893,
+            "size": "35.4 MB"
+          }
+        },
+        {
+          "folder": "magura-mohammadpur",
+          "office": "সাব-রেজিস্ট্রারের কার্যালয়, মহম্মদপুর, মাগুরা",
+          "upazila": "মহম্মদপুর",
+          "district": "মাগুরা",
+          "published": "প্রকাশকাল: সেপ্টেম্বর, ২০২৬",
+          "count": 11,
+          "dpi": 150,
+          "pdf": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-magura-mohammadpur/magura-mohammadpur-pdf.zip",
+            "bytes": 2568584,
+            "size": "2.4 MB"
+          },
+          "img": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-magura-mohammadpur/magura-mohammadpur-images.zip",
+            "bytes": 37521183,
+            "size": "35.8 MB"
+          }
+        },
+        {
+          "folder": "magura-shalikha",
+          "office": "সাব-রেজিস্ট্রারের কার্যালয়, শালিখা, মাগুরা",
+          "upazila": "শালিখা",
+          "district": "মাগুরা",
+          "published": "প্রকাশকাল: সেপ্টেম্বর, ২০২৬",
+          "count": 11,
+          "dpi": 150,
+          "pdf": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-magura-shalikha/magura-shalikha-pdf.zip",
+            "bytes": 2566331,
+            "size": "2.4 MB"
+          },
+          "img": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-magura-shalikha/magura-shalikha-images.zip",
+            "bytes": 37458476,
+            "size": "35.7 MB"
+          }
+        },
+        {
+          "folder": "magura-sreepur",
+          "office": "সাব-রেজিস্ট্রারের কার্যালয়, শ্রীপুর, মাগুরা",
+          "upazila": "শ্রীপুর",
+          "district": "মাগুরা",
+          "published": "প্রকাশকাল: সেপ্টেম্বর, ২০২৬",
+          "count": 11,
+          "dpi": 150,
+          "pdf": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-magura-sreepur/magura-sreepur-pdf.zip",
+            "bytes": 2570375,
+            "size": "2.5 MB"
+          },
+          "img": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-magura-sreepur/magura-sreepur-images.zip",
+            "bytes": 37456003,
+            "size": "35.7 MB"
           }
         }
       ]

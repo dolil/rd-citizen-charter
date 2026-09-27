@@ -84,6 +84,13 @@ def validate(cfg, name):
                 bad.append('section125[%d].items: needs at least one line' % i)
             elif len(r['items']) > 9:
                 bad.append('section125[%d].items: more than 9 (Bengali numerals run out)' % i)
+            else:
+                for j, it in enumerate(r['items']):
+                    if isinstance(it, dict):
+                        if not str(it.get('text', '')).strip():
+                            bad.append('section125[%d].items[%d].text: empty' % (i, j))
+                    elif not isinstance(it, str) or not it.strip():
+                        bad.append('section125[%d].items[%d]: must be text or {text, ref}' % (i, j))
 
     if not str(cfg.get('sroRef', '')).strip():
         bad.append('sroRef: empty (the ধারা ১২৫ notification reference)')
@@ -108,6 +115,15 @@ def validate(cfg, name):
 
 
 # ───────────────────────────── generators ─────────────────────────────
+def item_html(item):
+    """A ১২৫ item is a plain string, or {"text": ..., "ref": ...} where ref
+       points to the SRO (বিধি / সারণী / ক্রমিক) so an officer can cross-check."""
+    if isinstance(item, dict):
+        t, ref = item.get('text', ''), str(item.get('ref', '')).strip()
+        return t + (' <span class="tiny">[%s]</span>' % ref if ref else '')
+    return item
+
+
 def gen_s125(cfg):
     out = ['<table class="inner">']
     for row in cfg['section125']:
@@ -117,7 +133,7 @@ def gen_s125(cfg):
         out.append('                    <table class="inner2">')
         for n, item in enumerate(row['items'], 1):
             out.append('                      <tr><td class="k2">%s।</td><td>%s</td></tr>'
-                       % (BN[n], item))
+                       % (BN[n], item_html(item)))
         out.append('                    </table>')
         out.append('                  </td>')
         out.append('                </tr>')
@@ -202,19 +218,28 @@ def gen_s125_prose(cfg):
         lead = row['lead'].strip().rstrip(':').rstrip('—').strip()
         items = row['items']
         if len(items) == 1:
-            out.append('%s — %s<br>' % (lead, items[0]))
+            out.append('%s — %s<br>' % (lead, item_html(items[0])))
         else:
             out.append('%s:<br>' % lead)
             for k, it in enumerate(items, 1):
-                out.append('%s) %s<br>' % (BN[k], it))
+                out.append('%s) %s<br>' % (BN[k], item_html(it)))
     return ''.join(out)
 
 
 def gen_s126_prose(cfg):
+    """plotRef / buildingRef point to বিধি ৭(১) and বিধি ৭(২) of the উৎসে কর
+       বিধিমালা; a single 'ref' is still accepted and printed at the end."""
     s = cfg['section126']
-    return ('<b>উৎসে কর [ধারা ১২৬]</b> — বাণিজ্যিক ভিত্তিতে প্লট বা ফ্ল্যাট বিক্রয়ের ক্ষেত্রে অতিরিক্ত — '
-            'প্লট/জমিতে %s; বিল্ডিং/ফ্ল্যাটে প্রতি বর্গমিটারে আবাসিক %s ও বাণিজ্যিক %s।<br>'
-            % (s['plot'], s['residential'], s['commercial']))
+    def tag(k):
+        v = str(s.get(k, '')).strip()
+        return ' <span class="tiny">[%s]</span>' % v if v else ''
+    return ('<b>উৎসে কর [ধারা ১২৬]</b> — বাণিজ্যিক ভিত্তিতে প্লট বা স্থাপনা বিক্রয়ের ক্ষেত্রে অতিরিক্ত — '
+            'প্লট/জমিতে %s%s; স্থাপনায় প্রতি বর্গমিটারে আবাসিক %s ও বাণিজ্যিক %s%s।%s<br>'
+            % (s['plot'], tag('plotRef'), s['residential'], s['commercial'],
+               tag('buildingRef'), tag('ref'))
+            + ('<span class="tiny"><b>বি.দ্র.</b> বিক্রেতা ডেভেলপার হইলে স্থাপনার বর্গমিটার হারের সহিত '
+               'সংশ্লিষ্ট ভূমিমূল্যের উপরও %s প্রযোজ্য। তখন ধারা ১২৫ এর কর কেবল ভূমির উপর, '
+               'স্থাপনার উপর নহে। [বিধি ৭(৫)]</span><br>' % s['plot']))
 
 
 def gen_126(cfg):
@@ -347,12 +372,33 @@ def build_office(path, check_only=False):
     return True
 
 
+def check_templates():
+    """A built board saved over the master loses the reference office's name,
+       so every office built from it would silently keep that other office's
+       title. Refuse to build until the master is restored."""
+    bad = []
+    for name in sorted(os.listdir(TEMPLATES)):
+        if not name.startswith('citizens-charter') or not name.endswith('.html'):
+            continue
+        html = open(os.path.join(TEMPLATES, name), encoding='utf-8').read()
+        if MASTER['office'] in html or MASTER['office_alt'] in html:
+            continue
+        m = re.search(r'<h1>([^<]+?)(?:\s+—|</h1>)', html)
+        bad.append('  %s names "%s", not the reference office "%s".'
+                   % (name, m.group(1).strip() if m else '?', MASTER['office']))
+    if bad:
+        sys.exit('\n✗ templates/ holds a built board, not the master:\n' + '\n'.join(bad) +
+                 '\n  Replace it with the master template (git checkout templates/ '
+                 'or the templates/ copy you were sent), then build again.\n')
+
+
 def main():
     args = [a for a in sys.argv[1:] if not a.startswith('-')]
     check_only = '--check' in sys.argv
 
     if not os.path.isdir(TEMPLATES):
         sys.exit('No templates/ folder — put the master HTML files there.')
+    check_templates()
     configs = sorted(f for f in os.listdir(OFFICES) if f.endswith('.json'))
     if args:
         configs = [f for f in configs if os.path.splitext(f)[0] in args]

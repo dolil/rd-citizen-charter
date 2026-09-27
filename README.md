@@ -30,14 +30,13 @@ Set `CHROME=` if Chrome is somewhere unusual.
 
 ## What gets printed
 
-`make.sh` renders every board and bundles each office's **print kit**:
+`make.sh` renders every board and bundles each office's **print kit** —
+two zips, every board (the charter included) in both:
 
 ```
 out/<folder>/kit/
-  <folder>-citizens-charter.pdf        the 8×6 ft board, vector — the file to print
-  <folder>-citizens-charter.jpg        the same board, 300 dpi (~40 MB)
-  <folder>-other-boards-pdf.zip        every other board, PDF
-  <folder>-other-boards-print.zip      every other board, 300-dpi print image
+  <folder>-pdf.zip       every board, vector PDF — the files to print (~2 MB)
+  <folder>-images.zip    every board, 150-dpi print image (~35 MB)
 ```
 
 - **PDF first.** It is vector, so it prints sharp at any size, and every
@@ -46,8 +45,10 @@ out/<folder>/kit/
   editable text and re-sets the Bengali with its own fonts and engine,
   which breaks conjuncts. An image has no fonts to break. Quality 95 with
   no chroma subsampling (`4:4:4`) keeps small text and white-on-green
-  headings clean. 300 dpi is print quality at 8 × 6 ft and still ~240 dpi
-  if a press scales the board up to 10 ft wide.
+  headings clean. 150 dpi is print quality for a board read from half a
+  metre or more — the smallest text is still ~40 px tall — and ~120 dpi if
+  a press scales it to 10 ft wide. 300 dpi looks the same and uploads
+  ~2½× larger; `DPI=300 bash make.sh …` for a press that insists.
 - **PNG only for clear media.** The clear-vinyl sticker and the acrylic
   plate keep their transparency, which JPG cannot hold.
 
@@ -128,14 +129,14 @@ Pages serves this repo from `main`, root folder:
 
 | URL | File | Purpose |
 |---|---|---|
-| `/` | `index.html` | public download directory — every published board, one card per district |
+| `/` | `index.html` | public download directory — every published office, grouped by district |
 
-The directory reads `releases.json` and offers each office's print kit —
-the charter as PDF and JPG, the other boards as a PDF zip and an image
-zip — with a search box across every office, upazila and district.
+The directory reads `releases.json` and offers each office's two zips —
+PDF and images — with a search box across every office, upazila and
+district. It is set entirely in Tiro Bangla and kept deliberately plain.
 
 **The files live in GitHub Releases, not in git.** An office's kit is
-~95 MB; ~400 offices is ~38 GB, far past what a repo or a Pages site (1 GB)
+~37 MB; ~400 offices is ~15 GB, far past what a repo or a Pages site (1 GB)
 can hold. Releases have no total limit and allow 2 GB per file. Each office
 is one release, tagged `board-<folder>`; re-publishing replaces its files.
 Only `releases.json` is committed, and it links straight to the release
@@ -150,8 +151,18 @@ git add releases.json && git commit -m "Publish boards" && git push
 
 An office that fails (a bad config, the font check, an upload) is
 reported and skipped; the rest of the batch carries on, and the summary
-prints the command to re-run the failures. Rendering takes ~5½ minutes an
-office, most of it the 600-megapixel charter JPG; uploading ~95 MB more.
+prints the command to re-run the failures.
+
+Rendering is the slow part and can run in two terminal windows at once,
+each with different offices (more than two runs out of memory on an 8 GB
+PC). Uploading does not get faster in parallel — it shares one
+connection — so render first, then upload everything in one go:
+
+```bash
+bash make.sh office1 office2 …        # window 1
+bash make.sh office3 office4 …        # window 2
+python publish.py office1 office2 office3 office4 …
+```
 
 `publish.py` on its own:
 
@@ -190,7 +201,7 @@ offices/<slug>.json   one file per office
 out/<folder>/         generated — never edit, always overwritten
 out/<folder>/pdf|jpg|png|kit
 build.py              offices + templates → out/
-render.sh             one office → PDF, 300-dpi JPG (PNG for clear media)
+render.sh             one office → PDF, 150-dpi JPG (PNG for clear media)
 make.sh               build.py → render.sh → publish.py --kit
 release.sh            per office: make.sh → upload; then releases.json
 publish.py            print kits, GitHub Releases, releases.json

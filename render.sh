@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
-# render.sh — one office's HTML → PDF and 300-dpi print image
+# render.sh — one office's HTML → PDF and 150-dpi print image
 #
 #   bash render.sh out/gazipur-sadar
-#   DPI=150 bash render.sh out/gazipur-sadar     # lighter print images
+#   DPI=300 bash render.sh out/gazipur-sadar     # for a press that insists
 #
 # Print images are JPG (quality 95, no chroma subsampling, so small Bengali
 # text and white-on-green headings stay crisp). Clear-media files (sticker,
@@ -11,15 +11,18 @@
 # Do not "simplify" that.
 #
 # The PDF stays the real deliverable: it is vector and prints sharp at any
-# size. 300 dpi is already print quality at 8 × 6 ft, and still ~240 dpi if
-# a press scales the board up to 10 ft wide.
+# size. 150 dpi is print quality for a board read from half a metre away
+# or more — the smallest text is still ~40 px tall — and ~120 dpi if a press
+# scales it to 10 ft wide. 300 dpi looks the same and uploads 3–4× larger.
 
 set -uo pipefail
 DIR="${1:?usage: bash render.sh out/<office-folder>}"
-DPI="${DPI:-300}"
+DPI="${DPI:-150}"
 CHROME="${CHROME:-/c/Program Files/Google/Chrome/Application/chrome.exe}"
 
-cd "$DIR"; mkdir -p pdf jpg png
+# never carry on anywhere else — this script deletes and renders in place
+cd "$DIR" 2>/dev/null || { echo "  ✗ no such folder: $DIR"; exit 1; }
+mkdir -p pdf jpg png
 # a board dropped from templates/ must not linger in the print kit
 # (fb/ is from the old pipeline, which also made Facebook copies)
 rm -rf pdf/*.pdf jpg/*.jpg png/*.png fb

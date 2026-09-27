@@ -4,118 +4,60 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>নাগরিক সনদ বোর্ড — ডাউনলোড</title>
-<link href="https://fonts.googleapis.com/css2?family=Tiro+Bangla&family=Hind+Siliguri:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Tiro+Bangla&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --green:#1a7a38; --green-lite:#2da44e; --ink:#1a1a1a; --muted:#5c6b63;
-    --line:#dfe7e0; --tint:#f4faf6; --amber:#b58100;
-  }
+  :root { --green:#1a7a38; --ink:#1a1a1a; --muted:#666; --line:#e2e2e2; }
   * { box-sizing:border-box; margin:0; padding:0; }
-  body { font-family:'Hind Siliguri',system-ui,sans-serif; color:var(--ink);
-         background:#eef1ef; line-height:1.5; }
+  body { font-family:'Tiro Bangla',serif; color:var(--ink); background:#fff;
+         line-height:1.6; font-size:17px; }
+  main { max-width:880px; margin:0 auto; padding:32px 16px 60px; }
   a { color:var(--green); }
 
-  header { background:var(--green); color:#fff; }
-  .bar { max-width:1080px; margin:0 auto; padding:18px 22px;
-         display:flex; align-items:center; gap:16px; flex-wrap:wrap; }
-  .bar .t { flex:1; min-width:240px; }
-  header h1 { font:400 24px/1.3 'Tiro Bangla',serif; }
-  header p  { font-size:13.5px; opacity:.88; margin-top:2px; }
+  h1 { font-size:28px; font-weight:400; color:var(--green); }
+  .meta { color:var(--muted); font-size:15px; margin:4px 0 18px; }
+  .note { font-size:15.5px; margin-bottom:22px; }
 
-  main { max-width:1080px; margin:0 auto; padding:22px 22px 60px; }
+  .find input { width:100%; font:inherit; font-size:16px; padding:10px 12px;
+                border:1px solid #bbb; border-radius:4px; margin-bottom:26px; }
 
-  .meta { font-size:13.5px; color:var(--muted); margin-bottom:14px; }
-  .meta b { color:var(--ink); font-weight:600; }
+  h2 { font-size:21px; font-weight:400; color:var(--green); margin:28px 0 6px; }
+  table { width:100%; border-collapse:collapse; }
+  td { padding:12px 0; border-top:1px solid var(--line); vertical-align:middle; }
+  td.dl { width:130px; text-align:right; padding-left:12px; white-space:nowrap; }
+  td.dl a { display:inline-block; text-decoration:none; color:#fff; background:var(--green);
+            border-radius:4px; padding:6px 14px; }
+  td.dl a.img { background:#fff; color:var(--green); border:1px solid var(--green); padding:5px 13px; }
+  td.dl small { display:block; color:var(--muted); font-size:13px; margin-top:3px; }
+  .sub { color:var(--muted); font-size:14px; }
 
-  .note { background:#fffaf0; border-left:4px solid var(--amber); color:#6b4d00;
-          border-radius:6px; padding:12px 16px; font-size:14px; margin-bottom:22px; }
-  .note b { color:#4d3700; }
-
-  .find { position:sticky; top:0; z-index:1; background:#eef1ef; padding:8px 0 14px; }
-  .find input { width:100%; font:16px/1.4 'Hind Siliguri',sans-serif; padding:11px 14px;
-                border:1px solid #cdd8d1; border-radius:8px; background:#fff; }
-  .find input:focus { outline:2px solid var(--green-lite); outline-offset:-1px; }
+  .empty { color:var(--muted); padding:30px 0; }
+  .empty code { font-family:ui-monospace,Consolas,monospace; font-size:14px; color:var(--ink); }
   [hidden] { display:none !important; }
 
-  section { background:#fff; border:1px solid var(--line); border-radius:10px;
-            margin-bottom:18px; overflow:hidden; }
-  section h2 { font:400 19px/1.3 'Tiro Bangla',serif; color:var(--green);
-               background:var(--tint); border-bottom:1px solid var(--line);
-               padding:12px 18px; display:flex; align-items:baseline; gap:10px; }
-  section h2 small { font:400 13px 'Hind Siliguri',sans-serif; color:var(--muted); }
-
-  table { width:100%; border-collapse:collapse; }
-  th { font-size:12.5px; font-weight:600; color:var(--muted); text-align:left;
-       padding:9px 18px; border-bottom:1px solid var(--line); }
-  th.c, td.c { text-align:center; width:210px; }
-  td.c .dl + .fs + .dl { margin-top:12px; }
-  td { padding:14px 18px; border-bottom:1px solid var(--line); vertical-align:middle; }
-  tr:last-child td { border-bottom:0; }
-
-  .office { font:400 16px/1.4 'Tiro Bangla',serif; }
-  .sub { font-size:12.5px; color:var(--muted); margin-top:3px; }
-  .sub a { color:var(--muted); }
-
-  .dl { display:block; width:180px; margin:0 auto; text-decoration:none; text-align:center;
-        font-weight:600; font-size:14px; border-radius:6px; padding:8px 14px; }
-  .dl.pdf { background:var(--green); color:#fff; border:1px solid var(--green); }
-  .dl.pdf:hover { background:#166030; }
-  .dl.img { background:#f4f7f5; color:var(--ink); border:1px solid #cdd8d1; }
-  .dl.img:hover { background:#e9efeb; }
-  .fs { display:block; font-size:12px; color:var(--muted); margin-top:5px; }
-  .none { font-size:13px; color:#9aa59f; }
-
-  .empty { background:#fff; border:1px dashed #c4d0c8; border-radius:10px;
-           padding:36px 22px; text-align:center; color:var(--muted); }
-  .empty h2 { font:400 20px 'Tiro Bangla',serif; color:var(--ink); margin-bottom:8px; }
-  .empty code { font:13px ui-monospace,Consolas,monospace; background:var(--tint);
-                border:1px solid var(--line); border-radius:4px; padding:2px 6px; color:var(--ink); }
-
-  footer { font-size:12.5px; color:var(--muted); text-align:center; margin-top:30px; }
-
-  /* phones: each office becomes a stacked card */
-  @media (max-width: 680px) {
-    .bar, main { padding-left:16px; padding-right:16px; }
-    thead { display:none; }
-    table, tbody, tr, td { display:block; width:100%; }
-    tr { padding:14px 16px; border-bottom:1px solid var(--line); }
-    tr:last-child { border-bottom:0; }
-    td { border:0; padding:0; }
-    td.c { width:auto; text-align:left; margin-top:14px; }
-    td.c::before { content:attr(data-l); display:block; font-size:12.5px; font-weight:600;
-                   color:var(--green); margin-bottom:6px; }
-    .dl { width:100%; }
+  @media (max-width: 560px) {
+    td { display:block; border-top:0; padding:4px 0; }
+    tr { display:block; border-top:1px solid var(--line); padding:10px 0; }
+    td.dl { display:inline-block; width:auto; text-align:left; padding:6px 16px 0 0; }
   }
 </style>
 </head>
 <body>
-
-<header>
-  <div class="bar">
-    <div class="t">
-      <h1>নাগরিক সনদ ও সেবা তথ্য বোর্ড</h1>
-      <p>সাব-রেজিস্ট্রি অফিসসমূহের প্রকাশিত বোর্ড — জেলাভিত্তিক ডাউনলোড</p>
-    </div>  </div>
-</header>
-
 <main>
-  <div class="meta" id="meta"></div>
+  <h1>নাগরিক সনদ ও সেবা তথ্য বোর্ড</h1>
+  <div class="meta" id="meta">সাব-রেজিস্ট্রি অফিসসমূহের বোর্ড — ডাউনলোড</div>
 
-  <div class="note">
-    <b>ছাপানোর জন্য PDF ফাইলটিই ব্যবহার করুন।</b>
-    PDF ভেক্টর ফাইল — যেকোনো আকারে ছাপালেও লেখা ঝকঝকে থাকে।
-    JPG ছবি (৩০০ dpi) সেইসব প্রেসের জন্য, যারা ফটোশপ বা ইলাস্ট্রেটরে কাজ করে —
-    এতে ফন্ট ভাঙার কোনো ঝুঁকি নেই। স্বচ্ছ স্টিকার ও অ্যাক্রিলিক প্লেট PNG-তে দেওয়া আছে।
-  </div>
+  <p class="note">
+    প্রতিটি অফিসের জন্য দুটি ZIP ফাইল — প্রতিটিতে নাগরিক সনদসহ সব বোর্ড।
+    <b>ছাপানোর জন্য PDF ব্যবহার করুন</b>; যে প্রেস ফটোশপ বা ইলাস্ট্রেটরে কাজ করে,
+    তাদের জন্য ছবি (১৫০ dpi JPG, স্বচ্ছ স্টিকার ও প্লেট PNG)।
+  </p>
 
   <div class="find" id="find" hidden>
     <input type="search" id="q" autocomplete="off"
-           placeholder="অফিস, উপজেলা বা জেলার নাম লিখে খুঁজুন…" aria-label="অফিস খুঁজুন">
+           placeholder="অফিস, উপজেলা বা জেলার নাম লিখে খুঁজুন" aria-label="অফিস খুঁজুন">
   </div>
 
   <div id="list"></div>
-
-  <footer>বোর্ডের সব ফি ও তথ্য জাতীয়; অফিসভেদে শুধু পরিচিতি ও জেলার উৎসে কর হার ভিন্ন।</footer>
 </main>
 
 <script>
@@ -131,63 +73,44 @@ function bnDate(iso) {
   if (!m) return esc(iso);
   return bn(+m[3]) + ' ' + MONTHS[+m[2] - 1] + ', ' + bn(m[1]);
 }
-const site = s => /^https?:\/\//.test(s) ? s : 'https://' + s;
 
-function button(f, cls, label, extra) {
-  if (!f) return '<span class="none">—</span>';
-  return '<a class="dl ' + cls + '" href="' + esc(f.url || f.path) + '" download>' + label + '</a>' +
-         '<span class="fs">' + esc(bn(f.size)) + (extra ? ' · ' + extra : '') + '</span>';
+function link(f, cls, label) {
+  if (!f) return '—';
+  return '<a class="' + cls + '" href="' + esc(f.url) + '" download>' + label + '</a>' +
+         '<small>' + esc(bn(f.size)) + '</small>';
 }
 
 function row(o) {
-  const c = o.charter || {}, x = o.others || {};
-  const px = c.img && c.img.px
-    ? esc(bn(c.img.px)) + ' পিক্সেল' + (c.img.dpi ? ' (' + esc(bn(c.img.dpi)) + ' dpi)' : '')
-    : '';
-  const others = x.pdf || x.img
-    ? button(x.pdf, 'pdf', 'সব PDF (ZIP)') + button(x.img, 'img', 'সব ছবি (ZIP)', 'JPG ও PNG')
-    : '<span class="none">—</span>';
-  const key = [o.office, o.upazila, o.district, o.folder, o.web].join(' ').toLowerCase();
+  const key = [o.office, o.upazila, o.district, o.folder].join(' ').toLowerCase();
   return '<tr data-k="' + esc(key) + '">' +
-    '<td><div class="office">' + esc(o.office) + '</div>' +
-      '<div class="sub">' +
-        (o.web ? '<a href="' + esc(site(o.web)) + '" rel="noopener">' + esc(o.web) + '</a> · ' : '') +
-        esc(o.published) + '</div></td>' +
-    '<td class="c" data-l="নাগরিক সনদ বোর্ড (৮ × ৬ ফুট)">' + button(c.pdf, 'pdf', 'PDF ডাউনলোড') +
-                      button(c.img, 'img', 'JPG ছবি', px) + '</td>' +
-    '<td class="c" data-l="অন্যান্য বোর্ড — ব্যানার, স্টিকার, প্লেট">' + others + '</td>' +
+    '<td>' + esc(o.office) +
+      '<div class="sub">' + (o.count ? bn(o.count) + 'টি বোর্ড · ' : '') + esc(o.published) + '</div></td>' +
+    '<td class="dl">' + link(o.pdf, 'pdf', 'PDF') + '</td>' +
+    '<td class="dl">' + link(o.img, 'img', 'ছবি') + '</td>' +
   '</tr>';
 }
 
 function district(d) {
-  const n = Math.max.apply(null, d.offices.map(o => (o.others || {}).count || 0));
-  return '<section>' +
-    '<h2>' + esc(d.district) + ' জেলা <small>' + bn(d.offices.length) + ' টি অফিস</small></h2>' +
-    '<table><thead><tr><th>অফিসের নাম</th><th class="c">নাগরিক সনদ বোর্ড<br>৮ × ৬ ফুট</th>' +
-    '<th class="c">অন্যান্য বোর্ড' + (n ? ' (' + bn(n) + ' টি)' : '') +
-    '<br>ব্যানার, স্টিকার, প্লেট</th></tr></thead><tbody>' +
-    d.offices.map(row).join('') + '</tbody></table></section>';
+  return '<section><h2>' + esc(d.district) + '</h2><table><tbody>' +
+         d.offices.map(row).join('') + '</tbody></table></section>';
 }
 
-function empty() {
-  document.getElementById('list').innerHTML =
-    '<div class="empty"><h2>এখনো কোনো বোর্ড প্রকাশিত হয়নি</h2>' +
-    '<p>কোনো অফিসের বোর্ড প্রকাশ করতে রিপোজিটরিতে চালান:</p>' +
-    '<p style="margin-top:10px"><code>bash release.sh &lt;office&gt;</code></p>' +
-    '<p style="margin-top:14px">তারপর <code>releases.json</code> কমিট করে পুশ করুন।</p></div>';
+function empty(html) {
+  document.getElementById('list').innerHTML = '<div class="empty">' + html + '</div>';
 }
 
 function render(data) {
   const ds = (data && Array.isArray(data.districts)) ? data.districts : [];
-  if (!ds.length) return empty();
+  if (!ds.length) {
+    return empty('এখনো কোনো বোর্ড প্রকাশিত হয়নি। প্রকাশ করতে চালান: ' +
+                 '<code>bash release.sh &lt;office&gt;</code>');
+  }
   const n = ds.reduce((a, d) => a + d.offices.length, 0);
   document.getElementById('meta').innerHTML =
-    '<b>' + esc(data.board || '') + '</b> · ' + esc(data.size || '') + '<br>' +
-    bn(n) + ' টি অফিস · ' + bn(ds.length) + ' টি জেলা' +
+    bn(n) + 'টি অফিস · ' + bn(ds.length) + 'টি জেলা' +
     (data.generated ? ' · হালনাগাদ: ' + bnDate(data.generated) : '');
   document.getElementById('list').innerHTML = ds.map(district).join('') +
-    '<div class="empty" id="nohit" hidden><h2>কোনো অফিস পাওয়া যায়নি</h2>' +
-    '<p>অন্য বানানে বা শুধু জেলা/উপজেলার নাম লিখে খুঁজুন।</p></div>';
+    '<div class="empty" id="nohit" hidden>কোনো অফিস পাওয়া যায়নি।</div>';
   document.getElementById('find').hidden = false;
   document.getElementById('q').addEventListener('input', search);
 }
@@ -198,7 +121,7 @@ function search() {
   let hits = 0;
   document.querySelectorAll('#list section').forEach(sec => {
     let shown = 0;
-    sec.querySelectorAll('tbody tr').forEach(tr => {
+    sec.querySelectorAll('tr').forEach(tr => {
       const ok = words.every(w => tr.dataset.k.includes(w));
       tr.hidden = !ok;
       if (ok) shown++;
@@ -211,15 +134,12 @@ function search() {
 
 // browsers refuse fetch() on file:// — say so rather than claim nothing is published
 if (location.protocol === 'file:') {
-  document.getElementById('list').innerHTML =
-    '<div class="empty"><h2>ফাইল হিসেবে খোলা হয়েছে — তালিকা পড়া যাচ্ছে না</h2>' +
-    '<p>ব্রাউজার লোকাল ফাইল থেকে <code>releases.json</code> পড়তে দেয় না। রিপোজিটরিতে চালান:</p>' +
-    '<p style="margin-top:10px"><code>python -m http.server 8000</code></p>' +
-    '<p style="margin-top:14px">তারপর <code>http://localhost:8000/</code> খুলুন। GitHub Pages-এ এমনিতেই কাজ করবে।</p></div>';
+  empty('ফাইল হিসেবে খোলা হয়েছে — ব্রাউজার লোকাল ফাইল থেকে তালিকা পড়তে দেয় না। ' +
+        'চালান <code>python -m http.server 8000</code>, তারপর খুলুন <code>http://localhost:8000/</code>।');
 } else fetch('releases.json', { cache: 'no-cache' })
   .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
   .then(render)
-  .catch(empty);
+  .catch(() => render(null));
 </script>
 </body>
 </html>

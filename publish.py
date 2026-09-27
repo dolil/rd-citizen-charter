@@ -14,16 +14,15 @@ GitHub Releases for the download site.
 
 make.sh runs --kit; release.sh runs make.sh and then the plain form.
 
-A kit, built from out/<folder>/pdf|jpg|png by render.sh:
+A kit, built from out/<folder>/pdf|jpg|png by render.sh, is two zips —
+one download each, every board in both:
 
-    <folder>-citizens-charter.pdf         the 8×6 ft board, vector — the file to print
-    <folder>-citizens-charter.jpg         the same board as a print image
-    <folder>-other-boards-pdf.zip         every other board, PDF
-    <folder>-other-boards-print.zip       every other board, print image (JPG;
-                                          PNG with alpha for clear media)
+    <folder>-pdf.zip       every board, vector PDF — the files to print
+    <folder>-images.zip    every board, print image (JPG; PNG with alpha
+                           for clear media)
 
 Each office is one GitHub Release, tagged board-<folder>; re-publishing
-replaces its files in place. The files never enter git — at ~95 MB an
+replaces its files in place. The files never enter git — at ~37 MB an
 office and 400 offices, they would not fit in a repo or a Pages site
 (1 GB). Only releases.json is committed: index.html reads it, and it links
 straight to the release downloads. It is rebuilt from GitHub itself, so it
@@ -67,10 +66,8 @@ META = re.compile(r'<!-- kit (\{.*?\}) -->')
 
 def kit_names(folder):
     return {
-        'charter_pdf': '%s-citizens-charter.pdf' % folder,
-        'charter_img': '%s-citizens-charter.jpg' % folder,
-        'others_pdf':  '%s-other-boards-pdf.zip' % folder,
-        'others_img':  '%s-other-boards-print.zip' % folder,
+        'pdf': '%s-pdf.zip' % folder,
+        'img': '%s-images.zip' % folder,
     }
 
 
@@ -145,24 +142,18 @@ def make_kit(slug, cfg, named):
     os.makedirs(kit)
     names = kit_names(folder)
 
-    shutil.copyfile(pdf, os.path.join(kit, names['charter_pdf']))
-    shutil.copyfile(jpg, os.path.join(kit, names['charter_img']))
-
-    others = [p for p in sorted(glob.glob(os.path.join(src, 'pdf', '*.pdf')))
-              if os.path.basename(p) != BOARD + '.pdf']
-    images = [p for p in sorted(glob.glob(os.path.join(src, 'jpg', '*.jpg')) +
-                                glob.glob(os.path.join(src, 'png', '*.png')))
-              if os.path.splitext(os.path.basename(p))[0] != BOARD]
+    pdfs = sorted(glob.glob(os.path.join(src, 'pdf', '*.pdf')))
+    images = sorted(glob.glob(os.path.join(src, 'jpg', '*.jpg')) +
+                    glob.glob(os.path.join(src, 'png', '*.png')))
     # PDFs shrink when deflated; JPG and PNG are already compressed, so
     # deflating them again costs time and saves nothing — store them
-    for key, files, sub, how in (('others_pdf', others, 'pdf',   zipfile.ZIP_DEFLATED),
-                                 ('others_img', images, 'print', zipfile.ZIP_STORED)):
-        if files:
-            with zipfile.ZipFile(os.path.join(kit, names[key]), 'w', how) as z:
-                for p in files:
-                    z.write(p, '%s-%s/%s' % (folder, sub, os.path.basename(p)))
+    for key, files, sub, how in (('pdf', pdfs,   'pdf',    zipfile.ZIP_DEFLATED),
+                                 ('img', images, 'images', zipfile.ZIP_STORED)):
+        with zipfile.ZipFile(os.path.join(kit, names[key]), 'w', how) as z:
+            for p in files:
+                z.write(p, '%s-%s/%s' % (folder, sub, os.path.basename(p)))
 
-    print('  ✓ %s  →  out/%s/kit  [%d other boards]' % (slug, folder, len(others)))
+    print('  ✓ %s  →  out/%s/kit  [%d boards]' % (slug, folder, len(pdfs)))
     for k in sorted(os.listdir(kit)):
         print('      %-52s %s' % (k, human(os.path.getsize(os.path.join(kit, k)))))
     return True
@@ -172,23 +163,16 @@ def make_kit(slug, cfg, named):
 def notes(cfg, kit, names):
     """Release notes: readable text, plus the kit facts releases.json needs."""
     meta = {}
-    wh = jpeg_size(os.path.join(kit, names['charter_img']))
+    wh = jpeg_size(os.path.join(OUT, cfg['folder'], 'jpg', BOARD + '.jpg'))
     if wh:
-        meta['px'] = '%d × %d' % wh
         meta['dpi'] = int(round(wh[0] / float(BOARD_IN)))
-    zp = os.path.join(kit, names['others_pdf'])
-    if os.path.isfile(zp):
-        with zipfile.ZipFile(zp) as z:
-            meta['count'] = len(z.namelist())
-    return ('%s\n\n%s — %s\n\n'
-            '- `%s` — ছাপানোর মূল ফাইল (ভেক্টর PDF)\n'
-            '- `%s` — একই বোর্ড, JPG ছবি\n'
-            '- `%s` — অন্যান্য বোর্ড, PDF\n'
-            '- `%s` — অন্যান্য বোর্ড, ছবি (JPG; স্বচ্ছ মাধ্যমে PNG)\n\n'
+    with zipfile.ZipFile(os.path.join(kit, names['pdf'])) as z:
+        meta['count'] = len(z.namelist())
+    return ('%s\n\n'
+            '- `%s` — সব বোর্ড, PDF (ছাপানোর মূল ফাইল)\n'
+            '- `%s` — সব বোর্ড, ছবি (JPG; স্বচ্ছ স্টিকার ও প্লেট PNG)\n\n'
             '<!-- kit %s -->\n'
-            % (cfg['identity']['office'], BOARD_BN, SIZE_BN,
-               names['charter_pdf'], names['charter_img'],
-               names['others_pdf'], names['others_img'],
+            % (cfg['identity']['office'], names['pdf'], names['img'],
                json.dumps(meta, ensure_ascii=False)))
 
 
@@ -200,7 +184,7 @@ def upload(slug, cfg, named):
     names = kit_names(folder)
     files = [os.path.join(kit, n) for n in sorted(names.values())
              if os.path.isfile(os.path.join(kit, n))]
-    if not os.path.isfile(os.path.join(kit, names['charter_pdf'])):
+    if len(files) < len(names):
         if named:
             print('  ✗ %s  no print kit — run: bash release.sh %s' % (slug, slug))
             return False
@@ -280,25 +264,22 @@ def entry(cfg, rel):
         a = rel['assets'].get(names[key])
         return {'url': a[1], 'bytes': a[0], 'size': human(a[0])} if a else None
 
-    files = dict((k, info(k)) for k in names)
-    if not any(files.values()):
+    pdf, img = info('pdf'), info('img')
+    if not pdf and not img:
         return None
     m = META.search(rel['notes'])
     meta = json.loads(m.group(1)) if m else {}
-    img = files['charter_img']
-    if img and 'px' in meta:
-        img['px'], img['dpi'] = meta['px'], meta.get('dpi')
 
     return {
         'folder':    folder,
         'office':    ident['office'],
         'upazila':   ident['upazila'],
         'district':  ident['district'],
-        'web':       ident['srWeb'],
         'published': ident['published'],
-        'charter':   {'pdf': files['charter_pdf'], 'img': img},
-        'others':    {'count': meta.get('count', 0),
-                      'pdf': files['others_pdf'], 'img': files['others_img']},
+        'count':     meta.get('count', 0),
+        'dpi':       meta.get('dpi'),
+        'pdf':       pdf,
+        'img':       img,
     }
 
 

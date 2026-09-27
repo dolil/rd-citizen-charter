@@ -4,7 +4,7 @@
 #   bash release.sh                               # every office
 #   bash release.sh gazipur-sadar                 # one office
 #   bash release.sh gazipur-sadar kaliganj …      # a day's batch
-#   DPI=150 bash release.sh nabinagar             # lighter print images (default 300)
+#   DPI=300 bash release.sh nabinagar             # heavier print images (default 150)
 #
 # Per office: make.sh (build → PDF → print images → font check → kit), then
 # publish.py uploads the kit as GitHub Release board-<folder>. An office

@@ -82,7 +82,7 @@ pdfinfo out/<office>/pdf/<file>.pdf     # page size must match the filename
 magick identify -ping -format "%f %wx%h %[channels] alpha=%A\n" out/<office>/png/*.png out/<office>/jpg/*.jpg
 ```
 
-Print images are 300-dpi JPGs, except the clear-vinyl sticker and the
+Print images are 150-dpi JPGs, except the clear-vinyl sticker and the
 acrylic plate, which are PNGs and must read `srgba` with a live alpha —
 transparency is the deliverable there. The JPGs should read `srgb`. `render.sh` already handles the distinction; the
 check is to catch a pipeline edit that breaks it.

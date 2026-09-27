@@ -4,13 +4,11 @@
 #   bash make.sh                   # every office
 #   bash make.sh gazipur-sadar     # one office
 #   bash make.sh --check           # validate configs only
-#   DPI=150 bash make.sh …         # lighter print images (default 300)
+#   DPI=300 bash make.sh …         # heavier print images (default 150)
 #
-# Ends with, per office:
-#   out/<folder>/kit/<folder>-citizens-charter.pdf     the 8×6 ft board, vector
-#   out/<folder>/kit/<folder>-citizens-charter.jpg     the same, print image
-#   out/<folder>/kit/<folder>-other-boards-pdf.zip     every other board, PDF
-#   out/<folder>/kit/<folder>-other-boards-print.zip   every other board, print image
+# Ends with, per office — every board, the charter included, in both:
+#   out/<folder>/kit/<folder>-pdf.zip       vector PDFs — the files to print
+#   out/<folder>/kit/<folder>-images.zip    150-dpi print images
 set -euo pipefail
 
 # Windows installs Python as "python" / "py"; "python3" is a Microsoft
@@ -31,8 +29,9 @@ case " $* " in *" --check "*) exec "$PY" build.py --check ;; esac
 
 # a config's slug and its output folder can differ — ask the configs, and
 # match names exactly (a substring match would take brahmanbaria-nabinagar
-# along with nabinagar)
-FOLDERS=$("$PY" - "$@" <<'EOF'
+# along with nabinagar). Windows Python ends lines with \r\n; strip the \r,
+# or every folder but the last comes back as "name\r" and cannot be found.
+FOLDERS=$("$PY" - "$@" <<'EOF' | tr -d '\r'
 import json, os, sys
 want = [a for a in sys.argv[1:] if not a.startswith('-')]
 for name in sorted(os.listdir('offices')):

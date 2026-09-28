@@ -2,7 +2,7 @@
   "generated": "2026-09-29",
   "board": "নাগরিক সনদ ও সেবা তথ্য বোর্ড",
   "size": "৮ ফুট × ৬ ফুট (৯৬ × ৭২ ইঞ্চি)",
-  "count": 18,
+  "count": 28,
   "districts": [
     {
       "district": "গাজীপুর",
@@ -48,6 +48,201 @@
             "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-keraniganj-south/keraniganj-south-images.zip",
             "bytes": 37411280,
             "size": "35.7 MB"
+          }
+        }
+      ]
+    },
+    {
+      "district": "বরিশাল",
+      "offices": [
+        {
+          "folder": "barishal-agailjhara",
+          "office": "সাব-রেজিস্ট্রারের কার্যালয়, আগৈলঝাড়া, বরিশাল",
+          "upazila": "আগৈলঝাড়া",
+          "district": "বরিশাল",
+          "published": "প্রকাশকাল: সেপ্টেম্বর, ২০২৬",
+          "count": 11,
+          "dpi": 150,
+          "pdf": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-barishal-agailjhara/barishal-agailjhara-pdf.zip",
+            "bytes": 2574322,
+            "size": "2.5 MB"
+          },
+          "img": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-barishal-agailjhara/barishal-agailjhara-images.zip",
+            "bytes": 38010299,
+            "size": "36.2 MB"
+          }
+        },
+        {
+          "folder": "barishal-wazirpur",
+          "office": "সাব-রেজিস্ট্রারের কার্যালয়, উজিরপুর, বরিশাল",
+          "upazila": "উজিরপুর",
+          "district": "বরিশাল",
+          "published": "প্রকাশকাল: সেপ্টেম্বর, ২০২৬",
+          "count": 11,
+          "dpi": 150,
+          "pdf": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-barishal-wazirpur/barishal-wazirpur-pdf.zip",
+            "bytes": 2572024,
+            "size": "2.5 MB"
+          },
+          "img": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-barishal-wazirpur/barishal-wazirpur-images.zip",
+            "bytes": 38019714,
+            "size": "36.3 MB"
+          }
+        },
+        {
+          "folder": "barishal-gaurnadi",
+          "office": "সাব-রেজিস্ট্রারের কার্যালয়, গৌরনদী, বরিশাল",
+          "upazila": "গৌরনদী",
+          "district": "বরিশাল",
+          "published": "প্রকাশকাল: সেপ্টেম্বর, ২০২৬",
+          "count": 11,
+          "dpi": 150,
+          "pdf": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-barishal-gaurnadi/barishal-gaurnadi-pdf.zip",
+            "bytes": 2572126,
+            "size": "2.5 MB"
+          },
+          "img": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-barishal-gaurnadi/barishal-gaurnadi-images.zip",
+            "bytes": 37970637,
+            "size": "36.2 MB"
+          }
+        },
+        {
+          "folder": "barishal-banaripara",
+          "office": "সাব-রেজিস্ট্রারের কার্যালয়, চাখার, বানারীপাড়া, বরিশাল",
+          "upazila": "চাখার",
+          "district": "বরিশাল",
+          "published": "প্রকাশকাল: সেপ্টেম্বর, ২০২৬",
+          "count": 11,
+          "dpi": 150,
+          "pdf": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-barishal-banaripara/barishal-banaripara-pdf.zip",
+            "bytes": 2572591,
+            "size": "2.5 MB"
+          },
+          "img": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-barishal-banaripara/barishal-banaripara-images.zip",
+            "bytes": 38133385,
+            "size": "36.4 MB"
+          }
+        },
+        {
+          "folder": "barishal-mehendiganj",
+          "office": "সাব-রেজিস্ট্রারের কার্যালয়, পাতারহাট, মেহেন্দিগঞ্জ, বরিশাল",
+          "upazila": "পাতারহাট",
+          "district": "বরিশাল",
+          "published": "প্রকাশকাল: সেপ্টেম্বর, ২০২৬",
+          "count": 11,
+          "dpi": 150,
+          "pdf": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-barishal-mehendiganj/barishal-mehendiganj-pdf.zip",
+            "bytes": 2578186,
+            "size": "2.5 MB"
+          },
+          "img": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-barishal-mehendiganj/barishal-mehendiganj-images.zip",
+            "bytes": 38262873,
+            "size": "36.5 MB"
+          }
+        },
+        {
+          "folder": "barishal-sadar",
+          "office": "সাব-রেজিস্ট্রারের কার্যালয়, বরিশাল সদর, বরিশাল",
+          "upazila": "বরিশাল সদর",
+          "district": "বরিশাল",
+          "published": "প্রকাশকাল: সেপ্টেম্বর, ২০২৬",
+          "count": 11,
+          "dpi": 150,
+          "pdf": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-barishal-sadar/barishal-sadar-pdf.zip",
+            "bytes": 2556718,
+            "size": "2.4 MB"
+          },
+          "img": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-barishal-sadar/barishal-sadar-images.zip",
+            "bytes": 37501718,
+            "size": "35.8 MB"
+          }
+        },
+        {
+          "folder": "barishal-bakerganj",
+          "office": "সাব-রেজিস্ট্রারের কার্যালয়, বাকেরগঞ্জ, বরিশাল",
+          "upazila": "বাকেরগঞ্জ",
+          "district": "বরিশাল",
+          "published": "প্রকাশকাল: সেপ্টেম্বর, ২০২৬",
+          "count": 11,
+          "dpi": 150,
+          "pdf": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-barishal-bakerganj/barishal-bakerganj-pdf.zip",
+            "bytes": 2575402,
+            "size": "2.5 MB"
+          },
+          "img": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-barishal-bakerganj/barishal-bakerganj-images.zip",
+            "bytes": 38023465,
+            "size": "36.3 MB"
+          }
+        },
+        {
+          "folder": "barishal-muladi",
+          "office": "সাব-রেজিস্ট্রারের কার্যালয়, মুলাদি, বরিশাল",
+          "upazila": "মুলাদি",
+          "district": "বরিশাল",
+          "published": "প্রকাশকাল: সেপ্টেম্বর, ২০২৬",
+          "count": 11,
+          "dpi": 150,
+          "pdf": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-barishal-muladi/barishal-muladi-pdf.zip",
+            "bytes": 2571111,
+            "size": "2.5 MB"
+          },
+          "img": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-barishal-muladi/barishal-muladi-images.zip",
+            "bytes": 37927009,
+            "size": "36.2 MB"
+          }
+        },
+        {
+          "folder": "barishal-babuganj",
+          "office": "সাব-রেজিস্ট্রারের কার্যালয়, রহমতপুর, বাবুগঞ্জ, বরিশাল",
+          "upazila": "রহমতপুর",
+          "district": "বরিশাল",
+          "published": "প্রকাশকাল: সেপ্টেম্বর, ২০২৬",
+          "count": 11,
+          "dpi": 150,
+          "pdf": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-barishal-babuganj/barishal-babuganj-pdf.zip",
+            "bytes": 2575290,
+            "size": "2.5 MB"
+          },
+          "img": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-barishal-babuganj/barishal-babuganj-images.zip",
+            "bytes": 38133924,
+            "size": "36.4 MB"
+          }
+        },
+        {
+          "folder": "barishal-hizla",
+          "office": "সাব-রেজিস্ট্রারের কার্যালয়, হিজলা, বরিশাল",
+          "upazila": "হিজলা",
+          "district": "বরিশাল",
+          "published": "প্রকাশকাল: সেপ্টেম্বর, ২০২৬",
+          "count": 11,
+          "dpi": 150,
+          "pdf": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-barishal-hizla/barishal-hizla-pdf.zip",
+            "bytes": 2569806,
+            "size": "2.5 MB"
+          },
+          "img": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-barishal-hizla/barishal-hizla-images.zip",
+            "bytes": 37896895,
+            "size": "36.1 MB"
           }
         }
       ]

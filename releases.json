@@ -1,8 +1,8 @@
 {
-  "generated": "2026-09-28",
+  "generated": "2026-09-29",
   "board": "নাগরিক সনদ ও সেবা তথ্য বোর্ড",
   "size": "৮ ফুট × ৬ ফুট (৯৬ × ৭২ ইঞ্চি)",
-  "count": 8,
+  "count": 18,
   "districts": [
     {
       "district": "গাজীপুর",
@@ -171,6 +171,201 @@
           "img": {
             "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-magura-sreepur/magura-sreepur-images.zip",
             "bytes": 37870488,
+            "size": "36.1 MB"
+          }
+        }
+      ]
+    },
+    {
+      "district": "সিরাজগঞ্জ",
+      "offices": [
+        {
+          "folder": "sirajganj-ullapara",
+          "office": "সাব-রেজিস্ট্রারের কার্যালয়, উল্লাপাড়া, সিরাজগঞ্জ",
+          "upazila": "উল্লাপাড়া",
+          "district": "সিরাজগঞ্জ",
+          "published": "প্রকাশকাল: সেপ্টেম্বর, ২০২৬",
+          "count": 11,
+          "dpi": 150,
+          "pdf": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-sirajganj-ullapara/sirajganj-ullapara-pdf.zip",
+            "bytes": 2585990,
+            "size": "2.5 MB"
+          },
+          "img": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-sirajganj-ullapara/sirajganj-ullapara-images.zip",
+            "bytes": 38105596,
+            "size": "36.3 MB"
+          }
+        },
+        {
+          "folder": "sirajganj-kamarkhanda",
+          "office": "সাব-রেজিস্ট্রারের কার্যালয়, কামারখন্দ, সিরাজগঞ্জ",
+          "upazila": "কামারখন্দ",
+          "district": "সিরাজগঞ্জ",
+          "published": "প্রকাশকাল: সেপ্টেম্বর, ২০২৬",
+          "count": 11,
+          "dpi": 150,
+          "pdf": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-sirajganj-kamarkhanda/sirajganj-kamarkhanda-pdf.zip",
+            "bytes": 2583858,
+            "size": "2.5 MB"
+          },
+          "img": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-sirajganj-kamarkhanda/sirajganj-kamarkhanda-images.zip",
+            "bytes": 38052016,
+            "size": "36.3 MB"
+          }
+        },
+        {
+          "folder": "sirajganj-gandail",
+          "office": "সাব-রেজিস্ট্রারের কার্যালয়, গান্ধাইল, কাজীপুর, সিরাজগঞ্জ",
+          "upazila": "গান্ধাইল",
+          "district": "সিরাজগঞ্জ",
+          "published": "প্রকাশকাল: সেপ্টেম্বর, ২০২৬",
+          "count": 11,
+          "dpi": 150,
+          "pdf": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-sirajganj-gandail/sirajganj-gandail-pdf.zip",
+            "bytes": 2584009,
+            "size": "2.5 MB"
+          },
+          "img": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-sirajganj-gandail/sirajganj-gandail-images.zip",
+            "bytes": 38286016,
+            "size": "36.5 MB"
+          }
+        },
+        {
+          "folder": "sirajganj-chauhali",
+          "office": "সাব-রেজিস্ট্রারের কার্যালয়, চৌহালি, সিরাজগঞ্জ",
+          "upazila": "চৌহালি",
+          "district": "সিরাজগঞ্জ",
+          "published": "প্রকাশকাল: সেপ্টেম্বর, ২০২৬",
+          "count": 11,
+          "dpi": 150,
+          "pdf": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-sirajganj-chauhali/sirajganj-chauhali-pdf.zip",
+            "bytes": 2582761,
+            "size": "2.5 MB"
+          },
+          "img": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-sirajganj-chauhali/sirajganj-chauhali-images.zip",
+            "bytes": 38028826,
+            "size": "36.3 MB"
+          }
+        },
+        {
+          "folder": "sirajganj-tarash",
+          "office": "সাব-রেজিস্ট্রারের কার্যালয়, তাড়াশ, সিরাজগঞ্জ",
+          "upazila": "তাড়াশ",
+          "district": "সিরাজগঞ্জ",
+          "published": "প্রকাশকাল: সেপ্টেম্বর, ২০২৬",
+          "count": 11,
+          "dpi": 150,
+          "pdf": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-sirajganj-tarash/sirajganj-tarash-pdf.zip",
+            "bytes": 2582755,
+            "size": "2.5 MB"
+          },
+          "img": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-sirajganj-tarash/sirajganj-tarash-images.zip",
+            "bytes": 38020727,
+            "size": "36.3 MB"
+          }
+        },
+        {
+          "folder": "sirajganj-belkuchi",
+          "office": "সাব-রেজিস্ট্রারের কার্যালয়, বেলকুচি, সিরাজগঞ্জ",
+          "upazila": "বেলকুচি",
+          "district": "সিরাজগঞ্জ",
+          "published": "প্রকাশকাল: সেপ্টেম্বর, ২০২৬",
+          "count": 11,
+          "dpi": 150,
+          "pdf": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-sirajganj-belkuchi/sirajganj-belkuchi-pdf.zip",
+            "bytes": 2583079,
+            "size": "2.5 MB"
+          },
+          "img": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-sirajganj-belkuchi/sirajganj-belkuchi-images.zip",
+            "bytes": 38077133,
+            "size": "36.3 MB"
+          }
+        },
+        {
+          "folder": "sirajganj-raiganj",
+          "office": "সাব-রেজিস্ট্রারের কার্যালয়, রায়গঞ্জ, সিরাজগঞ্জ",
+          "upazila": "রায়গঞ্জ",
+          "district": "সিরাজগঞ্জ",
+          "published": "প্রকাশকাল: সেপ্টেম্বর, ২০২৬",
+          "count": 11,
+          "dpi": 150,
+          "pdf": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-sirajganj-raiganj/sirajganj-raiganj-pdf.zip",
+            "bytes": 2581469,
+            "size": "2.5 MB"
+          },
+          "img": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-sirajganj-raiganj/sirajganj-raiganj-images.zip",
+            "bytes": 38060274,
+            "size": "36.3 MB"
+          }
+        },
+        {
+          "folder": "sirajganj-shahjadpur",
+          "office": "সাব-রেজিস্ট্রারের কার্যালয়, শাহজাদপুর, সিরাজগঞ্জ",
+          "upazila": "শাহজাদপুর",
+          "district": "সিরাজগঞ্জ",
+          "published": "প্রকাশকাল: সেপ্টেম্বর, ২০২৬",
+          "count": 11,
+          "dpi": 150,
+          "pdf": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-sirajganj-shahjadpur/sirajganj-shahjadpur-pdf.zip",
+            "bytes": 2583591,
+            "size": "2.5 MB"
+          },
+          "img": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-sirajganj-shahjadpur/sirajganj-shahjadpur-images.zip",
+            "bytes": 38150930,
+            "size": "36.4 MB"
+          }
+        },
+        {
+          "folder": "sirajganj-solonga",
+          "office": "সাব-রেজিস্ট্রারের কার্যালয়, সলংগা, রায়গঞ্জ, সিরাজগঞ্জ",
+          "upazila": "সলংগা",
+          "district": "সিরাজগঞ্জ",
+          "published": "প্রকাশকাল: সেপ্টেম্বর, ২০২৬",
+          "count": 11,
+          "dpi": 150,
+          "pdf": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-sirajganj-solonga/sirajganj-solonga-pdf.zip",
+            "bytes": 2581849,
+            "size": "2.5 MB"
+          },
+          "img": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-sirajganj-solonga/sirajganj-solonga-images.zip",
+            "bytes": 38148254,
+            "size": "36.4 MB"
+          }
+        },
+        {
+          "folder": "sirajganj-sadar",
+          "office": "সাব-রেজিস্ট্রারের কার্যালয়, সিরাজগঞ্জ সদর, সিরাজগঞ্জ",
+          "upazila": "সিরাজগঞ্জ সদর",
+          "district": "সিরাজগঞ্জ",
+          "published": "প্রকাশকাল: সেপ্টেম্বর, ২০২৬",
+          "count": 11,
+          "dpi": 150,
+          "pdf": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-sirajganj-sadar/sirajganj-sadar-pdf.zip",
+            "bytes": 2568679,
+            "size": "2.4 MB"
+          },
+          "img": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-sirajganj-sadar/sirajganj-sadar-images.zip",
+            "bytes": 37831184,
             "size": "36.1 MB"
           }
         }

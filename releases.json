@@ -1,8 +1,8 @@
 {
-  "generated": "2026-09-30",
+  "generated": "2026-10-01",
   "board": "নাগরিক সনদ ও সেবা তথ্য বোর্ড",
   "size": "৮ ফুট × ৬ ফুট (৯৬ × ৭২ ইঞ্চি)",
-  "count": 238,
+  "count": 352,
   "districts": [
     {
       "district": "কিশোরগঞ্জ",
@@ -395,6 +395,353 @@
       ]
     },
     {
+      "district": "কুমিল্লা",
+      "offices": [
+        {
+          "folder": "cumilla-sadar",
+          "office": "সাব-রেজিস্ট্রারের কার্যালয়, কুমিল্লা আদর্শ সদর, কুমিল্লা",
+          "upazila": "কুমিল্লা আদর্শ সদর",
+          "district": "কুমিল্লা",
+          "published": "প্রকাশকাল: সেপ্টেম্বর, ২০২৬",
+          "count": 11,
+          "dpi": 150,
+          "pdf": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-cumilla-sadar/cumilla-sadar-pdf.zip",
+            "bytes": 2598480,
+            "size": "2.5 MB"
+          },
+          "img": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-cumilla-sadar/cumilla-sadar-images.zip",
+            "bytes": 38509838,
+            "size": "36.7 MB"
+          }
+        },
+        {
+          "folder": "cumilla-sadardakshin",
+          "office": "সাব-রেজিস্ট্রারের কার্যালয়, কুমিল্লা সদর দক্ষিণ, কুমিল্লা",
+          "upazila": "কুমিল্লা সদর দক্ষিণ",
+          "district": "কুমিল্লা",
+          "published": "প্রকাশকাল: সেপ্টেম্বর, ২০২৬",
+          "count": 11,
+          "dpi": 150,
+          "pdf": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-cumilla-sadardakshin/cumilla-sadardakshin-pdf.zip",
+            "bytes": 2599015,
+            "size": "2.5 MB"
+          },
+          "img": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-cumilla-sadardakshin/cumilla-sadardakshin-images.zip",
+            "bytes": 38525056,
+            "size": "36.7 MB"
+          }
+        },
+        {
+          "folder": "cumilla-gunoboti",
+          "office": "সাব-রেজিস্ট্রারের কার্যালয়, গুণবতি, চৌদ্দগ্রাম, কুমিল্লা",
+          "upazila": "চৌদ্দগ্রাম",
+          "district": "কুমিল্লা",
+          "published": "প্রকাশকাল: সেপ্টেম্বর, ২০২৬",
+          "count": 11,
+          "dpi": 150,
+          "pdf": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-cumilla-gunoboti/cumilla-gunoboti-pdf.zip",
+            "bytes": 2578274,
+            "size": "2.5 MB"
+          },
+          "img": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-cumilla-gunoboti/cumilla-gunoboti-images.zip",
+            "bytes": 38243494,
+            "size": "36.5 MB"
+          }
+        },
+        {
+          "folder": "cumilla-gauripur",
+          "office": "সাব-রেজিস্ট্রারের কার্যালয়, গৌরীপুর, দাউদকান্দি, কুমিল্লা",
+          "upazila": "দাউদকান্দি",
+          "district": "কুমিল্লা",
+          "published": "প্রকাশকাল: সেপ্টেম্বর, ২০২৬",
+          "count": 11,
+          "dpi": 150,
+          "pdf": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-cumilla-gauripur/cumilla-gauripur-pdf.zip",
+            "bytes": 2576933,
+            "size": "2.5 MB"
+          },
+          "img": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-cumilla-gauripur/cumilla-gauripur-images.zip",
+            "bytes": 38306683,
+            "size": "36.5 MB"
+          }
+        },
+        {
+          "folder": "cumilla-chandina",
+          "office": "সাব-রেজিস্ট্রারের কার্যালয়, চান্দিনা, কুমিল্লা",
+          "upazila": "চান্দিনা",
+          "district": "কুমিল্লা",
+          "published": "প্রকাশকাল: সেপ্টেম্বর, ২০২৬",
+          "count": 11,
+          "dpi": 150,
+          "pdf": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-cumilla-chandina/cumilla-chandina-pdf.zip",
+            "bytes": 2576314,
+            "size": "2.5 MB"
+          },
+          "img": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-cumilla-chandina/cumilla-chandina-images.zip",
+            "bytes": 38060072,
+            "size": "36.3 MB"
+          }
+        },
+        {
+          "folder": "cumilla-chauddagram",
+          "office": "সাব-রেজিস্ট্রারের কার্যালয়, চৌদ্দগ্রাম, কুমিল্লা",
+          "upazila": "চৌদ্দগ্রাম",
+          "district": "কুমিল্লা",
+          "published": "প্রকাশকাল: সেপ্টেম্বর, ২০২৬",
+          "count": 11,
+          "dpi": 150,
+          "pdf": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-cumilla-chauddagram/cumilla-chauddagram-pdf.zip",
+            "bytes": 2576694,
+            "size": "2.5 MB"
+          },
+          "img": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-cumilla-chauddagram/cumilla-chauddagram-images.zip",
+            "bytes": 38127550,
+            "size": "36.4 MB"
+          }
+        },
+        {
+          "folder": "cumilla-titas",
+          "office": "সাব-রেজিস্ট্রারের কার্যালয়, তিতাস, কুমিল্লা",
+          "upazila": "তিতাস",
+          "district": "কুমিল্লা",
+          "published": "প্রকাশকাল: সেপ্টেম্বর, ২০২৬",
+          "count": 11,
+          "dpi": 150,
+          "pdf": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-cumilla-titas/cumilla-titas-pdf.zip",
+            "bytes": 2572929,
+            "size": "2.5 MB"
+          },
+          "img": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-cumilla-titas/cumilla-titas-images.zip",
+            "bytes": 38006726,
+            "size": "36.2 MB"
+          }
+        },
+        {
+          "folder": "cumilla-daudkandi",
+          "office": "সাব-রেজিস্ট্রারের কার্যালয়, দাউদকান্দি, কুমিল্লা",
+          "upazila": "দাউদকান্দি",
+          "district": "কুমিল্লা",
+          "published": "প্রকাশকাল: সেপ্টেম্বর, ২০২৬",
+          "count": 11,
+          "dpi": 150,
+          "pdf": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-cumilla-daudkandi/cumilla-daudkandi-pdf.zip",
+            "bytes": 2576664,
+            "size": "2.5 MB"
+          },
+          "img": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-cumilla-daudkandi/cumilla-daudkandi-images.zip",
+            "bytes": 38146867,
+            "size": "36.4 MB"
+          }
+        },
+        {
+          "folder": "cumilla-debidwar",
+          "office": "সাব-রেজিস্ট্রারের কার্যালয়, দেবিদ্বার, কুমিল্লা",
+          "upazila": "দেবিদ্বার",
+          "district": "কুমিল্লা",
+          "published": "প্রকাশকাল: সেপ্টেম্বর, ২০২৬",
+          "count": 11,
+          "dpi": 150,
+          "pdf": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-cumilla-debidwar/cumilla-debidwar-pdf.zip",
+            "bytes": 2575056,
+            "size": "2.5 MB"
+          },
+          "img": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-cumilla-debidwar/cumilla-debidwar-images.zip",
+            "bytes": 38100930,
+            "size": "36.3 MB"
+          }
+        },
+        {
+          "folder": "cumilla-nangalkot",
+          "office": "সাব-রেজিস্ট্রারের কার্যালয়, নাঙ্গলকোট, কুমিল্লা",
+          "upazila": "নাঙ্গলকোট",
+          "district": "কুমিল্লা",
+          "published": "প্রকাশকাল: সেপ্টেম্বর, ২০২৬",
+          "count": 11,
+          "dpi": 150,
+          "pdf": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-cumilla-nangalkot/cumilla-nangalkot-pdf.zip",
+            "bytes": 2576915,
+            "size": "2.5 MB"
+          },
+          "img": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-cumilla-nangalkot/cumilla-nangalkot-images.zip",
+            "bytes": 38152724,
+            "size": "36.4 MB"
+          }
+        },
+        {
+          "folder": "cumilla-barura",
+          "office": "সাব-রেজিস্ট্রারের কার্যালয়, বরুড়া, কুমিল্লা",
+          "upazila": "বরুড়া",
+          "district": "কুমিল্লা",
+          "published": "প্রকাশকাল: সেপ্টেম্বর, ২০২৬",
+          "count": 11,
+          "dpi": 150,
+          "pdf": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-cumilla-barura/cumilla-barura-pdf.zip",
+            "bytes": 2574772,
+            "size": "2.5 MB"
+          },
+          "img": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-cumilla-barura/cumilla-barura-images.zip",
+            "bytes": 38035638,
+            "size": "36.3 MB"
+          }
+        },
+        {
+          "folder": "cumilla-burichang",
+          "office": "সাব-রেজিস্ট্রারের কার্যালয়, বুড়িচং, কুমিল্লা",
+          "upazila": "বুড়িচং",
+          "district": "কুমিল্লা",
+          "published": "প্রকাশকাল: সেপ্টেম্বর, ২০২৬",
+          "count": 11,
+          "dpi": 150,
+          "pdf": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-cumilla-burichang/cumilla-burichang-pdf.zip",
+            "bytes": 2574320,
+            "size": "2.5 MB"
+          },
+          "img": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-cumilla-burichang/cumilla-burichang-images.zip",
+            "bytes": 38026785,
+            "size": "36.3 MB"
+          }
+        },
+        {
+          "folder": "cumilla-brahmanpara",
+          "office": "সাব-রেজিস্ট্রারের কার্যালয়, ব্রাহ্মণপাড়া, কুমিল্লা",
+          "upazila": "ব্রাহ্মণপাড়া",
+          "district": "কুমিল্লা",
+          "published": "প্রকাশকাল: সেপ্টেম্বর, ২০২৬",
+          "count": 11,
+          "dpi": 150,
+          "pdf": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-cumilla-brahmanpara/cumilla-brahmanpara-pdf.zip",
+            "bytes": 2580116,
+            "size": "2.5 MB"
+          },
+          "img": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-cumilla-brahmanpara/cumilla-brahmanpara-images.zip",
+            "bytes": 38107903,
+            "size": "36.3 MB"
+          }
+        },
+        {
+          "folder": "cumilla-manoharganj",
+          "office": "সাব-রেজিস্ট্রারের কার্যালয়, মনোহরগঞ্জ, কুমিল্লা",
+          "upazila": "মনোহরগঞ্জ",
+          "district": "কুমিল্লা",
+          "published": "প্রকাশকাল: সেপ্টেম্বর, ২০২৬",
+          "count": 11,
+          "dpi": 150,
+          "pdf": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-cumilla-manoharganj/cumilla-manoharganj-pdf.zip",
+            "bytes": 2578558,
+            "size": "2.5 MB"
+          },
+          "img": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-cumilla-manoharganj/cumilla-manoharganj-images.zip",
+            "bytes": 38137779,
+            "size": "36.4 MB"
+          }
+        },
+        {
+          "folder": "cumilla-muradnagar",
+          "office": "সাব-রেজিস্ট্রারের কার্যালয়, মুরাদনগর, কুমিল্লা",
+          "upazila": "মুরাদনগর",
+          "district": "কুমিল্লা",
+          "published": "প্রকাশকাল: সেপ্টেম্বর, ২০২৬",
+          "count": 11,
+          "dpi": 150,
+          "pdf": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-cumilla-muradnagar/cumilla-muradnagar-pdf.zip",
+            "bytes": 2573954,
+            "size": "2.5 MB"
+          },
+          "img": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-cumilla-muradnagar/cumilla-muradnagar-images.zip",
+            "bytes": 38076508,
+            "size": "36.3 MB"
+          }
+        },
+        {
+          "folder": "cumilla-meghna",
+          "office": "সাব-রেজিস্ট্রারের কার্যালয়, মেঘনা, কুমিল্লা",
+          "upazila": "মেঘনা",
+          "district": "কুমিল্লা",
+          "published": "প্রকাশকাল: সেপ্টেম্বর, ২০২৬",
+          "count": 11,
+          "dpi": 150,
+          "pdf": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-cumilla-meghna/cumilla-meghna-pdf.zip",
+            "bytes": 2574086,
+            "size": "2.5 MB"
+          },
+          "img": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-cumilla-meghna/cumilla-meghna-images.zip",
+            "bytes": 37983198,
+            "size": "36.2 MB"
+          }
+        },
+        {
+          "folder": "cumilla-laksam",
+          "office": "সাব-রেজিস্ট্রারের কার্যালয়, লাকসাম, কুমিল্লা",
+          "upazila": "লাকসাম",
+          "district": "কুমিল্লা",
+          "published": "প্রকাশকাল: সেপ্টেম্বর, ২০২৬",
+          "count": 11,
+          "dpi": 150,
+          "pdf": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-cumilla-laksam/cumilla-laksam-pdf.zip",
+            "bytes": 2573665,
+            "size": "2.5 MB"
+          },
+          "img": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-cumilla-laksam/cumilla-laksam-images.zip",
+            "bytes": 38078143,
+            "size": "36.3 MB"
+          }
+        },
+        {
+          "folder": "cumilla-homna",
+          "office": "সাব-রেজিস্ট্রারের কার্যালয়, হোমনা, কুমিল্লা",
+          "upazila": "হোমনা",
+          "district": "কুমিল্লা",
+          "published": "প্রকাশকাল: সেপ্টেম্বর, ২০২৬",
+          "count": 11,
+          "dpi": 150,
+          "pdf": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-cumilla-homna/cumilla-homna-pdf.zip",
+            "bytes": 2574598,
+            "size": "2.5 MB"
+          },
+          "img": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-cumilla-homna/cumilla-homna-images.zip",
+            "bytes": 38048327,
+            "size": "36.3 MB"
+          }
+        }
+      ]
+    },
+    {
       "district": "কুষ্টিয়া",
       "offices": [
         {
@@ -455,6 +802,44 @@
           }
         },
         {
+          "folder": "kushtia-daulatpur",
+          "office": "সাব-রেজিস্ট্রারের কার্যালয়, দৌলতপুর, কুষ্টিয়া",
+          "upazila": "দৌলতপুর",
+          "district": "কুষ্টিয়া",
+          "published": "প্রকাশকাল: সেপ্টেম্বর, ২০২৬",
+          "count": 11,
+          "dpi": 150,
+          "pdf": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-kushtia-daulatpur/kushtia-daulatpur-pdf.zip",
+            "bytes": 2572987,
+            "size": "2.5 MB"
+          },
+          "img": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-kushtia-daulatpur/kushtia-daulatpur-images.zip",
+            "bytes": 38092977,
+            "size": "36.3 MB"
+          }
+        },
+        {
+          "folder": "kushtia-bheramara",
+          "office": "সাব-রেজিস্ট্রারের কার্যালয়, ভেড়ামারা, কুষ্টিয়া",
+          "upazila": "ভেড়ামারা",
+          "district": "কুষ্টিয়া",
+          "published": "প্রকাশকাল: সেপ্টেম্বর, ২০২৬",
+          "count": 11,
+          "dpi": 150,
+          "pdf": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-kushtia-bheramara/kushtia-bheramara-pdf.zip",
+            "bytes": 2574186,
+            "size": "2.5 MB"
+          },
+          "img": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-kushtia-bheramara/kushtia-bheramara-images.zip",
+            "bytes": 38124655,
+            "size": "36.4 MB"
+          }
+        },
+        {
           "folder": "kushtia-mirpur",
           "office": "সাব-রেজিস্ট্রারের কার্যালয়, মিরপুর, কুষ্টিয়া",
           "upazila": "মিরপুর",
@@ -464,10 +849,228 @@
           "dpi": 150,
           "pdf": {
             "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-kushtia-mirpur/kushtia-mirpur-pdf.zip",
-            "bytes": 2573166,
+            "bytes": 2573192,
             "size": "2.5 MB"
           },
-          "img": null
+          "img": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-kushtia-mirpur/kushtia-mirpur-images.zip",
+            "bytes": 38092921,
+            "size": "36.3 MB"
+          }
+        }
+      ]
+    },
+    {
+      "district": "খুলনা",
+      "offices": [
+        {
+          "folder": "khulna-koyra",
+          "office": "সাব-রেজিস্ট্রারের কার্যালয়, কয়রা, খুলনা",
+          "upazila": "কয়রা",
+          "district": "খুলনা",
+          "published": "প্রকাশকাল: সেপ্টেম্বর, ২০২৬",
+          "count": 11,
+          "dpi": 150,
+          "pdf": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-khulna-koyra/khulna-koyra-pdf.zip",
+            "bytes": 2570844,
+            "size": "2.5 MB"
+          },
+          "img": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-khulna-koyra/khulna-koyra-images.zip",
+            "bytes": 37921470,
+            "size": "36.2 MB"
+          }
+        },
+        {
+          "folder": "khulna-sadar",
+          "office": "সাব-রেজিস্ট্রারের কার্যালয়, খুলনা সদর, খুলনা",
+          "upazila": "খুলনা সদর",
+          "district": "খুলনা",
+          "published": "প্রকাশকাল: সেপ্টেম্বর, ২০২৬",
+          "count": 11,
+          "dpi": 150,
+          "pdf": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-khulna-sadar/khulna-sadar-pdf.zip",
+            "bytes": 2594900,
+            "size": "2.5 MB"
+          },
+          "img": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-khulna-sadar/khulna-sadar-images.zip",
+            "bytes": 38252668,
+            "size": "36.5 MB"
+          }
+        },
+        {
+          "folder": "khulna-dumuria",
+          "office": "সাব-রেজিস্ট্রারের কার্যালয়, ডুমুরিয়া, খুলনা",
+          "upazila": "ডুমুরিয়া",
+          "district": "খুলনা",
+          "published": "প্রকাশকাল: সেপ্টেম্বর, ২০২৬",
+          "count": 11,
+          "dpi": 150,
+          "pdf": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-khulna-dumuria/khulna-dumuria-pdf.zip",
+            "bytes": 2572551,
+            "size": "2.5 MB"
+          },
+          "img": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-khulna-dumuria/khulna-dumuria-images.zip",
+            "bytes": 38010938,
+            "size": "36.3 MB"
+          }
+        },
+        {
+          "folder": "khulna-terokhada",
+          "office": "সাব-রেজিস্ট্রারের কার্যালয়, তেরখাদা, খুলনা",
+          "upazila": "তেরখাদা",
+          "district": "খুলনা",
+          "published": "প্রকাশকাল: সেপ্টেম্বর, ২০২৬",
+          "count": 11,
+          "dpi": 150,
+          "pdf": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-khulna-terokhada/khulna-terokhada-pdf.zip",
+            "bytes": 2571535,
+            "size": "2.5 MB"
+          },
+          "img": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-khulna-terokhada/khulna-terokhada-images.zip",
+            "bytes": 37984014,
+            "size": "36.2 MB"
+          }
+        },
+        {
+          "folder": "khulna-dacope",
+          "office": "সাব-রেজিস্ট্রারের কার্যালয়, দাকোপ, খুলনা",
+          "upazila": "দাকোপ",
+          "district": "খুলনা",
+          "published": "প্রকাশকাল: সেপ্টেম্বর, ২০২৬",
+          "count": 11,
+          "dpi": 150,
+          "pdf": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-khulna-dacope/khulna-dacope-pdf.zip",
+            "bytes": 2572371,
+            "size": "2.5 MB"
+          },
+          "img": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-khulna-dacope/khulna-dacope-images.zip",
+            "bytes": 38006980,
+            "size": "36.2 MB"
+          }
+        },
+        {
+          "folder": "khulna-dighalia",
+          "office": "সাব-রেজিস্ট্রারের কার্যালয়, দীঘলিয়া, খুলনা",
+          "upazila": "দীঘলিয়া",
+          "district": "খুলনা",
+          "published": "প্রকাশকাল: সেপ্টেম্বর, ২০২৬",
+          "count": 11,
+          "dpi": 150,
+          "pdf": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-khulna-dighalia/khulna-dighalia-pdf.zip",
+            "bytes": 2572428,
+            "size": "2.5 MB"
+          },
+          "img": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-khulna-dighalia/khulna-dighalia-images.zip",
+            "bytes": 38006577,
+            "size": "36.2 MB"
+          }
+        },
+        {
+          "folder": "khulna-daulatpur",
+          "office": "সাব-রেজিস্ট্রারের কার্যালয়, দৌলতপুর, খুলনা",
+          "upazila": "দৌলতপুর",
+          "district": "খুলনা",
+          "published": "প্রকাশকাল: সেপ্টেম্বর, ২০২৬",
+          "count": 11,
+          "dpi": 150,
+          "pdf": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-khulna-daulatpur/khulna-daulatpur-pdf.zip",
+            "bytes": 2596119,
+            "size": "2.5 MB"
+          },
+          "img": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-khulna-daulatpur/khulna-daulatpur-images.zip",
+            "bytes": 38272937,
+            "size": "36.5 MB"
+          }
+        },
+        {
+          "folder": "khulna-paikgachha",
+          "office": "সাব-রেজিস্ট্রারের কার্যালয়, পাইকগাছা, খুলনা",
+          "upazila": "পাইকগাছা",
+          "district": "খুলনা",
+          "published": "প্রকাশকাল: সেপ্টেম্বর, ২০২৬",
+          "count": 11,
+          "dpi": 150,
+          "pdf": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-khulna-paikgachha/khulna-paikgachha-pdf.zip",
+            "bytes": 2574101,
+            "size": "2.5 MB"
+          },
+          "img": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-khulna-paikgachha/khulna-paikgachha-images.zip",
+            "bytes": 38101358,
+            "size": "36.3 MB"
+          }
+        },
+        {
+          "folder": "khulna-phultala",
+          "office": "সাব-রেজিস্ট্রারের কার্যালয়, ফুলতলা, খুলনা",
+          "upazila": "ফুলতলা",
+          "district": "খুলনা",
+          "published": "প্রকাশকাল: সেপ্টেম্বর, ২০২৬",
+          "count": 11,
+          "dpi": 150,
+          "pdf": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-khulna-phultala/khulna-phultala-pdf.zip",
+            "bytes": 2571535,
+            "size": "2.5 MB"
+          },
+          "img": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-khulna-phultala/khulna-phultala-images.zip",
+            "bytes": 37980704,
+            "size": "36.2 MB"
+          }
+        },
+        {
+          "folder": "khulna-batiaghata",
+          "office": "সাব-রেজিস্ট্রারের কার্যালয়, বটিয়াঘাটা, খুলনা",
+          "upazila": "বটিয়াঘাটা",
+          "district": "খুলনা",
+          "published": "প্রকাশকাল: সেপ্টেম্বর, ২০২৬",
+          "count": 11,
+          "dpi": 150,
+          "pdf": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-khulna-batiaghata/khulna-batiaghata-pdf.zip",
+            "bytes": 2572544,
+            "size": "2.5 MB"
+          },
+          "img": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-khulna-batiaghata/khulna-batiaghata-images.zip",
+            "bytes": 38034858,
+            "size": "36.3 MB"
+          }
+        },
+        {
+          "folder": "khulna-rupsa",
+          "office": "সাব-রেজিস্ট্রারের কার্যালয়, রূপসা, খুলনা",
+          "upazila": "রূপসা",
+          "district": "খুলনা",
+          "published": "প্রকাশকাল: সেপ্টেম্বর, ২০২৬",
+          "count": 11,
+          "dpi": 150,
+          "pdf": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-khulna-rupsa/khulna-rupsa-pdf.zip",
+            "bytes": 2572546,
+            "size": "2.5 MB"
+          },
+          "img": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-khulna-rupsa/khulna-rupsa-images.zip",
+            "bytes": 37923930,
+            "size": "36.2 MB"
+          }
         }
       ]
     },
@@ -734,6 +1337,163 @@
       ]
     },
     {
+      "district": "চাঁদপুর",
+      "offices": [
+        {
+          "folder": "chandpur-kachua",
+          "office": "সাব-রেজিস্ট্রারের কার্যালয়, কচুয়া, চাঁদপুর",
+          "upazila": "কচুয়া",
+          "district": "চাঁদপুর",
+          "published": "প্রকাশকাল: সেপ্টেম্বর, ২০২৬",
+          "count": 11,
+          "dpi": 150,
+          "pdf": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-chandpur-kachua/chandpur-kachua-pdf.zip",
+            "bytes": 2575366,
+            "size": "2.5 MB"
+          },
+          "img": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-chandpur-kachua/chandpur-kachua-images.zip",
+            "bytes": 38036461,
+            "size": "36.3 MB"
+          }
+        },
+        {
+          "folder": "chandpur-sadar",
+          "office": "সাব-রেজিস্ট্রারের কার্যালয়, চাঁদপুর সদর, চাঁদপুর",
+          "upazila": "চাঁদপুর সদর",
+          "district": "চাঁদপুর",
+          "published": "প্রকাশকাল: সেপ্টেম্বর, ২০২৬",
+          "count": 11,
+          "dpi": 150,
+          "pdf": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-chandpur-sadar/chandpur-sadar-pdf.zip",
+            "bytes": 2597554,
+            "size": "2.5 MB"
+          },
+          "img": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-chandpur-sadar/chandpur-sadar-images.zip",
+            "bytes": 38456488,
+            "size": "36.7 MB"
+          }
+        },
+        {
+          "folder": "chandpur-shahrasti",
+          "office": "সাব-রেজিস্ট্রারের কার্যালয়, চিতোষী, শাহারাস্তি, চাঁদপুর",
+          "upazila": "শাহারাস্তি",
+          "district": "চাঁদপুর",
+          "published": "প্রকাশকাল: সেপ্টেম্বর, ২০২৬",
+          "count": 11,
+          "dpi": 150,
+          "pdf": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-chandpur-shahrasti/chandpur-shahrasti-pdf.zip",
+            "bytes": 2577531,
+            "size": "2.5 MB"
+          },
+          "img": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-chandpur-shahrasti/chandpur-shahrasti-images.zip",
+            "bytes": 38316591,
+            "size": "36.5 MB"
+          }
+        },
+        {
+          "folder": "chandpur-faridganj",
+          "office": "সাব-রেজিস্ট্রারের কার্যালয়, ফরিদগঞ্জ, চাঁদপুর",
+          "upazila": "ফরিদগঞ্জ",
+          "district": "চাঁদপুর",
+          "published": "প্রকাশকাল: সেপ্টেম্বর, ২০২৬",
+          "count": 11,
+          "dpi": 150,
+          "pdf": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-chandpur-faridganj/chandpur-faridganj-pdf.zip",
+            "bytes": 2579854,
+            "size": "2.5 MB"
+          },
+          "img": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-chandpur-faridganj/chandpur-faridganj-images.zip",
+            "bytes": 38144083,
+            "size": "36.4 MB"
+          }
+        },
+        {
+          "folder": "chandpur-matlabdakshin",
+          "office": "সাব-রেজিস্ট্রারের কার্যালয়, মতলব দক্ষিণ, চাঁদপুর",
+          "upazila": "মতলব দক্ষিণ",
+          "district": "চাঁদপুর",
+          "published": "প্রকাশকাল: সেপ্টেম্বর, ২০২৬",
+          "count": 11,
+          "dpi": 150,
+          "pdf": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-chandpur-matlabdakshin/chandpur-matlabdakshin-pdf.zip",
+            "bytes": 2576730,
+            "size": "2.5 MB"
+          },
+          "img": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-chandpur-matlabdakshin/chandpur-matlabdakshin-images.zip",
+            "bytes": 38179779,
+            "size": "36.4 MB"
+          }
+        },
+        {
+          "folder": "chandpur-matlabuttar",
+          "office": "সাব-রেজিস্ট্রারের কার্যালয়, মোহনপুর, মতলব উত্তর, চাঁদপুর",
+          "upazila": "মতলব উত্তর",
+          "district": "চাঁদপুর",
+          "published": "প্রকাশকাল: সেপ্টেম্বর, ২০২৬",
+          "count": 11,
+          "dpi": 150,
+          "pdf": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-chandpur-matlabuttar/chandpur-matlabuttar-pdf.zip",
+            "bytes": 2577577,
+            "size": "2.5 MB"
+          },
+          "img": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-chandpur-matlabuttar/chandpur-matlabuttar-images.zip",
+            "bytes": 38376346,
+            "size": "36.6 MB"
+          }
+        },
+        {
+          "folder": "chandpur-haimchar",
+          "office": "সাব-রেজিস্ট্রারের কার্যালয়, হাইমচর, চাঁদপুর",
+          "upazila": "হাইমচর",
+          "district": "চাঁদপুর",
+          "published": "প্রকাশকাল: সেপ্টেম্বর, ২০২৬",
+          "count": 11,
+          "dpi": 150,
+          "pdf": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-chandpur-haimchar/chandpur-haimchar-pdf.zip",
+            "bytes": 2574969,
+            "size": "2.5 MB"
+          },
+          "img": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-chandpur-haimchar/chandpur-haimchar-images.zip",
+            "bytes": 38042404,
+            "size": "36.3 MB"
+          }
+        },
+        {
+          "folder": "chandpur-hajiganj",
+          "office": "সাব-রেজিস্ট্রারের কার্যালয়, হাজীগঞ্জ, চাঁদপুর",
+          "upazila": "হাজীগঞ্জ",
+          "district": "চাঁদপুর",
+          "published": "প্রকাশকাল: সেপ্টেম্বর, ২০২৬",
+          "count": 11,
+          "dpi": 150,
+          "pdf": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-chandpur-hajiganj/chandpur-hajiganj-pdf.zip",
+            "bytes": 2579999,
+            "size": "2.5 MB"
+          },
+          "img": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-chandpur-hajiganj/chandpur-hajiganj-images.zip",
+            "bytes": 38153174,
+            "size": "36.4 MB"
+          }
+        }
+      ]
+    },
+    {
       "district": "চুয়াডাঙ্গা",
       "offices": [
         {
@@ -947,6 +1707,206 @@
           "img": {
             "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-jamalpur-sarishabari/jamalpur-sarishabari-images.zip",
             "bytes": 38236618,
+            "size": "36.5 MB"
+          }
+        }
+      ]
+    },
+    {
+      "district": "ঝালকাঠি",
+      "offices": [
+        {
+          "folder": "jhalokati-kathalia",
+          "office": "সাব-রেজিস্ট্রারের কার্যালয়, কাঁঠালিয়া, ঝালকাঠি",
+          "upazila": "কাঁঠালিয়া",
+          "district": "ঝালকাঠি",
+          "published": "প্রকাশকাল: সেপ্টেম্বর, ২০২৬",
+          "count": 11,
+          "dpi": 150,
+          "pdf": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-jhalokati-kathalia/jhalokati-kathalia-pdf.zip",
+            "bytes": 2579908,
+            "size": "2.5 MB"
+          },
+          "img": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-jhalokati-kathalia/jhalokati-kathalia-images.zip",
+            "bytes": 38141340,
+            "size": "36.4 MB"
+          }
+        },
+        {
+          "folder": "jhalokati-sadar",
+          "office": "সাব-রেজিস্ট্রারের কার্যালয়, ঝালকাঠি সদর, ঝালকাঠি",
+          "upazila": "ঝালকাঠি সদর",
+          "district": "ঝালকাঠি",
+          "published": "প্রকাশকাল: সেপ্টেম্বর, ২০২৬",
+          "count": 11,
+          "dpi": 150,
+          "pdf": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-jhalokati-sadar/jhalokati-sadar-pdf.zip",
+            "bytes": 2603385,
+            "size": "2.5 MB"
+          },
+          "img": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-jhalokati-sadar/jhalokati-sadar-images.zip",
+            "bytes": 38551826,
+            "size": "36.8 MB"
+          }
+        },
+        {
+          "folder": "jhalokati-nalchity",
+          "office": "সাব-রেজিস্ট্রারের কার্যালয়, নলছিটি, ঝালকাঠি",
+          "upazila": "নলছিটি",
+          "district": "ঝালকাঠি",
+          "published": "প্রকাশকাল: সেপ্টেম্বর, ২০২৬",
+          "count": 11,
+          "dpi": 150,
+          "pdf": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-jhalokati-nalchity/jhalokati-nalchity-pdf.zip",
+            "bytes": 2581114,
+            "size": "2.5 MB"
+          },
+          "img": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-jhalokati-nalchity/jhalokati-nalchity-images.zip",
+            "bytes": 38142562,
+            "size": "36.4 MB"
+          }
+        },
+        {
+          "folder": "jhalokati-rajapur",
+          "office": "সাব-রেজিস্ট্রারের কার্যালয়, রাজাপুর, ঝালকাঠি",
+          "upazila": "রাজাপুর",
+          "district": "ঝালকাঠি",
+          "published": "প্রকাশকাল: সেপ্টেম্বর, ২০২৬",
+          "count": 11,
+          "dpi": 150,
+          "pdf": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-jhalokati-rajapur/jhalokati-rajapur-pdf.zip",
+            "bytes": 2579486,
+            "size": "2.5 MB"
+          },
+          "img": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-jhalokati-rajapur/jhalokati-rajapur-images.zip",
+            "bytes": 38101054,
+            "size": "36.3 MB"
+          }
+        }
+      ]
+    },
+    {
+      "district": "ঝিনাইদহ",
+      "offices": [
+        {
+          "folder": "jhenaidah-kaliganj",
+          "office": "সাব-রেজিস্ট্রারের কার্যালয়, কালীগঞ্জ, ঝিনাইদহ",
+          "upazila": "কালীগঞ্জ",
+          "district": "ঝিনাইদহ",
+          "published": "প্রকাশকাল: সেপ্টেম্বর, ২০২৬",
+          "count": 11,
+          "dpi": 150,
+          "pdf": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-jhenaidah-kaliganj/jhenaidah-kaliganj-pdf.zip",
+            "bytes": 2581001,
+            "size": "2.5 MB"
+          },
+          "img": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-jhenaidah-kaliganj/jhenaidah-kaliganj-images.zip",
+            "bytes": 38198227,
+            "size": "36.4 MB"
+          }
+        },
+        {
+          "folder": "jhenaidah-kotchandpur",
+          "office": "সাব-রেজিস্ট্রারের কার্যালয়, কোটচাঁদপুর, ঝিনাইদহ",
+          "upazila": "কোটচাঁদপুর",
+          "district": "ঝিনাইদহ",
+          "published": "প্রকাশকাল: সেপ্টেম্বর, ২০২৬",
+          "count": 11,
+          "dpi": 150,
+          "pdf": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-jhenaidah-kotchandpur/jhenaidah-kotchandpur-pdf.zip",
+            "bytes": 2579147,
+            "size": "2.5 MB"
+          },
+          "img": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-jhenaidah-kotchandpur/jhenaidah-kotchandpur-images.zip",
+            "bytes": 38249572,
+            "size": "36.5 MB"
+          }
+        },
+        {
+          "folder": "jhenaidah-sadar",
+          "office": "সাব-রেজিস্ট্রারের কার্যালয়, ঝিনাইদহ সদর, ঝিনাইদহ",
+          "upazila": "ঝিনাইদহ সদর",
+          "district": "ঝিনাইদহ",
+          "published": "প্রকাশকাল: সেপ্টেম্বর, ২০২৬",
+          "count": 11,
+          "dpi": 150,
+          "pdf": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-jhenaidah-sadar/jhenaidah-sadar-pdf.zip",
+            "bytes": 2599149,
+            "size": "2.5 MB"
+          },
+          "img": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-jhenaidah-sadar/jhenaidah-sadar-images.zip",
+            "bytes": 38587026,
+            "size": "36.8 MB"
+          }
+        },
+        {
+          "folder": "jhenaidah-maheshpur",
+          "office": "সাব-রেজিস্ট্রারের কার্যালয়, মহেশপুর, ঝিনাইদহ",
+          "upazila": "মহেশপুর",
+          "district": "ঝিনাইদহ",
+          "published": "প্রকাশকাল: সেপ্টেম্বর, ২০২৬",
+          "count": 11,
+          "dpi": 150,
+          "pdf": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-jhenaidah-maheshpur/jhenaidah-maheshpur-pdf.zip",
+            "bytes": 2577720,
+            "size": "2.5 MB"
+          },
+          "img": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-jhenaidah-maheshpur/jhenaidah-maheshpur-images.zip",
+            "bytes": 38174427,
+            "size": "36.4 MB"
+          }
+        },
+        {
+          "folder": "jhenaidah-shailkupa",
+          "office": "সাব-রেজিস্ট্রারের কার্যালয়, শৈলকুপা, ঝিনাইদহ",
+          "upazila": "শৈলকুপা",
+          "district": "ঝিনাইদহ",
+          "published": "প্রকাশকাল: সেপ্টেম্বর, ২০২৬",
+          "count": 11,
+          "dpi": 150,
+          "pdf": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-jhenaidah-shailkupa/jhenaidah-shailkupa-pdf.zip",
+            "bytes": 2579118,
+            "size": "2.5 MB"
+          },
+          "img": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-jhenaidah-shailkupa/jhenaidah-shailkupa-images.zip",
+            "bytes": 38177869,
+            "size": "36.4 MB"
+          }
+        },
+        {
+          "folder": "jhenaidah-harinakunda",
+          "office": "সাব-রেজিস্ট্রারের কার্যালয়, হরিণাকুণ্ড, ঝিনাইদহ",
+          "upazila": "হরিণাকুণ্ড",
+          "district": "ঝিনাইদহ",
+          "published": "প্রকাশকাল: সেপ্টেম্বর, ২০২৬",
+          "count": 11,
+          "dpi": 150,
+          "pdf": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-jhenaidah-harinakunda/jhenaidah-harinakunda-pdf.zip",
+            "bytes": 2579271,
+            "size": "2.5 MB"
+          },
+          "img": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-jhenaidah-harinakunda/jhenaidah-harinakunda-images.zip",
+            "bytes": 38226674,
             "size": "36.5 MB"
           }
         }
@@ -1953,6 +2913,182 @@
       ]
     },
     {
+      "district": "নোয়াখালী",
+      "offices": [
+        {
+          "folder": "noakhali-kabirhat",
+          "office": "সাব-রেজিস্ট্রারের কার্যালয়, কবিরহাট, নোয়াখালী",
+          "upazila": "কবিরহাট",
+          "district": "নোয়াখালী",
+          "published": "প্রকাশকাল: সেপ্টেম্বর, ২০২৬",
+          "count": 11,
+          "dpi": 150,
+          "pdf": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-noakhali-kabirhat/noakhali-kabirhat-pdf.zip",
+            "bytes": 2572683,
+            "size": "2.5 MB"
+          },
+          "img": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-noakhali-kabirhat/noakhali-kabirhat-images.zip",
+            "bytes": 38187410,
+            "size": "36.4 MB"
+          }
+        },
+        {
+          "folder": "noakhali-chatkhil",
+          "office": "সাব-রেজিস্ট্রারের কার্যালয়, চাটখিল, নোয়াখালী",
+          "upazila": "চাটখিল",
+          "district": "নোয়াখালী",
+          "published": "প্রকাশকাল: সেপ্টেম্বর, ২০২৬",
+          "count": 11,
+          "dpi": 150,
+          "pdf": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-noakhali-chatkhil/noakhali-chatkhil-pdf.zip",
+            "bytes": 2573046,
+            "size": "2.5 MB"
+          },
+          "img": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-noakhali-chatkhil/noakhali-chatkhil-images.zip",
+            "bytes": 38155111,
+            "size": "36.4 MB"
+          }
+        },
+        {
+          "folder": "noakhali-sadar",
+          "office": "সাব-রেজিস্ট্রারের কার্যালয়, নোয়াখালী সদর, নোয়াখালী",
+          "upazila": "নোয়াখালী সদর",
+          "district": "নোয়াখালী",
+          "published": "প্রকাশকাল: সেপ্টেম্বর, ২০২৬",
+          "count": 11,
+          "dpi": 150,
+          "pdf": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-noakhali-sadar/noakhali-sadar-pdf.zip",
+            "bytes": 2595654,
+            "size": "2.5 MB"
+          },
+          "img": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-noakhali-sadar/noakhali-sadar-images.zip",
+            "bytes": 38609177,
+            "size": "36.8 MB"
+          }
+        },
+        {
+          "folder": "noakhali-companiganj",
+          "office": "সাব-রেজিস্ট্রারের কার্যালয়, বসুরহাট, কোম্পানিগঞ্জ, নোয়াখালী",
+          "upazila": "কোম্পানিগঞ্জ",
+          "district": "নোয়াখালী",
+          "published": "প্রকাশকাল: সেপ্টেম্বর, ২০২৬",
+          "count": 11,
+          "dpi": 150,
+          "pdf": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-noakhali-companiganj/noakhali-companiganj-pdf.zip",
+            "bytes": 2578753,
+            "size": "2.5 MB"
+          },
+          "img": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-noakhali-companiganj/noakhali-companiganj-images.zip",
+            "bytes": 38466719,
+            "size": "36.7 MB"
+          }
+        },
+        {
+          "folder": "noakhali-begumganj",
+          "office": "সাব-রেজিস্ট্রারের কার্যালয়, বেগমগঞ্জ, নোয়াখালী",
+          "upazila": "বেগমগঞ্জ",
+          "district": "নোয়াখালী",
+          "published": "প্রকাশকাল: সেপ্টেম্বর, ২০২৬",
+          "count": 11,
+          "dpi": 150,
+          "pdf": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-noakhali-begumganj/noakhali-begumganj-pdf.zip",
+            "bytes": 2577106,
+            "size": "2.5 MB"
+          },
+          "img": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-noakhali-begumganj/noakhali-begumganj-images.zip",
+            "bytes": 38200826,
+            "size": "36.4 MB"
+          }
+        },
+        {
+          "folder": "noakhali-subarnachar",
+          "office": "সাব-রেজিস্ট্রারের কার্যালয়, সুবর্নচর, নোয়াখালী",
+          "upazila": "সুবর্নচর",
+          "district": "নোয়াখালী",
+          "published": "প্রকাশকাল: সেপ্টেম্বর, ২০২৬",
+          "count": 11,
+          "dpi": 150,
+          "pdf": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-noakhali-subarnachar/noakhali-subarnachar-pdf.zip",
+            "bytes": 2571828,
+            "size": "2.5 MB"
+          },
+          "img": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-noakhali-subarnachar/noakhali-subarnachar-images.zip",
+            "bytes": 38092454,
+            "size": "36.3 MB"
+          }
+        },
+        {
+          "folder": "noakhali-senbag",
+          "office": "সাব-রেজিস্ট্রারের কার্যালয়, সেনবাগ, নোয়াখালী",
+          "upazila": "সেনবাগ",
+          "district": "নোয়াখালী",
+          "published": "প্রকাশকাল: সেপ্টেম্বর, ২০২৬",
+          "count": 11,
+          "dpi": 150,
+          "pdf": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-noakhali-senbag/noakhali-senbag-pdf.zip",
+            "bytes": 2572164,
+            "size": "2.5 MB"
+          },
+          "img": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-noakhali-senbag/noakhali-senbag-images.zip",
+            "bytes": 38130980,
+            "size": "36.4 MB"
+          }
+        },
+        {
+          "folder": "noakhali-sonaimuri",
+          "office": "সাব-রেজিস্ট্রারের কার্যালয়, সোনাইমুড়ি, নোয়াখালী",
+          "upazila": "সোনাইমুড়ি",
+          "district": "নোয়াখালী",
+          "published": "প্রকাশকাল: সেপ্টেম্বর, ২০২৬",
+          "count": 11,
+          "dpi": 150,
+          "pdf": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-noakhali-sonaimuri/noakhali-sonaimuri-pdf.zip",
+            "bytes": 2574144,
+            "size": "2.5 MB"
+          },
+          "img": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-noakhali-sonaimuri/noakhali-sonaimuri-images.zip",
+            "bytes": 38251313,
+            "size": "36.5 MB"
+          }
+        },
+        {
+          "folder": "noakhali-hatiya",
+          "office": "সাব-রেজিস্ট্রারের কার্যালয়, হাতিয়া, নোয়াখালী",
+          "upazila": "হাতিয়া",
+          "district": "নোয়াখালী",
+          "published": "প্রকাশকাল: সেপ্টেম্বর, ২০২৬",
+          "count": 11,
+          "dpi": 150,
+          "pdf": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-noakhali-hatiya/noakhali-hatiya-pdf.zip",
+            "bytes": 2572475,
+            "size": "2.5 MB"
+          },
+          "img": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-noakhali-hatiya/noakhali-hatiya-images.zip",
+            "bytes": 38134926,
+            "size": "36.4 MB"
+          }
+        }
+      ]
+    },
+    {
       "district": "পঞ্চগড়",
       "offices": [
         {
@@ -2524,6 +3660,244 @@
       ]
     },
     {
+      "district": "ফেনী",
+      "offices": [
+        {
+          "folder": "feni-chhagalnaiya",
+          "office": "সাব-রেজিস্ট্রারের কার্যালয়, ছাগলনাইয়া, ফেনী",
+          "upazila": "ছাগলনাইয়া",
+          "district": "ফেনী",
+          "published": "প্রকাশকাল: সেপ্টেম্বর, ২০২৬",
+          "count": 11,
+          "dpi": 150,
+          "pdf": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-feni-chhagalnaiya/feni-chhagalnaiya-pdf.zip",
+            "bytes": 2573669,
+            "size": "2.5 MB"
+          },
+          "img": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-feni-chhagalnaiya/feni-chhagalnaiya-images.zip",
+            "bytes": 38114715,
+            "size": "36.3 MB"
+          }
+        },
+        {
+          "folder": "feni-daganbhuiyan",
+          "office": "সাব-রেজিস্ট্রারের কার্যালয়, দাগনভূঞা, ফেনী",
+          "upazila": "দাগনভূঞা",
+          "district": "ফেনী",
+          "published": "প্রকাশকাল: সেপ্টেম্বর, ২০২৬",
+          "count": 11,
+          "dpi": 150,
+          "pdf": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-feni-daganbhuiyan/feni-daganbhuiyan-pdf.zip",
+            "bytes": 2577310,
+            "size": "2.5 MB"
+          },
+          "img": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-feni-daganbhuiyan/feni-daganbhuiyan-images.zip",
+            "bytes": 38092635,
+            "size": "36.3 MB"
+          }
+        },
+        {
+          "folder": "feni-parshuram",
+          "office": "সাব-রেজিস্ট্রারের কার্যালয়, পরশুরাম, ফেনী",
+          "upazila": "পরশুরাম",
+          "district": "ফেনী",
+          "published": "প্রকাশকাল: সেপ্টেম্বর, ২০২৬",
+          "count": 11,
+          "dpi": 150,
+          "pdf": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-feni-parshuram/feni-parshuram-pdf.zip",
+            "bytes": 2573952,
+            "size": "2.5 MB"
+          },
+          "img": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-feni-parshuram/feni-parshuram-images.zip",
+            "bytes": 38044768,
+            "size": "36.3 MB"
+          }
+        },
+        {
+          "folder": "feni-fulgazi",
+          "office": "সাব-রেজিস্ট্রারের কার্যালয়, ফুলগাজী, ফেনী",
+          "upazila": "ফুলগাজী",
+          "district": "ফেনী",
+          "published": "প্রকাশকাল: সেপ্টেম্বর, ২০২৬",
+          "count": 11,
+          "dpi": 150,
+          "pdf": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-feni-fulgazi/feni-fulgazi-pdf.zip",
+            "bytes": 2571490,
+            "size": "2.5 MB"
+          },
+          "img": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-feni-fulgazi/feni-fulgazi-images.zip",
+            "bytes": 38010599,
+            "size": "36.2 MB"
+          }
+        },
+        {
+          "folder": "feni-sadar",
+          "office": "সাব-রেজিস্ট্রারের কার্যালয়, ফেনী সদর, ফেনী",
+          "upazila": "ফেনী সদর",
+          "district": "ফেনী",
+          "published": "প্রকাশকাল: সেপ্টেম্বর, ২০২৬",
+          "count": 11,
+          "dpi": 150,
+          "pdf": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-feni-sadar/feni-sadar-pdf.zip",
+            "bytes": 2595128,
+            "size": "2.5 MB"
+          },
+          "img": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-feni-sadar/feni-sadar-images.zip",
+            "bytes": 38370767,
+            "size": "36.6 MB"
+          }
+        },
+        {
+          "folder": "feni-sonagazi",
+          "office": "সাব-রেজিস্ট্রারের কার্যালয়, মতিগঞ্জ, সোনাগাজী, ফেনী",
+          "upazila": "সোনাগাজী",
+          "district": "ফেনী",
+          "published": "প্রকাশকাল: সেপ্টেম্বর, ২০২৬",
+          "count": 11,
+          "dpi": 150,
+          "pdf": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-feni-sonagazi/feni-sonagazi-pdf.zip",
+            "bytes": 2575727,
+            "size": "2.5 MB"
+          },
+          "img": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-feni-sonagazi/feni-sonagazi-images.zip",
+            "bytes": 38272005,
+            "size": "36.5 MB"
+          }
+        },
+        {
+          "folder": "feni-lemua",
+          "office": "সাব-রেজিস্ট্রারের কার্যালয়, লেমুয়া, ফেনী সদর, ফেনী",
+          "upazila": "ফেনী সদর",
+          "district": "ফেনী",
+          "published": "প্রকাশকাল: সেপ্টেম্বর, ২০২৬",
+          "count": 11,
+          "dpi": 150,
+          "pdf": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-feni-lemua/feni-lemua-pdf.zip",
+            "bytes": 2570836,
+            "size": "2.5 MB"
+          },
+          "img": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-feni-lemua/feni-lemua-images.zip",
+            "bytes": 38144547,
+            "size": "36.4 MB"
+          }
+        }
+      ]
+    },
+    {
+      "district": "বরগুনা",
+      "offices": [
+        {
+          "folder": "barguna-amtali",
+          "office": "সাব-রেজিস্ট্রারের কার্যালয়, আমতলী, বরগুনা",
+          "upazila": "আমতলী",
+          "district": "বরগুনা",
+          "published": "প্রকাশকাল: সেপ্টেম্বর, ২০২৬",
+          "count": 11,
+          "dpi": 150,
+          "pdf": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-barguna-amtali/barguna-amtali-pdf.zip",
+            "bytes": 2574535,
+            "size": "2.5 MB"
+          },
+          "img": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-barguna-amtali/barguna-amtali-images.zip",
+            "bytes": 38081777,
+            "size": "36.3 MB"
+          }
+        },
+        {
+          "folder": "barguna-patharghata",
+          "office": "সাব-রেজিস্ট্রারের কার্যালয়, পাথরঘাটা, বরগুনা",
+          "upazila": "পাথরঘাটা",
+          "district": "বরগুনা",
+          "published": "প্রকাশকাল: সেপ্টেম্বর, ২০২৬",
+          "count": 11,
+          "dpi": 150,
+          "pdf": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-barguna-patharghata/barguna-patharghata-pdf.zip",
+            "bytes": 2575989,
+            "size": "2.5 MB"
+          },
+          "img": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-barguna-patharghata/barguna-patharghata-images.zip",
+            "bytes": 38109783,
+            "size": "36.3 MB"
+          }
+        },
+        {
+          "folder": "barguna-sadar",
+          "office": "সাব-রেজিস্ট্রারের কার্যালয়, বরগুনা সদর, বরগুনা",
+          "upazila": "বরগুনা সদর",
+          "district": "বরগুনা",
+          "published": "প্রকাশকাল: সেপ্টেম্বর, ২০২৬",
+          "count": 11,
+          "dpi": 150,
+          "pdf": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-barguna-sadar/barguna-sadar-pdf.zip",
+            "bytes": 2597085,
+            "size": "2.5 MB"
+          },
+          "img": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-barguna-sadar/barguna-sadar-images.zip",
+            "bytes": 38447920,
+            "size": "36.7 MB"
+          }
+        },
+        {
+          "folder": "barguna-bamna",
+          "office": "সাব-রেজিস্ট্রারের কার্যালয়, বামনা, বরগুনা",
+          "upazila": "বামনা",
+          "district": "বরগুনা",
+          "published": "প্রকাশকাল: সেপ্টেম্বর, ২০২৬",
+          "count": 11,
+          "dpi": 150,
+          "pdf": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-barguna-bamna/barguna-bamna-pdf.zip",
+            "bytes": 2572190,
+            "size": "2.5 MB"
+          },
+          "img": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-barguna-bamna/barguna-bamna-images.zip",
+            "bytes": 37944000,
+            "size": "36.2 MB"
+          }
+        },
+        {
+          "folder": "barguna-betagi",
+          "office": "সাব-রেজিস্ট্রারের কার্যালয়, বেতাগী, বরগুনা",
+          "upazila": "বেতাগী",
+          "district": "বরগুনা",
+          "published": "প্রকাশকাল: সেপ্টেম্বর, ২০২৬",
+          "count": 11,
+          "dpi": 150,
+          "pdf": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-barguna-betagi/barguna-betagi-pdf.zip",
+            "bytes": 2574149,
+            "size": "2.5 MB"
+          },
+          "img": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-barguna-betagi/barguna-betagi-images.zip",
+            "bytes": 38052093,
+            "size": "36.3 MB"
+          }
+        }
+      ]
+    },
+    {
       "district": "বরিশাল",
       "offices": [
         {
@@ -2719,6 +4093,182 @@
       ]
     },
     {
+      "district": "বাগেরহাট",
+      "offices": [
+        {
+          "folder": "bagerhat-kachua",
+          "office": "সাব-রেজিস্ট্রারের কার্যালয়, কচুয়া, বাগেরহাট",
+          "upazila": "কচুয়া",
+          "district": "বাগেরহাট",
+          "published": "প্রকাশকাল: সেপ্টেম্বর, ২০২৬",
+          "count": 11,
+          "dpi": 150,
+          "pdf": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-bagerhat-kachua/bagerhat-kachua-pdf.zip",
+            "bytes": 2572557,
+            "size": "2.5 MB"
+          },
+          "img": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-bagerhat-kachua/bagerhat-kachua-images.zip",
+            "bytes": 38046276,
+            "size": "36.3 MB"
+          }
+        },
+        {
+          "folder": "bagerhat-chitalmari",
+          "office": "সাব-রেজিস্ট্রারের কার্যালয়, চিতলমারী, বাগেরহাট",
+          "upazila": "চিতলমারী",
+          "district": "বাগেরহাট",
+          "published": "প্রকাশকাল: সেপ্টেম্বর, ২০২৬",
+          "count": 11,
+          "dpi": 150,
+          "pdf": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-bagerhat-chitalmari/bagerhat-chitalmari-pdf.zip",
+            "bytes": 2572473,
+            "size": "2.5 MB"
+          },
+          "img": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-bagerhat-chitalmari/bagerhat-chitalmari-images.zip",
+            "bytes": 38152973,
+            "size": "36.4 MB"
+          }
+        },
+        {
+          "folder": "bagerhat-fakirhat",
+          "office": "সাব-রেজিস্ট্রারের কার্যালয়, ফকিরহাট, বাগেরহাট",
+          "upazila": "ফকিরহাট",
+          "district": "বাগেরহাট",
+          "published": "প্রকাশকাল: সেপ্টেম্বর, ২০২৬",
+          "count": 11,
+          "dpi": 150,
+          "pdf": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-bagerhat-fakirhat/bagerhat-fakirhat-pdf.zip",
+            "bytes": 2571823,
+            "size": "2.5 MB"
+          },
+          "img": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-bagerhat-fakirhat/bagerhat-fakirhat-images.zip",
+            "bytes": 38145247,
+            "size": "36.4 MB"
+          }
+        },
+        {
+          "folder": "bagerhat-sadar",
+          "office": "সাব-রেজিস্ট্রারের কার্যালয়, বাগেরহাট সদর, বাগেরহাট",
+          "upazila": "বাগেরহাট সদর",
+          "district": "বাগেরহাট",
+          "published": "প্রকাশকাল: সেপ্টেম্বর, ২০২৬",
+          "count": 11,
+          "dpi": 150,
+          "pdf": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-bagerhat-sadar/bagerhat-sadar-pdf.zip",
+            "bytes": 2595859,
+            "size": "2.5 MB"
+          },
+          "img": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-bagerhat-sadar/bagerhat-sadar-images.zip",
+            "bytes": 38575689,
+            "size": "36.8 MB"
+          }
+        },
+        {
+          "folder": "bagerhat-mongla",
+          "office": "সাব-রেজিস্ট্রারের কার্যালয়, মোংলা, বাগেরহাট",
+          "upazila": "মোংলা",
+          "district": "বাগেরহাট",
+          "published": "প্রকাশকাল: সেপ্টেম্বর, ২০২৬",
+          "count": 11,
+          "dpi": 150,
+          "pdf": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-bagerhat-mongla/bagerhat-mongla-pdf.zip",
+            "bytes": 2572633,
+            "size": "2.5 MB"
+          },
+          "img": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-bagerhat-mongla/bagerhat-mongla-images.zip",
+            "bytes": 38109550,
+            "size": "36.3 MB"
+          }
+        },
+        {
+          "folder": "bagerhat-morrelganj",
+          "office": "সাব-রেজিস্ট্রারের কার্যালয়, মোড়েলগঞ্জ, বাগেরহাট",
+          "upazila": "মোড়েলগঞ্জ",
+          "district": "বাগেরহাট",
+          "published": "প্রকাশকাল: সেপ্টেম্বর, ২০২৬",
+          "count": 11,
+          "dpi": 150,
+          "pdf": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-bagerhat-morrelganj/bagerhat-morrelganj-pdf.zip",
+            "bytes": 2577745,
+            "size": "2.5 MB"
+          },
+          "img": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-bagerhat-morrelganj/bagerhat-morrelganj-images.zip",
+            "bytes": 38249519,
+            "size": "36.5 MB"
+          }
+        },
+        {
+          "folder": "bagerhat-mollahat",
+          "office": "সাব-রেজিস্ট্রারের কার্যালয়, মোল্লাহাট, বাগেরহাট",
+          "upazila": "মোল্লাহাট",
+          "district": "বাগেরহাট",
+          "published": "প্রকাশকাল: সেপ্টেম্বর, ২০২৬",
+          "count": 11,
+          "dpi": 150,
+          "pdf": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-bagerhat-mollahat/bagerhat-mollahat-pdf.zip",
+            "bytes": 2573927,
+            "size": "2.5 MB"
+          },
+          "img": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-bagerhat-mollahat/bagerhat-mollahat-images.zip",
+            "bytes": 38139280,
+            "size": "36.4 MB"
+          }
+        },
+        {
+          "folder": "bagerhat-rampal",
+          "office": "সাব-রেজিস্ট্রারের কার্যালয়, রামপাল, বাগেরহাট",
+          "upazila": "রামপাল",
+          "district": "বাগেরহাট",
+          "published": "প্রকাশকাল: সেপ্টেম্বর, ২০২৬",
+          "count": 11,
+          "dpi": 150,
+          "pdf": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-bagerhat-rampal/bagerhat-rampal-pdf.zip",
+            "bytes": 2571937,
+            "size": "2.5 MB"
+          },
+          "img": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-bagerhat-rampal/bagerhat-rampal-images.zip",
+            "bytes": 38073794,
+            "size": "36.3 MB"
+          }
+        },
+        {
+          "folder": "bagerhat-sarankhola",
+          "office": "সাব-রেজিস্ট্রারের কার্যালয়, শরণখোলা, বাগেরহাট",
+          "upazila": "শরণখোলা",
+          "district": "বাগেরহাট",
+          "published": "প্রকাশকাল: সেপ্টেম্বর, ২০২৬",
+          "count": 11,
+          "dpi": 150,
+          "pdf": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-bagerhat-sarankhola/bagerhat-sarankhola-pdf.zip",
+            "bytes": 2572493,
+            "size": "2.5 MB"
+          },
+          "img": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-bagerhat-sarankhola/bagerhat-sarankhola-images.zip",
+            "bytes": 38139472,
+            "size": "36.4 MB"
+          }
+        }
+      ]
+    },
+    {
       "district": "ব্রাহ্মণবাড়িয়া",
       "offices": [
         {
@@ -2731,13 +4281,70 @@
           "dpi": 150,
           "pdf": {
             "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-brahmanbaria-sadar/brahmanbaria-sadar-pdf.zip",
-            "bytes": 2611641,
+            "bytes": 2611643,
             "size": "2.5 MB"
           },
           "img": {
             "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-brahmanbaria-sadar/brahmanbaria-sadar-images.zip",
             "bytes": 38524633,
             "size": "36.7 MB"
+          }
+        },
+        {
+          "folder": "brahmanbaria-akhaura",
+          "office": "সাব-রেজিস্ট্রারের কার্যালয়, আখাউড়া, ব্রাহ্মণবাড়িয়া",
+          "upazila": "আখাউড়া",
+          "district": "ব্রাহ্মণবাড়িয়া",
+          "published": "প্রকাশকাল: সেপ্টেম্বর, ২০২৬",
+          "count": 11,
+          "dpi": 150,
+          "pdf": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-brahmanbaria-akhaura/brahmanbaria-akhaura-pdf.zip",
+            "bytes": 2589351,
+            "size": "2.5 MB"
+          },
+          "img": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-brahmanbaria-akhaura/brahmanbaria-akhaura-images.zip",
+            "bytes": 38260002,
+            "size": "36.5 MB"
+          }
+        },
+        {
+          "folder": "brahmanbaria-ashuganj",
+          "office": "সাব-রেজিস্ট্রারের কার্যালয়, আশুগঞ্জ, ব্রাহ্মণবাড়িয়া",
+          "upazila": "আশুগঞ্জ",
+          "district": "ব্রাহ্মণবাড়িয়া",
+          "published": "প্রকাশকাল: সেপ্টেম্বর, ২০২৬",
+          "count": 11,
+          "dpi": 150,
+          "pdf": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-brahmanbaria-ashuganj/brahmanbaria-ashuganj-pdf.zip",
+            "bytes": 2593430,
+            "size": "2.5 MB"
+          },
+          "img": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-brahmanbaria-ashuganj/brahmanbaria-ashuganj-images.zip",
+            "bytes": 38226293,
+            "size": "36.5 MB"
+          }
+        },
+        {
+          "folder": "brahmanbaria-kasba",
+          "office": "সাব-রেজিস্ট্রারের কার্যালয়, কসবা, ব্রাহ্মণবাড়িয়া",
+          "upazila": "কসবা",
+          "district": "ব্রাহ্মণবাড়িয়া",
+          "published": "প্রকাশকাল: সেপ্টেম্বর, ২০২৬",
+          "count": 11,
+          "dpi": 150,
+          "pdf": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-brahmanbaria-kasba/brahmanbaria-kasba-pdf.zip",
+            "bytes": 2587260,
+            "size": "2.5 MB"
+          },
+          "img": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-brahmanbaria-kasba/brahmanbaria-kasba-images.zip",
+            "bytes": 38155421,
+            "size": "36.4 MB"
           }
         },
         {
@@ -2750,13 +4357,246 @@
           "dpi": 150,
           "pdf": {
             "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-brahmanbaria-nabinagar/brahmanbaria-nabinagar-pdf.zip",
-            "bytes": 2583676,
+            "bytes": 2587667,
             "size": "2.5 MB"
           },
           "img": {
             "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-brahmanbaria-nabinagar/brahmanbaria-nabinagar-images.zip",
-            "bytes": 37560390,
-            "size": "35.8 MB"
+            "bytes": 38227348,
+            "size": "36.5 MB"
+          }
+        },
+        {
+          "folder": "brahmanbaria-nasirnagar",
+          "office": "সাব-রেজিস্ট্রারের কার্যালয়, নাসিরনগর, ব্রাহ্মণবাড়িয়া",
+          "upazila": "নাসিরনগর",
+          "district": "ব্রাহ্মণবাড়িয়া",
+          "published": "প্রকাশকাল: সেপ্টেম্বর, ২০২৬",
+          "count": 11,
+          "dpi": 150,
+          "pdf": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-brahmanbaria-nasirnagar/brahmanbaria-nasirnagar-pdf.zip",
+            "bytes": 2587011,
+            "size": "2.5 MB"
+          },
+          "img": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-brahmanbaria-nasirnagar/brahmanbaria-nasirnagar-images.zip",
+            "bytes": 38223249,
+            "size": "36.5 MB"
+          }
+        },
+        {
+          "folder": "brahmanbaria-bancharampur",
+          "office": "সাব-রেজিস্ট্রারের কার্যালয়, বাঞ্ছারামপুর, ব্রাহ্মণবাড়িয়া",
+          "upazila": "বাঞ্ছারামপুর",
+          "district": "ব্রাহ্মণবাড়িয়া",
+          "published": "প্রকাশকাল: সেপ্টেম্বর, ২০২৬",
+          "count": 11,
+          "dpi": 150,
+          "pdf": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-brahmanbaria-bancharampur/brahmanbaria-bancharampur-pdf.zip",
+            "bytes": 2594585,
+            "size": "2.5 MB"
+          },
+          "img": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-brahmanbaria-bancharampur/brahmanbaria-bancharampur-images.zip",
+            "bytes": 38346634,
+            "size": "36.6 MB"
+          }
+        },
+        {
+          "folder": "brahmanbaria-sarail",
+          "office": "সাব-রেজিস্ট্রারের কার্যালয়, সরাইল, ব্রাহ্মণবাড়িয়া",
+          "upazila": "সরাইল",
+          "district": "ব্রাহ্মণবাড়িয়া",
+          "published": "প্রকাশকাল: সেপ্টেম্বর, ২০২৬",
+          "count": 11,
+          "dpi": 150,
+          "pdf": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-brahmanbaria-sarail/brahmanbaria-sarail-pdf.zip",
+            "bytes": 2586559,
+            "size": "2.5 MB"
+          },
+          "img": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-brahmanbaria-sarail/brahmanbaria-sarail-images.zip",
+            "bytes": 38159882,
+            "size": "36.4 MB"
+          }
+        }
+      ]
+    },
+    {
+      "district": "ভোলা",
+      "offices": [
+        {
+          "folder": "bhola-charfasson",
+          "office": "সাব-রেজিস্ট্রারের কার্যালয়, চরফ্যাশন, ভোলা",
+          "upazila": "চরফ্যাশন",
+          "district": "ভোলা",
+          "published": "প্রকাশকাল: সেপ্টেম্বর, ২০২৬",
+          "count": 11,
+          "dpi": 150,
+          "pdf": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-bhola-charfasson/bhola-charfasson-pdf.zip",
+            "bytes": 2572438,
+            "size": "2.5 MB"
+          },
+          "img": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-bhola-charfasson/bhola-charfasson-images.zip",
+            "bytes": 38046254,
+            "size": "36.3 MB"
+          }
+        },
+        {
+          "folder": "bhola-tazumuddin",
+          "office": "সাব-রেজিস্ট্রারের কার্যালয়, তজুমদ্দিন, ভোলা",
+          "upazila": "তজুমদ্দিন",
+          "district": "ভোলা",
+          "published": "প্রকাশকাল: সেপ্টেম্বর, ২০২৬",
+          "count": 11,
+          "dpi": 150,
+          "pdf": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-bhola-tazumuddin/bhola-tazumuddin-pdf.zip",
+            "bytes": 2572830,
+            "size": "2.5 MB"
+          },
+          "img": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-bhola-tazumuddin/bhola-tazumuddin-images.zip",
+            "bytes": 38042209,
+            "size": "36.3 MB"
+          }
+        },
+        {
+          "folder": "bhola-dakshinaicha",
+          "office": "সাব-রেজিস্ট্রারের কার্যালয়, দক্ষিণ আইচা, চরফ্যাশন, ভোলা",
+          "upazila": "চরফ্যাশন",
+          "district": "ভোলা",
+          "published": "প্রকাশকাল: সেপ্টেম্বর, ২০২৬",
+          "count": 11,
+          "dpi": 150,
+          "pdf": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-bhola-dakshinaicha/bhola-dakshinaicha-pdf.zip",
+            "bytes": 2572535,
+            "size": "2.5 MB"
+          },
+          "img": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-bhola-dakshinaicha/bhola-dakshinaicha-images.zip",
+            "bytes": 38267048,
+            "size": "36.5 MB"
+          }
+        },
+        {
+          "folder": "bhola-borhanuddin",
+          "office": "সাব-রেজিস্ট্রারের কার্যালয়, বোরহানউদ্দিন, ভোলা",
+          "upazila": "বোরহানউদ্দিন",
+          "district": "ভোলা",
+          "published": "প্রকাশকাল: সেপ্টেম্বর, ২০২৬",
+          "count": 11,
+          "dpi": 150,
+          "pdf": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-bhola-borhanuddin/bhola-borhanuddin-pdf.zip",
+            "bytes": 2573594,
+            "size": "2.5 MB"
+          },
+          "img": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-bhola-borhanuddin/bhola-borhanuddin-images.zip",
+            "bytes": 38187337,
+            "size": "36.4 MB"
+          }
+        },
+        {
+          "folder": "bhola-sadar",
+          "office": "সাব-রেজিস্ট্রারের কার্যালয়, ভোলা সদর, ভোলা",
+          "upazila": "ভোলা সদর",
+          "district": "ভোলা",
+          "published": "প্রকাশকাল: সেপ্টেম্বর, ২০২৬",
+          "count": 11,
+          "dpi": 150,
+          "pdf": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-bhola-sadar/bhola-sadar-pdf.zip",
+            "bytes": 2594639,
+            "size": "2.5 MB"
+          },
+          "img": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-bhola-sadar/bhola-sadar-images.zip",
+            "bytes": 38383186,
+            "size": "36.6 MB"
+          }
+        },
+        {
+          "folder": "bhola-manpura",
+          "office": "সাব-রেজিস্ট্রারের কার্যালয়, মনপুরা, ভোলা",
+          "upazila": "মনপুরা",
+          "district": "ভোলা",
+          "published": "প্রকাশকাল: সেপ্টেম্বর, ২০২৬",
+          "count": 11,
+          "dpi": 150,
+          "pdf": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-bhola-manpura/bhola-manpura-pdf.zip",
+            "bytes": 2571533,
+            "size": "2.5 MB"
+          },
+          "img": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-bhola-manpura/bhola-manpura-images.zip",
+            "bytes": 37955294,
+            "size": "36.2 MB"
+          }
+        },
+        {
+          "folder": "bhola-daulatkhan",
+          "office": "সাব-রেজিস্ট্রারের কার্যালয়, রাধাবল্লব, দৌলতখান, ভোলা",
+          "upazila": "দৌলতখান",
+          "district": "ভোলা",
+          "published": "প্রকাশকাল: সেপ্টেম্বর, ২০২৬",
+          "count": 11,
+          "dpi": 150,
+          "pdf": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-bhola-daulatkhan/bhola-daulatkhan-pdf.zip",
+            "bytes": 2575047,
+            "size": "2.5 MB"
+          },
+          "img": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-bhola-daulatkhan/bhola-daulatkhan-images.zip",
+            "bytes": 38268732,
+            "size": "36.5 MB"
+          }
+        },
+        {
+          "folder": "bhola-lalmohan",
+          "office": "সাব-রেজিস্ট্রারের কার্যালয়, লালমোহন, ভোলা",
+          "upazila": "লালমোহন",
+          "district": "ভোলা",
+          "published": "প্রকাশকাল: সেপ্টেম্বর, ২০২৬",
+          "count": 11,
+          "dpi": 150,
+          "pdf": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-bhola-lalmohan/bhola-lalmohan-pdf.zip",
+            "bytes": 2571863,
+            "size": "2.5 MB"
+          },
+          "img": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-bhola-lalmohan/bhola-lalmohan-images.zip",
+            "bytes": 38064244,
+            "size": "36.3 MB"
+          }
+        },
+        {
+          "folder": "bhola-shashibhushan",
+          "office": "সাব-রেজিস্ট্রারের কার্যালয়, শশীভূষণ, চরফ্যাশন, ভোলা",
+          "upazila": "চরফ্যাশন",
+          "district": "ভোলা",
+          "published": "প্রকাশকাল: সেপ্টেম্বর, ২০২৬",
+          "count": 11,
+          "dpi": 150,
+          "pdf": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-bhola-shashibhushan/bhola-shashibhushan-pdf.zip",
+            "bytes": 2572814,
+            "size": "2.5 MB"
+          },
+          "img": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-bhola-shashibhushan/bhola-shashibhushan-images.zip",
+            "bytes": 38198103,
+            "size": "36.4 MB"
           }
         }
       ]
@@ -3805,6 +5645,25 @@
             "bytes": 38402850,
             "size": "36.6 MB"
           }
+        },
+        {
+          "folder": "jashore-sharsha",
+          "office": "সাব-রেজিস্ট্রারের কার্যালয়, শার্শা, যশোর",
+          "upazila": "শার্শা",
+          "district": "যশোর",
+          "published": "প্রকাশকাল: সেপ্টেম্বর, ২০২৬",
+          "count": 11,
+          "dpi": 150,
+          "pdf": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-jashore-sharsha/jashore-sharsha-pdf.zip",
+            "bytes": 2570419,
+            "size": "2.5 MB"
+          },
+          "img": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-jashore-sharsha/jashore-sharsha-images.zip",
+            "bytes": 37956801,
+            "size": "36.2 MB"
+          }
         }
       ]
     },
@@ -4041,6 +5900,125 @@
           "img": {
             "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-rajbari-sadar/rajbari-sadar-images.zip",
             "bytes": 38559072,
+            "size": "36.8 MB"
+          }
+        }
+      ]
+    },
+    {
+      "district": "লক্ষ্মীপুর",
+      "offices": [
+        {
+          "folder": "lakshmipur-kamalnagar",
+          "office": "সাব-রেজিস্ট্রারের কার্যালয়, কমলনগর, লক্ষ্মীপুর",
+          "upazila": "কমলনগর",
+          "district": "লক্ষ্মীপুর",
+          "published": "প্রকাশকাল: সেপ্টেম্বর, ২০২৬",
+          "count": 11,
+          "dpi": 150,
+          "pdf": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-lakshmipur-kamalnagar/lakshmipur-kamalnagar-pdf.zip",
+            "bytes": 2582823,
+            "size": "2.5 MB"
+          },
+          "img": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-lakshmipur-kamalnagar/lakshmipur-kamalnagar-images.zip",
+            "bytes": 38111606,
+            "size": "36.3 MB"
+          }
+        },
+        {
+          "folder": "lakshmipur-chandraganj",
+          "office": "সাব-রেজিস্ট্রারের কার্যালয়, চন্দ্রগঞ্জ, লক্ষ্মীপুর সদর, লক্ষ্মীপুর",
+          "upazila": "লক্ষ্মীপুর সদর",
+          "district": "লক্ষ্মীপুর",
+          "published": "প্রকাশকাল: সেপ্টেম্বর, ২০২৬",
+          "count": 11,
+          "dpi": 150,
+          "pdf": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-lakshmipur-chandraganj/lakshmipur-chandraganj-pdf.zip",
+            "bytes": 2588181,
+            "size": "2.5 MB"
+          },
+          "img": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-lakshmipur-chandraganj/lakshmipur-chandraganj-images.zip",
+            "bytes": 38374218,
+            "size": "36.6 MB"
+          }
+        },
+        {
+          "folder": "lakshmipur-ramganj",
+          "office": "সাব-রেজিস্ট্রারের কার্যালয়, রামগঞ্জ, লক্ষ্মীপুর",
+          "upazila": "রামগঞ্জ",
+          "district": "লক্ষ্মীপুর",
+          "published": "প্রকাশকাল: সেপ্টেম্বর, ২০২৬",
+          "count": 11,
+          "dpi": 150,
+          "pdf": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-lakshmipur-ramganj/lakshmipur-ramganj-pdf.zip",
+            "bytes": 2587107,
+            "size": "2.5 MB"
+          },
+          "img": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-lakshmipur-ramganj/lakshmipur-ramganj-images.zip",
+            "bytes": 38143649,
+            "size": "36.4 MB"
+          }
+        },
+        {
+          "folder": "lakshmipur-ramgati",
+          "office": "সাব-রেজিস্ট্রারের কার্যালয়, রামগতি, লক্ষ্মীপুর",
+          "upazila": "রামগতি",
+          "district": "লক্ষ্মীপুর",
+          "published": "প্রকাশকাল: সেপ্টেম্বর, ২০২৬",
+          "count": 11,
+          "dpi": 150,
+          "pdf": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-lakshmipur-ramgati/lakshmipur-ramgati-pdf.zip",
+            "bytes": 2583435,
+            "size": "2.5 MB"
+          },
+          "img": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-lakshmipur-ramgati/lakshmipur-ramgati-images.zip",
+            "bytes": 38137084,
+            "size": "36.4 MB"
+          }
+        },
+        {
+          "folder": "lakshmipur-raipur",
+          "office": "সাব-রেজিস্ট্রারের কার্যালয়, রায়পুর, লক্ষ্মীপুর",
+          "upazila": "রায়পুর",
+          "district": "লক্ষ্মীপুর",
+          "published": "প্রকাশকাল: সেপ্টেম্বর, ২০২৬",
+          "count": 11,
+          "dpi": 150,
+          "pdf": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-lakshmipur-raipur/lakshmipur-raipur-pdf.zip",
+            "bytes": 2582402,
+            "size": "2.5 MB"
+          },
+          "img": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-lakshmipur-raipur/lakshmipur-raipur-images.zip",
+            "bytes": 38124864,
+            "size": "36.4 MB"
+          }
+        },
+        {
+          "folder": "lakshmipur-sadar",
+          "office": "সাব-রেজিস্ট্রারের কার্যালয়, লক্ষ্মীপুর সদর, লক্ষ্মীপুর",
+          "upazila": "লক্ষ্মীপুর সদর",
+          "district": "লক্ষ্মীপুর",
+          "published": "প্রকাশকাল: সেপ্টেম্বর, ২০২৬",
+          "count": 11,
+          "dpi": 150,
+          "pdf": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-lakshmipur-sadar/lakshmipur-sadar-pdf.zip",
+            "bytes": 2607312,
+            "size": "2.5 MB"
+          },
+          "img": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-lakshmipur-sadar/lakshmipur-sadar-images.zip",
+            "bytes": 38573808,
             "size": "36.8 MB"
           }
         }
@@ -4694,6 +6672,258 @@
             "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-sirajganj-sadar/sirajganj-sadar-images.zip",
             "bytes": 38694061,
             "size": "36.9 MB"
+          }
+        }
+      ]
+    },
+    {
+      "district": "সিলেট",
+      "offices": [
+        {
+          "folder": "sylhet-kanaighat",
+          "office": "সাব-রেজিস্ট্রারের কার্যালয়, কানাইঘাট, সিলেট",
+          "upazila": "কানাইঘাট",
+          "district": "সিলেট",
+          "published": "প্রকাশকাল: সেপ্টেম্বর, ২০২৬",
+          "count": 11,
+          "dpi": 150,
+          "pdf": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-sylhet-kanaighat/sylhet-kanaighat-pdf.zip",
+            "bytes": 2573249,
+            "size": "2.5 MB"
+          },
+          "img": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-sylhet-kanaighat/sylhet-kanaighat-images.zip",
+            "bytes": 38114082,
+            "size": "36.3 MB"
+          }
+        },
+        {
+          "folder": "sylhet-companiganj",
+          "office": "সাব-রেজিস্ট্রারের কার্যালয়, কোম্পানিগঞ্জ, সিলেট",
+          "upazila": "কোম্পানিগঞ্জ",
+          "district": "সিলেট",
+          "published": "প্রকাশকাল: সেপ্টেম্বর, ২০২৬",
+          "count": 11,
+          "dpi": 150,
+          "pdf": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-sylhet-companiganj/sylhet-companiganj-pdf.zip",
+            "bytes": 2576884,
+            "size": "2.5 MB"
+          },
+          "img": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-sylhet-companiganj/sylhet-companiganj-images.zip",
+            "bytes": 38149292,
+            "size": "36.4 MB"
+          }
+        },
+        {
+          "folder": "sylhet-gowainghat",
+          "office": "সাব-রেজিস্ট্রারের কার্যালয়, গোয়াইনঘাট, সিলেট",
+          "upazila": "গোয়াইনঘাট",
+          "district": "সিলেট",
+          "published": "প্রকাশকাল: সেপ্টেম্বর, ২০২৬",
+          "count": 11,
+          "dpi": 150,
+          "pdf": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-sylhet-gowainghat/sylhet-gowainghat-pdf.zip",
+            "bytes": 2572609,
+            "size": "2.5 MB"
+          },
+          "img": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-sylhet-gowainghat/sylhet-gowainghat-images.zip",
+            "bytes": 38124888,
+            "size": "36.4 MB"
+          }
+        },
+        {
+          "folder": "sylhet-jaintapur",
+          "office": "সাব-রেজিস্ট্রারের কার্যালয়, জৈন্তাপুর, সিলেট",
+          "upazila": "জৈন্তাপুর",
+          "district": "সিলেট",
+          "published": "প্রকাশকাল: সেপ্টেম্বর, ২০২৬",
+          "count": 11,
+          "dpi": 150,
+          "pdf": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-sylhet-jaintapur/sylhet-jaintapur-pdf.zip",
+            "bytes": 2573737,
+            "size": "2.5 MB"
+          },
+          "img": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-sylhet-jaintapur/sylhet-jaintapur-images.zip",
+            "bytes": 38073763,
+            "size": "36.3 MB"
+          }
+        },
+        {
+          "folder": "sylhet-golapganj",
+          "office": "সাব-রেজিস্ট্রারের কার্যালয়, ঢাকা দক্ষিণ, গোলাপগঞ্জ, সিলেট",
+          "upazila": "গোলাপগঞ্জ",
+          "district": "সিলেট",
+          "published": "প্রকাশকাল: সেপ্টেম্বর, ২০২৬",
+          "count": 11,
+          "dpi": 150,
+          "pdf": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-sylhet-golapganj/sylhet-golapganj-pdf.zip",
+            "bytes": 2578054,
+            "size": "2.5 MB"
+          },
+          "img": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-sylhet-golapganj/sylhet-golapganj-images.zip",
+            "bytes": 38377172,
+            "size": "36.6 MB"
+          }
+        },
+        {
+          "folder": "sylhet-osmaninagar",
+          "office": "সাব-রেজিস্ট্রারের কার্যালয়, তাজপুর, ওসমানী নগর, সিলেট",
+          "upazila": "ওসমানী নগর",
+          "district": "সিলেট",
+          "published": "প্রকাশকাল: সেপ্টেম্বর, ২০২৬",
+          "count": 11,
+          "dpi": 150,
+          "pdf": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-sylhet-osmaninagar/sylhet-osmaninagar-pdf.zip",
+            "bytes": 2573096,
+            "size": "2.5 MB"
+          },
+          "img": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-sylhet-osmaninagar/sylhet-osmaninagar-images.zip",
+            "bytes": 38291044,
+            "size": "36.5 MB"
+          }
+        },
+        {
+          "folder": "sylhet-dakshinsurma",
+          "office": "সাব-রেজিস্ট্রারের কার্যালয়, দক্ষিণ সুরমা, সিলেট",
+          "upazila": "দক্ষিণ সুরমা",
+          "district": "সিলেট",
+          "published": "প্রকাশকাল: সেপ্টেম্বর, ২০২৬",
+          "count": 11,
+          "dpi": 150,
+          "pdf": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-sylhet-dakshinsurma/sylhet-dakshinsurma-pdf.zip",
+            "bytes": 2597202,
+            "size": "2.5 MB"
+          },
+          "img": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-sylhet-dakshinsurma/sylhet-dakshinsurma-images.zip",
+            "bytes": 38347505,
+            "size": "36.6 MB"
+          }
+        },
+        {
+          "folder": "sylhet-fenchuganj",
+          "office": "সাব-রেজিস্ট্রারের কার্যালয়, ফেঞ্চুগঞ্জ, সিলেট",
+          "upazila": "ফেঞ্চুগঞ্জ",
+          "district": "সিলেট",
+          "published": "প্রকাশকাল: সেপ্টেম্বর, ২০২৬",
+          "count": 11,
+          "dpi": 150,
+          "pdf": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-sylhet-fenchuganj/sylhet-fenchuganj-pdf.zip",
+            "bytes": 2579818,
+            "size": "2.5 MB"
+          },
+          "img": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-sylhet-fenchuganj/sylhet-fenchuganj-images.zip",
+            "bytes": 38095757,
+            "size": "36.3 MB"
+          }
+        },
+        {
+          "folder": "sylhet-balaganj",
+          "office": "সাব-রেজিস্ট্রারের কার্যালয়, বালাগঞ্জ, সিলেট",
+          "upazila": "বালাগঞ্জ",
+          "district": "সিলেট",
+          "published": "প্রকাশকাল: সেপ্টেম্বর, ২০২৬",
+          "count": 11,
+          "dpi": 150,
+          "pdf": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-sylhet-balaganj/sylhet-balaganj-pdf.zip",
+            "bytes": 2575089,
+            "size": "2.5 MB"
+          },
+          "img": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-sylhet-balaganj/sylhet-balaganj-images.zip",
+            "bytes": 38040001,
+            "size": "36.3 MB"
+          }
+        },
+        {
+          "folder": "sylhet-beanibazar",
+          "office": "সাব-রেজিস্ট্রারের কার্যালয়, বিয়ানীবাজার, সিলেট",
+          "upazila": "বিয়ানীবাজার",
+          "district": "সিলেট",
+          "published": "প্রকাশকাল: সেপ্টেম্বর, ২০২৬",
+          "count": 11,
+          "dpi": 150,
+          "pdf": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-sylhet-beanibazar/sylhet-beanibazar-pdf.zip",
+            "bytes": 2572391,
+            "size": "2.5 MB"
+          },
+          "img": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-sylhet-beanibazar/sylhet-beanibazar-images.zip",
+            "bytes": 38197770,
+            "size": "36.4 MB"
+          }
+        },
+        {
+          "folder": "sylhet-bishwanath",
+          "office": "সাব-রেজিস্ট্রারের কার্যালয়, বিশ্বনাথ, সিলেট",
+          "upazila": "বিশ্বনাথ",
+          "district": "সিলেট",
+          "published": "প্রকাশকাল: সেপ্টেম্বর, ২০২৬",
+          "count": 11,
+          "dpi": 150,
+          "pdf": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-sylhet-bishwanath/sylhet-bishwanath-pdf.zip",
+            "bytes": 2574180,
+            "size": "2.5 MB"
+          },
+          "img": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-sylhet-bishwanath/sylhet-bishwanath-images.zip",
+            "bytes": 38062812,
+            "size": "36.3 MB"
+          }
+        },
+        {
+          "folder": "sylhet-zakiganj",
+          "office": "সাব-রেজিস্ট্রারের কার্যালয়, ভরণ, জকিগঞ্জ, সিলেট",
+          "upazila": "জকিগঞ্জ",
+          "district": "সিলেট",
+          "published": "প্রকাশকাল: সেপ্টেম্বর, ২০২৬",
+          "count": 11,
+          "dpi": 150,
+          "pdf": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-sylhet-zakiganj/sylhet-zakiganj-pdf.zip",
+            "bytes": 2576610,
+            "size": "2.5 MB"
+          },
+          "img": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-sylhet-zakiganj/sylhet-zakiganj-images.zip",
+            "bytes": 38222341,
+            "size": "36.5 MB"
+          }
+        },
+        {
+          "folder": "sylhet-sadar",
+          "office": "সাব-রেজিস্ট্রারের কার্যালয়, সিলেট সদর, সিলেট",
+          "upazila": "সিলেট সদর",
+          "district": "সিলেট",
+          "published": "প্রকাশকাল: সেপ্টেম্বর, ২০২৬",
+          "count": 11,
+          "dpi": 150,
+          "pdf": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-sylhet-sadar/sylhet-sadar-pdf.zip",
+            "bytes": 2594439,
+            "size": "2.5 MB"
+          },
+          "img": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-sylhet-sadar/sylhet-sadar-images.zip",
+            "bytes": 38332097,
+            "size": "36.6 MB"
           }
         }
       ]

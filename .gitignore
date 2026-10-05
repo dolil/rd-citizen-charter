@@ -11,3 +11,6 @@ out/
 !templates/*.png
 
 mnt/
+
+# Python bytecode
+__pycache__/

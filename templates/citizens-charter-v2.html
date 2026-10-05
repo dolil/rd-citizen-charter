@@ -124,7 +124,7 @@
   .p-guide .ttl  { color: #1a7a38; }
   .card > .panel { margin-top: 0; }
 
-  table.charter.feechart td { font-size: var(--fs-tiny); line-height: 1.45; padding: .12in .16in; }
+  table.charter.feechart td { font-size: var(--fs-tiny); line-height: 1.45; padding: .07in .16in; }
   table.charter.feechart th { font-size: var(--fs-small); }
 
   .fill { display: inline-block; min-width: 1.9in; border-bottom: .02in dotted #9fb3a6;
@@ -139,6 +139,14 @@
   }
   /* refs and notes follow the cell's own compact size, not the board's */
   .col table.charter.feechart td.taxcell .tiny { font-size: .9em; }
+  /* SRO references: a step smaller and muted, kept on one line */
+  .col table.charter.feechart td.taxcell .ref { font-size: .68em; color: #57606a; }
+  .col table.charter.feechart td.taxcell .ref.sro { font-size: .66em; }
+  /* a reference stays whole: it moves to the next line rather than leaving "২]" behind */
+  .col table.charter.feechart td.taxcell .ref { display: inline-block; line-height: 1.3; }
+  /* the বি.দ্র. and SRO lines are small type — give them small-type line spacing */
+  .col table.charter.feechart td.taxcell .ref.bidr,
+  .col table.charter.feechart td.taxcell .ref.sro { display: block; line-height: 1.35; margin: .02in 0; }
 
   /* the three tables below the charter are reference material, not the
      main service list — a step down in size keeps all four in the column */
@@ -186,7 +194,7 @@
        most districts and long in Gazipur, so it is the one that leaves
        or fills the gap at the foot of the chart. */
     --s125-compact: 1;
-    --s125-size: calc(35pt  * var(--s125-compact));
+    --s125-size: calc(33pt  * var(--s125-compact));
     --s125-lh:   calc(1.45  * var(--s125-compact));
   }
 
@@ -205,6 +213,19 @@
   li { margin-bottom: .06in; }
   .sm { font-size: var(--fs-small); }
   .tiny { font-size: var(--fs-tiny); }
+  /* নকলের ফি: payable vs supplied, with a sub-block for direct applications */
+  .col table.nf td, .col table.nf th { font-size: var(--fs-tiny); padding: .035in .1in; line-height: 1.28; }
+  table.nf tr.grp td { font-weight: 700; color: var(--green); background: #eef7f1;
+                       padding-top: .04in; padding-bottom: .03in; }
+  table.nf tr.grp2 td { font-size: var(--fs-tiny); color: #57606a; padding-bottom: .02in; border-bottom: none; }
+  .card .in.nfnote { font-size: calc(var(--fs-tiny) * .92); line-height: 1.3; padding-top: .05in; }
+  table.nf tr.tot td { border-bottom: .03in solid #cfe3d6; }
+  /* ভূমির শ্রেণি: reference definitions — same small size as the fee tables */
+  .col table.cls td { font-size: var(--fs-tiny); padding: .05in .1in; line-height: 1.3; }
+  /* when the class card is on (city/sadar boards) the advice panel steps down a little so both fit */
+  .col.c5:has(table.cls) .p-guide .ptxt { font-size: calc(var(--fs-small) * .9); line-height: 1.42; }
+  /* no class card (paura / upazila boards): advice panel steps up to fill the column */
+  .col.c5:not(:has(table.cls)) .p-guide .ptxt { font-size: calc(var(--fs-small) * 1.17); }
   /* ফোন/ই-মেইল: small label, long writing line — filled in by marker after printing */
   .contact { display: flex; align-items: flex-end; gap: .05in; margin-top: .1in;
              font-size: calc(var(--fs-tiny) * .75); line-height: 1.2; color: #57606a; }
@@ -395,12 +416,12 @@
               <table class="codes sm">
                 <tr><td>স্ট্যাম্প শুল্ক</td><td>১১৬২১০২</td></tr>
                 <tr><td>রেজিস্ট্রেশন ফি [এ, ই ও এন]</td><td>১৪২২২০১</td></tr>
-                <tr><td>উৎসে কর (ধারা ১২৫)</td><td>১১১১১০১</td></tr>
-                <tr><td>উৎসে কর (ধারা ১২৬)</td><td>১১১২১০১</td></tr>
+                <tr><td>আয়কর (ব্যক্তি)</td><td>১১১১১০১</td></tr>
+                <tr><td>আয়কর (কোম্পানি)</td><td>১১১২১০১</td></tr>
                 <tr><td>ভ্যাট/মূসক</td><td>১১৪১১০১</td></tr>
                 <tr><td>দানকর</td><td>১১৩৩১০১</td></tr>
               </table>
-              <span class="tiny">স্থানীয় সরকার কর পে-অর্ডারের মাধ্যমে এবং <b>এনএন ফি নগদে</b> পরিশোধ করিতে হইবে।</span></td><td class="c t">১ দিন</td><td><b>সাব-রেজিস্ট্রার</b><div class="contact">ফোনঃ<span class="fill"></span></div><div class="contact">ই-মেইলঃ<span class="fill"></span></div></td></tr>
+              <span class="tiny">ধারা ১২৫, ১২৬ ও ১২৮ এর উৎসে কর করদাতা ব্যক্তি হইলে (ব্যক্তি), কোম্পানি হইলে (কোম্পানি) কোডে। স্থানীয় সরকার কর পে-অর্ডারে; <b>এনএন ফি নগদে</b>।</span></td><td class="c t">১ দিন</td><td><b>সাব-রেজিস্ট্রার</b><div class="contact">ফোনঃ<span class="fill"></span></div><div class="contact">ই-মেইলঃ<span class="fill"></span></div></td></tr>
             <tr><td class="c">২</td><td><b>রেজিস্ট্রিকরণ অন্তে মূল দলিল ফেরত প্রদান</b></td><td>বালাম বহিতে নকলকরণ সম্পন্ন হইলে দাখিলকারী বা তাঁহার মনোনীত ব্যক্তিকে মূল দলিল ফেরত প্রদান করা হইয়া থাকে।</td><td>৫২(খ) ধারার অধীন প্রদত্ত মূল রসিদ। উক্ত রসিদ হারাইয়া গেলে ডুপ্লিকেট রসিদের জন্য সাব-রেজিস্ট্রার বরাবর আবেদন করিতে হইবে।</td><td><b>বিনামূল্যে</b>।<br><span class="tiny">নোটিশের ১ মাস পর হইতে প্রতি মাসে <b>৫/-</b> বিলম্ব ফি; সর্বোচ্চ <b>১০০/-</b>।<br>বালামে পৃষ্ঠা বাড়িলে অতিরিক্ত পৃষ্ঠার এন (২৪/-) ও এনএন (৩৬/-) ফি ফেরত গ্রহণকালে প্রদেয়।</span></td><td class="c t">১ মাস হইতে<br>১ বছর বা তদূর্ধ্ব</td><td><b>সাব-রেজিস্ট্রার</b><div class="contact">ফোনঃ<span class="fill"></span></div><div class="contact">ই-মেইলঃ<span class="fill"></span></div></td></tr>
             <tr><td class="c">৩</td><td><b>তসদিককৃত পাওয়ার অব অ্যাটর্নি ফেরত প্রদান</b></td><td>তসদিক ও রেজিস্টারে লিপিবদ্ধকরণ সম্পন্ন হইলে দাখিলকারী বা তাঁহার মনোনীত ব্যক্তিকে রসিদের বিপরীতে দলিল ফেরত প্রদান করা হইয়া থাকে।</td><td>দাখিলকালে প্রদত্ত রসিদ এবং ফেরত গ্রহণকারীর জাতীয় পরিচয়পত্র।</td><td><b>বিনামূল্যে</b>।</td><td class="c t">১ দিন</td><td><b>সাব-রেজিস্ট্রার</b><div class="contact">ফোনঃ<span class="fill"></span></div><div class="contact">ই-মেইলঃ<span class="fill"></span></div></td></tr>
             
@@ -470,10 +491,10 @@
           </thead>
           <tbody>
             <tr><td class="c">১</td><td>নির্ধারিত ফরমে সম্পূর্ণভাবে পূরণকৃত আবেদন জমা প্রদান।</td></tr>
-            <tr><td class="c">২</td><td>সঠিক মাধ্যমে ফিস পরিশোধ করা — স্ট্যাম্প শুল্ক, রেজিস্ট্রেশন ফি ও করাদি <b>এ-চালানে</b>; স্থানীয় সরকার কর <b>পে-অর্ডারে</b>; এনএন ফি <b>নগদে</b>।</td></tr>
+            <tr><td class="c">২</td><td>নির্ধারিত মাধ্যমে ফিসাদি পরিশোধ করা — স্ট্যাম্প শুল্ক, রেজিস্ট্রেশন ফি ও করাদি <b>এ-চালান/পে-অর্ডারের</b> মাধ্যমে; স্থানীয় সরকার কর <b>পে-অর্ডারের</b> মাধ্যমে; এনএন ফি <b>নগদে</b>।</td></tr>
             <tr><td class="c">৩</td><td><b>সকাল ১০টা হইতে বিকাল ৩টার</b> মধ্যে দলিল দাখিল, তল্লাশ ও নকলের আবেদন এবং মূল দলিল ফেরত গ্রহণ। <span class="tiny">[বিধি ১১৩; উপদেশাবলি ২৩৬(৪)]</span></td></tr>
             <tr><td class="c">৪</td><td>সম্পাদন স্বীকারোক্তির জন্য পক্ষগণ ও সনাক্তকারীর সশরীরে উপস্থিত থাকা।</td></tr>
-            <tr><td class="c">৫</td><td>সনদপ্রাপ্ত দলিল লেখক বা আইনজীবীর সহায়তা গ্রহণ করা।</td></tr>
+            <tr><td class="c">৫</td><td>প্রয়োজনে সনদপ্রাপ্ত দলিল লেখক বা আইনজীবীর সহায়তা গ্রহণ করা।</td></tr>
           </tbody>
         </table>
       </div>
@@ -500,7 +521,7 @@
             <tr class="colno"><th>(১)</th><th>(২)</th><th>(৩)</th><th>(৪)</th><th>(৫)</th><th>(৬)</th><th>(৭)</th></tr>
           </thead>
           <tbody>
-            <tr><td class="c">১</td><td><b>সাফ কবলা</b></td><td class="c">দফা ২২ + ৪</td><td>১) ১.৫% <span class="tiny">তবে সর্বোচ্চ ২ কোটি</span><br><span class="hl1">২) হলফনামায় ব্যবহৃত স্ট্যাম্প ৩০০/-</span></td><td>১) এ ফি — ১%<br>২) ই ফি — ১০০/-<br>৩) এন ফি — ২৪০/- <span class="tiny">(১০ পৃষ্ঠা)</span><br>৪) এনএন ফি — ৩৬০/- <span class="tiny">(১০ পৃষ্ঠা)</span><div class="tiny" style="margin-top:.06in; line-height:1.4;"><b>বি.দ্র.</b> এন ও এনএন ফি সকল দলিলে পৃষ্ঠাসংখ্যার ভিত্তিতে প্রতি পৃষ্ঠা যথাক্রমে ২৪/- ও ৩৬/- হারে ধার্য হয়; তালিকায় ১০ পৃষ্ঠা ধরা হইয়াছে। ১২ পৃষ্ঠার দলিলে এন ফি ২৮৮/- ও এনএন ফি ৪৩২/- হইবে। ১% হারে ধার্য এ ফি সর্বনিম্ন ১০০/-।</div></td><td>অবস্থানভেদে যেকোনো একটি:<table class="codes"><tr><td>ইউনিয়ন, উপজেলা, জেলা ও ক্যান্টনমেন্ট বোর্ড</td><td>৩%</td></tr><tr><td>সিটি কর্পোরেশন ও উপজেলাধীন নহে এইরূপ ক্যান্টনমেন্ট বোর্ড</td><td>২%</td></tr></table></td><td class="taxcell"><!--@S125P--><b>উৎসে কর [ধারা ১২৫]</b> — ভূমিমূল্যের ৩% অথবা শতকপ্রতি নিম্নরূপ অঙ্ক, যাহা অধিক — ক ও গ শ্রেণিতে ১,২৫,০০০/-; খ, ঘ ও ঙ শ্রেণিতে ৬০,০০০/-; এবং চ শ্রেণিতে ৩০,০০০/-।<br>ভূমিতে স্থাপনা, বাড়ি বা ফ্ল্যাট থাকিলে অতিরিক্ত (প্রতি বর্গমিটারে, যাহা অধিক):<br>১) শ্রেণি ক হইতে ঘ — ৮০০/- বা মূল্যের ৮%<br>২) শ্রেণি ঙ — ৫০০/- বা মূল্যের ৬%<br><!--/@S125P--><!--@S126P--><b>উৎসে কর [ধারা ১২৬]</b> — বাণিজ্যিক ভিত্তিতে প্লট বা স্থাপনা বিক্রয়ের ক্ষেত্রে অতিরিক্ত — প্লট/জমিতে ৫%; স্থাপনায় প্রতি বর্গমিটারে আবাসিক ১,৩০০/- ও বাণিজ্যিক ৩,৫০০/-।<br><!--/@S126P--><span class="tiny">[উৎসে কর বিধিমালা, ২০২৬ — <!--@SRO-->এস.আর.ও নং ২১০, তারিখ ০৮ জুন ২০২৬<!--/@SRO-->]</span><br><b>ভ্যাট/মূসক</b> — প্লট/জমিতে ২%; স্থাপনায় ১-১৬০০ বর্গফুট পর্যন্ত ২% এবং ১৬০১ বর্গফুট বা তদূর্ধ্বে ৪.৫%।</td></tr>
+            <tr><td class="c">১</td><td><b>সাফ কবলা</b></td><td class="c">দফা ২২ + ৪</td><td>১) ১.৫% <span class="tiny">তবে সর্বোচ্চ ২ কোটি</span><br><span class="hl1">২) হলফনামায় ব্যবহৃত স্ট্যাম্প ৩০০/-</span></td><td>১) এ ফি — ১%<br>২) ই ফি — ১০০/-<br>৩) এন ফি — ২৪০/- <span class="tiny">(১০ পৃষ্ঠা)</span><br>৪) এনএন ফি — ৩৬০/- <span class="tiny">(১০ পৃষ্ঠা)</span><div class="tiny" style="margin-top:.06in; line-height:1.4;"><b>বি.দ্র.</b> এন ও এনএন ফি সকল দলিলে পৃষ্ঠাসংখ্যার ভিত্তিতে প্রতি পৃষ্ঠা যথাক্রমে ২৪/- ও ৩৬/- হারে ধার্য হয়; তালিকায় ১০ পৃষ্ঠা ধরা হইয়াছে। ১২ পৃষ্ঠার দলিলে এন ফি ২৮৮/- ও এনএন ফি ৪৩২/- হইবে। ১% হারে ধার্য এ ফি সর্বনিম্ন ১০০/-।</div></td><td><!--@LOCALTAX-->অবস্থানভেদে যেকোনো একটি:<table class="codes"><tr><td>ইউনিয়ন, উপজেলা, জেলা ও ক্যান্টনমেন্ট বোর্ড</td><td>৩%</td></tr><tr><td>সিটি কর্পোরেশন ও উপজেলাধীন নহে এইরূপ ক্যান্টনমেন্ট বোর্ড</td><td>২%</td></tr></table><!--/@LOCALTAX--></td><td class="taxcell"><!--@S125P--><b>উৎসে কর [ধারা ১২৫]</b> — ভূমিমূল্যের ৩% অথবা শতকপ্রতি নিম্নরূপ অঙ্ক, যাহা অধিক — ক ও গ শ্রেণিতে ১,২৫,০০০/-; খ, ঘ ও ঙ শ্রেণিতে ৬০,০০০/-; এবং চ শ্রেণিতে ৩০,০০০/-।<br>ভূমিতে স্থাপনা, বাড়ি বা ফ্ল্যাট থাকিলে অতিরিক্ত (প্রতি বর্গমিটারে, যাহা অধিক):<br>১) শ্রেণি ক হইতে ঘ — ৮০০/- বা মূল্যের ৮%<br>২) শ্রেণি ঙ — ৫০০/- বা মূল্যের ৬%<br><!--/@S125P--><!--@S126P--><b>উৎসে কর [ধারা ১২৬]</b> — বাণিজ্যিক ভিত্তিতে প্লট বা স্থাপনা বিক্রয়ের ক্ষেত্রে অতিরিক্ত:<br>১) প্লট/জমিতে ৫% <span class="ref">[বিধি ৭(২), সারণী, ক্রমিক ১]</span><br>২) স্থাপনায় প্রতি বর্গমিটারে আবাসিক ১,৩০০/- ও বাণিজ্যিক ৩,৫০০/- <span class="ref">[বিধি ৭(১), সারণী, ক্রমিক ৪]</span><br><!--/@S126P--><span class="ref bidr"><b>বি.দ্র.</b> বিক্রেতা ডেভেলপার হইলে স্থাপনার বর্গমিটার হারের সহিত সংশ্লিষ্ট ভূমিমূল্যের উপরও <!--@S126PLOT-->৫%<!--/@S126PLOT--> প্রযোজ্য। তখন ধারা ১২৫ এর কর কেবল ভূমির উপর, স্থাপনার উপর নহে। [বিধি ৭(৫)]</span><span class="ref sro">[উৎসে কর বিধিমালা, ২০২৬; <!--@SRO-->এস.আর.ও নং ২১০, তারিখ ০৮ জুন ২০২৬<!--/@SRO-->]</span><b>ভ্যাট/মূসক</b> — প্লট/জমিতে ২%;<br>স্থাপনায় ১-১৬০০ বর্গফুট পর্যন্ত ২% এবং ১৬০১ বর্গফুট বা তদূর্ধ্বে ৪.৫%।</td></tr>
             <tr><td class="c">২</td><td><b>হেবার ঘোষণা / দানের ঘোষণা</b></td><td class="c">দফা ৩২(i) + ৪</td><td>১) ১,০০০/-<br><span class="hl1">২) হলফনামায় ব্যবহৃত স্ট্যাম্প ৩০০/-</span></td><td>১) এ ফি — ১০০/-<br>২) ই ফি — ১০০/-<br>৩) এন ফি — ২৪০/- <span class="tiny">(১০ পৃষ্ঠা)</span><br>৪) এনএন ফি — ৩৬০/- <span class="tiny">(১০ পৃষ্ঠা)</span></td><td>প্রযোজ্য নয়</td><td>পুত্র, কন্যা, পিতা, মাতা, স্বামী, স্ত্রী, সহোদর ভাই-বোন — এই সম্পর্কের বাইরে দানকর প্রযোজ্য</td></tr>
             <tr><td class="c">৩</td><td><b>দানপত্র / হেবাবিল এওয়াজ</b></td><td class="c">দফা ৩২(ii) + ৪</td><td>১) ১.৫%<br><span class="hl1">২) হলফনামায় ব্যবহৃত স্ট্যাম্প ৩০০/-</span></td><td>১) এ ফি — ১%<br>২) ই ফি — ১০০/-<br>৩) এন ফি — ২৪০/- <span class="tiny">(১০ পৃষ্ঠা)</span><br>৪) এনএন ফি — ৩৬০/- <span class="tiny">(১০ পৃষ্ঠা)</span></td><td>সাফ কবলার ন্যায়</td><td>পুত্র, কন্যা, পিতা, মাতা, স্বামী, স্ত্রী, সহোদর ভাই-বোন — এই সম্পর্কের বাইরে দানকর প্রযোজ্য</td></tr>
             <tr><td class="c">৪</td><td><b>বণ্টননামা</b></td><td class="c">দফা ৪৪ + ৪</td><td>১) ১০০/-<br><span class="hl1">২) হলফনামায় ব্যবহৃত স্ট্যাম্প ৩০০/-</span></td><td>১) এ ফি — ০-৩ লক্ষ ৫০০/-; ৩-১০ লক্ষ ৭০০/-; ১০-৩০ লক্ষ ১,২০০/-; ৩০-৫০ লক্ষ ১,৮০০/-; ৫০ লক্ষের ঊর্ধ্বে ২,০০০/-<br>২) ই ফি — ১০০/-<br>৩) এন ফি — ২৪০/- <span class="tiny">(১০ পৃষ্ঠা)</span><br>৪) এনএন ফি — ৩৬০/- <span class="tiny">(১০ পৃষ্ঠা)</span></td><td>প্রযোজ্য নয়</td><td>প্রযোজ্য নয়</td></tr>
@@ -529,7 +550,7 @@
 
       <!--@CLASSCARD--><div class="card">
         <h2>ভূমির শ্রেণি (ক–চ)</h2>
-        <table>
+        <table class="cls">
           <colgroup><col style="width:9%"><col style="width:91%"></colgroup>
           <tbody>
             <tr><td class="c"><b>(ক)</b></td><td>“ক-শ্রেণি” বলিতে রাজধানী উন্নয়ন কর্তৃপক্ষ, চট্টগ্রাম উন্নয়ন কর্তৃপক্ষ, গাজীপুর উন্নয়ন কর্তৃপক্ষ, জাতীয় গৃহায়ন কর্তৃপক্ষ, গণপূর্ত অধিদপ্তর এবং ক্যান্টনমেন্ট বোর্ড এর নিয়ন্ত্রণাধীন এলাকার <b>বাণিজ্যিক প্লট</b>কে বুঝাইবে;</td></tr>
@@ -544,7 +565,7 @@
 
       <div class="card">
         <h2>দানকরের হার</h2>
-        <table>
+        <table class="nf">
           <thead><tr><th>দানের মূল্য (কর অব্যাহতি সীমার অতিরিক্ত)</th><th class="r">হার</th></tr></thead>
           <tbody>
             <tr><td>১) প্রথম ৫ লক্ষ টাকার উপর</td><td class="r">৫%</td></tr>
@@ -553,29 +574,33 @@
             <tr><td>৪) অবশিষ্টাংশের উপর</td><td class="r">২০%</td></tr>
           </tbody>
         </table>
-        <div class="in tiny" style="padding-top:.06in;">[দানকর আইন, ১৯৯০ এর তফসিল]</div>
+        <div class="in tiny nfnote">[দানকর আইন, ১৯৯০ এর তফসিল]</div>
       </div>
 
       <div class="card">
         <h2>নকলের ফি — উদাহরণ (১০ পাতা)</h2>
-        <table>
+        <table class="nf">
           <thead><tr><th>খাত</th><th class="r">কম্পিউটার কম্পোজকৃত</th><th class="r">হাতে লেখা</th></tr></thead>
           <tbody>
+            <tr class="grp"><td colspan="3">ক) কার্যালয়ে পরিশোধযোগ্য ফি</td></tr>
             <tr><td>জি(এ) ফি</td><td class="r">১২০/-</td><td class="r">২৪০/-</td></tr>
             <tr><td>জিজি ফি</td><td class="r">১৮০/-</td><td class="r">৩৬০/-</td></tr>
-            <tr><td><b>মোট</b></td><td class="r"><b>৩০০/-</b></td><td class="r"><b>৬০০/-</b></td></tr>
+            <tr class="tot"><td><b>মোট</b></td><td class="r"><b>৩০০/-</b></td><td class="r"><b>৬০০/-</b></td></tr>
+            <tr class="grp2"><td colspan="3">তল্লাশ ও পরিদর্শন ব্যতীত সরাসরি নকলের আবেদন করা হইলে অতিরিক্ত:</td></tr>
+            <tr><td><span class="sub">এফ(১) তল্লাশ ২০/- ও এফ(২) পরিদর্শন ১০/-</span></td><td class="r">৩০/-</td><td class="r">৩০/-</td></tr>
+            <tr class="tot"><td><b>সর্বমোট</b></td><td class="r"><b>৩৩০/-</b></td><td class="r"><b>৬৩০/-</b></td></tr>
+            <tr class="grp"><td colspan="3">খ) আবেদনকারী কর্তৃক সরবরাহযোগ্য <span class="tiny">(ফিসের অন্তর্ভুক্ত নহে)</span></td></tr>
+            <tr><td>কোর্ট ফি স্ট্যাম্প (আবেদনে)</td><td class="r">২০/-</td><td class="r">২০/-</td></tr>
+            <tr><td>নন-জুডিশিয়াল স্ট্যাম্প ২০০/- ও কার্টিজ পেপার</td><td class="r">মুদ্রিত</td><td class="r">সাদা</td></tr>
           </tbody>
         </table>
-        <div class="in tiny" style="padding-top:.06in;">ফিমুক্ত নকল ব্যতীত সকল নকলের আবেদনে <b>২০/- টাকার কোর্ট ফি স্ট্যাম্প</b> সংযুক্ত করিতে হইবে। জরুরী নকলে <b>জি(বি) ফি</b> বাবদ অতিরিক্ত ৫০/- এবং ৪ পৃষ্ঠার অধিক হইলে প্রতি পৃষ্ঠা ১৫/- প্রদেয়।</div>
-        <div class="in tiny" style="padding-top:.06in;">আবেদনকারী কর্তৃক <b>২০০/- টাকার নন-জুডিশিয়াল স্ট্যাম্প</b> ও কার্টিজ পেপার — কম্পিউটার কম্পোজকৃত নকলে মুদ্রিত অবস্থায় এবং হাতে লেখা নকলে সাদা অবস্থায় — আবেদনের সহিত সরবরাহ করিতে হইবে। আবেদনে বালাম, পৃষ্ঠা, দলিল নং ও সন উল্লেখ করিতে হইবে; জানা না থাকিলে পূর্বে তল্লাশ করিতে হইবে। সরাসরি নকলের আবেদনেও <b>এফ(১) ও এফ(২) ফি</b> পৃথকভাবে প্রদেয়।</div>
+        <div class="in tiny nfnote">জরুরী নকলে <b>জি(বি) ফি</b> অতিরিক্ত ৫০/- (৪ পৃষ্ঠার অধিক হইলে প্রতি পৃষ্ঠা ১৫/-)। মূল দলিলের শুল্ক ১,০০০/- বা তদনিম্ন হইলে স্ট্যাম্প ১০০/-। আবেদনে বালাম, পৃষ্ঠা, দলিল নং ও সন উল্লেখ করিতে হইবে।</div>
       </div>
 
       <div class="card">
         <h2>দলিল লেখকগণের পারিশ্রমিক</h2>
-        <div class="in tiny">
-          <p>এস.আর.ও নং ২১৯/আইন/৯৪/১এম-১২/৯০ তাং- ২০/০১/১৯৯৪ এবং এস.আর.ও নং- ১৬৮/আইন/২০০২ তাং- ২৯/০৬/২০০২ অনুযায়ী</p>
-        </div>
-        <table>
+        <div class="in tiny nfnote">এস.আর.ও নং ২১৯/আইন/৯৪/১এম-১২/৯০ তাং- ২০/০১/১৯৯৪ এবং এস.আর.ও নং- ১৬৮/আইন/২০০২ তাং- ২৯/০৬/২০০২ অনুযায়ী</div>
+        <table class="nf dw">
           <tbody>
             <tr><td colspan="2" class="sm lbl">১) দলিল লিখার ফি:</td></tr>
             <tr><td><span class="sub">ক) প্রতি ৩০০ শব্দ বা তার অংশ মুসাবিদার জন্য</span></td><td class="r">১৫/-</td></tr>
@@ -609,7 +634,7 @@
             <div class="num">◆</div><div class="txt">পর্যাপ্ত সময় নিয়ে দলিল প্রস্তুত করুন; রেজিস্ট্রির দিন তাড়াহুড়া করে দলিল প্রস্তুত করলে ভুল-ভ্রান্তির সম্ভাবনা বাড়ে, যা ভবিষ্যতে জটিলতা তৈরি করে।</div>
             <div class="num">◆</div><div class="txt">প্রয়োজনে অভিজ্ঞ দলিল লেখক বা আইনজীবীর পরামর্শ ও সহযোগিতা নিন।</div>
             <div class="num">◆</div><div class="txt">দলিলে পক্ষগণের নাম, পিতা/স্বামীর নাম ও ঠিকানা <b>জাতীয় পরিচয়পত্র ও খতিয়ানের সাথে মিল</b> থাকতে হবে; গরমিল থাকলে রেজিস্ট্রির পূর্বেই সংশোধন করে নিন। পক্ষগণের পরিচয় সম্পর্কে সন্তুষ্ট না হলে দলিল রেজিস্ট্রি অগ্রাহ্য হতে পারে। <span class="tiny">[নিবন্ধন আইন, ১৯০৮ এর ধারা ৩৪]</span></div>
-            <div class="num">◆</div><div class="txt">দলিলে সম্পত্তির <b>প্রকৃত মূল্য</b> লিখতে হবে, তবে তা সরকার নির্ধারিত <b>মৌজা রেটের</b> চেয়ে কম হবে না।</div>
+            <div class="num">◆</div><div class="txt">দলিলে সম্পত্তির <b>প্রকৃত মূল্য</b> লিখতে হবে, তবে তা সরকার নির্ধারিত <b>মৌজা রেটের</b> চেয়ে এবং ইতঃপূর্বে বায়না করা থাকলে <b>বায়না মূল্যের</b> চেয়ে কম হবে না।</div>
             <div class="num">◆</div><div class="txt">দলিলে কাটাকাটি, ঘষামাজা, সংশোধন বা শূন্যস্থান থাকলে <b>সম্পাদনকারীর স্বাক্ষর দ্বারা</b> প্রত্যয়ন করতে হবে, অন্যথায় দলিল গ্রহণ অগ্রাহ্য হতে পারে। <span class="tiny">[নিবন্ধন আইন, ১৯০৮ এর ধারা ২০]</span></div>
             <div class="num">◆</div><div class="txt">দলিলে <b>সদ্যতোলা পাসপোর্ট সাইজের রঙ্গিন ছবি</b> আঠা দিয়ে লাগাতে হবে। পুরোনো, ঝাপসা বা মোবাইলে তোলা অস্পষ্ট ছবি গ্রহণযোগ্য নয়।</div>
             <div class="num">◆</div><div class="txt">রেজিস্ট্রিকালে সকল কাগজপত্রের <b>মূল কপি ও ফটোকপি</b> উভয়ই দাখিল করতে হবে। এলটি নোটিশের সাথে এনআইডি, খতিয়ান/পর্চা, বায়া দলিলসহ সকল কাগজপত্রের ফটোকপি সংযুক্ত করতে হবে; ফটোকপি অবশ্যই <b>A4 সাইজে</b> হতে হবে।</div>
@@ -623,7 +648,7 @@
   </div><!-- body -->
 
   <div class="foot">
-    <span class="pub qrwrap">ওয়েব: <!--@SRWEB-->www.sr.sadar.gazipur.gov.bd<!--/@SRWEB--><span class="qr"><!--@QR--><svg class="qrimg" viewBox="0 0 29 29" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges"><rect width="29" height="29" fill="#fff"/><path fill="#000" d="M0 0h7v1h-7zM9 0h3v1h-3zM14 0h1v1h-1zM18 0h2v1h-2zM22 0h7v1h-7zM0 1h1v1h-1zM6 1h1v1h-1zM8 1h1v1h-1zM13 1h1v1h-1zM17 1h1v1h-1zM19 1h2v1h-2zM22 1h1v1h-1zM28 1h1v1h-1zM0 2h1v1h-1zM2 2h3v1h-3zM6 2h1v1h-1zM9 2h1v1h-1zM11 2h1v1h-1zM15 2h1v1h-1zM19 2h1v1h-1zM22 2h1v1h-1zM24 2h3v1h-3zM28 2h1v1h-1zM0 3h1v1h-1zM2 3h3v1h-3zM6 3h1v1h-1zM9 3h2v1h-2zM13 3h1v1h-1zM18 3h2v1h-2zM22 3h1v1h-1zM24 3h3v1h-3zM28 3h1v1h-1zM0 4h1v1h-1zM2 4h3v1h-3zM6 4h1v1h-1zM8 4h1v1h-1zM10 4h4v1h-4zM16 4h2v1h-2zM19 4h1v1h-1zM22 4h1v1h-1zM24 4h3v1h-3zM28 4h1v1h-1zM0 5h1v1h-1zM6 5h1v1h-1zM12 5h1v1h-1zM14 5h2v1h-2zM19 5h1v1h-1zM22 5h1v1h-1zM28 5h1v1h-1zM0 6h7v1h-7zM8 6h1v1h-1zM10 6h1v1h-1zM12 6h1v1h-1zM14 6h1v1h-1zM16 6h1v1h-1zM18 6h1v1h-1zM20 6h1v1h-1zM22 6h7v1h-7zM11 7h2v1h-2zM15 7h3v1h-3zM20 7h1v1h-1zM0 8h1v1h-1zM2 8h1v1h-1zM4 8h1v1h-1zM6 8h1v1h-1zM9 8h1v1h-1zM12 8h1v1h-1zM16 8h2v1h-2zM19 8h2v1h-2zM24 8h1v1h-1zM27 8h1v1h-1zM0 9h2v1h-2zM4 9h1v1h-1zM9 9h3v1h-3zM13 9h1v1h-1zM16 9h1v1h-1zM22 9h1v1h-1zM25 9h1v1h-1zM28 9h1v1h-1zM0 10h3v1h-3zM4 10h5v1h-5zM10 10h1v1h-1zM12 10h1v1h-1zM14 10h1v1h-1zM16 10h1v1h-1zM18 10h1v1h-1zM20 10h1v1h-1zM22 10h1v1h-1zM26 10h3v1h-3zM0 11h2v1h-2zM3 11h1v1h-1zM7 11h3v1h-3zM12 11h3v1h-3zM17 11h2v1h-2zM22 11h1v1h-1zM24 11h1v1h-1zM27 11h1v1h-1zM1 12h3v1h-3zM5 12h8v1h-8zM14 12h1v1h-1zM16 12h2v1h-2zM21 12h2v1h-2zM25 12h1v1h-1zM27 12h2v1h-2zM0 13h1v1h-1zM10 13h1v1h-1zM12 13h1v1h-1zM14 13h1v1h-1zM16 13h3v1h-3zM20 13h1v1h-1zM22 13h2v1h-2zM25 13h1v1h-1zM28 13h1v1h-1zM1 14h1v1h-1zM3 14h1v1h-1zM6 14h4v1h-4zM13 14h1v1h-1zM16 14h1v1h-1zM18 14h1v1h-1zM22 14h2v1h-2zM25 14h1v1h-1zM27 14h2v1h-2zM2 15h1v1h-1zM4 15h2v1h-2zM7 15h2v1h-2zM11 15h2v1h-2zM16 15h2v1h-2zM19 15h1v1h-1zM21 15h2v1h-2zM25 15h1v1h-1zM27 15h1v1h-1zM2 16h1v1h-1zM5 16h3v1h-3zM9 16h2v1h-2zM15 16h3v1h-3zM20 16h1v1h-1zM22 16h2v1h-2zM25 16h1v1h-1zM27 16h2v1h-2zM1 17h1v1h-1zM3 17h1v1h-1zM5 17h1v1h-1zM9 17h5v1h-5zM17 17h2v1h-2zM20 17h3v1h-3zM25 17h2v1h-2zM28 17h1v1h-1zM0 18h1v1h-1zM5 18h3v1h-3zM10 18h1v1h-1zM14 18h1v1h-1zM16 18h1v1h-1zM20 18h2v1h-2zM23 18h1v1h-1zM27 18h2v1h-2zM1 19h3v1h-3zM5 19h1v1h-1zM13 19h2v1h-2zM16 19h7v1h-7zM25 19h1v1h-1zM27 19h1v1h-1zM0 20h1v1h-1zM2 20h1v1h-1zM4 20h1v1h-1zM6 20h4v1h-4zM14 20h1v1h-1zM17 20h1v1h-1zM20 20h5v1h-5zM8 21h1v1h-1zM10 21h3v1h-3zM14 21h1v1h-1zM16 21h5v1h-5zM24 21h1v1h-1zM26 21h3v1h-3zM0 22h7v1h-7zM10 22h2v1h-2zM13 22h1v1h-1zM17 22h4v1h-4zM22 22h1v1h-1zM24 22h2v1h-2zM27 22h2v1h-2zM0 23h1v1h-1zM6 23h1v1h-1zM11 23h2v1h-2zM16 23h2v1h-2zM20 23h1v1h-1zM24 23h2v1h-2zM28 23h1v1h-1zM0 24h1v1h-1zM2 24h3v1h-3zM6 24h1v1h-1zM8 24h2v1h-2zM11 24h2v1h-2zM15 24h4v1h-4zM20 24h5v1h-5zM28 24h1v1h-1zM0 25h1v1h-1zM2 25h3v1h-3zM6 25h1v1h-1zM10 25h1v1h-1zM12 25h2v1h-2zM16 25h1v1h-1zM24 25h1v1h-1zM26 25h3v1h-3zM0 26h1v1h-1zM2 26h3v1h-3zM6 26h1v1h-1zM8 26h1v1h-1zM10 26h1v1h-1zM13 26h1v1h-1zM17 26h1v1h-1zM20 26h2v1h-2zM23 26h3v1h-3zM28 26h1v1h-1zM0 27h1v1h-1zM6 27h1v1h-1zM10 27h1v1h-1zM13 27h2v1h-2zM16 27h2v1h-2zM19 27h3v1h-3zM24 27h1v1h-1zM27 27h1v1h-1zM0 28h7v1h-7zM8 28h2v1h-2zM11 28h4v1h-4zM16 28h2v1h-2zM19 28h3v1h-3zM23 28h3v1h-3zM27 28h2v1h-2z"/></svg><!--/@QR--><span class="qrcap">স্ক্যান করুন</span></span></span>
+    <span class="pub qrwrap">ওয়েব: <!--@SRWEB-->www.sr.sadar.gazipur.gov.bd<!--/@SRWEB--><span class="qr"><!--@QR--><svg class="qrimg" viewBox="0 0 29 29" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges"><rect width="29" height="29" fill="#fff"/><path fill="#000" d="M0 0h7v1h-7zM9 0h3v1h-3zM14 0h1v1h-1zM18 0h2v1h-2zM22 0h7v1h-7zM0 1h1v1h-1zM6 1h1v1h-1zM8 1h1v1h-1zM13 1h1v1h-1zM17 1h1v1h-1zM19 1h2v1h-2zM22 1h1v1h-1zM28 1h1v1h-1zM0 2h1v1h-1zM2 2h3v1h-3zM6 2h1v1h-1zM9 2h1v1h-1zM11 2h1v1h-1zM15 2h1v1h-1zM19 2h1v1h-1zM22 2h1v1h-1zM24 2h3v1h-3zM28 2h1v1h-1zM0 3h1v1h-1zM2 3h3v1h-3zM6 3h1v1h-1zM9 3h2v1h-2zM13 3h1v1h-1zM18 3h2v1h-2zM22 3h1v1h-1zM24 3h3v1h-3zM28 3h1v1h-1zM0 4h1v1h-1zM2 4h3v1h-3zM6 4h1v1h-1zM8 4h1v1h-1zM10 4h4v1h-4zM16 4h2v1h-2zM19 4h1v1h-1zM22 4h1v1h-1zM24 4h3v1h-3zM28 4h1v1h-1zM0 5h1v1h-1zM6 5h1v1h-1zM12 5h1v1h-1zM14 5h2v1h-2zM19 5h1v1h-1zM22 5h1v1h-1zM28 5h1v1h-1zM0 6h7v1h-7zM8 6h1v1h-1zM10 6h1v1h-1zM12 6h1v1h-1zM14 6h1v1h-1zM16 6h1v1h-1zM18 6h1v1h-1zM20 6h1v1h-1zM22 6h7v1h-7zM11 7h2v1h-2zM15 7h3v1h-3zM20 7h1v1h-1zM0 8h1v1h-1zM2 8h1v1h-1zM4 8h1v1h-1zM6 8h1v1h-1zM9 8h1v1h-1zM12 8h1v1h-1zM16 8h2v1h-2zM19 8h2v1h-2zM24 8h1v1h-1zM27 8h1v1h-1zM0 9h2v1h-2zM4 9h1v1h-1zM9 9h3v1h-3zM13 9h1v1h-1zM16 9h1v1h-1zM22 9h1v1h-1zM25 9h1v1h-1zM28 9h1v1h-1zM0 10h3v1h-3zM4 10h5v1h-5zM10 10h1v1h-1zM12 10h1v1h-1zM14 10h1v1h-1zM16 10h1v1h-1zM18 10h1v1h-1zM20 10h1v1h-1zM22 10h1v1h-1zM26 10h3v1h-3zM0 11h2v1h-2zM3 11h1v1h-1zM7 11h3v1h-3zM12 11h3v1h-3zM17 11h2v1h-2zM22 11h1v1h-1zM24 11h1v1h-1zM27 11h1v1h-1zM1 12h3v1h-3zM5 12h8v1h-8zM14 12h1v1h-1zM16 12h2v1h-2zM21 12h2v1h-2zM25 12h1v1h-1zM27 12h2v1h-2zM0 13h1v1h-1zM10 13h1v1h-1zM12 13h1v1h-1zM14 13h1v1h-1zM16 13h3v1h-3zM20 13h1v1h-1zM22 13h2v1h-2zM25 13h1v1h-1zM28 13h1v1h-1zM1 14h1v1h-1zM3 14h1v1h-1zM6 14h4v1h-4zM13 14h1v1h-1zM16 14h1v1h-1zM18 14h1v1h-1zM22 14h2v1h-2zM25 14h1v1h-1zM27 14h2v1h-2zM2 15h1v1h-1zM4 15h2v1h-2zM7 15h2v1h-2zM11 15h2v1h-2zM16 15h2v1h-2zM19 15h1v1h-1zM21 15h2v1h-2zM25 15h1v1h-1zM27 15h1v1h-1zM2 16h1v1h-1zM5 16h3v1h-3zM9 16h2v1h-2zM15 16h3v1h-3zM20 16h1v1h-1zM22 16h2v1h-2zM25 16h1v1h-1zM27 16h2v1h-2zM1 17h1v1h-1zM3 17h1v1h-1zM5 17h1v1h-1zM9 17h5v1h-5zM17 17h2v1h-2zM20 17h3v1h-3zM25 17h2v1h-2zM28 17h1v1h-1zM0 18h1v1h-1zM5 18h3v1h-3zM10 18h1v1h-1zM14 18h1v1h-1zM16 18h1v1h-1zM20 18h2v1h-2zM23 18h1v1h-1zM27 18h2v1h-2zM1 19h3v1h-3zM5 19h1v1h-1zM13 19h2v1h-2zM16 19h7v1h-7zM25 19h1v1h-1zM27 19h1v1h-1zM0 20h1v1h-1zM2 20h1v1h-1zM4 20h1v1h-1zM6 20h4v1h-4zM14 20h1v1h-1zM17 20h1v1h-1zM20 20h5v1h-5zM8 21h1v1h-1zM10 21h3v1h-3zM14 21h1v1h-1zM16 21h5v1h-5zM24 21h1v1h-1zM26 21h3v1h-3zM0 22h7v1h-7zM10 22h2v1h-2zM13 22h1v1h-1zM17 22h4v1h-4zM22 22h1v1h-1zM24 22h2v1h-2zM27 22h2v1h-2zM0 23h1v1h-1zM6 23h1v1h-1zM11 23h2v1h-2zM16 23h2v1h-2zM20 23h1v1h-1zM24 23h2v1h-2zM28 23h1v1h-1zM0 24h1v1h-1zM2 24h3v1h-3zM6 24h1v1h-1zM8 24h2v1h-2zM11 24h2v1h-2zM15 24h4v1h-4zM20 24h5v1h-5zM28 24h1v1h-1zM0 25h1v1h-1zM2 25h3v1h-3zM6 25h1v1h-1zM10 25h1v1h-1zM12 25h2v1h-2zM16 25h1v1h-1zM24 25h1v1h-1zM26 25h3v1h-3zM0 26h1v1h-1zM2 26h3v1h-3zM6 26h1v1h-1zM8 26h1v1h-1zM10 26h1v1h-1zM13 26h1v1h-1zM17 26h1v1h-1zM20 26h2v1h-2zM23 26h3v1h-3zM28 26h1v1h-1zM0 27h1v1h-1zM6 27h1v1h-1zM10 27h1v1h-1zM13 27h2v1h-2zM16 27h2v1h-2zM19 27h3v1h-3zM24 27h1v1h-1zM27 27h1v1h-1zM0 28h7v1h-7zM8 28h2v1h-2zM11 28h4v1h-4zM16 28h2v1h-2zM19 28h3v1h-3zM23 28h3v1h-3zM27 28h2v1h-2z"/></svg><!--/@QR--></span></span>
     <span>জনস্বার্থে: সদর সাব-রেজিস্ট্রারের কার্যালয়, সদর, গাজীপুর</span>
     <span class="pub">প্রকাশকাল: জুলাই, ২০২৬</span>
   </div>

@@ -1,33 +1,35 @@
+git add releases.json && git commit -m "Release boards" && git push
 
-bash make.sh --check     # works whatever your Python is called
+bash make.sh magura-sreepur      
+bash make.sh officeC
+python publish.py officeA officeB officeC officeD …
+git add releases.json && git commit -m "Publish boards" && git push
+
 
 
 
 python build.py --check      			# validate, build nothing
-python build.py brahmanbaria-sadar          	# all offices → out/<folder>/
-bash make.sh brahmanbaria-sadar 		# build + render one office
+python build.py barishal-gaurnadi         	# all offices → out/<folder>/
+bash make.sh brahmanbaria-sadar
 
 
-After any templats change we need to run these
-cp templates/*.html docs/templates/
+# Habiganj
+bash release.sh habiganj-sadar habiganj-nabiganj habiganj-bahubal habiganj-ajmiriganj habiganj-baniachong habiganj-lakhai habiganj-chunarughat habiganj-madhabpur
 
+# Sunamganj
+bash release.sh sunamganj-sadar sunamganj-dakshinsunamganj sunamganj-bishwambarpur sunamganj-chhatak sunamganj-jagannathpur sunamganj-dowarabazar sunamganj-tahirpur sunamganj-dharmapasha sunamganj-jamalganj sunamganj-shalla sunamganj-derai
 
+# Narsingdi
+bash release.sh narsingdi-sadar narsingdi-belabo narsingdi-monohardi narsingdi-palash narsingdi-raipura narsingdi-shibpur
 
+# Gazipur
+bash release.sh gazipur-sadar gazipur-sadar2 gazipur-tongi gazipur-kaliganj gazipur-kaliakair gazipur-kapasia gazipur-sreepur
 
+# Narayanganj
+bash release.sh narayanganj-sadar narayanganj-fatullah narayanganj-bandar narayanganj-araihazar narayanganj-rupganj narayanganj-rupganjpurba narayanganj-sonargaon
 
-Before printing
-bash
-pdfinfo out/<office>/pdf/<file>.pdf     # page size must match the filename
-magick identify -format "%f %wx%h %[channels] alpha=%A\n" out/<office>/png/*.png
-
-The clear-vinyl sticker and the acrylic plate must read srgba with a live alpha —
-
-
-
-
-
-
-
+# Munshiganj Sadar (deedRows 6 → 5)
+bash release.sh munshiganj-sadar
 
 
 
@@ -35,12 +37,200 @@ The clear-vinyl sticker and the acrylic plate must read srgba with a live alpha 
 
 
 
-# Rename office and config
-bash new-office.sh
 
 
-# Export All Banners
-bash build-all.sh
+
+# Cumilla
+bash release.sh cumilla-sadar cumilla-sadardakshin cumilla-debidwar cumilla-barura cumilla-brahmanpara cumilla-chandina cumilla-chauddagram cumilla-gunoboti cumilla-daudkandi cumilla-gauripur cumilla-homna cumilla-laksam cumilla-muradnagar cumilla-nangalkot cumilla-meghna cumilla-manoharganj cumilla-titas cumilla-burichang
+
+# Feni
+bash release.sh feni-sadar feni-lemua feni-chhagalnaiya feni-sonagazi feni-fulgazi feni-parshuram feni-daganbhuiyan
+
+# Brahmanbaria
+bash release.sh brahmanbaria-sadar brahmanbaria-nabinagar brahmanbaria-kasba brahmanbaria-nasirnagar brahmanbaria-sarail brahmanbaria-ashuganj brahmanbaria-akhaura brahmanbaria-bancharampur
+
+# Noakhali
+bash release.sh noakhali-sadar noakhali-companiganj noakhali-begumganj noakhali-hatiya noakhali-subarnachar noakhali-kabirhat noakhali-senbag noakhali-chatkhil noakhali-sonaimuri
+
+# Chandpur
+bash release.sh chandpur-sadar chandpur-haimchar chandpur-kachua chandpur-shahrasti chandpur-matlabdakshin chandpur-hajiganj chandpur-matlabuttar chandpur-faridganj
+
+# Lakshmipur
+bash release.sh lakshmipur-sadar lakshmipur-chandraganj lakshmipur-kamalnagar lakshmipur-raipur lakshmipur-ramgati lakshmipur-ramganj
+
+# Chattogram
+bash release.sh chattogram-sadar chattogram-pahartali chattogram-chandgaon chattogram-rangunia chattogram-sitakunda chattogram-mirsarai chattogram-jorarganj chattogram-patiya chattogram-sandwip chattogram-banshkhali chattogram-boalkhali chattogram-anwara chattogram-chandanaish chattogram-satkania chattogram-lohagara chattogram-hathazari chattogram-fatehabad chattogram-fatikchhari chattogram-nanupur chattogram-raozan
+
+# Cox's Bazar
+bash release.sh coxsbazar-sadar coxsbazar-chakaria coxsbazar-kutubdia coxsbazar-ukhia coxsbazar-maheshkhali coxsbazar-pekua coxsbazar-ramu coxsbazar-teknaf
+
+# Sirajganj
+bash release.sh sirajganj-sadar sirajganj-belkuchi sirajganj-chauhali sirajganj-kamarkhanda sirajganj-gandail sirajganj-raiganj sirajganj-solonga sirajganj-shahjadpur sirajganj-tarash sirajganj-ullapara
+
+# Pabna
+bash release.sh pabna-sadar pabna-sujanagar pabna-ishwardi pabna-bhangura pabna-bera pabna-atgharia pabna-chatmohar pabna-santhia pabna-faridpur
+
+# Bogura
+bash release.sh bogura-sadar bogura-kahaloo bogura-sariakandi bogura-shajahanpur bogura-dupchanchia bogura-adamdighi bogura-nandigram bogura-sonatala bogura-dhunat bogura-gabtali bogura-sherpur bogura-shibganj
+
+# Natore
+bash release.sh natore-sadar natore-singra natore-baraigram natore-bonpara natore-bagatipara natore-lalpur natore-gurudaspur
+
+Done up to this
+
+# Rajshahi
+bash release.sh rajshahi-sadar rajshahi-paba rajshahi-durgapur rajshahi-mohanpur rajshahi-charghat rajshahi-puthia rajshahi-bagha rajshahi-godagari rajshahi-tanore rajshahi-bagmara
+
+# Joypurhat
+bash release.sh joypurhat-sadar joypurhat-akkelpur joypurhat-kalai joypurhat-khetlal joypurhat-panchbibi
+
+# Chapainawabganj
+bash release.sh chapainawabganj-sadar chapainawabganj-gomastapur chapainawabganj-nachole chapainawabganj-bholahat chapainawabganj-shibganj
+
+# Naogaon
+bash release.sh naogaon-sadar naogaon-mahadebpur naogaon-badalgachhi naogaon-patnitala naogaon-dhamoirhat naogaon-niamatpur naogaon-manda naogaon-atrai naogaon-raninagar naogaon-porsha naogaon-sapahar
 
 
-kharshur almogir
+
+
+
+
+
+
+
+
+
+# Bhola
+bash release.sh bhola-sadar bhola-borhanuddin bhola-charfasson bhola-shashibhushan bhola-dakshinaicha bhola-daulatkhan bhola-manpura bhola-tazumuddin bhola-lalmohan
+
+# Barguna
+bash release.sh barguna-sadar barguna-amtali barguna-betagi barguna-bamna barguna-patharghata
+
+# Sylhet
+bash release.sh sylhet-sadar sylhet-dakshinsurma sylhet-balaganj sylhet-beanibazar sylhet-bishwanath sylhet-companiganj sylhet-fenchuganj sylhet-golapganj sylhet-gowainghat sylhet-jaintapur sylhet-kanaighat sylhet-zakiganj sylhet-osmaninagar
+
+
+
+
+
+# Jashore
+bash release.sh jashore-sadar jashore-manirampur jashore-abhaynagar jashore-bagharpara jashore-chaugachha jashore-jhikargachha jashore-keshabpur jashore-sharsha
+
+# Satkhira
+bash release.sh satkhira-sadar satkhira-assasuni satkhira-debhata satkhira-kalaroa satkhira-shyamnagar satkhira-tala satkhira-kaliganj
+
+# Meherpur
+bash release.sh meherpur-sadar meherpur-mujibnagar meherpur-gangni
+
+# Narail
+bash release.sh narail-sadar narail-lohagara narail-kalia
+
+# Chuadanga
+bash release.sh chuadanga-sadar chuadanga-alamdanga chuadanga-damurhuda chuadanga-jibannagar
+
+# Kushtia
+bash release.sh kushtia-sadar kushtia-kumarkhali kushtia-khoksa kushtia-mirpur kushtia-daulatpur kushtia-bheramara
+
+# Magura
+bash release.sh magura-sadar magura-shalikha magura-sreepur magura-mohammadpur
+
+# Khulna
+bash release.sh khulna-sadar khulna-daulatpur khulna-paikgachha khulna-phultala khulna-dighalia khulna-rupsa khulna-terokhada khulna-dumuria khulna-batiaghata khulna-dacope khulna-koyra
+
+# Bagerhat
+bash release.sh bagerhat-sadar bagerhat-fakirhat bagerhat-mollahat bagerhat-sarankhola bagerhat-rampal bagerhat-morrelganj bagerhat-kachua bagerhat-mongla bagerhat-chitalmari
+
+# Jhenaidah
+bash release.sh jhenaidah-sadar jhenaidah-shailkupa jhenaidah-harinakunda jhenaidah-kaliganj jhenaidah-kotchandpur jhenaidah-maheshpur
+
+# Jhalokati
+bash release.sh jhalokati-sadar jhalokati-kathalia jhalokati-nalchity jhalokati-rajapur
+
+
+
+
+# Sherpur
+bash release.sh sherpur-sadar sherpur-nalitabari sherpur-sreebardi sherpur-nakla sherpur-jhenaigati
+
+# Jamalpur
+bash release.sh jamalpur-sadar jamalpur-melandaha jamalpur-islampur jamalpur-dewanganj jamalpur-sarishabari jamalpur-madarganj jamalpur-bakshiganj
+
+# Netrokona
+bash release.sh netrokona-sadar netrokona-barhatta netrokona-durgapur netrokona-kendua netrokona-atpara netrokona-madan netrokona-khaliajuri netrokona-kalmakanda netrokona-mohanganj netrokona-purbadhala
+
+
+# Panchagarh
+bash release.sh panchagarh-sadar panchagarh-tunirhat panchagarh-debiganj panchagarh-boda panchagarh-atwari panchagarh-tentulia
+
+# Dinajpur
+bash release.sh dinajpur-sadar dinajpur-nawabganj dinajpur-birganj dinajpur-ghoraghat dinajpur-birampur dinajpur-parbatipur dinajpur-bochaganj dinajpur-kaharole dinajpur-fulbari dinajpur-hakimpur dinajpur-khansama dinajpur-biral dinajpur-chirirbandar
+
+# Lalmonirhat
+bash release.sh lalmonirhat-sadar lalmonirhat-kaliganj lalmonirhat-hatibandha lalmonirhat-patgram lalmonirhat-aditmari
+
+# Nilphamari
+bash release.sh nilphamari-sadar nilphamari-saidpur nilphamari-domar nilphamari-chilahati nilphamari-dimla nilphamari-jaldhaka nilphamari-kishoreganj
+
+# Gaibandha
+bash release.sh gaibandha-sadar gaibandha-sadullapur gaibandha-palashbari gaibandha-saghata gaibandha-gobindaganj gaibandha-sundarganj gaibandha-phulchhari
+
+# Thakurgaon
+bash release.sh thakurgaon-sadar thakurgaon-bhullibazar thakurgaon-pirganj thakurgaon-ranishankail thakurgaon-haripur thakurgaon-baliadangi
+
+# Rangpur
+bash release.sh rangpur-sadar rangpur-gangachara rangpur-taraganj rangpur-badarganj rangpur-mithapukur rangpur-pirganj rangpur-kaunia rangpur-pirgachha
+
+# Kurigram
+bash release.sh kurigram-sadar kurigram-nageshwari kurigram-bhurungamari kurigram-phulbari kurigram-rajarhat kurigram-ulipur kurigram-chilmari kurigram-raumari kurigram-charrajibpur
+ 
+
+# Rajbari
+bash release.sh rajbari-sadar rajbari-goalanda rajbari-pangsha rajbari-baliakandi
+
+# Madaripur
+bash release.sh madaripur-sadar madaripur-shibchar madaripur-kalkini madaripur-rajoir
+
+# Gopalganj
+bash release.sh gopalganj-sadar gopalganj-kashiani gopalganj-tungipara gopalganj-kotalipara gopalganj-muksudpur
+
+# Faridpur
+bash release.sh faridpur-sadar faridpur-alfadanga faridpur-boalmari faridpur-sadarpur faridpur-nagarkanda faridpur-bhanga faridpur-charbhadrasan faridpur-madhukhali faridpur-saltha
+
+# Munshiganj
+bash release.sh munshiganj-sadar munshiganj-sreenagar munshiganj-sirajdikhan munshiganj-louhajang munshiganj-gazaria munshiganj-tongibari
+
+# Manikganj
+bash release.sh manikganj-sadar manikganj-singair manikganj-harirampur manikganj-saturia manikganj-ghior manikganj-shibalay manikganj-daulatpur
+
+# Kishoreganj
+bash release.sh kishoreganj-sadar kishoreganj-austagram kishoreganj-bajitpur kishoreganj-bhairab kishoreganj-hossainpur kishoreganj-itna kishoreganj-karimganj kishoreganj-katiadi kishoreganj-kuliarchar kishoreganj-mithamain kishoreganj-nikli kishoreganj-pakundia kishoreganj-tarail
+
+# Tangail
+bash release.sh tangail-sadar tangail-basail tangail-bhuapur tangail-delduar tangail-dhanbari tangail-ghatail tangail-gopalpur tangail-kalihati tangail-madhupur tangail-mirzapur tangail-nagarpur tangail-sakhipur
+
+# Sharitapur
+bash release.sh shariatpur-sadar shariatpur-naria shariatpur-zajira shariatpur-gosairhat shariatpur-bhedarganj shariatpur-damudya
+
+# Moulvibazar
+bash release.sh moulvibazar-sadar moulvibazar-barlekha moulvibazar-kamalganj moulvibazar-kulaura moulvibazar-sreemangal moulvibazar-rajnagar moulvibazar-juri
+
+# Patuakhali 
+bash release.sh patuakhali-sadar patuakhali-bauphal patuakhali-galachipa patuakhali-kalapara patuakhali-dumki patuakhali-dashmina patuakhali-mirzaganj
+
+# Pirojpur
+bash release.sh pirojpur-sadar pirojpur-nazirpur pirojpur-kawkhali pirojpur-indurkani pirojpur-bhandaria pirojpur-mathbaria pirojpur-nesarabad
+
+# Nilphamari
+bash release.sh nilphamari-sadar nilphamari-saidpur nilphamari-domar nilphamari-chilahati nilphamari-dimla nilphamari-jaldhaka nilphamari-kishoreganj
+
+# Mymenshingh District 
+bash release.sh mymensingh-sadar mymensingh-fulbaria mymensingh-trishal mymensingh-bhaluka mymensingh-muktagachha mymensingh-dhobaura mymensingh-phulpur mymensingh-haluaghat mymensingh-gouripur mymensingh-gafargaon mymensingh-kandipara mymensingh-pagla mymensingh-ishwarganj mymensingh-nandail mymensingh-tarakanda
+
+# Barishal District
+bash release.sh barishal-sadar barishal-bakerganj barishal-babuganj barishal-wazirpur barishal-banaripara barishal-gaurnadi barishal-agailjhara barishal-mehendiganj barishal-muladi barishal-hizla
+
+# Sirajganj District
+bash release.sh sirajganj-sadar sirajganj-belkuchi sirajganj-chauhali sirajganj-kamarkhanda sirajganj-gandail sirajganj-raiganj sirajganj-solonga sirajganj-shahjadpur sirajganj-tarash sirajganj-ullapara
+
+# Magura District
+bash release.sh magura-sadar magura-mohammadpur magura-sreepur magura-shalikha

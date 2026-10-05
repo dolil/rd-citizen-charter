@@ -21,12 +21,13 @@
     "plotRef": "বিধি ৭(২), সারণী, ক্রমিক ২",
     "buildingRef": "বিধি ৭(১), সারণী, ক্রমিক ৬"
   },
+  "localTax": "upazila",
   "sroRef": "এস.আর.ও নং ২১০, তারিখ ০৮ জুন ২০২৬",
   "compact": {
-    "s125": "1",
+    "s125": "0.95",
     "board": "1"
   },
-  "deedRows": 4,
+  "deedRows": 8,
   "showClasses": false,
   "showAdvice": true,
   "_note": "section125 — one entry per ক)/খ) branch. 'items' are the numbered lines; each may be text or {text, ref} (ref = SRO বিধি/সারণী/ক্রমিক).",
@@ -35,7 +36,7 @@
   "section125": [
     {
       "label": "ক)",
-      "lead": "মহম্মদপুর উপজেলার অন্তর্গত সকল মৌজায়",
+      "lead": "",
       "items": [
         {
           "text": "ভূমিমূল্যের ২% অথবা শতকপ্রতি ৫০০/-, যাহা অধিক।",

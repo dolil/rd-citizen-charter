@@ -77,7 +77,7 @@ def validate(cfg, name):
         bad.append('section125: needs at least one branch')
     else:
         for i, r in enumerate(rows, 1):
-            for k in ('label', 'lead'):
+            for k in ('label',):
                 if not str(r.get(k, '')).strip():
                     bad.append('section125[%d].%s: empty' % (i, k))
             if not isinstance(r.get('items'), list) or not r['items']:
@@ -94,6 +94,9 @@ def validate(cfg, name):
 
     if not str(cfg.get('sroRef', '')).strip():
         bad.append('sroRef: empty (the ধারা ১২৫ notification reference)')
+
+    if cfg.get('localTax', 'upazila') not in ('upazila', 'city', 'both'):
+        bad.append("localTax: must be 'upazila' (৩%), 'city' (২%) or 'both'")
 
     n = cfg.get('deedRows')
     if n is not None:
@@ -120,7 +123,7 @@ def item_html(item):
        points to the SRO (বিধি / সারণী / ক্রমিক) so an officer can cross-check."""
     if isinstance(item, dict):
         t, ref = item.get('text', ''), str(item.get('ref', '')).strip()
-        return t + (' <span class="tiny">[%s]</span>' % ref if ref else '')
+        return t + (' <span class="ref">[%s]</span>' % ref if ref else '')
     return item
 
 
@@ -148,9 +151,11 @@ def trim_deeds(html, keep):
     m = re.search(r'(<!--@DEEDS-->\n)([\s\S]*?)(\s*<!--/@DEEDS-->)', html)
     if not m:
         return html, None
-    rows = re.findall(r'            <tr><td class="c">[\s\S]*?</tr>\n', m.group(2))
+    # the last row has no trailing newline inside the group (the closing
+    # marker's \s* takes it), so match rows without requiring one
+    rows = re.findall(r'[ \t]*<tr><td class="c">[\s\S]*?</tr>', m.group(2))
     kept = rows[:keep]
-    html = html[:m.start(2)] + ''.join(kept) + html[m.end(2):]
+    html = html[:m.start(2)] + '\n'.join(r.rstrip('\n') for r in kept) + html[m.end(2):]
 
     # renumber the whole chart so the ক্রমিক column stays continuous
     i = html.index('<table class="charter feechart">')
@@ -215,10 +220,11 @@ def gen_s125_prose(cfg):
     BN = '০১২৩৪৫৬৭৮৯'
     out = ['<b>উৎসে কর [ধারা ১২৫]</b> — ']
     for row in cfg['section125']:
-        lead = row['lead'].strip().rstrip(':').rstrip('—').strip()
+        lead = str(row.get('lead', '')).strip().rstrip(':').rstrip('—').strip()
         items = row['items']
         if len(items) == 1:
-            out.append('%s — %s<br>' % (lead, item_html(items[0])))
+            out.append(('%s — %s<br>' % (lead, item_html(items[0]))) if lead
+                       else '%s<br>' % item_html(items[0]))
         else:
             out.append('%s:<br>' % lead)
             for k, it in enumerate(items, 1):
@@ -232,14 +238,38 @@ def gen_s126_prose(cfg):
     s = cfg['section126']
     def tag(k):
         v = str(s.get(k, '')).strip()
-        return ' <span class="tiny">[%s]</span>' % v if v else ''
-    return ('<b>উৎসে কর [ধারা ১২৬]</b> — বাণিজ্যিক ভিত্তিতে প্লট বা স্থাপনা বিক্রয়ের ক্ষেত্রে অতিরিক্ত — '
-            'প্লট/জমিতে %s%s; স্থাপনায় প্রতি বর্গমিটারে আবাসিক %s ও বাণিজ্যিক %s%s।%s<br>'
-            % (s['plot'], tag('plotRef'), s['residential'], s['commercial'],
-               tag('buildingRef'), tag('ref'))
-            + ('<span class="tiny"><b>বি.দ্র.</b> বিক্রেতা ডেভেলপার হইলে স্থাপনার বর্গমিটার হারের সহিত '
-               'সংশ্লিষ্ট ভূমিমূল্যের উপরও %s প্রযোজ্য। তখন ধারা ১২৫ এর কর কেবল ভূমির উপর, '
-               'স্থাপনার উপর নহে। [বিধি ৭(৫)]</span><br>' % s['plot']))
+        return ' <span class="ref">[%s]</span>' % v if v else ''
+    head = ('<b>উৎসে কর [ধারা ১২৬]</b> — বাণিজ্যিক ভিত্তিতে প্লট বা স্থাপনা বিক্রয়ের ক্ষেত্রে অতিরিক্ত:<br>'
+            '১) প্লট/জমিতে %s%s<br>' % (s['plot'], tag('plotRef')))
+    # an office whose area spans two বিধি ৭(১) rows (e.g. a city corporation plus
+    # the rest of the upazila) lists them under 'buildings'
+    if s.get('buildings'):
+        BN = 'কখগঘঙ'
+        parts = []
+        for k, x in enumerate(s['buildings']):
+            ref = str(x.get('ref', '')).strip()
+            parts.append('<span class="sub">%s) %s — আবাসিক %s ও বাণিজ্যিক %s%s</span><br>'
+                         % (BN[k], x['area'], x['residential'], x['commercial'],
+                            ' <span class="ref">[%s]</span>' % ref if ref else ''))
+        return head + '২) স্থাপনায় প্রতি বর্গমিটারে:<br>' + ''.join(parts)
+    return head + ('২) স্থাপনায় প্রতি বর্গমিটারে আবাসিক %s ও বাণিজ্যিক %s%s%s<br>'
+                   % (s['residential'], s['commercial'], tag('buildingRef'), tag('ref')))
+
+
+
+LOCALTAX = {
+    'upazila': ('ইউনিয়ন, উপজেলা, জেলা ও ক্যান্টনমেন্ট বোর্ড', '৩%'),
+    'city':    ('সিটি কর্পোরেশন ও উপজেলাধীন নহে এইরূপ ক্যান্টনমেন্ট বোর্ড', '২%'),
+}
+
+
+def gen_localtax(cfg):
+    """localTax: 'upazila' (৩%), 'city' (২%) or 'both' (the two, with a heading)."""
+    k = cfg.get('localTax', 'upazila')
+    rows = [LOCALTAX['upazila'], LOCALTAX['city']] if k == 'both' else [LOCALTAX[k]]
+    t = '<table class="codes">%s</table>' % ''.join(
+        '<tr><td>%s</td><td>%s</td></tr>' % r for r in rows)
+    return ('অবস্থানভেদে যেকোনো একটি:' + t) if k == 'both' else t
 
 
 def gen_126(cfg):
@@ -331,6 +361,8 @@ def build_office(path, check_only=False):
                              (put_inline, 'S126',   s126),
                              (put_inline, 'S125P',  gen_s125_prose(cfg)),
                              (put_inline, 'S126P',  gen_s126_prose(cfg)),
+                             (put_inline, 'S126PLOT', cfg['section126']['plot']),
+                             (put_inline, 'LOCALTAX', gen_localtax(cfg)),
                              (put_inline, 'SRO',    cfg.get('sroRef', '')),
                              (put_inline, 'DROFF',  cfg['identity']['drOffice']),
                              (put_inline, 'SRWEB',  cfg['identity']['srWeb']),

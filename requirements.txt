@@ -1,0 +1,9 @@
+# build.py runs on the standard library alone; this is the one optional extra.
+#
+#   pip install -r requirements.txt
+#
+# qrcode draws the footer QR of each office's website. Without it the build
+# still succeeds — it simply leaves the QR already in the template, which
+# points at the reference office, so install it before printing for a new
+# office.
+qrcode>=7.4

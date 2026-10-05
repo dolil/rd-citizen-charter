@@ -22,14 +22,15 @@
     "plotRef": "বিধি ৭(২), সারণী, ক্রমিক ১",
     "buildingRef": "বিধি ৭(১), সারণী, ক্রমিক ৫"
   },
+  "localTax": "upazila",
   "sroRef": "এস.আর.ও নং ২১০, তারিখ ০৮ জুন ২০২৬",
   "compact": {
     "s125": "0.95",
     "board": "1"
   },
-  "deedRows": 3,
+  "deedRows": 6,
   "showClasses": true,
-  "showAdvice": false,
+  "showAdvice": true,
   "section125": [
     {
       "label": "ক)",

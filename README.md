@@ -84,7 +84,7 @@ Copy an existing JSON, change the values, run `--check`, then build.
 | Key | Why it varies |
 |---|---|
 | `folder` | output folder name — `out/<folder>/` and the release tag `board-<folder>`. Usually the same as the JSON's filename. |
-| `identity` | office name, upazila, district, bank branch, websites, publication date |
+| `identity` | office name, upazila, district, bank branch, websites, publication date. `srWeb` may be `""` for an office with no website of its own — the footer then drops its "ওয়েব:" line and QR. |
 | `grs` | the designated অনিক and appeal officer |
 | `section126` | ৫% / ১,৩০০ / ৩,৫০০ in the listed districts, ৩% / ৩০০ / ১,০০০ elsewhere |
 | `section125` | set by district SRO — thana names, শ্রেণি bands, per-decimal amounts |

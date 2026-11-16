@@ -1,8 +1,8 @@
 {
-  "generated": "2026-10-05",
+  "generated": "2026-11-16",
   "board": "নাগরিক সনদ ও সেবা তথ্য বোর্ড",
   "size": "৮ ফুট × ৬ ফুট (৯৬ × ৭২ ইঞ্চি)",
-  "count": 480,
+  "count": 481,
   "districts": [
     {
       "district": "কক্সবাজার",
@@ -3161,6 +3161,25 @@
     {
       "district": "ঢাকা",
       "offices": [
+        {
+          "folder": "dhaka-kalampur",
+          "office": "সাব-রেজিস্ট্রারের কার্যালয়, কালামপুর, ধামরাই, ঢাকা",
+          "upazila": "ধামরাই",
+          "district": "ঢাকা",
+          "published": "প্রকাশকাল: জুলাই, ২০২৬",
+          "count": 12,
+          "dpi": 150,
+          "pdf": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-dhaka-kalampur/dhaka-kalampur-pdf.zip",
+            "bytes": 2776549,
+            "size": "2.6 MB"
+          },
+          "img": {
+            "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-dhaka-kalampur/dhaka-kalampur-images.zip",
+            "bytes": 40022363,
+            "size": "38.2 MB"
+          }
+        },
         {
           "folder": "keraniganj-south",
           "office": "সাব-রেজিস্ট্রারের কার্যালয়, কেরানীগঞ্জ দক্ষিণ, ঢাকা",

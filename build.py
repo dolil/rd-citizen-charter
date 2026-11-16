@@ -47,8 +47,10 @@ MASTER = {
 
 REQUIRED = {
     'folder': str,
+    # srWeb may be blank — an office with no website of its own gets no
+    # "ওয়েব:" line and no QR in the footer (see drop_web)
     'identity': ['office', 'upazila', 'district', 'bankBranch',
-                 'srWeb', 'drOffice', 'drWeb', 'published'],
+                 'drOffice', 'drWeb', 'published'],
     'grs': ['anik', 'appeal'],
     'section126': ['plot', 'residential', 'commercial'],
     'compact': ['s125', 'board'],
@@ -177,6 +179,14 @@ def drop_card(html, name):
        on later is a one-word change in the JSON."""
     pat = re.compile(r'[ \t]*<!--@%s-->.*?<!--/@%s-->\n?' % (name, name), re.S)
     return pat.sub('', html, count=1)
+
+
+def drop_web(html):
+    """srWeb blank: remove the footer's whole "ওয়েব: … [QR]" span, so the
+       board neither keeps the reference office's URL nor prints a QR that
+       points nowhere."""
+    pat = re.compile(r'[ \t]*<span class="pub qrwrap">.*?<!--/@QR--></span></span>\n?', re.S)
+    return pat.subn('', html, count=1)
 
 
 def gen_qr(cfg):
@@ -357,6 +367,11 @@ def build_office(path, check_only=False):
             html = drop_card(html, 'ADVICECARD')
 
         marks = []
+        has_web = bool(cfg['identity'].get('srWeb', '').strip())
+        if not has_web:
+            html, dropped = drop_web(html)
+            if dropped:
+                marks.append('WEB off')
         for fn, key, val in ((put_block,  'S125',   s125),
                              (put_inline, 'S126',   s126),
                              (put_inline, 'S125P',  gen_s125_prose(cfg)),
@@ -373,12 +388,12 @@ def build_office(path, check_only=False):
             if done:
                 marks.append(key)
 
-        qr = gen_qr(cfg)
+        qr = gen_qr(cfg) if has_web else None
         if qr:
             html, done = put_inline(html, 'QR', qr)
             if done:
                 marks.append('QR')
-        elif '<!--@QR-->' in html:
+        elif has_web and '<!--@QR-->' in html:
             marks.append('QR NOT REGENERATED — pip install qrcode')
 
         c = cfg['compact']

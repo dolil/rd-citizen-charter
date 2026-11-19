@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-16",
+  "generated": "2026-11-19",
   "board": "নাগরিক সনদ ও সেবা তথ্য বোর্ড",
   "size": "৮ ফুট × ৬ ফুট (৯৬ × ৭২ ইঞ্চি)",
   "count": 481,
@@ -3171,13 +3171,13 @@
           "dpi": 150,
           "pdf": {
             "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-dhaka-kalampur/dhaka-kalampur-pdf.zip",
-            "bytes": 2776549,
+            "bytes": 2771977,
             "size": "2.6 MB"
           },
           "img": {
             "url": "https://github.com/dolil/rd-citizen-charter/releases/download/board-dhaka-kalampur/dhaka-kalampur-images.zip",
-            "bytes": 40022363,
-            "size": "38.2 MB"
+            "bytes": 39949199,
+            "size": "38.1 MB"
           }
         },
         {

@@ -220,6 +220,11 @@
   table.nf tr.grp2 td { font-size: var(--fs-tiny); color: #57606a; padding-bottom: .02in; border-bottom: none; }
   .card .in.nfnote { font-size: calc(var(--fs-tiny) * .92); line-height: 1.3; padding-top: .05in; }
   table.nf tr.tot td { border-bottom: .03in solid #cfe3d6; }
+  /* দলিল লেখকের পারিশ্রমিক as a paragraph (deedWriterFee: "prose") */
+  .col .card .in.dwprose { font-size: var(--fs-small); line-height: 1.5; text-align: justify; }
+  .col .card .in.dwprose b { font-weight: 700; color: var(--green); }
+  /* the paragraph is shorter than the chart it replaces — the advice panel takes the height back */
+  .col.c5:has(.dwprose):has(table.cls) .p-guide .ptxt { font-size: calc(var(--fs-small) * .97); line-height: 1.45; }
   /* ভূমির শ্রেণি: reference definitions — same small size as the fee tables */
   .col table.cls td { font-size: var(--fs-tiny); padding: .05in .1in; line-height: 1.3; }
   /* when the class card is on (city/sadar boards) the advice panel steps down a little so both fit */
@@ -599,7 +604,7 @@
 
       <div class="card">
         <h2>দলিল লেখকগণের পারিশ্রমিক</h2>
-        <div class="in tiny nfnote">এস.আর.ও নং ২১৯/আইন/৯৪/১এম-১২/৯০ তাং- ২০/০১/১৯৯৪ এবং এস.আর.ও নং- ১৬৮/আইন/২০০২ তাং- ২৯/০৬/২০০২ অনুযায়ী</div>
+        <!--@DWTABLE--><div class="in tiny nfnote">এস.আর.ও নং ২১৯/আইন/৯৪/১এম-১২/৯০ তাং- ২০/০১/১৯৯৪ এবং এস.আর.ও নং- ১৬৮/আইন/২০০২ তাং- ২৯/০৬/২০০২ অনুযায়ী</div>
         <table class="nf dw">
           <tbody>
             <tr><td colspan="2" class="sm lbl">১) দলিল লিখার ফি:</td></tr>
@@ -612,7 +617,8 @@
             <tr><td>৫) রাষ্ট্রীয় হুকুম দখল ও প্রজাস্বত্ব আইনের নোটিশ লিখন ও পূরণ করার জন্য নোটিশ প্রতি</td><td class="r">২/-</td></tr>
             <tr><td>৬) সূচি তল্লাশ বা বালাম বহি পরিদর্শনের জন্য প্রতি বৎসর</td><td class="r">৫/-</td></tr>
           </tbody>
-        </table>
+        </table><!--/@DWTABLE-->
+        <!--@DWPROSE--><div class="in dwprose">এস.আর.ও নং ২১৯/আইন/৯৪/১এম-১২/৯০ তাং- ২০/০১/১৯৯৪ এবং এস.আর.ও নং- ১৬৮/আইন/২০০২ তাং- ২৯/০৬/২০০২ অনুযায়ী দলিল লেখকগণ দলিল মুসাবিদা, নোটিশ লেখা, নকলের আবেদন লেখা ও অন্য যেকোনো আবেদন লেখার জন্য বিধি মোতাবেক পারিশ্রমিক প্রাপ্ত হবেন। <b>দলিল লেখকগণের পারিশ্রমিক দলিলের পক্ষগণ কর্তৃক পরিশোধিত হবে।</b></div><!--/@DWPROSE-->
       </div>
 
       <div class="card">

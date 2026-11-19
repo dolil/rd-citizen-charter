@@ -100,6 +100,9 @@ def validate(cfg, name):
     if cfg.get('localTax', 'upazila') not in ('upazila', 'city', 'both'):
         bad.append("localTax: must be 'upazila' (৩%), 'city' (২%) or 'both'")
 
+    if cfg.get('deedWriterFee', 'table') not in ('table', 'prose'):
+        bad.append("deedWriterFee: must be 'table' (fee chart) or 'prose' (one paragraph)")
+
     n = cfg.get('deedRows')
     if n is not None:
         try:
@@ -365,6 +368,8 @@ def build_office(path, check_only=False):
             html = drop_card(html, 'CLASSCARD')
         if not cfg.get('showAdvice', True):
             html = drop_card(html, 'ADVICECARD')
+        # দলিল লেখকের পারিশ্রমিক: the itemised chart, or one paragraph
+        html = drop_card(html, 'DWTABLE' if cfg.get('deedWriterFee') == 'prose' else 'DWPROSE')
 
         marks = []
         has_web = bool(cfg['identity'].get('srWeb', '').strip())

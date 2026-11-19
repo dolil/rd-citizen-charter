@@ -91,6 +91,7 @@ Copy an existing JSON, change the values, run `--check`, then build.
 | `sroRef` | the ধারা ১২৫ notification reference printed under the rates |
 | `showClasses` | `true`/`false` — show or hide the ভূমির শ্রেণি (ক–চ) table. Offices whose district has no development-authority or developer land need only শ্রেণি চ, so the table is noise there. |
 | `showAdvice` | `true`/`false` — show or hide the গুরুত্বপূর্ণ পরামর্শ card. It is there to fill the space the শ্রেণি table leaves when `showClasses` is `false`, so the two are meant to be mutually exclusive: classes on → advice off, and the other way round. |
+| `deedWriterFee` | `"table"` (default) or `"prose"` — the দলিল লেখকগণের পারিশ্রমিক card as the itemised fee chart, or as one paragraph (per the SROs, deed writers are paid by rule for drafting, notices and applications; the parties pay them). |
 | `deedRows` | how many of the fee chart's optional deed rows to show, `0`–`8`. The first eight deeds and the নকল row always appear, so the chart never drops below nine rows. |
 | `compact` | `s125` scales the উৎসে কর cell of the fee chart; `board` scales every font on the board (`0.7`–`1.3`). `1` = as drawn, above is looser, below tighter. Most districts have a much shorter ১২৫ text than Gazipur's, which leaves a gap — fill it by raising `s125`, or by showing more `deedRows`. |
 
